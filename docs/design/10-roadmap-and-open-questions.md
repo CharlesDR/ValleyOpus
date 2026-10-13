@@ -44,7 +44,6 @@ Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition
 - Lark's family (Jodi's or Pam's) and Hesper's outdoor spot.
 
 ## Upcoming tasks
-- Move these docs into the GitHub repo (`CharlesDR/ValleyOpus` exists; waiting on Charles's go).
 - Balance sweep tooling (doc 06), including the item census (doc 03b).
 - Nexus popularity ranking for integration targets. This needs a manual export or the browser, because Nexus blocks automated access from cloud sessions.
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
