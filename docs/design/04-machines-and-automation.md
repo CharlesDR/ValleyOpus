@@ -1,6 +1,6 @@
 # 04 · Machines, Rituals, Adjacency & Automation
 
-Status: **DRAFT v0.5** (2026-10-13). v0.5: directional chaining replaces arcane logistics in 1.0 (S2), and fewer BigCraftables for the same operations (A1). v0.4: discovery gate on automation, flower-fed arcane apparatus, Gloam Lanterns and late-game blended machines. v0.3: Charles's automation model replaces attunement decay. Names are working names. Display names may overlap other alchemy mods; IDs must not.
+Status: **DRAFT v0.6** (2026-10-13). v0.6: Automate is expected but optional, automation is encouraged after Tier 1, hand-made-only products, late-game scale across T3 Labs, the combat cap, and late-game ley nodes (Charles's guiding answers, doc 01). v0.5: directional chaining replaces arcane logistics in 1.0 (S2), and fewer BigCraftables for the same operations (A1). v0.4: discovery gate on automation, flower-fed arcane apparatus, Gloam Lanterns and late-game blended machines. v0.3: Charles's automation model replaces attunement decay. Names are working names. Display names may overlap other alchemy mods; IDs must not.
 
 ## Two ways of working (the core axis, voiced by Tobin and Oriel)
 | | **Engineered lines** ⚙︎ (Tobin) | **Grand rituals** ✦ (Oriel) |
@@ -56,13 +56,14 @@ Arcane apparatus come in two kinds (Charles, v0.3):
 - **Quarry Crucible** (Agnes; after the Quarry bridge): advanced metal transmutation and planetary-metal production.
 - **Ley Tap** (Hesper; ley nodes, below): slowly gathers location-specific Primes.
 - **Experiment Table** and **Assayer's Lens**: discovery (doc 07).
-- **Combat preparations** (Ivo): bombs, blade coatings and combat elixirs, made at existing apparatus, not a new machine family.
+- **Combat preparations** (Ivo): bombs, blade coatings and combat elixirs, made at existing apparatus, not a new machine family. Useful, but **never more impactful than a Combat Mastery trinket** (Charles; doc 03a).
 
 ## Ley nodes (new in v0.2, from Hesper)
-- Fixed spots across the world map (e.g. Secret Woods → Earth/Vitae, Mountain lake → Water, beach → Salt, desert → Fire, Witch's swamp → Tenebrae), revealed by Hesper or by assaying.
+- Fixed spots across the world map (e.g. Secret Woods → Earth/Vitae, Mountain lake → Water, beach → Salt, desert → Fire, Witch's swamp → Tenebrae; later Ginger Island's jungle → Vitae and the Volcano → Fire/Magma), revealed by Hesper or by assaying.
+- **Hidden alchemy areas (Charles: nice to have):** a few small new pockets, reached from compatibility-friendly spots (a sealed door in the workshop, a ley-node clearing off an existing path), can host the rarest nodes. Each needs a compatibility check against SVE, RSV and East Scarp map edits (doc 17).
 - **Ley Tap:** a placeable that gathers that node's Primes slowly and **directly**, adding no new forage items (the inventory rule, doc 03b).
 - Grand rituals performed on a ley node get a bonus, which gives exploration a reason to carry rituals into the world.
-- Ley nodes anchor **arcane logistics** (below).
+- Ley nodes will anchor **arcane logistics** in 2.0 (below).
 
 ## Adjacency (approved for 1.0)
 - Checks the 4 orthogonal neighbours (8 is a tuning knob), evaluated when input is loaded.
@@ -73,15 +74,20 @@ Arcane apparatus come in two kinds (Charles, v0.3):
 - **Readability:** hover tooltips; codex pages list known neighbour effects, with "?" until discovered.
 - **Implementation:** C# `OutputMethod` plus a data-driven neighbour → effect table.
 
-## Automation stance (decided by Charles, v0.3)
+## Automation stance (decided by Charles, v0.3; extended v0.6)
+**Automate is expected but technically optional** (Charles, doc 01). Every 1.0 apparatus must be fully usable by hand plus directional chaining, without Automate installed; Automate is the expected tool for scale and gets first-class support. **Automation is heavily encouraged after the first tier of recipes:** Spring is hand work and discovery, and from Summer Tobin's engineered lines make automating discovered Tier 1 recipes the natural next step (doc 02).
+
 | Kind | Automate loads inputs? | Automate collects output? | Player action needed |
 |---|---|---|---|
 | Engineered apparatus ⚙︎ | yes | yes | none |
 | Minor arcane apparatus ✦ | yes | yes | none (conditions still matter) |
 | Ritual altars ✦ | **yes (staging)** | yes, after the ritual completes | **trigger the ritual by hand** |
 | Ritual Circle (grand rituals) | yes (staging) | yes, after completion | trigger by hand |
+| **Hand-made-only recipes** (gifts, quest items, capstones) | **no** (proposal; see doc 10) | no | the player crafts or performs the ritual by hand |
 
 There is **no attunement decay** in this model; the manual trigger replaces it.
+
+**Hand-made only (Charles, doc 01):** gifts, quest items and capstones are always hand-made, by crafting recipe or, preferably, by ritual. Such recipes carry a hand-made-only flag: machines refuse them from Automate and from chaining, and they never run unattended. Whether Automate may still *stage* materials for a hand-made-only ritual is an open question (doc 10); the proposal is no, so the whole act stays the player's.
 
 **Discovery gate (all kinds, Charles v0.4):** automation can't make discoveries and requires them. A machine only accepts inputs for recipes the farm has discovered, and any undiscovered output is locked in the machine until the player unloads it by hand (doc 07).
 
@@ -92,6 +98,8 @@ There is **no attunement decay** in this model; the manual trigger replaces it.
 4. **Mini-game (2.0):** 1.0 ships with the animation only (Charles). A mini-game version of ritual execution is on the 2.0 list.
 
 Why this works: Automate does the logistics (pillar 1's "mechanical" half), while the moment of transformation stays a hands-on, memorable act (the "magical" half). Scaling altars means more manual triggers, which is the natural brake on wonder at scale, as Tobin would note.
+
+**Time budget:** a heavily invested mid-game player spends about a quarter of the day on alchemy (doc 02). Hand triggers, hand unloading of discoveries and hand-made crafting all count against that, so the Mystic perk that triggers nearby staged altars together (doc 05) and a clear "staged" HUD are what keep a large ritual setup inside it.
 
 ## The Mystic garden: flower-fed apparatus (approved inspiration, v0.4)
 Inspired thematically by Botania; **none of its names are reused** (doc 01).
@@ -133,3 +141,6 @@ Long-range, low-bandwidth magical transport (paired sympathetic vessels; aether 
 
 ## Vanilla machines
 We **append** rules to vanilla machines (e.g. the Furnace accepts Metallum; the Keg accepts Vitae for Aqua Vitae) and never overwrite them.
+
+## Late-game scale (Charles, doc 01)
+A setup producing every endgame item **spreads across several T3 Labs**. One T3 Lab of each specialization (one per Familiar, four in all) must be more than enough room for a setup for every item in the mod. Doc 13's footprints and adjacency layouts are checked against that target.

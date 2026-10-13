@@ -1,6 +1,6 @@
 # 08a · Cast
 
-Status: **APPROVED** (2026-10-13). The apprentice was renamed from Wren to Lark to avoid a Sunberry Village clash.
+Status: **APPROVED** (2026-10-13). The apprentice was renamed from Wren to Lark to avoid a Sunberry Village clash. v0.6 pass: fixed Dr. Sorenson's first name in the table (Ulla, as decided), which an earlier rename had overwritten.
 Parent doc: [08-narrative-and-npcs.md](08-narrative-and-npcs.md). This replaces the v0.1 candidate list.
 
 ## How names and genders were chosen
@@ -21,7 +21,7 @@ Names also avoid vanilla and SVE NPC names (e.g. Robin, Maru, Marnie, Morgan, Vi
 | A | Mentor Alchemist | **Oriel** | F (fixed) | *oriel* suggests aureole and gold light: the Great Work's goal |
 | B | Mechanist Engineer | **Tobin** | M | echoes *tin*, Jupiter's metal: the engineer's workaday metal |
 | C | Travelling Merchant | **Finch** | M | a small travelling bird: always on the road |
-| 1 | Joja Defector | **Dr. Sorenson** (first name Dr. Sorenson, revealed only in a late high-friendship cutscene; never shown in UI) | F | plain corporate name; an outsider |
+| 1 | Joja Defector | **Dr. Sorenson** (first name Ulla, revealed only in a late high-friendship cutscene; never shown in UI) | F | plain corporate name; an outsider |
 | 2 | Astrologer & Ley Surveyor | **Hesper** | F | Hesperus, the evening star |
 | 4 | Reagent Hunter | **Ivo** | M | Germanic "yew", the tree of death and poison: Mors reagents |
 | 5 | Tide-Pool Naturalist | **Delta** | F | a river delta, where fresh water meets the sea |

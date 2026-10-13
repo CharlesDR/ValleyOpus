@@ -1,6 +1,6 @@
 # 09 · Technical Architecture
 
-Status: **DRAFT v0.3** (2026-10-13). v0.3: requirements from the Part 4 decisions. Platform facts: [research](../research/comparators-and-concepts.md).
+Status: **DRAFT v0.4** (2026-10-13). v0.4: content-pack extensibility in 1.0, three more 1.0 tie-in mods, villager integration, the hand-made-only flag and compatibility-safe world changes (Charles's guiding answers, doc 01). v0.3: requirements from the Part 4 decisions. Platform facts: [research](../research/comparators-and-concepts.md).
 
 ## Targets
 - Stardew Valley **1.6.15** (latest), SMAPI 4.x. Recipes and tag data are kept isolated so the **1.7** migration (data-model recipes, `Data/ContextTags`) is cheap.
@@ -11,13 +11,13 @@ Status: **DRAFT v0.3** (2026-10-13). v0.3: requirements from the Part 4 decision
 |---|---|---|
 | **ValleyOpus** (core) | SMAPI C# mod | decomposition engine, adjacency, codex and discovery UI, staged rituals, SpaceCore skill, multiplayer sync, Automate factory, GMCM config, custom GSQs and `OutputMethod`s |
 | **[CP] ValleyOpus** | Content Patcher pack | items, apparatus (`Data/Machines`, `Data/BigCraftables`), buildings (`Data/Buildings`), shops, mail, events, NPCs, maps, strings, placeholder sprites |
-| Integration packs | CP, conditional on `HasMod` | SVE etc.: item → source overrides, gated by Nexus popularity ranking |
+| Integration packs | CP, conditional on `HasMod` | 1.0: **SVE, Alecto the Witch, Ridgeside Village, East Scarp** (item → source overrides, gift tastes, dialogue, small events). Others in 2.0, ordered by the Nexus popularity ranking |
 
 Unique ID: **`CharlesDR.ValleyOpus`**. All item and machine IDs are prefixed `CharlesDR.ValleyOpus_`, so they never collide with other alchemy mods.
 
 ## Dependencies
 - Required: SMAPI, Content Patcher, SpaceCore.
-- Optional: Automate (first-class), Generic Mod Config Menu, Walk of Life (works without it), SVE and other integration targets.
+- Optional: Automate (expected and first-class, but never required: every feature works by hand plus directional chaining), Generic Mod Config Menu, Walk of Life (works without it), and the 1.0 tie-in mods above.
 - Avoid: Producer Framework Mod and Json Assets (1.6 makes them unnecessary). Use Extra Machine Configs only if a feature truly needs it.
 
 ## Key systems
@@ -33,6 +33,10 @@ Unique ID: **`CharlesDR.ValleyOpus`**. All item and machine IDs are prefixed `Ch
 - **Grand rituals:** C# for the multi-tile circle detection, the conditions check and the batch animation.
 - **Familiars:** a per-Lab bond (T3 Labs only) stored in the building's `modData`; uniqueness enforced farm-wide.
 - **NPCs:** 10 new NPCs (plus 4 Familiars as non-villager spirits). Hesper's visiting schedule is 3–4 days a week with intra-day wandering. Every NPC needs SVE-aware schedules.
+- **Vanilla and SVE villagers (Charles):** every villager gets alchemy dialogue, gift tastes and, where it fits, events. All of it is Content Patcher data (`Characters/Dialogue/*`, `Data/NPCGiftTastes`, `Data/Events/*`) conditioned on our flags, appended rather than replacing, and fully i18n. The Witch's content switches to Alecto's NPC when that mod is installed.
+- **Hand-made-only recipes:** a flag in recipe data. Our Automate factory and the chaining logic refuse such inputs, so gifts, quest items and capstones are only ever made by the player (doc 04).
+- **World changes from capstones:** delivered as conditional Content Patcher patches on locations we own, decorations on tiles no common mod edits, and dialogue, event or appearance changes for NPCs. No edits to shared map areas such as Town. Each one is checked against SVE, RSV and East Scarp (doc 17).
+- **Hidden alchemy areas:** new small locations reached by a warp added on a minimal tile patch, chosen where the 1.0 tie-in mods don't edit.
 
 ## Requirements from the Part 4 decisions (doc 00, 2026-10-13)
 - **Uninstall safety (S3, confirmed):** vanilla object types only, no custom item subclasses; state lives in `modData` and mod save data; Satchel contents in a global inventory; a "prepare for removal" command.
@@ -45,7 +49,15 @@ Unique ID: **`CharlesDR.ValleyOpus`**. All item and machine IDs are prefixed `Ch
 - **Controller and split-screen (U1):** all custom UI (codex, Satchel grid, Experiment Table, picker) must support gamepads and per-screen state.
 - **GMCM (U3):** hints, celebrations and economy knobs.
 
+## Extensibility for other modders (Charles, 1.0)
+Other modders can add **Primes, substances, apparatus and recipes** through Content Patcher in 1.0. That makes these registries public data, not internal tables:
+- **Primes** are a data asset; the Tier 1 grid, codex grid, tag-weight table and sweep are all derived from it (n Primes give n(n+1)/2 Tier 1 cells), never fixed at eight.
+- **Substances and recipes** use the doc 12 recipe model (variable input count, apparatus class, conditions, quality rule, residue rule, hand-made-only flag) as a documented CP asset.
+- **Apparatus** are `Data/Machines` entries plus our own data for adjacency, chaining and automation class.
+- **Discovery state** is keyed by namespaced IDs, so removing a pack orphans its codex entries cleanly instead of breaking the save.
+- We ship a short **content-pack guide** and an example pack. The format is versioned, so later changes don't break packs.
+
 ## Engineering practices
 - Tests for the decomposition math, economy caps (including the all-six-professions fixture), and adjacency resolution.
 - A balance-sweep script that reads the data files and outputs GPTD/VAR and source-diversity reports (doc 06).
-- Docs move into the GitHub repo once it exists. This folder is the staging copy.
+- The design docs live in this repo under `docs/design/` and `docs/research/` (since 2026-10-13); the repo is their source of truth.

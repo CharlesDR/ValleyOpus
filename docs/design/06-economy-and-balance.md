@@ -1,6 +1,6 @@
 # 06 · Economy & Balance
 
-Status: **DRAFT v0.3** (2026-10-13). v0.3: economy knobs in GMCM; targets hold at defaults (doc 00, U3). Benchmarks are to be computed in the balance sweep; the targets below are approved policy.
+Status: **DRAFT v0.4** (2026-10-13). v0.4: time-share and combat benchmarks, condition stacking as a balance risk, and the late-game Lab sizing check (Charles's guiding answers, doc 01). v0.3: economy knobs in GMCM; targets hold at defaults (doc 00, U3). Benchmarks are to be computed in the balance sweep; the targets below are approved policy.
 
 ## Metrics (approved: compare on both)
 For any production setup (a machine plus its required neighbours and support):
@@ -8,7 +8,9 @@ For any production setup (a machine plus its required neighbours and support):
 - **Gold per tile-day (GPTD)** = (output sell value − input market value) ÷ (tiles occupied, including required neighbours, boilers and support) ÷ days per cycle.
 - **Value-add ratio (VAR)** = output sell value ÷ input market value, on a per-ingredient-cost basis. "Market value" is the input's sell price, or its buy price where it can only be bought.
 
-Both are computed at base quality and again at the setup's realistic quality. Arcane setups are measured on **average conditions over a week**, not their best day.
+- **Player time (new, v0.4):** hand actions per in-game day (loading, triggering, unloading, walking between Labs) for a representative setup. Target (Charles): a heavily invested mid-game player spends about **a quarter of the day** on alchemy. This is a UX check as much as an economy one (doc 16).
+
+Both money metrics are computed at base quality and again at the setup's realistic quality. Arcane setups are measured on **average conditions over a week**, not their best day.
 
 ## Vanilla benchmarks (to compute in the sweep)
 Kegs, Preserves Jars and Dehydrators across representative inputs per season (e.g. wine/juice from fruit and vegetables, jelly/pickles, dried fruit and mushrooms). This uses the vanilla processing formulas from `Data/Machines`, verified in the sweep. Casks, Fish Smokers and Bee Houses are secondary benchmarks.
@@ -29,6 +31,11 @@ Rules that keep this honest:
 - **Dr. Sorenson's bulk contracts:** fixed-price orders for standardized (mechanical-quality) products. They trade a lower unit price for guaranteed volume and story progress, and count toward the caps.
 - **Agnes** buys planetary metals at prices benchmarked against vanilla bars.
 - **Grand rituals** are measured per batch-day *and* per tile (the circle's footprint), averaged over the conditions needed to run them.
+
+## Other benchmarks (v0.4)
+- **Combat:** every combat preparation and passive effect is compared with the **Combat Mastery trinkets**, and none may be more impactful than a trinket (Charles).
+- **Late-game space:** the full endgame production set must fit with room to spare in **four T3 Labs, one per Familiar** (Charles; doc 02).
+- **Condition stacking:** Tier 3 recipes may stack many conditions (weekday, weather, moon, location, catalyst). Charles flagged this as a likely place to rebalance; the sweep reports how many days a year each recipe can run.
 
 ## Balance sweep (future task)
 1. Item sweep: decompose every vanilla item (and later, the top content mods) and tabulate Prime yields per season → check the ≥3-source rule (doc 03).

@@ -1,9 +1,15 @@
 # 07 · Discovery & the Codex
 
-Status: **DRAFT v0.5** (2026-10-13). v0.5: Experiment Table input counts (doc 00, R2). v0.4 applies Charles's verdicts on the discovery research ([research/inspiration-discovery-moments.md](../research/inspiration-discovery-moments.md)).
+Status: **DRAFT v0.6** (2026-10-13). v0.6: the target player and complexity ceiling, "feeling clever" as a design goal, the pace of discovery and hand-made-only entries (Charles's guiding answers, doc 01). v0.5: Experiment Table input counts (doc 00, R2). v0.4 applies Charles's verdicts on the discovery research ([research/inspiration-discovery-moments.md](../research/inspiration-discovery-moments.md)).
 
 ## Principle (approved)
 **Learning and unlocking through experimentation.** The game invites players to try things and celebrates every new discovery with a pleasing animation, popup or toast.
+
+## Who it's for (Charles, doc 01)
+- **Both cozy players and factory builders** should enjoy it, but **unlocking every secret takes dedication**. A cozy player can enjoy a partial codex; completing it is a real achievement.
+- **High complexity is fine.** Optimizers will probably want a wiki or spreadsheet, and that's acceptable, because the hint layers below make everything reachable in-game.
+- **Feeling clever is the goal.** After a big alchemy day the player should feel accomplished, and often clever for working out a tricky solution. So some recipes are deliberately puzzles: the right pair under the right condition, an adjacency layout, a ritual's catalyst placement. Hints point toward the puzzle; they never hand over the answer.
+- **Pace:** a diligent player discovers most entries in Year 1 and all of them by the end of Year 2 (perhaps with insider knowledge from an earlier save); most players take until about Year 4 (doc 02). Nothing is time-gated, so knowledge, not the calendar, is what speeds a replay up. The per-farm secret recipe keeps one surprise even for experts.
 
 ## Ways to discover
 1. **Experiment Table:** place two items or substances, or three after a workshop unlock (Charles, R2). The recipe model allows any input count, so a four-ingredient tier can be added later without rework. A defined combination reveals and records the result. An undefined one yields Caput Mortuum, marks the pair "tried" in the codex so the player never repeats it unknowingly, and gives a tiny bit of XP.
@@ -36,7 +42,7 @@ A layered hint system, from subtle to explicit:
 1. Item flavour text ("It smells faintly of brimstone…").
 2. The codex grid shows silhouettes and "warmer" hints for pairs adjacent to known ones.
 3. **Residue divination (Charles, v0.4):** spend Caput Mortuum to divine a hint (cost may scale with how far the target is from what's known). Every pile of residue is a choice: fertilizer, a tiny sale, saving it for late recipes that turn residue into valuable materials, or hints. Working things out yourself stays optimal; savings get you unstuck.
-4. NPC channels, one per owner: **Oriel** (ritual and concept advice), **Tobin** (machine and layout tips), **Hesper** (the weekly almanac letter: planetary days, weather, celestial events), **Finch** (curiosity items), **Lark** (gentle comic attempts that point at untried pairs), **the Curator** (workshop lore).
+4. NPC channels, one per owner (vanilla and SVE villagers add flavour reactions, not new hint channels; doc 08): **Oriel** (ritual and concept advice), **Tobin** (machine and layout tips), **Hesper** (the weekly almanac letter: planetary days, weather, celestial events), **Finch** (curiosity items), **Lark** (gentle comic attempts that point at untried pairs), **the Curator** (workshop lore).
 5. In-world readables in the derelict workshop under the CC (Cyprian's journals, half-burned notes, the wordless Silent Pages).
 
 Hints never cost real money and are never gated outside the game.
@@ -45,7 +51,7 @@ Hints never cost real money and are never gated outside the game.
 Gentle: residue (low value, minor uses: fertilizer, glaze, ballast, hint divination, and later Prima Materia), the pair marked tried, and a little XP. No explosions that destroy machines. Comic "puffs" are fine.
 
 ## Codex depth (approved v0.4)
-Entries gain a lore line at 1, 10 and 50 crafted, with a progress pip toward the next. Automated output counts after the manual first discovery, which gives players who automate a reason to come back to the codex.
+Entries gain a lore line at 1, 10 and 50 crafted, with a progress pip toward the next. Automated output counts after the manual first discovery, which gives players who automate a reason to come back to the codex. Hand-made-only entries (gifts, quest items, capstones; doc 04) count only hand-made crafts.
 
 ## The farm's secret recipe (approved v0.4)
 - One or two late-game **secret recipes are seeded per farm** from a candidate pool, so guides can't spoil them. They're revealed through in-world readables and Hesper's almanac, which hints early at *which* secret this farm holds.
