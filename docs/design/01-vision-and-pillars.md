@@ -25,12 +25,12 @@ ValleyOpus brings **alchemy and automation** to Stardew Valley in a way that fee
 **Boost underwhelming base-game activities and items.** The model is flowers: without the mod, growing them in bulk is suboptimal (honey boosts, the odd gift), but flower-fed arcane apparatus (doc 04) make it worthwhile. Look for the same opportunity with other cheap, plentiful, under-used things (fiber, sap, common forage, trash, monster loot, moss) in the balance sweep.
 
 ## Inventory rule (Charles)
-Inventory space is precious. No new monster drops or mine finds, a budget of new carriable items, and a Reagent Satchel by default (doc 03b).
+Inventory space is precious. Few new monster drops or mine finds, a budget of new carriable items, and a Reagent Satchel by default (doc 03b).
 
 ## Balance rules
 - **No single-source bottlenecks.** Every Prime has at least 3 independent sources across activities (Fire must not mean "only spicy crops").
 - **A mix of quick wins and long goals.** No sharp pain points.
-- **Only moderate departures from typical Stardew priorities.** The mod rewards what players already do.
+- **Only moderate departures from typical Stardew priorities.** The mod rewards what players already do, but provides reasons to do things that would be underwhelming in the base game.
 
 ## Compatibility stance
 - Tag-first inputs and flavored outputs, so most content mods work on day one.
@@ -50,46 +50,46 @@ Inventory space is precious. No new monster drops or mine finds, a budget of new
 These areas don't have enough direction yet for the other docs to be refined with confidence. Each stub lists the key questions to answer; short answers are enough, and "no preference" is a valid answer.
 
 ### Tone and feel
-- Where does the mod sit between cozy and eerie? How dark can the Witch's magic, Shades and the dark twins (Tenebrae, Mors, Perditio) get before it stops feeling like Stardew?
-- How much humour, and of what kind (gentle whimsy like vanilla, dry wit, slapstick failed experiments)?
-- Are there alchemical themes that are off limits, such as homunculi, transmuting living things, or immortality?
-- One or two words for how a player should feel at the end of a good alchemy day?
+- The tone of the mod can be dark in a "rated PG" sort of way. Dark alchemy should feel spooky and ominous but not grotesque; ghosts and skeletons are okay but blood and gore is not. It should be close to the Vanilla Stardew thematic tone (which includes ghosts, zombies, skeletons, etc).
+- Humour should be mostly gentle whimsy with some characters occasionally getting sassy in cutscenes. Slapstick should be reserved for the characters it fits particularly well.
+- Homunculi and living transmutation should only include plants as subjects. Immortality is on the table thematically for worldbuilding purposes (as an aspirational goal) but not for gameplay mechanics. Homunculi/transmutation of animals and people is explicitly forbidden, and the Wizard enforces the ban.
+- After a big day of Alchemy, the player should feel accomplished, and frequently they should feel clever for having worked out a tricky solution.
 
 ### Target player and complexity ceiling
-- Who is the main audience: cozy players who dabble, optimizers who build factories, or both equally? If both, which one wins a tie?
-- How much should a player need to read, track or plan outside the game (a wiki, a spreadsheet)? Is "you'll want a wiki for the late game" acceptable?
-- What is the upper bound on concepts a player juggles at once (Primes, tiers, adjacency, conditions, ley nodes)? Should any be cut or made optional?
+- Both cozy players and factory enthusiasts should enjoy this mod, but unlocking all of the secrets of Alchemy requires dedication and hard work. Diligent pursuit will be needed to unlock everything; automation is heavily encouraged after the first tier of recipes.
+- Optimization-minded players will likely want a spreadsheet or wiki. High complexity is okay since we have many mechanisms for discovering clues about next steps.
+- No upper bound on simultaneous conditions for now; the number of conditions to be met should naturally increase as the player advances through the mod. However, simultaneous condition tuning is a likely place we may need to balance around later on in development.
 
 ### Pacing and the daily loop
-- In a typical mid-game day, roughly what share of the player's time should alchemy take?
-- How long should the mod's main content last: through Year 1, Year 2, or open-ended?
-- Should alchemy ever compete with vanilla goals for the player's time (the Community Center, museum, relationships), or always fit around them?
+- Mid-game, Alchemy should take about 1/4 of your day if you are heavily invested in it.
+- A diligent player chasing progress should be able to discover most things in Year 1 and everything by the end of Year 2, but it may require some insider knowledge from prior playthroughs to do so. Most players won't unlock everything until about year 4, but not because of any hard time-gating steps.
+- Alchemy is a new activity and will naturally compete for the player's time against other content, but it shouldn't be intentionally taking up time for no reason.
 
 ### Automation scale and the Automate dependency
-- Is Automate expected, recommended or purely optional? Should every 1.0 feature be fully enjoyable without it?
-- How big should a late-game alchemy setup get: a corner of the farm, a dedicated Lab, or a sprawling factory?
-- Beyond the arcane split, are there things that should always stay hand-made (gifts, quest items, capstones)?
+- Automate is expected but technically optional.
+- A late game Alchemy setup producing all of the endgame items should spread through multiple top tier Lab buildings. One of each specialized T3 Lab building should be more than enough space for a setup for each item in the mod.
+- Gifts, quest items, and capstones should always be handmade, either through crafting recipes or, preferably, through the Ritual mechanic.
 
 ### Endgame and capstones
-- What should the last thing a player achieves in the mod feel like: a mastery title, a world change, a story ending, a powerful item?
-- Should there be a definitive "finished" state for 1.0, or an endless long tail?
-- Should capstones change the valley in visible ways (restored places, new residents, altered weather or seasons)?
+- The last achievement should be a mixture of powerful items, story conclusions, and some aesthetic changes to the world.
+- 1.0 will have a definitive "Finished" state, but we will design a long-tail without a defined endpoint for 2.0.
+- Capstones should change the Valley and/or its residents in visible ways, but we need to maintain compatibility when designing how that works.
 
 ### Place in the world
-- How much should vanilla NPCs notice and react to alchemy (dialogue, gift tastes, events)? Which vanilla characters matter most besides the Wizard and the Witch?
-- Can the mod add to or reinterpret vanilla lore (the Wizard's past, the Junimos, Yoba, the dwarves, Krobus's people), or must it stay strictly alongside it?
-- Does alchemy have a public reputation in Pelican Town (respected craft, suspicious practice, forgotten art)?
+- Vanilla and SVE NPCs should be fully integrated into Alchemy with dialogue, gift tastes, events, etc. Notable inclusions to have a unique perspective on Alchemy would be Gunther, Abigail, Maru, Emily, the Wizard, Witch (Alecto), Sofia, Krobus, the Dwarf, and Andy.
+- The mod can add onto Vanilla and SVE lore, but in careful ways that don't contradict any established facts or undercut existing characterizations.
+- Alchemy as a craft is a respected discipline, but the public knows that dark Alchemical magics were once a problem for public safety, so there is a bit of wariness when Alchemists start working on the more esoteric subjects.
 
 ### Combat and exploration
-- How big a role should alchemy play in combat and the mines: occasional aids, a full alternate playstyle, or almost none?
-- Should alchemy touch Ginger Island, the Volcano, Skull Cavern or Mr. Qi's content in 1.0?
-- Any appetite for alchemy-gated exploration (sealed areas, new map pockets) despite the inventory and item-budget rules?
+- Alchemy should provide useful consumables and passive effects, but no more impactful than the Trinkets added from Combat Mastery.
+- Ginger Island, the Volcano, Skull Cavern and Mr. Qi's content is all fair game for Alchemy to tweak or draw from.
+- Some intriguing new Alchemy-related areas would be nice to add, if we can find compatibility-friendly places to hide them.
 
 ### Extensibility and the modding ecosystem
-- Should other modders be able to add Primes, substances, apparatus or recipes through Content Patcher in 1.0, or is that a 2.0 goal?
-- Beyond SVE, are there mods whose players you most want to delight (for example Cornucopia, RSV, East Scarp)?
+- Other modders should be able to add Primes, substances, apparatus or recipes through Content Patcher in 1.0.
+- Beyond SVE, players of the mods Alecto, RSV, and East Scarp should find some fun Alchemy tie-ins. Other mods to be added in 2.0.
 
 ### What success looks like
-- What would make 1.0 a success for you: Nexus reception, your own enjoyment, a complete story, technical polish?
-- Is a public beta or early-access release before 1.0 acceptable, or should the first public build be the full 1.0?
-- What maintenance commitment after 1.0 is realistic (game updates, bug fixes, translations)?
+- 1.0 will be a success if it is technically polished, with satisfying gameplay loops and a fun experience.
+- What we are calling 1.0 will serve as a public beta, but I expect to do a lot of polish before that happens.
+- After 1.0 we will maintain the mod with game updates, bug fixes, new content, and implementing translations.
