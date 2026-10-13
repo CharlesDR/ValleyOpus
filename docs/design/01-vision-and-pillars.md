@@ -1,6 +1,6 @@
 # 01 · Vision & Pillars
 
-Status: **DRAFT v0.4** (2026-10-13). v0.4: Lore & Worldbuilding pillar, the guiding star, the clock-freeze rule and the discovery gate on automation (Charles's feedback on the inspiration research). Sources: the startup context transcript, Charles's answers, and [research](../research/comparators-and-concepts.md).
+Status: **DRAFT v0.5** (2026-10-13). v0.5: stub sections for guiding areas that still need Charles's direction (see "Open guiding areas"). v0.4: Lore & Worldbuilding pillar, the guiding star, the clock-freeze rule and the discovery gate on automation (Charles's feedback on the inspiration research). Sources: the startup context transcript, Charles's answers, and [research](../research/comparators-and-concepts.md).
 
 ## Vision
 ValleyOpus brings **alchemy and automation** to Stardew Valley in a way that feels native to the valley: mechanical ingenuity and Hermetic magic are two different ways of working the world, and the interesting choices happen where they meet. It should feel like *wonder you can industrialize, a little, at a price*, never "a medieval sweatshop simulator" (the Alchemy Factory warning).
@@ -45,3 +45,51 @@ Inventory space is precious. No new monster drops or mine finds, a budget of new
 - Arcane logistics (2.0); 1.0 has directional chaining instead (doc 04).
 - Tool and weapon forging (2.0).
 - Final art (placeholders until before the 1.0 publish).
+
+## Open guiding areas (stubs for Charles)
+These areas don't have enough direction yet for the other docs to be refined with confidence. Each stub lists the key questions to answer; short answers are enough, and "no preference" is a valid answer.
+
+### Tone and feel
+- Where does the mod sit between cozy and eerie? How dark can the Witch's magic, Shades and the dark twins (Tenebrae, Mors, Perditio) get before it stops feeling like Stardew?
+- How much humour, and of what kind (gentle whimsy like vanilla, dry wit, slapstick failed experiments)?
+- Are there alchemical themes that are off limits, such as homunculi, transmuting living things, or immortality?
+- One or two words for how a player should feel at the end of a good alchemy day?
+
+### Target player and complexity ceiling
+- Who is the main audience: cozy players who dabble, optimizers who build factories, or both equally? If both, which one wins a tie?
+- How much should a player need to read, track or plan outside the game (a wiki, a spreadsheet)? Is "you'll want a wiki for the late game" acceptable?
+- What is the upper bound on concepts a player juggles at once (Primes, tiers, adjacency, conditions, ley nodes)? Should any be cut or made optional?
+
+### Pacing and the daily loop
+- In a typical mid-game day, roughly what share of the player's time should alchemy take?
+- How long should the mod's main content last: through Year 1, Year 2, or open-ended?
+- Should alchemy ever compete with vanilla goals for the player's time (the Community Center, museum, relationships), or always fit around them?
+
+### Automation scale and the Automate dependency
+- Is Automate expected, recommended or purely optional? Should every 1.0 feature be fully enjoyable without it?
+- How big should a late-game alchemy setup get: a corner of the farm, a dedicated Lab, or a sprawling factory?
+- Beyond the arcane split, are there things that should always stay hand-made (gifts, quest items, capstones)?
+
+### Endgame and capstones
+- What should the last thing a player achieves in the mod feel like: a mastery title, a world change, a story ending, a powerful item?
+- Should there be a definitive "finished" state for 1.0, or an endless long tail?
+- Should capstones change the valley in visible ways (restored places, new residents, altered weather or seasons)?
+
+### Place in the world
+- How much should vanilla NPCs notice and react to alchemy (dialogue, gift tastes, events)? Which vanilla characters matter most besides the Wizard and the Witch?
+- Can the mod add to or reinterpret vanilla lore (the Wizard's past, the Junimos, Yoba, the dwarves, Krobus's people), or must it stay strictly alongside it?
+- Does alchemy have a public reputation in Pelican Town (respected craft, suspicious practice, forgotten art)?
+
+### Combat and exploration
+- How big a role should alchemy play in combat and the mines: occasional aids, a full alternate playstyle, or almost none?
+- Should alchemy touch Ginger Island, the Volcano, Skull Cavern or Mr. Qi's content in 1.0?
+- Any appetite for alchemy-gated exploration (sealed areas, new map pockets) despite the inventory and item-budget rules?
+
+### Extensibility and the modding ecosystem
+- Should other modders be able to add Primes, substances, apparatus or recipes through Content Patcher in 1.0, or is that a 2.0 goal?
+- Beyond SVE, are there mods whose players you most want to delight (for example Cornucopia, RSV, East Scarp)?
+
+### What success looks like
+- What would make 1.0 a success for you: Nexus reception, your own enjoyment, a complete story, technical polish?
+- Is a public beta or early-access release before 1.0 acceptable, or should the first public build be the full 1.0?
+- What maintenance commitment after 1.0 is realistic (game updates, bug fixes, translations)?
