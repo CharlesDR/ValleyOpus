@@ -1,6 +1,6 @@
 # 01 · Vision & Pillars
 
-Status: **DRAFT v0.5** (2026-10-13). v0.5: stub sections for guiding areas that still need Charles's direction (see "Open guiding areas"). v0.4: Lore & Worldbuilding pillar, the guiding star, the clock-freeze rule and the discovery gate on automation (Charles's feedback on the inspiration research). Sources: the startup context transcript, Charles's answers, and [research](../research/comparators-and-concepts.md).
+Status: **DRAFT v0.6** (2026-10-13). v0.6: Charles answered every guiding-area stub, and the other docs were revised to match (doc 10 lists the follow-up questions). v0.5: stub sections for guiding areas that still need Charles's direction (see "Open guiding areas"). v0.4: Lore & Worldbuilding pillar, the guiding star, the clock-freeze rule and the discovery gate on automation (Charles's feedback on the inspiration research). Sources: the startup context transcript, Charles's answers, and [research](../research/comparators-and-concepts.md).
 
 ## Vision
 ValleyOpus brings **alchemy and automation** to Stardew Valley in a way that feels native to the valley: mechanical ingenuity and Hermetic magic are two different ways of working the world, and the interesting choices happen where they meet. It should feel like *wonder you can industrialize, a little, at a price*, never "a medieval sweatshop simulator" (the Alchemy Factory warning).
@@ -46,8 +46,8 @@ Inventory space is precious. Few new monster drops or mine finds, a budget of ne
 - Tool and weapon forging (2.0).
 - Final art (placeholders until before the 1.0 publish).
 
-## Open guiding areas (stubs for Charles)
-These areas don't have enough direction yet for the other docs to be refined with confidence. Each stub lists the key questions to answer; short answers are enough, and "no preference" is a valid answer.
+## Guiding answers (Charles, 2026-10-13)
+Charles's direction on the areas that were open stubs in v0.5. The other docs were revised against these in the v0.6 pass; follow-up questions are in doc 10.
 
 ### Tone and feel
 - The tone of the mod can be dark in a "rated PG" sort of way. Dark alchemy should feel spooky and ominous but not grotesque; ghosts and skeletons are okay but blood and gore is not. It should be close to the Vanilla Stardew thematic tone (which includes ghosts, zombies, skeletons, etc).

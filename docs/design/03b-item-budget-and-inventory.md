@@ -1,10 +1,10 @@
 # 03b · Item Budget & Inventory
 
-Status: **DRAFT v0.4** (2026-10-13). v0.4: Gloam Lanterns added. This responds to Charles's warning: be careful creating new items, especially monster drops and mine/Skull Cavern finds, because inventory space is already tight.
+Status: **DRAFT v0.5** (2026-10-13). v0.5: rule 1 softened from "no" to "few" new monster drops and mine finds, matching Charles's edit to the inventory rule in doc 01; Rootling added to the census. v0.4: Gloam Lanterns added. This responds to Charles's warning: be careful creating new items, especially monster drops and mine/Skull Cavern finds, because inventory space is already tight.
 
 ## Rules
-1. **No new monster drops or mine/Skull Cavern finds.** Combat and mining reagents come from **existing vanilla loot** (Slime, Bug Meat, Bat Wing, Bone Fragment, Solar Essence, Void Essence, Cinder Shard, ores, geodes, minerals) through context-tag decomposition. Ivo's bounties count **kills** or ask for **vanilla** drops.
-2. **No new forage for alchemy's sake.** Location-specific essences come from **Ley Taps**, which produce Primes directly (doc 04), not from new forage items.
+1. **Few new monster drops or mine/Skull Cavern finds** (Charles changed "no" to "few" in doc 01). The default is still **existing vanilla loot**; a new drop or find must earn its slot, for example as the signature reagent of a late area (Skull Cavern, the Volcano, a new alchemy area), and counts against the budget in rule 4. Combat and mining reagents otherwise come from vanilla loot (Slime, Bug Meat, Bat Wing, Bone Fragment, Solar Essence, Void Essence, Cinder Shard, ores, geodes, minerals) through context-tag decomposition. Ivo's bounties count **kills** or ask for **vanilla** drops.
+2. **No new forage for alchemy's sake.** Location-specific essences come from **Ley Taps**, which produce Primes directly (doc 04), not from new forage items. *(Open: whether new hidden alchemy areas may have a forageable of their own; see doc 10.)*
 3. **Not every substance is an item.** Each entry in doc 03a is classed as one of:
    - **Item:** a carriable, sellable object (most Tier 2/3 products, the Primes).
    - **Power:** exists only as an adjacency or network effect, never in inventory (Steam, Fulgur, Living Flame as a lamp fuel state).
@@ -39,5 +39,7 @@ Inspired by Minecraft's bundle (hover to see contents), with a proper menu.
 - 3 planetary metals (Silver, Tin, Lead)
 - 4 Tier 3 capstone items
 - 1 residue (Caput Mortuum), which now also buys hints (doc 07)
+- 1 Rootling, the plant homunculus (candidate; doc 03a)
+- 0–3 new drops or finds under the softened rule 1 (none chosen yet)
 - 1–2 Gloam Lanterns (base and upgraded; doc 04). These are a **deliberate inventory cost**: they work only from the main inventory, and carrying more fills faster at diminishing returns. They are crafted tools, not monster drops, so rule 1 holds.
-- **≈ 45**, over budget; pruning targets are listed in doc 03a's class column (to be added in the balance pass).
+- **≈ 46–49**, over budget; pruning targets are listed in doc 03a's class column (to be added in the balance pass).

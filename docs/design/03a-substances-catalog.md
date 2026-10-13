@@ -1,6 +1,6 @@
 # 03a · Substances Catalog (Combinatorics)
 
-Status: **DRAFT v0.3** (2026-10-13). v0.3: Golem Clay dropped (doc 00, R5); colour stages confirmed as vanilla quality (R1). This is a candidate list. Names, recipes and tiers are proposals for review, not commitments.
+Status: **DRAFT v0.4** (2026-10-13). v0.4: the plants-only rule for living transmutation, plant transmutation candidates, hand-made-only products, the combat-strength cap and the immortality rule (Charles's guiding answers, doc 01). v0.3: Golem Clay dropped (doc 00, R5); colour stages confirmed as vanilla quality (R1). This is a candidate list. Names, recipes and tiers are proposals for review, not commitments.
 Parent doc: [03-essences-and-decomposition.md](03-essences-and-decomposition.md) · **Inventory rule:** not every substance below is a carriable item. Many are power, process states or in-machine intermediates. See [03b-item-budget-and-inventory.md](03b-item-budget-and-inventory.md).
 
 Sourcing rule (Charles): classical alchemy lore plus well-known or moderately well-known media, **nothing more obscure than Thaumcraft** unless it's an unusually good fit. Each entry notes its inspiration:
@@ -72,7 +72,7 @@ Every unordered pair of Primes, including a Prime with itself, yields one Tier 1
 |---|---|---|---|
 | Fire + Aether | **Sol** (Lux) | [W3][TC][SDV Solar Essence] | light; Sunday/gold |
 | Water + Aether | **Luna** (Moonwater) | [C] | tides and night; Monday/silver (Delta and Hesper) |
-| Earth + Aether | **Vitae** (Life) | [OM][TC Victus] | growth: crops, animals, healing |
+| Earth + Aether | **Vitae** (Life) | [OM][TC Victus] | growth: crops, healing, animal care (care only, never transmutation); the base of plant transmutation |
 | Air + Aether | **Spiritus** (Caelum) | [TC][W3 Caelum] | spirit: ghosts, the Witch, Junimos |
 
 ### Principle × Principle (3)
@@ -86,7 +86,7 @@ Every unordered pair of Primes, including a Prime with itself, yields one Tier 1
 | Recipe | Substance | Inspiration | Gameplay hook |
 |---|---|---|---|
 | Salt + Aether | **Ordo** (Order) | [TC] | structure; machine stability, anti-spoilage |
-| Sulfur + Aether | **Anima** (Soul) | [C] (sulfur as the soul) | animation; familiars |
+| Sulfur + Aether | **Anima** (Soul) | [C] (sulfur as the soul) | animation **of plants only** (plant homunculi); an offering when bonding Familiars, who are spirits befriended, not made |
 | Mercury + Aether | **Philosophic Mercury** | [C] *Mercurius philosophorum* | key to Alkahest and Azoth |
 
 ---
@@ -121,12 +121,14 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 | **Ether** | Spiritus + May Dew | [FF][C] | restores energy (Stardew's "mana" analog) |
 | **Elixir** | Vitae + Anima | [FF][C] | restores health |
 | **Panacea** | Elixir + Ordo | [C] | cures debuffs |
-| **Phoenix Ash** | Living Flame + Vitae | [FF Phoenix Down][C] | combat: softens the death penalty (with a tradeoff) |
+| **Phoenix Ash** | Living Flame + Vitae | [FF Phoenix Down][C] | combat: softens the death penalty (with a tradeoff); held to the combat cap below |
 | **Terra Viva** (Living Soil) | Silt + Vitae | [C] | premium fertilizer that competes with deluxe fertilizer, not above it |
 | **Gelum** (Frost) | Tempestas + Fixed Salt | [TC][C] (salt-ice freezing mixtures) | preservation; Frozen Tear tie-in; winter content |
 | **Venenum** (Poison) | Miasma + Mors | [TC] | weed and pest control; combat coatings |
 | **Ectoplasm** | Spiritus + Silt | [common media] | the Curator's restoration requests and Witch quests (prune candidate under the item budget) |
 | **Perpetuum Mobile** | Motus + Steam + Ordo | [C] perpetual motion | Mechanist capstone candidate (always has a cost) |
+| **Seed transmutation** *(new candidate)* | a stack of seeds + Vitae, as a ritual | [C] the "growing" of matter | turns one crop's seeds into another's (same season, similar value); a guiding-star use for cheap seeds and the main legal outlet for living transmutation |
+| **Rootling** *(new candidate; working name)* | Anima + Terra Viva + a crop | [C] the homunculus, as a plant | a small plant homunculus that tends one crop patch (waters, or nudges growth); hand-made only; the furthest the ban allows |
 | **Cauda Pavonis** (Peacock's Tail) | *process state*, not an item or recipe | [C] the iridescent stage of the Opus | shown when a brew passes nigredo→albedo; ties to Prismatic Shard |
 | **Planetary metals** | via Metallum + the planet's substance on its weekday | [C][OM] | Silver (Mon), Tin (Thu), Lead (Sat) are new items, bought and certified by Agnes; Copper, Iron and Gold exist in vanilla. Advanced transmutation needs the Quarry bridge |
 | **Caput Mortuum** | residue of any reduction | [C] | waste; see residue below |
@@ -140,7 +142,7 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 | **Prima Materia** | Caput Mortuum + Perditio (or Alkahest) | [C] "found in the dung heap": the first matter hides in the commonest refuse | **links the waste stream to the endgame**: residue becomes precious late |
 | **Alkahest** (Universal Solvent) | Aqua Fortis + Philosophic Mercury | [C] | lossless decomposition of anything; a capstone with a cost |
 | **Azoth** | Philosophic Mercury + Quintessence | [C] | universal agent; transmutation capstone |
-| **Philosopher's Stone** | Prima Materia carried through all four colour stages | [C][FMA][AT][Alchemy Factory] | a multi-stage *process*, not a recipe; one capstone among several, each with tradeoffs (FMA's "equivalent exchange" flavour) |
+| **Philosopher's Stone** | Prima Materia carried through all four colour stages | [C][FMA][AT][Alchemy Factory] | a multi-stage *process*, not a recipe; one capstone among several, each with tradeoffs (FMA's "equivalent exchange" flavour). Its legend promises immortality, but **in play it grants none** (Charles): immortality is lore and aspiration only |
 
 ---
 
@@ -165,13 +167,19 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 - ballast for apparatus construction
 - **late reveal:** the source of Prima Materia (above), so a player who kept a residue pile is rewarded
 
-Open to more: e.g. feeding it to a Slime Hutch gives "Rust Slimes".
+Open to more. *(The v0.2 "Rust Slimes" idea, feeding residue to a Slime Hutch, is dropped: it would transmute a living creature, which the plants-only rule forbids.)*
 
 ---
 
+## Hand-made only (Charles, doc 01)
+**Gifts, quest items and capstones are always hand-made**: through a crafting recipe or, preferably, a ritual. Automate and directional chaining never produce them (doc 04). In this catalog that covers the four Tier 3 substances, Perpetuum Mobile, the Rootling, and any product whose main use is gifting or a quest. The recipe model marks this with a hand-made-only flag (doc 12).
+
+## Combat cap (Charles, doc 01)
+Combat preparations (Black Powder, Venenum coatings, Phoenix Ash, combat elixirs) give useful consumables and passive effects, but **none is more impactful than a Combat Mastery trinket**. The sweep benchmarks each against the trinkets (doc 06).
+
 ## Grid size and discovery pacing
 
-- Tier 1 grid: 36 cells. That's the Zaikin-style "fill the board" goal, visible as a codex grid with silhouettes.
+- Tier 1 grid: 36 cells with the default eight Primes. Content packs that add Primes grow it (n Primes give n(n+1)/2 cells; doc 03). That's the Zaikin-style "fill the board" goal, visible as a codex grid with silhouettes.
 - Tier 2: about 25 shown here, extensible by content packs.
 - Tier 3: 4 capstones.
 - About 65 named substances is in the right ballpark for 1.0. Integration patches (SVE etc.) map their items to *sources*, not new substances, to keep the grid clean.

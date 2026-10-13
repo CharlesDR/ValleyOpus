@@ -1,6 +1,6 @@
-# ValleyOpus Design Docs (staging)
+# ValleyOpus Design Docs
 
-An alchemy and automation expansion for Stardew Valley. These are **drafts (v0.2, 2026-10-13)**, staged here until the GitHub repo exists.
+An alchemy and automation expansion for Stardew Valley. These are **drafts** (2026-10-13); each doc's status line gives its version. This repo is their source of truth. Open questions for Charles are collected in doc 10.
 
 | Doc | Topic |
 |---|---|

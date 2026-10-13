@@ -1,6 +1,6 @@
 # 00 · Design Critical Path to Architecture
 
-Status: **DRAFT v0.2** (2026-10-13). v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
+Status: **DRAFT v0.3** (2026-10-13). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
 
 ## The governing rule
 Architecture needs the **shape** of every system, not its **content**. Shape means what kinds of things exist, the rules connecting them, and which of them need C# rather than Content Patcher data. Content means names, numbers, dialogue, art and exact recipes. Content can be filled in during execution as long as it is data-driven, so it never blocks architecture. Rework comes from changing shape late, so the path front-loads shape decisions and pushes content behind the gate.
@@ -47,6 +47,7 @@ Which doc 06 metrics apply, and which numbers are placeholders to tune in the sw
 Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 
 ## Change log
+- **v0.3 (2026-10-13):** requirements from Charles's guiding answers in doc 01; S5 done; U2 widened to four tie-in mods.
 ```
 
 ---
@@ -55,7 +56,7 @@ Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 
 | # | Doc | Today | What's missing before the gate |
 |---|---|---|---|
-| 01 | Vision & Pillars | v0.4, solid | nothing; the reference all other docs check against |
+| 01 | Vision & Pillars | v0.5 plus Charles's guiding answers, solid | nothing; the reference all other docs check against |
 | 02 | Progression & Unlocks | v0.2 | the full unlock map moves to new doc 14; keep 02 as the narrative of the Year 1 curve |
 | 03 | Essences & Decomposition | v0.2 | the data shape of the tag → Prime table and the yield formula |
 | 03a | Substances Catalog | v0.2 | **which apparatus makes which substance**; Golem Clay dropped (R5) |
@@ -124,6 +125,13 @@ After    18 Lab & Familiars · 19 Capstones · 20 Content Script · 21 Art List 
 ### The gate
 Docs 01, 03, 03a, 03b, 04, 05, 07, 11–17 are "ready for architecture". Then doc 09 is rewritten as the architecture plan, followed by execution planning (milestones, build batches under the build gate).
 
+### New requirements from the guiding answers (doc 01, 2026-10-13)
+- **Doc 12** must support content packs adding **Primes**, substances and recipes (the Tier 1 grid is derived from the Prime list), a **hand-made-only** flag, and condition counts that grow by tier.
+- **Doc 13** checks footprints against the late-game target: every endgame setup fits in four T3 Labs with room to spare.
+- **Doc 16** budgets hand actions so a heavily invested mid-game day stays near a quarter of the player's time.
+- **Doc 17** adds Alecto the Witch, Ridgeside Village and East Scarp to the test matrix, plus a compatibility check for every visible world change and hidden area.
+- **Doc 20** (after the gate) grows to cover every vanilla and SVE villager's alchemy dialogue, gift tastes and events.
+
 ### What deliberately waits
 Laboratory and Familiars, capstones, the cutscene and content script, the art list, and all balance numbers. Architecture reserves hooks for them: the Lab-tier GSQ (tiers differ by interior size; Familiars only at T3), a capstone flag table, event triggers as data, and numbers in data files the sweep can rewrite.
 
@@ -138,7 +146,7 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 - **S2 · Arcane logistics:** ✅ moved to 2.0, and chaining is built so arcane logistics can **replace or extend** it later. 1.0 gets **directional chaining** between adjacent ValleyOpus machines instead (doc 04): inputs come from the West machine first, then a South chest, then Automate; outputs go to the East machine first, then a South chest, then Automate.
 - **S3 · Uninstall safety:** ✅ confirmed (2026-10-13): the save loads and plays without the mod, and mod content is lost, plus a "prepare for removal" command. Without the mod, **Labs simply disappear** (no Shed conversion, so Lab sizes are a free design choice), and the **workshop entrance behind the CC simply does nothing**.
 - **S4 · Localization:** ✅ i18n from the first build.
-- **S5 · Docs location:** ✅ stage here until the gate. The GitHub repo **exists** (`CharlesDR/ValleyOpus`, holding only a README and LICENSE). Moving the docs in is a repo change, so it waits for Charles's go under the build gate.
+- **S5 · Docs location:** ✅ done (2026-10-13): the docs live in the `CharlesDR/ValleyOpus` repo under `docs/`, which is now their source of truth.
 
 #### S3 · "Safe to uninstall": pros and cons
 "Safe" here means a save made with ValleyOpus still loads and plays after the mod is removed. Mod items and machines are lost (or show as Error Items), but nothing crashes or corrupts.
@@ -177,7 +185,7 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 
 ### Phase 4 · UX, Multiplayer, Compatibility
 - **U1 · Controller and split-screen:** ✅ required for 1.0.
-- **U2 · Integration targets:** ✅ SVE only for 1.0. The Nexus export is at the top of Charles's action items (doc 10).
+- **U2 · Integration targets:** ✅ widened (Charles, doc 01): **SVE, Alecto the Witch, Ridgeside Village and East Scarp** in 1.0; others in 2.0, ordered by the Nexus export (doc 10).
 - **U3 · Config:** ✅ hints, celebrations **and economy knobs**. Player choice matters more than preventing exploits through options. Balance targets (doc 06) apply at default settings.
 
 ### Deferred items with new direction
