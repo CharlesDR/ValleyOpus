@@ -1,10 +1,10 @@
 # 08 · Narrative & NPCs
 
-Status: **DRAFT v0.5** (2026-10-13). v0.5: tone, the plants-only ban and who enforces it, alchemy's public reputation, full vanilla and SVE villager integration, careful lore additions, the ending as the 1.0 finished state, and 1.0 tie-ins with Alecto the Witch, Ridgeside Village and East Scarp (Charles's guiding answers, doc 01). v0.4: Gloam Lanterns for the Witch, and the Lore & Worldbuilding pillar (doc 01). Cast details: [08a-cast.md](08a-cast.md).
+Status: **DRAFT v0.6** (2026-10-13). v0.6: Charles's answers: Evelyn is a secret alchemist, Andy is the skeptic, and the slapstick, dark-past and Witch defaults are confirmed. v0.5: tone, the plants-only ban and who enforces it, alchemy's public reputation, full vanilla and SVE villager integration, careful lore additions, the ending as the 1.0 finished state, and 1.0 tie-ins with Alecto the Witch, Ridgeside Village and East Scarp (Charles's guiding answers, doc 01). v0.4: Gloam Lanterns for the Witch, and the Lore & Worldbuilding pillar (doc 01). Cast details: [08a-cast.md](08a-cast.md).
 
 ## Tone (Charles, doc 01)
 - **Dark in a "rated PG" way**, close to vanilla Stardew's own tone, which already has ghosts, zombies and skeletons. Dark alchemy should feel **spooky and ominous, never grotesque**: ghosts, skeletons, shadows and eerie lights are fine; **blood and gore are not**.
-- **Humour is mostly gentle whimsy.** Some characters get occasionally **sassy in cutscenes**. **Slapstick is reserved for the characters it fits** particularly well (proposal: Finch's misfiring curios and the odd Tobin machine hiccup, plus Lark's mishaps kept small and restrained, as already decided for her; Oriel, Hesper and Cyprian stay dry).
+- **Humour is mostly gentle whimsy.** Some characters get occasionally **sassy in cutscenes**. **Slapstick is reserved for the characters it fits** particularly well (decided: Finch's misfiring curios and the odd Tobin machine hiccup, plus Lark's mishaps kept small and restrained; Oriel, Hesper and Cyprian stay dry).
 - **The feeling to leave:** after a big alchemy day, the player feels accomplished, and often clever (doc 07).
 
 ## The forbidden arts (Charles, doc 01)
@@ -15,7 +15,7 @@ Status: **DRAFT v0.5** (2026-10-13). v0.5: tone, the plants-only ban and who enf
 ## Alchemy's reputation (Charles, doc 01)
 - Alchemy is a **respected discipline**. Villagers treat a working alchemist like a skilled craftsperson.
 - The public also remembers that **dark alchemical magic was once a real public-safety problem**, so there's **wariness when an alchemist moves into the esoteric**: the dark twins, Shades, rituals at night.
-- **In play (proposal):** villager dialogue shifts mildly once the player has made dark twins or filled a Gloam Lantern, with curiosity from some (Abigail) and polite unease from others. It's flavour only, never a friendship penalty. The historical trouble gets a fictional name and a few readables; it must not contradict vanilla or SVE lore (see below).
+- **In play (proposal):** villager dialogue shifts mildly once the player has made dark twins or filled a Gloam Lantern, with curiosity from some (Abigail) and polite unease from others. It's flavour only, never a friendship penalty. **Decided (Charles):** the historical trouble is a **named fictional incident**, set elsewhere and decades ago, told through a few readables. It is **not** why the workshop fell into ruin, so Cyprian stays sympathetic. Its name and details must not contradict vanilla or SVE lore (see below).
 
 ## Storyline shape (approved ingredients)
 Letters from key NPCs · new NPCs · the **derelict workshop** restored through **CC-style bundles** · cutscene events · tie-ins with the **Wizard** and the **Witch**.
@@ -51,7 +51,7 @@ Letters from key NPCs · new NPCs · the **derelict workshop** restored through 
 ## Guidelines for the Wizard and the Witch
 - **Teachers, not vendors.** They reveal *concepts* and *places* (where Aether pools, how putrefaction works), never finished recipes, which preserves discovery.
 - **Use their existing characterization.** The Wizard: aloof, scholarly, bright magic, his tower. He regards Oriel as a former student who wandered off his path, with pride he won't admit. The Witch: reclusive, dark, the swamp, void. Neither becomes chatty or omnipresent.
-- **Light gating.** Wizard content follows vanilla friendship (respecting SVE's changed gates). Witch content comes through letters, her hut and a few events, since she isn't a normal friendable NPC in vanilla. **With Alecto the Witch installed** (a 1.0 tie-in, Charles), the Witch is a full NPC, and our Witch content routes through her: dialogue, gift tastes and events written for Alecto. Without that mod, she stays the unnamed vanilla Witch.
+- **Light gating.** Wizard content follows vanilla friendship (respecting SVE's changed gates). Witch content comes through letters, her hut and a few events, since she isn't a normal friendable NPC in vanilla. **With Alecto the Witch installed** (a 1.0 tie-in, Charles), the Witch is a full NPC, and our Witch content routes through her: dialogue, gift tastes and events written for Alecto. Without that mod, she stays the unnamed vanilla Witch (decided).
 - **The Wizard enforces the ban** on living transmutation (above).
 - **They complement each other.** Bright versus dark substances map onto the two teachers.
 - **The Witch's dark arts run on Shades**, gathered in Gloam Lanterns from monster deaths (doc 04). She teaches the lantern and treats it matter-of-factly; the tone stays a little spooky, never grim. This gives combat players a reason to visit her.
@@ -66,7 +66,7 @@ Letters from key NPCs · new NPCs · the **derelict workshop** restored through 
 ## Vanilla and SVE villagers (Charles, doc 01)
 **Every vanilla and SVE villager is integrated into alchemy:** dialogue that notices the player's work, gift tastes for our gift products, and events where they fit. This is a large content task (doc 20, the content script), budgeted in i18n from the first build.
 
-Charles named these as having a **distinct perspective** worth a bigger role. Proposed angles, to confirm:
+Charles named these as having a **distinct perspective** worth a bigger role. Angles approved by Charles (2026-10-13):
 | Villager | Proposed angle |
 |---|---|
 | **Gunther** | the historian: the workshop's past, artifacts with alchemical marks, donating to the museum; a natural ally of the Curator |
@@ -76,9 +76,10 @@ Charles named these as having a **distinct perspective** worth a bigger role. Pr
 | **The Wizard** | teacher of the bright substances and enforcer of the ban (above) |
 | **The Witch** (Alecto, with that mod) | teacher of the dark twins and the Gloam Lantern |
 | **Sophia** (SVE) | angle to be chosen after a check of her SVE characterization |
+| **Evelyn** *(new, Charles)* | a **secret alchemist**: decades of quiet herb and flower work behind her famous garden, entirely within the plants-only rule. Revealed gradually (a too-perfect bloom, an old recipe card, a heart event), and a kindred spirit for the flower-fed Mystic garden (doc 04). Must stay consistent with her vanilla characterization |
 | **Krobus** | the shadow people's view of Tenebrae and the void; a gentle outsider's perspective on dark alchemy |
 | **The Dwarf** | metals and the old mining craft; a counterpart to Agnes's assaying |
-| **Andy** (SVE) | angle to be chosen after a check of his SVE characterization |
+| **Andy** (SVE) | **the skeptic** (Charles): a gruff, plain-spoken type who thinks it's all hokum, grudgingly impressed by results; a good voice for gentle comic doubt |
 
 ## Lore additions (Charles, doc 01)
 The mod may **add to** vanilla and SVE lore, carefully: **nothing may contradict an established fact or undercut an existing characterization.** New history attaches to our own places and people (the workshop, Cyprian, ley nodes), or fills gaps vanilla leaves open, never rewrites what's there. Each lore addition gets a check against the vanilla and SVE wikis before it's written into dialogue.

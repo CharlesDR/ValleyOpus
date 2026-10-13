@@ -1,6 +1,6 @@
 # 00 · Design Critical Path to Architecture
 
-Status: **DRAFT v0.3** (2026-10-13). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
+Status: **DRAFT v0.4** (2026-10-13). v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
 
 ## The governing rule
 Architecture needs the **shape** of every system, not its **content**. Shape means what kinds of things exist, the rules connecting them, and which of them need C# rather than Content Patcher data. Content means names, numbers, dialogue, art and exact recipes. Content can be filled in during execution as long as it is data-driven, so it never blocks architecture. Rework comes from changing shape late, so the path front-loads shape decisions and pushes content behind the gate.
@@ -47,6 +47,7 @@ Which doc 06 metrics apply, and which numbers are placeholders to tune in the sw
 Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 
 ## Change log
+- **v0.4 (2026-10-13):** doc 18 (Laboratory) moved before the gate, with Charles's size and floorplan direction.
 - **v0.3 (2026-10-13):** requirements from Charles's guiding answers in doc 01; S5 done; U2 widened to four tie-in mods.
 ```
 
@@ -75,7 +76,7 @@ Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 | **15** | **Products & Outside Uses** *(new)* | — | what leaves the mod: food, buffs, fertilizer, combat items, sellables, gifts (pillar: outputs must matter) |
 | **16** | **UX & Interface** *(new)* | — | codex, Satchel, Experiment Table, tooltips, celebrations, GMCM options, controller support |
 | **17** | **Multiplayer, Saves & Compatibility** *(new)* | — | ownership of every piece of state, save migration, uninstall behaviour, SVE and Automate test matrix |
-| 18 | Laboratory & Familiars *(deferred)* | — | after the slice; architecture reserves a hook only |
+| **18** | **Laboratory & Familiars** *(moved before the gate)* | — | tiers, sizes (T3 = 1.5× T2), floorplans, aesthetic touches, bonuses and Familiars; checked against the four-T3-Lab target |
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |
 | 20 | Content Script *(after gate)* | — | events, mail, dialogue, schedules |
 | 21 | Art & Audio List *(after gate)* | — | sprites, animations, sounds; placeholders until commissioned |
@@ -93,13 +94,13 @@ Phase 1  12 Recipe & Process Model (keystone) + 03/03a updated
               │
 Phase 2  13 Apparatus Catalog ◄──► 07 Discovery (updated)
               │
-Phase 3  15 Products ─► 14 Unlock Map ─► 05 Skill (updated) ─► 11 Slice
+Phase 3  15 Products ─► 14 Unlock Map ─► 05 Skill (updated) ─► 18 Laboratory ─► 11 Slice
               │
 Phase 4  16 UX  ║  17 Multiplayer, Saves & Compat
               │
         ══ ARCHITECTURE GATE ══  → architecture plan (doc 09 rewritten), then execution planning
               │
-After    18 Lab & Familiars · 19 Capstones · 20 Content Script · 21 Art List · sweep numbers
+After    19 Capstones · 20 Content Script · 21 Art List · sweep numbers
 ```
 
 ### Phase 0 · Scope lock
@@ -117,13 +118,13 @@ After    18 Lab & Familiars · 19 Capstones · 20 Content Script · 21 Art List 
 
 ### Phase 3 · Products, Unlock Map, Skill, Slice
 **Why here:** once the recipe and machine shapes are fixed, you can say what the player gets (15), how and when they get it (14), and how the skill paces it (05). Doc 11 then cuts a thin end-to-end slice from those three.
-**Order inside:** 15 before 14, because unlocks are paced around the products players care about.
+**Order inside:** 15 before 14, because unlocks are paced around the products players care about. **Doc 18 (Laboratory)** comes after 05 and before the slice: its floorplans need doc 13's machine footprints and adjacency rules, and the slice includes Lab T1 (Charles moved it before the gate on 2026-10-13).
 
 ### Phase 4 · UX and Multiplayer/Saves/Compat
 **Why last before the gate:** both are cross-cutting. They can only list every piece of state and every screen once the systems above have stopped moving. Doc 17 is where hidden architecture costs surface (sync, uninstall safety, SVE map edits).
 
 ### The gate
-Docs 01, 03, 03a, 03b, 04, 05, 07, 11–17 are "ready for architecture". Then doc 09 is rewritten as the architecture plan, followed by execution planning (milestones, build batches under the build gate).
+Docs 01, 03, 03a, 03b, 04, 05, 07, 11–18 are "ready for architecture". Then doc 09 is rewritten as the architecture plan, followed by execution planning (milestones, build batches under the build gate).
 
 ### New requirements from the guiding answers (doc 01, 2026-10-13)
 - **Doc 12** must support content packs adding **Primes**, substances and recipes (the Tier 1 grid is derived from the Prime list), a **hand-made-only** flag, and condition counts that grow by tier.
@@ -133,7 +134,7 @@ Docs 01, 03, 03a, 03b, 04, 05, 07, 11–17 are "ready for architecture". Then do
 - **Doc 20** (after the gate) grows to cover every vanilla and SVE villager's alchemy dialogue, gift tastes and events.
 
 ### What deliberately waits
-Laboratory and Familiars, capstones, the cutscene and content script, the art list, and all balance numbers. Architecture reserves hooks for them: the Lab-tier GSQ (tiers differ by interior size; Familiars only at T3), a capstone flag table, event triggers as data, and numbers in data files the sweep can rewrite.
+Capstones, the cutscene and content script, the art list, and all balance numbers. Architecture reserves hooks for them: a capstone flag table, event triggers as data, and numbers in data files the sweep can rewrite.
 
 ---
 
@@ -189,11 +190,11 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 - **U3 · Config:** ✅ hints, celebrations **and economy knobs**. Player choice matters more than preventing exploits through options. Balance targets (doc 06) apply at default settings.
 
 ### Deferred items with new direction
-- **Laboratory tiers (Charles, 2026-10-13):** three buildings.
+- **Laboratory tiers (Charles, 2026-10-13):** three buildings. *Update 21:47: T3 is 50% larger than T2; every tier gets aesthetic touches and a unique floorplan that encourages creative automation; Lab design moves before the gate as doc 18.*
   - **T1** matches the base Shed's footprint and interior, and **T2** matches the Big Shed's. **T3** is larger again, and more expensive.
   - T1 and T2 give **small but escalating bonuses** to apparatus inside. That is enough reason to choose a Lab over a Shed for alchemy, but not enough to replace Sheds for anything else.
   - T3 gives a modestly stronger version of the same bonus, **plus Familiar assignment**. Assigning a Familiar is the lateral specialization, so three buildings give the variety of more. One Familiar per Lab; a Familiar can be assigned to only one Lab.
-  - Detailed design still waits until after the slice.
+  - Detailed design is doc 18, in Phase 3.
 - Still deferred: capstones, the cutscene spec, the skill's display name, Lark's family, Hesper's outdoor spot, and all balance numbers.
 
 ---

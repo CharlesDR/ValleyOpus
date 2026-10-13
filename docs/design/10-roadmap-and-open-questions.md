@@ -1,6 +1,6 @@
 # 10 · Roadmap & Open Questions
 
-Status: **DRAFT v0.6** (2026-10-13). v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
+Status: **DRAFT v0.7** (2026-10-13). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
 
 ## Version scope
 | | 1.0 | 2.0 |
@@ -29,36 +29,28 @@ Status: **DRAFT v0.6** (2026-10-13). v0.6: the docs pass against Charles's guidi
 ## Charles's action items
 1. **Nexus popularity export** for integration targets (manual, since Nexus blocks cloud sessions). The 1.0 tie-ins are now chosen (SVE, Alecto the Witch, Ridgeside Village, East Scarp), so this only sets 2.0 priorities.
 2. **Full review of the design docs** before the next stage (Phase 1, doc 12).
-3. **Answer the questions from the v0.6 pass** (below).
+3. ~~Answer the questions from the v0.6 pass~~: done (below).
 
-## Questions from the v0.6 pass (waiting on Charles)
-Raised while fleshing out docs 02–09 against doc 01. Each has the default the docs currently use; "default is fine" is a valid answer.
-
-**Hand-made only and automation**
-1. **Staging hand-made rituals.** Capstones are hand-made, preferably by ritual. May Automate still *stage* materials for those rituals if the player triggers them? *Default: no, the player loads them by hand too* (doc 04).
-2. **What counts as a quest item?** *Default: story-quest deliveries only. Dr. Sorenson's bulk contracts, Ivo's bounties and workshop bundles accept automated output* (doc 04).
-3. **Gifts.** *Default: products made mainly for gifting are hand-made only, but any alchemy item can still be given as a gift* (doc 03a).
-4. **Lab sizing.** "One of each specialized T3 Lab" means four T3 Labs, one per Familiar, holding a setup for every item with room to spare. *Default: yes* (doc 02).
-
-**Tone, lore and characters**
-5. **Who fits slapstick?** *Default: Finch's misfiring curios and Tobin's machine hiccups, with Lark kept restrained as decided; Oriel, Hesper and Cyprian stay dry* (doc 08).
-6. **The dark-alchemy past.** Should the public-safety trouble be a named historical incident with readables? *Default: yes, a fictional incident elsewhere and decades ago, not the cause of the workshop's ruin, so Cyprian stays sympathetic* (doc 08).
-7. **The Witch without Alecto.** *Default: without the Alecto the Witch mod she stays the unnamed vanilla Witch; with it, our Witch content runs through Alecto* (doc 08).
-8. **Sofia and Andy.** I read "Sofia" as SVE's Sophia. *Default: yes; their alchemy angles get chosen after a check of their SVE characterizations* (doc 08).
-9. **Villager angles.** Do the proposed angles for Gunther, Abigail, Maru, Emily, Krobus and the Dwarf match your intent? *Default: yes* (doc 08).
-
-**Plants, combat and the world**
-10. **Plant transmutation.** Approve **seed transmutation** (a ritual that turns one crop's seeds into another's) and the **Rootling** (a small plant homunculus that tends a crop patch) as candidates? *Default: yes, both as candidates* (doc 03a). The v0.2 "Rust Slimes" residue idea is dropped under the ban.
-11. **Passive combat effects.** How should they reach the player? *Default: long-lasting buffs from consumables plus at most a couple of rings; no trinket-slot items* (doc 03a).
-12. **New drops under "few".** *Default: none chosen until a late area (Skull Cavern, Volcano, a hidden area) clearly needs a signature reagent* (doc 03b).
-13. **Forage in hidden areas.** *Default: no new forage; hidden areas host rare ley nodes and lore instead* (docs 03b, 04).
-14. **Late-game gates.** Approve the proposed hooks: Skull Cavern bounties and Shade hunting, island and Volcano ley nodes, a Volcano ritual site, and a few Mr. Qi special orders paid in Qi Gems? *Default: yes, as proposals* (doc 02).
-
-**Pacing, ending and scope**
-15. **Escalating conditions.** *Default: Tier 1 recipes need none or one condition, Tier 2 one or two, Tier 3 and capstones two or more* (doc 02).
-16. **The finished state.** *Default: completing the Great Work ends the 1.0 story; Cyprian finally rests, and the valley changes visibly* (docs 02, 08).
-17. **1.0 scope check.** 1.0 has grown: full villager integration, three more tie-in mods and Content Patcher extensibility. *Default: keep all of it in 1.0, written after the architecture gate*; the alternative is to move some villager dialogue to a 1.x update (doc 10).
-18. **Version label.** *Default: publish the public beta as 1.0.0 with "beta" in the Nexus description* (doc 10).
+## Answers to the v0.6 questions (Charles, 2026-10-13 21:47)
+All 18 answered and applied in v0.7.
+1. **Capstone rituals are fully manual.** Automate can't stage them; the player loads and triggers them by hand, to keep their gravitas. The same applies to every hand-made-only recipe (doc 04).
+2. Quest items are story-quest deliveries only; contracts, bounties and workshop bundles accept automated output.
+3. Products made mainly for gifting are hand-made only; any alchemy item can still be gifted.
+4. Four T3 Labs, one per Familiar, hold a setup for every item with room to spare.
+5. Slapstick: Finch and Tobin, with Lark kept restrained; Oriel, Hesper and Cyprian stay dry.
+6. The dark-alchemy past is a named fictional incident, elsewhere and decades ago, not the cause of the workshop's ruin.
+7. Without Alecto the Witch, the Witch stays the unnamed vanilla Witch.
+8. "Sofia" is SVE's Sophia.
+9. The villager angles stand. **New:** **Evelyn** is a secret alchemist, and **Andy** (SVE), a gruff hillbilly type, is the resident skeptic (doc 08).
+10. Seed transmutation and the Rootling are approved as candidates.
+11. Passive combat effects come from buffs and a couple of rings, **plus some trinket-slot items** (doc 03a).
+12. New drops are high-value specialty reagents found only in late-game areas. **With SVE installed they appear in SVE's late locations; without it, they're grouped into fitting vanilla places** (doc 03b).
+13. No new forage in hidden areas.
+14. The late-game gates (Skull Cavern, Ginger Island, Volcano, Mr. Qi) are approved as proposals.
+15. Conditions escalate: none or one for Tier 1, one or two for Tier 2, two or more for Tier 3 and capstones.
+16. Completing the Great Work is the 1.0 finished state.
+17. All the added scope stays in 1.0.
+18. The public beta ships as 1.0.0, marked beta on Nexus.
 
 ## Waiting on Charles (earlier)
 - Part 4 decisions: all answered and confirmed 2026-10-13 (doc 00).
@@ -75,7 +67,6 @@ Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition
 
 ## Deferred design passes (agreed to come later)
 - Opening cutscene spec (doc 02).
-- Laboratory detail (direction set: T1 = Shed size, T2 = Big Shed size, T3 larger; escalating apparatus bonuses; Familiar assignment at T3 is the specialization), after the first slice.
 - Capstones, once progression is coherent.
 - Skill display name (working name: Alchemy).
 - Lark's family (Jodi's or Pam's) and Hesper's outdoor spot.
@@ -87,6 +78,7 @@ Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
 
 ## Change log
+- **v0.7 (2026-10-13):** Charles answered all 18 v0.6 questions (capstone rituals fully manual, Evelyn as a secret alchemist, Andy as the skeptic, trinket-slot items, late-area reagents placed by SVE presence), and set the Lab direction: T3 is 50% larger than T2, every tier gets aesthetic touches and a unique floorplan, and Lab design now comes before the architecture gate (doc 00).
 - **v0.6 (2026-10-13):** a pass over docs 02–09 against Charles's guiding answers in doc 01: pacing targets and no calendar gates, escalating conditions, the 1.0 finished state, hand-made-only gifts, quest items and capstones, Automate expected but optional, late-game Lab sizing, the combat cap, plants-only living transmutation and the Wizard's ban, tone and reputation, full villager integration, 1.0 tie-ins with Alecto the Witch, Ridgeside Village and East Scarp, and Content Patcher extensibility. 18 questions for Charles.
 - **v0.5 (2026-10-13):** Charles's Part 4 decisions (doc 00): Spring Y1 slice, directional chaining in 1.0 with arcane logistics moved to 2.0, i18n, Golem Clay dropped, three Experiment Table inputs, vanilla-speed skill, economy knobs in GMCM, SVE-only integration, Lab tiers by size with Familiars at T3. The Charles action items list was added.
 - **v0.4 (2026-10-13):** from Charles's review of the inspiration research: Lore & Worldbuilding pillar and the "boost underwhelming base-game activities" guiding star (doc 01); automation can't make discoveries and undiscovered outputs lock in the machine (docs 04, 07); three celebration tiers, clock freeze, residue hints, codex depth and the per-farm secret recipe with re-roll (doc 07); flower-fed arcane apparatus, Gloam Lanterns and late-game blended machines (doc 04).
