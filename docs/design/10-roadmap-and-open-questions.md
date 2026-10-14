@@ -1,6 +1,6 @@
 # 10 · Roadmap & Open Questions
 
-Status: **DRAFT v0.7** (2026-10-13). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
+Status: **DRAFT v0.8** (2026-10-14). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
 
 ## Version scope
 | | 1.0 | 2.0 |
@@ -17,7 +17,7 @@ Status: **DRAFT v0.7** (2026-10-13). v0.7: Charles's answers to the v0.6 questio
 | Mod tie-ins | SVE, Alecto the Witch, Ridgeside Village, East Scarp | others, by Nexus ranking |
 | Plant transmutation (seeds, the Rootling) | ✓ (candidates) | |
 | Ending | a definitive finished state (the Great Work) | an endless long tail |
-| Reagent Satchel and the item budget | ✓ | maybe an Essence Reservoir |
+| Reagent Satchel (item restraint for adventure-area drops only) | ✓ | maybe an Essence Reservoir |
 | Directional chaining (West → East, South chests) | ✓ | |
 | Arcane logistics | ✗ | ✓ |
 | Tool and weapon forging (Orichalcum) | ✗ | ✓ |
@@ -27,7 +27,7 @@ Status: **DRAFT v0.7** (2026-10-13). v0.7: Charles's answers to the v0.6 questio
 **Release plan (Charles, doc 01):** what we call 1.0 is a **public beta**, released after a lot of polish. Success means technical polish, satisfying loops and a fun experience. After 1.0 the mod is maintained: game updates, bug fixes, new content and translations.
 
 ## Charles's action items
-1. **Nexus popularity export** for integration targets (manual, since Nexus blocks cloud sessions). The 1.0 tie-ins are now chosen (SVE, Alecto the Witch, Ridgeside Village, East Scarp), so this only sets 2.0 priorities.
+1. ~~**Nexus popularity export**~~: done (2026-10-14). Charles supplied the top-80 list; the targets are in doc 09.
 2. **Full review of the design docs** before the next stage (Phase 1, doc 12).
 3. ~~Answer the questions from the v0.6 pass~~: done (below).
 
@@ -78,6 +78,7 @@ Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
 
 ## Change log
+- **v0.8 (2026-10-14):** Charles's full review: the item budget is loosened to adventure-area drops only (doc 03b), internal consistency becomes a core principle (doc 01), and integration and compatibility targets are chosen from his top-80 export (doc 09). The material-name sweep waits on his choice of language order.
 - **v0.7 (2026-10-13):** Charles answered all 18 v0.6 questions (capstone rituals fully manual, Evelyn as a secret alchemist, Andy as the skeptic, trinket-slot items, late-area reagents placed by SVE presence), and set the Lab direction: T3 is 50% larger than T2, every tier gets aesthetic touches and a unique floorplan, and Lab design now comes before the architecture gate (doc 00).
 - **v0.6 (2026-10-13):** a pass over docs 02–09 against Charles's guiding answers in doc 01: pacing targets and no calendar gates, escalating conditions, the 1.0 finished state, hand-made-only gifts, quest items and capstones, Automate expected but optional, late-game Lab sizing, the combat cap, plants-only living transmutation and the Wizard's ban, tone and reputation, full villager integration, 1.0 tie-ins with Alecto the Witch, Ridgeside Village and East Scarp, and Content Patcher extensibility. 18 questions for Charles.
 - **v0.5 (2026-10-13):** Charles's Part 4 decisions (doc 00): Spring Y1 slice, directional chaining in 1.0 with arcane logistics moved to 2.0, i18n, Golem Clay dropped, three Experiment Table inputs, vanilla-speed skill, economy knobs in GMCM, SVE-only integration, Lab tiers by size with Familiars at T3. The Charles action items list was added.

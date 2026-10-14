@@ -1,9 +1,12 @@
 # 01 · Vision & Pillars
 
-Status: **DRAFT v0.6** (2026-10-13). v0.6: Charles answered every guiding-area stub, and the other docs were revised to match (doc 10 lists the follow-up questions). v0.5: stub sections for guiding areas that still need Charles's direction (see "Open guiding areas"). v0.4: Lore & Worldbuilding pillar, the guiding star, the clock-freeze rule and the discovery gate on automation (Charles's feedback on the inspiration research). Sources: the startup context transcript, Charles's answers, and [research](../research/comparators-and-concepts.md).
+Status: **DRAFT v0.7** (2026-10-14). v0.7: internal consistency added as a core principle, and the inventory rule loosened to adventure-area drops only (Charles's full review). v0.6: Charles answered every guiding-area stub, and the other docs were revised to match (doc 10 lists the follow-up questions). v0.5: stub sections for guiding areas that still need Charles's direction (see "Open guiding areas"). v0.4: Lore & Worldbuilding pillar, the guiding star, the clock-freeze rule and the discovery gate on automation (Charles's feedback on the inspiration research). Sources: the startup context transcript, Charles's answers, and [research](../research/comparators-and-concepts.md).
 
 ## Vision
 ValleyOpus brings **alchemy and automation** to Stardew Valley in a way that feels native to the valley: mechanical ingenuity and Hermetic magic are two different ways of working the world, and the interesting choices happen where they meet. It should feel like *wonder you can industrialize, a little, at a price*, never "a medieval sweatshop simulator" (the Alchemy Factory warning).
+
+## Core principle: internal consistency (Charles, 2026-10-14)
+**Internal consistency is critical.** Naming schemes, elemental affinities, machine behaviour, UI patterns and every other established pattern must hold across the whole mod. **Deviations from an established pattern must be intentional and carefully thought out**, and each one is written down with its reason in the doc that makes it. Before adding anything new, check it against the patterns already set: how similar things are named, which Prime they align with, how comparable machines load, run, chain and report.
 
 ## Design pillars (agreed)
 1. **Mechanical and magical are separate axes, not tiers.** Mechanical is reliable, bulk and automatable: Tobin's engineered lines. Arcane is conditional (day, weather, season, ritual), reaches higher quality or unique results, and resists full automation: Oriel's grand rituals and dramatic single batches.
@@ -25,7 +28,7 @@ ValleyOpus brings **alchemy and automation** to Stardew Valley in a way that fee
 **Boost underwhelming base-game activities and items.** The model is flowers: without the mod, growing them in bulk is suboptimal (honey boosts, the odd gift), but flower-fed arcane apparatus (doc 04) make it worthwhile. Look for the same opportunity with other cheap, plentiful, under-used things (fiber, sap, common forage, trash, monster loot, moss) in the balance sweep.
 
 ## Inventory rule (Charles)
-Inventory space is precious. Few new monster drops or mine finds, a budget of new carriable items, and a Reagent Satchel by default (doc 03b).
+Inventory space is precious. Few new monster drops or mine finds, and a Reagent Satchel by default (doc 03b). *(2026-10-14: restraint applies only to items that drop in adventure areas such as the mines; there's no overall item cap.)*
 
 ## Balance rules
 - **No single-source bottlenecks.** Every Prime has at least 3 independent sources across activities (Fire must not mean "only spicy crops").

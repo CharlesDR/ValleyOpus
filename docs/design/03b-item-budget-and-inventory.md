@@ -1,16 +1,16 @@
 # 03b · Item Budget & Inventory
 
-Status: **DRAFT v0.6** (2026-10-13). v0.6: where late-area reagents appear (with or without SVE), no forage in hidden areas, and alchemical trinkets in the census (Charles). v0.5: rule 1 softened from "no" to "few" new monster drops and mine finds, matching Charles's edit to the inventory rule in doc 01; Rootling added to the census. v0.4: Gloam Lanterns added. This responds to Charles's warning: be careful creating new items, especially monster drops and mine/Skull Cavern finds, because inventory space is already tight.
+Status: **DRAFT v0.7** (2026-10-14). v0.7: **the item budget is loosened** (Charles, full review): restraint applies only to items that drop in adventure areas (the mines, Skull Cavern, the Volcano and similar). The ~40-item cap and the general forage ban are gone. v0.6: where late-area reagents appear (with or without SVE), no forage in hidden areas, and alchemical trinkets in the census (Charles). v0.5: rule 1 softened from "no" to "few" new monster drops and mine finds, matching Charles's edit to the inventory rule in doc 01; Rootling added to the census. v0.4: Gloam Lanterns added. This responds to Charles's warning: be careful creating new items, especially monster drops and mine/Skull Cavern finds, because inventory space is already tight.
 
 ## Rules
-1. **Few new monster drops or mine/Skull Cavern finds** (Charles changed "no" to "few" in doc 01). The default is still **existing vanilla loot**; new drops and finds are **high-value specialty reagents found only in late-game areas** (Charles), and each counts against the budget in rule 4. **With SVE installed** they appear in SVE's late-game locations; **without SVE** they're grouped into fitting vanilla places instead (Skull Cavern, the Volcano, Ginger Island). Combat and mining reagents otherwise come from vanilla loot (Slime, Bug Meat, Bat Wing, Bone Fragment, Solar Essence, Void Essence, Cinder Shard, ores, geodes, minerals) through context-tag decomposition. Ivo's bounties count **kills** or ask for **vanilla** drops.
-2. **No new forage for alchemy's sake.** Location-specific essences come from **Ley Taps**, which produce Primes directly (doc 04), not from new forage items. **Hidden alchemy areas get no forage of their own either** (Charles); they host rare ley nodes and lore.
+1. **Few new monster drops or mine/Skull Cavern finds** (Charles changed "no" to "few" in doc 01). The default is still **existing vanilla loot**; new drops and finds are **high-value specialty reagents found only in late-game areas** (Charles). **With SVE installed** they appear in SVE's late-game locations; **without SVE** they're grouped into fitting vanilla places instead (Skull Cavern, the Volcano, Ginger Island). Combat and mining reagents otherwise come from vanilla loot (Slime, Bug Meat, Bat Wing, Bone Fragment, Solar Essence, Void Essence, Cinder Shard, ores, geodes, minerals) through context-tag decomposition. Ivo's bounties count **kills** or ask for **vanilla** drops.
+2. **Forage is not restricted** (loosened 2026-10-14). New forage is fine where it serves the design, though **Ley Taps** (doc 04) stay the main source of location-specific Primes. **Hidden alchemy areas still get no forage of their own** (Charles, 2026-10-13); they host rare ley nodes and lore.
 3. **Not every substance is an item.** Each entry in doc 03a is classed as one of:
    - **Item:** a carriable, sellable object (most Tier 2/3 products, the Primes).
    - **Power:** exists only as an adjacency or network effect, never in inventory (Steam, Fulgur, Living Flame as a lamp fuel state).
    - **Process state:** a stage of a batch, shown in the machine and codex but never an item (Cauda Pavonis, the colour stages).
    - **In-machine intermediate:** consumed inside a multi-stage apparatus without being bottled, unless the player chooses to bottle it (many Tier 1 substances).
-4. **A budget.** Aim for at most **~40 new carriable items in 1.0**, excluding flavored variants. Every new item must justify itself with an outside-the-mod use (player-experience pillar 1) or as a required input.
+4. **No overall cap** (loosened 2026-10-14). Restraint applies only to rule 1's adventure-area drops. Every new item still needs a purpose, an outside-the-mod use (player-experience pillar 1) or a role as a required input, and must follow the mod's established naming and behaviour patterns (internal consistency, doc 01).
 
 ## Carrying alchemy items: options
 | Option | How it works | Pros | Cons |
@@ -43,4 +43,4 @@ Inspired by Minecraft's bundle (hover to see contents), with a proper menu.
 - 0–3 late-area specialty reagents under the softened rule 1 (none chosen yet)
 - 2–3 alchemical trinkets (trinket slot; doc 03a)
 - 1–2 Gloam Lanterns (base and upgraded; doc 04). These are a **deliberate inventory cost**: they work only from the main inventory, and carrying more fills faster at diminishing returns. They are crafted tools, not monster drops, so rule 1 holds.
-- **≈ 48–52**, over budget; pruning targets are listed in doc 03a's class column (to be added in the balance pass).
+- **≈ 48–52** in total. There's no cap now; the census stays as a planning count, and only the late-area reagents are held to rule 1's restraint.

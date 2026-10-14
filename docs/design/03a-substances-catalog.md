@@ -125,7 +125,7 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 | **Terra Viva** (Living Soil) | Silt + Vitae | [C] | premium fertilizer that competes with deluxe fertilizer, not above it |
 | **Gelum** (Frost) | Tempestas + Fixed Salt | [TC][C] (salt-ice freezing mixtures) | preservation; Frozen Tear tie-in; winter content |
 | **Venenum** (Poison) | Miasma + Mors | [TC] | weed and pest control; combat coatings |
-| **Ectoplasm** | Spiritus + Silt | [common media] | the Curator's restoration requests and Witch quests (prune candidate under the item budget) |
+| **Ectoplasm** | Spiritus + Silt | [common media] | the Curator's restoration requests and Witch quests (kept: the item budget was loosened, doc 03b) |
 | **Perpetuum Mobile** | Motus + Steam + Ordo | [C] perpetual motion | Mechanist capstone candidate (always has a cost) |
 | **Seed transmutation** *(approved candidate)* | a stack of seeds + Vitae, as a ritual | [C] the "growing" of matter | turns one crop's seeds into another's (same season, similar value); a guiding-star use for cheap seeds and the main legal outlet for living transmutation |
 | **Rootling** *(approved candidate; working name)* | Anima + Terra Viva + a crop | [C] the homunculus, as a plant | a small plant homunculus that tends one crop patch (waters, or nudges growth); hand-made only; the furthest the ban allows |
@@ -177,7 +177,7 @@ Open to more. *(The v0.2 "Rust Slimes" idea, feeding residue to a Slime Hutch, i
 ## Combat cap (Charles, doc 01)
 Combat preparations (Black Powder, Venenum coatings, Phoenix Ash, combat elixirs) give useful consumables and passive effects, but **none is more impactful than a Combat Mastery trinket**. The sweep benchmarks each against the trinkets (doc 06).
 
-**Delivery (Charles):** passive effects come from long-lasting buffs, a couple of rings, and **some trinket-slot items** of our own (alchemical trinkets, e.g. a vial pendant or a smouldering censer). Those sit at the same power level as the Combat Mastery trinkets, not above it. Each counts against the item budget (doc 03b).
+**Delivery (Charles):** passive effects come from long-lasting buffs, a couple of rings, and **some trinket-slot items** of our own (alchemical trinkets, e.g. a vial pendant or a smouldering censer). Those sit at the same power level as the Combat Mastery trinkets, not above it. They're ordinary crafted items, not adventure drops, so the item restraint in doc 03b doesn't apply.
 
 ## Grid size and discovery pacing
 
