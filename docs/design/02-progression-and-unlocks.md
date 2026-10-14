@@ -1,6 +1,6 @@
 # 02 · Progression & Unlocks
 
-Status: **DRAFT v0.4** (2026-10-13). v0.4: pacing targets, no calendar gates, escalating conditions, the 1.0 "finished" state, Lab sizing for the late game, and late-game gates (Ginger Island, Volcano, Skull Cavern, Mr. Qi), all from Charles's guiding answers in doc 01. v0.3: Lab tier direction from Charles; the first playable slice is Spring Y1 (doc 00, S1). The seasonal roll-out is a proposal to react to.
+Status: **DRAFT v0.5** (2026-10-13). v0.5: Lab size and floorplan direction, Lab design moved before the architecture gate, late-game gates and escalating conditions approved (Charles). v0.4: pacing targets, no calendar gates, escalating conditions, the 1.0 "finished" state, Lab sizing for the late game, and late-game gates (Ginger Island, Volcano, Skull Cavern, Mr. Qi), all from Charles's guiding answers in doc 01. v0.3: Lab tier direction from Charles; the first playable slice is Spring Y1 (doc 00, S1). The seasonal roll-out is a proposal to react to.
 
 ## Soft start (approved; details to be specified later)
 - **Trigger:** 2 days after the Community Center opens, the first time the player enters **Town** between **6:00am and 3:00pm**.
@@ -13,7 +13,7 @@ Status: **DRAFT v0.4** (2026-10-13). v0.4: pacing targets, no calendar gates, es
 - **A typical player** finishes around **Year 4**, because of how much there is to do, **not because of time gates**.
 - **No hard calendar gates.** Every unlock is gated by progress: a workshop bundle, skill level, friendship, a base-game milestone, or a discovery. Recurring conditions (planetary weekday, weather, season, moon phase) are allowed, since they come round again. No content may require "Year 2" or later as such.
 - **Time share:** a heavily invested mid-game player spends about **a quarter of their day** on alchemy. Alchemy competes for time naturally, as any new activity does, but never asks for busywork (walking back and forth, repeated menus, waiting with nothing to do). Doc 16 (UX) budgets hand actions against this.
-- **Escalating conditions.** The number of conditions a recipe needs grows as the player advances (proposal: Tier 1 needs none or one, Tier 2 one or two, Tier 3 and capstones two or more). There's no hard upper bound for now; condition stacking is flagged as a likely place to rebalance later (doc 06).
+- **Escalating conditions.** The number of conditions a recipe needs grows as the player advances (approved: Tier 1 needs none or one, Tier 2 one or two, Tier 3 and capstones two or more). There's no hard upper bound for now; condition stacking is flagged as a likely place to rebalance later (doc 06).
 - **Automation is encouraged after the first tier.** Spring is hand work and discovery. From Summer, Tobin's engineered lines make automating discovered Tier 1 recipes the natural next step (doc 04).
 
 ## Two places, two jobs
@@ -34,7 +34,7 @@ Stages follow the seven operations of the Magnum Opus. Each row's unlocks come m
 | **Winter** | Distillation, Coagulation | Gelum/frost, fixing quality, Aether rituals | skill L10 choice, the Great Work begins, Lab T3 groundwork |
 | **Year 2** (diligent pace) | the colour stages | Tier 3 substances, capstones | **Laboratory T3** with Familiar augmentation, capstones, the Great Work's ending (the 1.0 finished state) |
 
-**Gates tied to base-game progress** (either the CC or the Joja route counts):
+**Gates tied to base-game progress** (either the CC or the Joja route counts; the late-game hooks below are approved as proposals):
 - **Quarry bridge** (Crafts Room, or the Joja purchase) → Agnes's Quarry crucible and advanced transmutation.
 - **Bus repair** (Vault, or Joja) → the desert, Bennet's glassware commissions and advanced arcane apparatus. Basic glassware never depends on the desert.
 - **Adventurer's Guild access** → Ivo's bounties.
@@ -55,7 +55,8 @@ Stages follow the seven operations of the Magnum Opus. Each row's unlocks come m
 - **Familiars augment T3 only:** a T3 Lab can be augmented by assigning one of the four elemental Familiars. **One Familiar per Lab, and a Familiar can be assigned to only one Lab**, so at most **4 Labs per farm are augmented**; other Labs still work without one. Assigning a Familiar **is** the lateral specialization, so three buildings give the variety of more.
 - **Without the mod installed:** Labs simply disappear (doc 09). Because no conversion to Sheds is needed, Lab sizes are not tied to the Shed sizes; matching them stays a gameplay choice for the Lab pass.
 - **Late-game scale (Charles, doc 01):** a setup producing every endgame item spreads across **several T3 Labs**. **One T3 Lab of each specialization (one per Familiar, so four) must be more than enough room** for a production setup for every item in the mod. That's the sizing target for the T3 interior: generous, but not so large that one Lab holds everything.
-- **Charles: design after the discovery/recipe flow is partly done.**
+- **Size and floorplans (Charles, 2026-10-13):** **T3's interior is 50% larger than T2's.** Every tier gets **aesthetic touches** (alchemical decor that doesn't take up working floor) and a **unique floorplan**, not a plain rectangle: alcoves, pillars, a hearth wall, a raised dais and so on, shaped to **encourage creative automation setups** that fit the space (west-to-east chains, adjacency clusters, a ritual corner). T1 and T2 keep roughly the Shed's and Big Shed's floor area, laid out in their own shapes.
+- **When:** Laboratory design now happens **before the design docs are finalized** (Charles), as doc 18 on the critical path after the apparatus catalog (doc 00).
 
 ## Capstones (approved direction; design deferred)
 Multiple capstones in different areas (farming, combat, exploration, economy, automation), each with tradeoffs. Candidate hosts: Ivo (combat), Hesper (exploration), Dr. Sorenson (economy), Tobin (automation), Oriel and Cyprian (the Philosopher's Stone). Seeds are in doc 03a.

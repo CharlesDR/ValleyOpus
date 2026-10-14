@@ -1,6 +1,6 @@
 # 04 · Machines, Rituals, Adjacency & Automation
 
-Status: **DRAFT v0.6** (2026-10-13). v0.6: Automate is expected but optional, automation is encouraged after Tier 1, hand-made-only products, late-game scale across T3 Labs, the combat cap, and late-game ley nodes (Charles's guiding answers, doc 01). v0.5: directional chaining replaces arcane logistics in 1.0 (S2), and fewer BigCraftables for the same operations (A1). v0.4: discovery gate on automation, flower-fed arcane apparatus, Gloam Lanterns and late-game blended machines. v0.3: Charles's automation model replaces attunement decay. Names are working names. Display names may overlap other alchemy mods; IDs must not.
+Status: **DRAFT v0.7** (2026-10-13). v0.7: hand-made-only recipes are fully manual, staging included (Charles). v0.6: Automate is expected but optional, automation is encouraged after Tier 1, hand-made-only products, late-game scale across T3 Labs, the combat cap, and late-game ley nodes (Charles's guiding answers, doc 01). v0.5: directional chaining replaces arcane logistics in 1.0 (S2), and fewer BigCraftables for the same operations (A1). v0.4: discovery gate on automation, flower-fed arcane apparatus, Gloam Lanterns and late-game blended machines. v0.3: Charles's automation model replaces attunement decay. Names are working names. Display names may overlap other alchemy mods; IDs must not.
 
 ## Two ways of working (the core axis, voiced by Tobin and Oriel)
 | | **Engineered lines** ⚙︎ (Tobin) | **Grand rituals** ✦ (Oriel) |
@@ -83,11 +83,11 @@ Arcane apparatus come in two kinds (Charles, v0.3):
 | Minor arcane apparatus ✦ | yes | yes | none (conditions still matter) |
 | Ritual altars ✦ | **yes (staging)** | yes, after the ritual completes | **trigger the ritual by hand** |
 | Ritual Circle (grand rituals) | yes (staging) | yes, after completion | trigger by hand |
-| **Hand-made-only recipes** (gifts, quest items, capstones) | **no** (proposal; see doc 10) | no | the player crafts or performs the ritual by hand |
+| **Hand-made-only recipes** (gifts, quest items, capstones) | **no, not even staging** | no | the player loads, crafts or performs the ritual by hand |
 
 There is **no attunement decay** in this model; the manual trigger replaces it.
 
-**Hand-made only (Charles, doc 01):** gifts, quest items and capstones are always hand-made, by crafting recipe or, preferably, by ritual. Such recipes carry a hand-made-only flag: machines refuse them from Automate and from chaining, and they never run unattended. Whether Automate may still *stage* materials for a hand-made-only ritual is an open question (doc 10); the proposal is no, so the whole act stays the player's.
+**Hand-made only (Charles, doc 01):** gifts, quest items and capstones are always hand-made, by crafting recipe or, preferably, by ritual. Such recipes carry a hand-made-only flag: machines refuse them from Automate and from chaining, and they never run unattended. **Decided (Charles, 2026-10-13):** Automate can't even *stage* materials for these rituals. Capstone rituals are manual from loading to trigger, to keep their gravitas.
 
 **Discovery gate (all kinds, Charles v0.4):** automation can't make discoveries and requires them. A machine only accepts inputs for recipes the farm has discovered, and any undiscovered output is locked in the machine until the player unloads it by hand (doc 07).
 
