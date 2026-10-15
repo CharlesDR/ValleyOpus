@@ -10,7 +10,7 @@ Parent doc: [03-essences-and-decomposition.md](03-essences-and-decomposition.md)
 - Families stay consistent: Sal Fixum, Sal Marinum and Sal Volatile all build on **Sal**; Mercurius Fixus, Mercurius Currens and Mercurius Philosophorum on **Mercurius**; Flamma Viva, Terra Viva and Sulphur Vivum share *vivus*, "living".
 - **Out of scope, deliberately:** machines and apparatus (their own scheme: classical vessels like Athanor and Alembic, plain English for Tobin's engineered machines), tools and the Gloam Lantern's Shades (named by Charles), NPCs and places. The research files keep their original names as inspiration.
 - **Renamed in the sweep:** the eight Primes (Ignis, Aqua, Terra, Aer, Sal, Sulphur, Mercurius, Aether), Flamma Viva, Ros Maialis, Sal Fixum, Sulphur Vivum, Mercurius Currens, Quinta Essentia, Vapor, Limus, Pulvis, Sal Marinum, Mercurius Fixus, Cinnabaris, Mercurius Philosophorum, Pulvis Pyrius, Cinis Phoenicis, Lapis Philosophorum, Radicula (the Rootling), Argentum, Stannum and Plumbum (the planetary metals). Glosses fixed to English: Sol (Sunlight), Spiritus (Spirit), Miasma (Smoke), Aether (the Fifth Element).
-- **Aura (Ether):** the energy restorative was "Ether", which nearly collided with the Prime **Aether**. It's renamed **Aura** (Latin for breeze or breath) under the consistency principle. Flagged for Charles to confirm.
+- **Vigor (Vigour):** the energy restorative was "Ether", which nearly collided with the Prime **Aether**. Under the consistency principle it's renamed **Vigor** (Charles, 2026-10-15): Latin for liveliness, and it says what it does.
 
 Sourcing rule (Charles): classical alchemy lore plus well-known or moderately well-known media, **nothing more obscure than Thaumcraft** unless it's an unusually good fit. Each entry notes its inspiration:
 **[C]** classical alchemy · **[TC]** Thaumcraft · **[W3]** The Witcher 3 alchemy substances · **[OM]** Opus Magnum · **[FMA]** Fullmetal Alchemist · **[FF]** Final Fantasy · **[LA]** Zaikin's Alchemy / Little Alchemy / Doodle God · **[AT]** Atelier series · **[SDV]** an existing Stardew item.
@@ -127,7 +127,7 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 | **Electrum** ⚙︎ | Gold + Argentum smelted | [C] | mechanical alloy; reliable and bulk |
 | **Rebis** ✦ | Sol + Luna in Conjunction | [C][W3] | the "double thing": the same two inputs give a magical result, conditional and higher-tier |
 | **Orichalcum** | Metallum + Fulgur | [C] (Plato's lost metal; common in games) | late metal; tool/weapon forging sidegrade |
-| **Aura** (Ether) | Spiritus + Ros Maialis | [FF][C] | restores energy (Stardew's "mana" analog) |
+| **Vigor** (Vigour) | Spiritus + Ros Maialis | [FF][C] | restores energy (Stardew's "mana" analog) |
 | **Elixir** | Vitae + Anima | [FF][C] | restores health |
 | **Panacea** | Elixir + Ordo | [C] | cures debuffs |
 | **Cinis Phoenicis** (Phoenix Ash) | Flamma Viva + Vitae | [FF Phoenix Down][C] | combat: softens the death penalty (with a tradeoff); held to the combat cap below |
