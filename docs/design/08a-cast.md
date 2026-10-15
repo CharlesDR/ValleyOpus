@@ -71,17 +71,17 @@ Names also avoid vanilla and SVE NPC names (e.g. Robin, Maru, Marnie, Morgan, Vi
 
 ### 5. Delta: the Tide-Pool Naturalist (fishing)
 - **Who:** a marine biologist on a research stint near the tide pools, fascinated by "the chemistry of the sea". She and **Willy** clearly know each other from somewhere, but neither says how. It stays a mystery.
-- **Does:** asks for specific fish and sea items, teaches Brine, Luna and Hydragenum uses, and opens fish-based Water/Salt routes.
-- **Function:** gives **fishing** players a reason to engage and supplies non-crop Water/Salt sources (the anti-bottleneck rule).
+- **Does:** asks for specific fish and sea items, teaches Sal Marinum, Luna and Hydragenum uses, and opens fish-based Aqua/Sal routes.
+- **Function:** gives **fishing** players a reason to engage and supplies non-crop Aqua/Sal sources (the anti-bottleneck rule).
 
 ### 6. Agnes: the Assayer (mining, transmutation)
 - **Who:** a no-nonsense metallurgist hired by the Ministry of Mining to inspect the Quarry; skeptical of transmutation until proven wrong.
-- **Does:** the player **meets her in Clint's shop**, which introduces the mining features. She assays and certifies metals, and buys the planetary metals (Silver, Tin, Lead). **Advanced transmutation and her Quarry crucible station unlock once the Quarry bridge is repaired** through base-game bundle progress (or the Joja equivalent).
+- **Does:** the player **meets her in Clint's shop**, which introduces the mining features. She assays and certifies metals, and buys the planetary metals (Argentum, Stannum, Plumbum). **Advanced transmutation and her Quarry crucible station unlock once the Quarry bridge is repaired** through base-game bundle progress (or the Joja equivalent).
 - **Function:** gives **mining** an alchemy role and acts as the in-world validator of transmutation, so a successful transmutation becomes a story beat. Pairs with Clint.
 
 ### 7. Bennet: the Desert Glassblower (desert, apparatus crafting)
 - **Who:** **Sandy's nephew**, an artisan who runs a kiln in the Calico Desert, where the sand is "perfect".
-- **Does:** crafts glassware (alembics, retorts, pelicans) from Dust and Vitrum, and takes commissions to upgrade apparatus.
+- **Does:** crafts glassware (alembics, retorts, pelicans) from Pulvis and Vitrum, and takes commissions to upgrade apparatus.
 - **Function:** a reason to visit the desert, a satisfying crafting gate for advanced arcane apparatus, and a sidegrade source (different glassware shapes open different routes). The desert opens only after the bus repair, so starter glassware comes from the workshop (doc 02).
 
 ### 8. "The Curator" / Cyprian: the Workshop's Ghost (story, restoration bundles)
@@ -95,6 +95,6 @@ Names also avoid vanilla and SVE NPC names (e.g. Robin, Maru, Marnie, Morgan, Vi
 - **Function:** a **discovery hint** system disguised as flavour. **Tone guard:** mischief stays small and warm, in Stardew's register (closer to Vincent and Jas than slapstick), and appears rarely.
 
 ### 10. The Four Familiars: Elemental Spirits (Laboratory, Mystic flavour)
-- **Who:** a Salamander (Fire), Undine (Water), Gnome (Earth) and Sylph (Air): small spirits who bond with a Laboratory.
+- **Who:** a Salamander (Ignis), Undine (Aqua), Gnome (Terra) and Sylph (Aer): small spirits who bond with a Laboratory.
 - **Does:** assigned to a **Tier 3** Laboratory to augment it. **One familiar per Laboratory, no duplicates.** Each boosts machines of its element in that Lab, has small heart events, and can be attuned in Mystic rituals.
 - **Function:** gives the Laboratory a soul and makes passive Lab effects diegetic. It creates a **soft cap of 4 specialized Labs per farm**: a 5th or later Lab still works but has no familiar bonus. Details are designed with the Lab tiers (doc 02).

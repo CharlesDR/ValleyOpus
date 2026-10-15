@@ -9,7 +9,7 @@ An alchemy and automation expansion for Stardew Valley. These are **drafts** (20
 | [02 Progression & Unlocks](02-progression-and-unlocks.md) | soft start, Year 1 roll-out, Laboratory, capstones |
 | [03 Essences & Decomposition](03-essences-and-decomposition.md) | the eight Primes, decomposition model, source-diversity rule |
 | [03a Substances Catalog](03a-substances-catalog.md) | the 36-cell Tier 1 grid, dark twins, Tier 2/3, colour stages, residue |
-| [03b Item Budget & Inventory](03b-item-budget-and-inventory.md) | no new monster/mine drops, substance classes, Reagent Satchel, item census |
+| [03b Item Budget & Inventory](03b-item-budget-and-inventory.md) | few adventure-area drops (the only item restraint), substance classes, Reagent Satchel, item census |
 | [04 Machines, Rituals & Automation](04-machines-and-automation.md) | engineered lines vs grand rituals, ley nodes, adjacency, Automate stance |
 | [05 Skill & Professions](05-skill-and-professions.md) | the Alchemy skill, Mechanist/Mystic tree, combination-safety rules |
 | [06 Economy & Balance](06-economy-and-balance.md) | per-tile and per-ingredient metrics, the 150% cap, balance sweep |

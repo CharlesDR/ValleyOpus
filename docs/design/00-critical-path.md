@@ -5,7 +5,7 @@ Status: **DRAFT v0.4** (2026-10-13). v0.4: Laboratory design (doc 18) moves befo
 ## The governing rule
 Architecture needs the **shape** of every system, not its **content**. Shape means what kinds of things exist, the rules connecting them, and which of them need C# rather than Content Patcher data. Content means names, numbers, dialogue, art and exact recipes. Content can be filled in during execution as long as it is data-driven, so it never blocks architecture. Rework comes from changing shape late, so the path front-loads shape decisions and pushes content behind the gate.
 
-A doc is **ready for architecture** when every section of the template below is filled, its "Open questions" list has no item tagged `[blocks-arch]`, and it contradicts no other ready doc.
+A doc is **ready for architecture** when every section of the template below is filled, its "Open questions" list has no item tagged `[blocks-arch]`, and it contradicts no other ready doc. **Internal consistency is a core principle (doc 01):** each doc also checks that its names, elemental affinities and machine behaviours follow the established patterns, and records any deliberate deviation with its reason.
 
 ---
 
@@ -35,7 +35,7 @@ The mechanics as rules: inputs, outputs, conditions, interactions with other sys
 The tables or records this system needs, with their fields (not their rows). Mark each as CP data or C# state, and note save-data and multiplayer ownership.
 
 ## Content inventory
-The rows: items, machines, recipes, events, NPC lines. Counts and placeholders are fine before the gate. Every new item is checked against the item budget (doc 03b).
+The rows: items, machines, recipes, events, NPC lines. Counts and placeholders are fine before the gate. Every new item has a stated purpose, and adventure-area drops follow the restraint rule in doc 03b.
 
 ## Tech hooks
 Vanilla or framework features used (Data/Machines, GSQs, SpaceCore, Automate), what needs custom C#, known risks, and 1.7 migration notes.
@@ -61,7 +61,7 @@ Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 | 02 | Progression & Unlocks | v0.2 | the full unlock map moves to new doc 14; keep 02 as the narrative of the Year 1 curve |
 | 03 | Essences & Decomposition | v0.2 | the data shape of the tag → Prime table and the yield formula |
 | 03a | Substances Catalog | v0.2 | **which apparatus makes which substance**; Golem Clay dropped (R5) |
-| 03b | Item Budget | v0.4 | the census refreshed once 13 and 15 exist |
+| 03b | Items & Inventory | v0.7 (budget loosened) | the census refreshed once 13 and 15 exist |
 | 04 | Machines & Automation | v0.4 | philosophy is done; the per-machine catalog moves to new doc 13 |
 | 05 | Skill & Professions | v0.3 | XP curve shape and the perk-stacking rule as data |
 | 06 | Economy & Balance | v0.2 | policy is done; numbers come from the sweep (execution) |

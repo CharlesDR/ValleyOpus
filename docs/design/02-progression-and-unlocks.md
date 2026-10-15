@@ -29,7 +29,7 @@ Stages follow the seven operations of the Magnum Opus. Each row's unlocks come m
 | Season | Opus stages | New concepts | Key unlocks |
 |---|---|---|---|
 | **Spring** | Calcination | decomposing items into Primes; assaying; the codex | starter apparatus and glassware (from Oriel and the workshop), Assayer's Lens, first workshop room; **Laboratory T1** at Robin's once that room is restored |
-| **Summer** | Dissolution, Separation | solvents, the alembic, **Steam**; Tobin's engineered lines | Tobin's mechanical line, skill L5 choice, first adjacency combos; **Agnes** introduced in Clint's shop; **Hesper**'s visits and almanac begin |
+| **Summer** | Dissolution, Separation | solvents, the alembic, **Vapor**; Tobin's engineered lines | Tobin's mechanical line, skill L5 choice, first adjacency combos; **Agnes** introduced in Clint's shop; **Hesper**'s visits and almanac begin |
 | **Fall** | Conjunction, Fermentation | planetary weekdays, transmutation, putrefaction → dark twins (with the Witch), first **grand ritual** | **Laboratory T2**, planetary apparatus, ley nodes, Witch events; **advanced transmutation once the Quarry bridge is repaired** |
 | **Winter** | Distillation, Coagulation | Gelum/frost, fixing quality, Aether rituals | skill L10 choice, the Great Work begins, Lab T3 groundwork |
 | **Year 2** (diligent pace) | the colour stages | Tier 3 substances, capstones | **Laboratory T3** with Familiar augmentation, capstones, the Great Work's ending (the 1.0 finished state) |
@@ -39,8 +39,8 @@ Stages follow the seven operations of the Magnum Opus. Each row's unlocks come m
 - **Bus repair** (Vault, or Joja) → the desert, Bennet's glassware commissions and advanced arcane apparatus. Basic glassware never depends on the desert.
 - **Adventurer's Guild access** → Ivo's bounties.
 - **Skull Cavern** (proposal) → deeper Ivo bounties and Shade-rich hunting for Gloam Lanterns (doc 04).
-- **Ginger Island** (proposal) → island ley nodes (Volcano → Fire and Magma, the island jungle → Vitae) and a tropical source column in the sweep.
-- **Volcano forge** (proposal) → a Fire-aligned ritual site; the obvious home for a combat or forging capstone, with forging itself still 2.0.
+- **Ginger Island** (proposal) → island ley nodes (Volcano → Ignis and Magma, the island jungle → Vitae) and a tropical source column in the sweep.
+- **Volcano forge** (proposal) → a Ignis-aligned ritual site; the obvious home for a combat or forging capstone, with forging itself still 2.0.
 - **Mr. Qi** (proposal) → a few Qi special orders that ask for alchemical feats, paid in Qi Gems, plus a hard late recipe that uses Qi Beans or Radioactive Ore.
 
 ## The finished state and the long tail
@@ -59,7 +59,7 @@ Stages follow the seven operations of the Magnum Opus. Each row's unlocks come m
 - **When:** Laboratory design now happens **before the design docs are finalized** (Charles), as doc 18 on the critical path after the apparatus catalog (doc 00).
 
 ## Capstones (approved direction; design deferred)
-Multiple capstones in different areas (farming, combat, exploration, economy, automation), each with tradeoffs. Candidate hosts: Ivo (combat), Hesper (exploration), Dr. Sorenson (economy), Tobin (automation), Oriel and Cyprian (the Philosopher's Stone). Seeds are in doc 03a.
+Multiple capstones in different areas (farming, combat, exploration, economy, automation), each with tradeoffs. Candidate hosts: Ivo (combat), Hesper (exploration), Dr. Sorenson (economy), Tobin (automation), Oriel and Cyprian (the Lapis Philosophorum). Seeds are in doc 03a.
 
 Direction from Charles (doc 01):
 - **The ending is a mix** of powerful items, story conclusions and aesthetic changes to the world.

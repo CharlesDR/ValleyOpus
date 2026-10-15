@@ -8,9 +8,9 @@ Status: **DRAFT v0.6** (2026-10-13). v0.6: Charles's answers: Evelyn is a secret
 - **The feeling to leave:** after a big alchemy day, the player feels accomplished, and often clever (doc 07).
 
 ## The forbidden arts (Charles, doc 01)
-- **Living transmutation is for plants only.** Homunculi and transmutation of animals or people are **explicitly forbidden**, and **the Wizard enforces the ban**. In play, this means plant work (seed transmutation, the Rootling; doc 03a) is the legal edge of the Art.
+- **Living transmutation is for plants only.** Homunculi and transmutation of animals or people are **explicitly forbidden**, and **the Wizard enforces the ban**. In play, this means plant work (seed transmutation, the Radicula; doc 03a) is the legal edge of the Art.
 - **Story use (proposal):** the Wizard states the ban when the player first makes Anima, with the gravity of someone who has seen it broken. The ban is why alchemy's dark side worries people (below), and why the Witch's teaching of the dark twins stays on the right side of it: putrefaction of matter, Shades from monsters that have already fallen, never the making or remaking of a living creature.
-- **Immortality is aspiration, not mechanics.** Alchemists in the valley's lore chased it; the Philosopher's Stone's legend promises it; Cyprian's unfinished Work is shadowed by it. No item or ritual grants it (doc 03a).
+- **Immortality is aspiration, not mechanics.** Alchemists in the valley's lore chased it; the Lapis Philosophorum's legend promises it; Cyprian's unfinished Work is shadowed by it. No item or ritual grants it (doc 03a).
 
 ## Alchemy's reputation (Charles, doc 01)
 - Alchemy is a **respected discipline**. Villagers treat a working alchemist like a skilled craftsperson.
