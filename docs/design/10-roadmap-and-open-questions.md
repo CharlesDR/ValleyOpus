@@ -15,7 +15,7 @@ Status: **DRAFT v0.8** (2026-10-14). v0.8: Charles's full-review feedback (item 
 | Content Patcher extensibility (Primes, substances, apparatus, recipes) | ✓ | |
 | Vanilla and SVE villagers integrated (dialogue, gift tastes, events) | ✓ | |
 | Mod tie-ins | SVE, Alecto the Witch, Ridgeside Village, East Scarp | others, by Nexus ranking |
-| Plant transmutation (seeds, the Rootling) | ✓ (candidates) | |
+| Plant transmutation (seeds, the Radicula) | ✓ (candidates) | |
 | Ending | a definitive finished state (the Great Work) | an endless long tail |
 | Reagent Satchel (item restraint for adventure-area drops only) | ✓ | maybe an Essence Reservoir |
 | Directional chaining (West → East, South chests) | ✓ | |
@@ -42,7 +42,7 @@ All 18 answered and applied in v0.7.
 7. Without Alecto the Witch, the Witch stays the unnamed vanilla Witch.
 8. "Sofia" is SVE's Sophia.
 9. The villager angles stand. **New:** **Evelyn** is a secret alchemist, and **Andy** (SVE), a gruff hillbilly type, is the resident skeptic (doc 08).
-10. Seed transmutation and the Rootling are approved as candidates.
+10. Seed transmutation and the Radicula are approved as candidates.
 11. Passive combat effects come from buffs and a couple of rings, **plus some trinket-slot items** (doc 03a).
 12. New drops are high-value specialty reagents found only in late-game areas. **With SVE installed they appear in SVE's late locations; without it, they're grouped into fitting vanilla places** (doc 03b).
 13. No new forage in hidden areas.
@@ -78,7 +78,8 @@ Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
 
 ## Change log
-- **v0.8 (2026-10-14):** Charles's full review: the item budget is loosened to adventure-area drops only (doc 03b), internal consistency becomes a core principle (doc 01), and integration and compatibility targets are chosen from his top-80 export (doc 09). The material-name sweep waits on his choice of language order.
+- **v0.8b (2026-10-14):** material names swept to Latin first, English gloss second (Charles's choice); the rule is in doc 03a.
+- **v0.8 (2026-10-14):** Charles's full review: the item budget is loosened to adventure-area drops only (doc 03b), internal consistency becomes a core principle (doc 01), and integration and compatibility targets are chosen from his top-80 export (doc 09). 
 - **v0.7 (2026-10-13):** Charles answered all 18 v0.6 questions (capstone rituals fully manual, Evelyn as a secret alchemist, Andy as the skeptic, trinket-slot items, late-area reagents placed by SVE presence), and set the Lab direction: T3 is 50% larger than T2, every tier gets aesthetic touches and a unique floorplan, and Lab design now comes before the architecture gate (doc 00).
 - **v0.6 (2026-10-13):** a pass over docs 02–09 against Charles's guiding answers in doc 01: pacing targets and no calendar gates, escalating conditions, the 1.0 finished state, hand-made-only gifts, quest items and capstones, Automate expected but optional, late-game Lab sizing, the combat cap, plants-only living transmutation and the Wizard's ban, tone and reputation, full villager integration, 1.0 tie-ins with Alecto the Witch, Ridgeside Village and East Scarp, and Content Patcher extensibility. 18 questions for Charles.
 - **v0.5 (2026-10-13):** Charles's Part 4 decisions (doc 00): Spring Y1 slice, directional chaining in 1.0 with arcane logistics moved to 2.0, i18n, Golem Clay dropped, three Experiment Table inputs, vanilla-speed skill, economy knobs in GMCM, SVE-only integration, Lab tiers by size with Familiars at T3. The Charles action items list was added.

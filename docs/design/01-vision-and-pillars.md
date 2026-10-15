@@ -31,7 +31,7 @@ ValleyOpus brings **alchemy and automation** to Stardew Valley in a way that fee
 Inventory space is precious. Few new monster drops or mine finds, and a Reagent Satchel by default (doc 03b). *(2026-10-14: restraint applies only to items that drop in adventure areas such as the mines; there's no overall item cap.)*
 
 ## Balance rules
-- **No single-source bottlenecks.** Every Prime has at least 3 independent sources across activities (Fire must not mean "only spicy crops").
+- **No single-source bottlenecks.** Every Prime has at least 3 independent sources across activities (Ignis must not mean "only spicy crops").
 - **A mix of quick wins and long goals.** No sharp pain points.
 - **Only moderate departures from typical Stardew priorities.** The mod rewards what players already do, but provides reasons to do things that would be underwhelming in the base game.
 

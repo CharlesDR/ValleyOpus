@@ -59,7 +59,7 @@ Arcane apparatus come in two kinds (Charles, v0.3):
 - **Combat preparations** (Ivo): bombs, blade coatings and combat elixirs, made at existing apparatus, not a new machine family. Useful, but **never more impactful than a Combat Mastery trinket** (Charles; doc 03a).
 
 ## Ley nodes (new in v0.2, from Hesper)
-- Fixed spots across the world map (e.g. Secret Woods → Earth/Vitae, Mountain lake → Water, beach → Salt, desert → Fire, Witch's swamp → Tenebrae; later Ginger Island's jungle → Vitae and the Volcano → Fire/Magma), revealed by Hesper or by assaying.
+- Fixed spots across the world map (e.g. Secret Woods → Terra/Vitae, Mountain lake → Aqua, beach → Sal, desert → Ignis, Witch's swamp → Tenebrae; later Ginger Island's jungle → Vitae and the Volcano → Ignis/Magma), revealed by Hesper or by assaying.
 - **Hidden alchemy areas (Charles: nice to have):** a few small new pockets, reached from compatibility-friendly spots (a sealed door in the workshop, a ley-node clearing off an existing path), can host the rarest nodes. Each needs a compatibility check against SVE, RSV and East Scarp map edits (doc 17).
 - **Ley Tap:** a placeable that gathers that node's Primes slowly and **directly**, adding no new forage items (the inventory rule, doc 03b).
 - Grand rituals performed on a ley node get a bonus, which gives exploration a reason to carry rituals into the world.
@@ -69,7 +69,7 @@ Arcane apparatus come in two kinds (Charles, v0.3):
 - Checks the 4 orthogonal neighbours (8 is a tuning knob), evaluated when input is loaded.
 - **Mode switches:** an Alembic beside a heat source distills; beside a Cooling Coil it condenses into a different product.
 - **Modifiers:** a Salt Lamp stabilizes quality; a Bellows speeds things up but adds residue.
-- **Shared resources:** one Boiler powers up to N adjacent Steam machines (a Factorio-style ratio).
+- **Shared resources:** one Boiler powers up to N adjacent Vapor machines (a Factorio-style ratio).
 - **Cost, cycles and area:** compact arrangements are slower or lower-yield; sprawling ones are faster but use more tiles (doc 06 counts tiles).
 - **Readability:** hover tooltips; codex pages list known neighbour effects, with "?" until discovered.
 - **Implementation:** C# `OutputMethod` plus a data-driven neighbour → effect table.
@@ -104,7 +104,7 @@ Why this works: Automate does the logistics (pillar 1's "mechanical" half), whil
 ## The Mystic garden: flower-fed apparatus (approved inspiration, v0.4)
 Inspired thematically by Botania; **none of its names are reused** (doc 01).
 - Certain arcane apparatus draw a passive boost (or a slow trickle of a Prime) from **flowers planted on adjacent or nearby tiles**, so part of the Mystic branch lives in the garden.
-- Different flowers feed different Primes or effects (e.g. sunflowers → Fire/Sulfur, blue jazz → Water/Air, fairy roses → Aether trace), using context tags so modded flowers work too.
+- Different flowers feed different Primes or effects (e.g. sunflowers → Ignis/Sulphur, blue jazz → Aqua/Aer, fairy roses → Aether trace), using context tags so modded flowers work too.
 - Flowers are consumed or wilt slowly while feeding, so it's a real crop, not decoration.
 - This is the guiding star in action: growing flowers in bulk becomes worthwhile.
 - Names for our flower-fed apparatus and the energy they give are still to be chosen.

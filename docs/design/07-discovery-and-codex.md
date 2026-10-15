@@ -55,10 +55,10 @@ Entries gain a lore line at 1, 10 and 50 crafted, with a progress pip toward the
 
 ## The farm's secret recipe (approved v0.4)
 - One or two late-game **secret recipes are seeded per farm** from a candidate pool, so guides can't spoil them. They're revealed through in-world readables and Hesper's almanac, which hints early at *which* secret this farm holds.
-- **Re-roll:** an expensive, time-consuming and difficult way to re-seed it (e.g. a multi-day grand ritual needing Quintessence and rare catalysts). Restarting a Stardew save is a huge undertaking, so players aiming for a specific late recipe must never be stuck without it.
+- **Re-roll:** an expensive, time-consuming and difficult way to re-seed it (e.g. a multi-day grand ritual needing Quinta Essentia and rare catalysts). Restarting a Stardew save is a huge undertaking, so players aiming for a specific late recipe must never be stuck without it.
 - Multiplayer-safe: stored with the farm's shared codex.
 
 ## The shared farm codex (approved)
 - **One codex per farm; every discovery is shared** across all players.
 - Stored in host save data and synced to farmhands through SMAPI multiplayer messages. A farmhand's discovery is sent to the host, recorded, then broadcast.
-- Toasts show for the discovering player; others get a quieter "Alex discovered Steam" notice.
+- Toasts show for the discovering player; others get a quieter "Alex discovered Vapor" notice.
