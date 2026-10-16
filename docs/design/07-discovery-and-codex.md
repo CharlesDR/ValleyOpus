@@ -28,7 +28,7 @@ v0.7: retrofitted to the doc 00 template; adopts doc 12's discovery keys and Cha
 1. **Experiment Table:** place one to two items or substances, or up to three after a workshop unlock (Charles, R2). A defined combination plays the anticipation beat, reveals the result and records the recipe. An undefined one yields Caput Mortuum, marks the combination "tried" in the codex so the player never repeats it unknowingly, and gives a tiny bit of XP. The Table **respects its neighbours** (doc 13 §5): Ignis + Aqua reveals Vapor anywhere, but Metallum becomes Orichalcum only on a Table beside a charged Lightning Coil.
 2. **Assaying:** use the **Assayer's Lens** on any item to reveal its Prime profile (first time only), and on places or objects (ley nodes, the Witch's Hut, the Wizard's tower, the workshop's ruined fixtures) to reveal lore and recipe hints. This is the direct analog of Wizardry's Analyze.
 3. **Apparatus behaviour:** the first time a machine produces something new, or an adjacency effect fires, it's recorded, but **only when the player unloads it by hand** (see Discovery gates automation).
-4. **Conditions:** running a machine under new conditions (a planetary day, storm, night) can reveal variant outputs.
+4. **Conditions:** a new arrangement, catalyst or place can reveal a variant output. For hand-triggered rituals, so can a new moment (a planetary day, a storm, a full moon). Automated lines never change output with the weather or the calendar (doc 13 §1a).
 5. **Research at the workshop:** restoring workshop rooms unlocks blueprints; NPCs working there (Oriel, Tobin, the Curator, Hesper on visiting days) offer research hints.
 
 ### Recipes the Table can't make
@@ -39,7 +39,7 @@ Rituals, putrefactions and capstones (Tenebrae, Mors, Perditio, Prima Materia, A
 
 ### Discovery gates automation (Charles, v0.4)
 - A machine accepts inputs from Automate or chaining only for recipes the farm has already discovered. A player can still load an undiscovered recipe **by hand**: that is the manual first attempt.
-- If a machine produces something undiscovered (a hand-loaded first attempt, a condition variant on a stormy day, a new adjacency effect), the output is **locked in the machine**: Automate, chaining and other extractors can't take it. The machine shows a distinct "something new inside" sparkle. When the player unloads it by hand, the discovery plays and the recipe unlocks for automation.
+- If a machine produces something undiscovered (a hand-loaded first attempt, a new adjacency effect, a first run under a gating condition), the output is **locked in the machine**: Automate, chaining and other extractors can't take it. The machine shows a distinct "something new inside" sparkle. When the player unloads it by hand, the discovery plays and the recipe unlocks for automation.
 - **Discovering the item another manual way** (the Table, assaying) **releases a locked output of that item**. It does not unlock other recipes or routes that make the same item: each recipe is learned on its own (doc 12 §10, Charles 2026-10-16).
 - Inspired by Kingdom Come: Deliverance II, where you can only auto-brew potions you've brewed by hand.
 
