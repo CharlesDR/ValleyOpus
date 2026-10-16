@@ -1,6 +1,6 @@
 # 03a · Substances Catalog (Combinatorics)
 
-Status: **DRAFT v0.7** (2026-10-16). v0.7: every substance gets an **apparatus class** (its operation and the apparatus kinds that run it, per doc 12); see the legend below. v0.6: **naming rule, Latin first** (Charles): every material's display name is its Latin or classical form, with an English gloss second; names swept across all docs. v0.5: seed transmutation and the Radicula approved as candidates; trinket-slot items added (Charles). v0.4: the plants-only rule for living transmutation, plant transmutation candidates, hand-made-only products, the combat-strength cap and the immortality rule (Charles's guiding answers, doc 01). v0.3: Golem Clay dropped (doc 00, R5); colour stages confirmed as vanilla quality (R1). This is a candidate list. Names, recipes and tiers are proposals for review, not commitments.
+Status: **DRAFT v0.8** (2026-10-16). v0.8: consistency fixes from doc 13 (Charles's content-pass checks): Power substances are never inputs, so Orichalcum, Cinis Phoenicis and Perpetuum Mobile take them as Required power conditions; Stannum and Plumbum get their planetary substances (proposal); Sol's stray "(Lux)" removed; the residue glaze becomes **Smaltum** with an apparatus class; recipes without a T mark get their discovery path (doc 07). v0.7: every substance gets an **apparatus class** (its operation and the apparatus kinds that run it, per doc 12); see the legend below. v0.6: **naming rule, Latin first** (Charles): every material's display name is its Latin or classical form, with an English gloss second; names swept across all docs. v0.5: seed transmutation and the Radicula approved as candidates; trinket-slot items added (Charles). v0.4: the plants-only rule for living transmutation, plant transmutation candidates, hand-made-only products, the combat-strength cap and the immortality rule (Charles's guiding answers, doc 01). v0.3: Golem Clay dropped (doc 00, R5); colour stages confirmed as vanilla quality (R1). This is a candidate list. Names, recipes and tiers are proposals for review, not commitments.
 Parent doc: [03-essences-and-decomposition.md](03-essences-and-decomposition.md) · **Inventory rule:** not every substance below is a carriable item. Many are power, process states or in-machine intermediates. See [03b-item-budget-and-inventory.md](03b-item-budget-and-inventory.md).
 
 ## Naming rule: Latin first (Charles, 2026-10-14)
@@ -46,12 +46,15 @@ The last column of every table below says how a substance is made, in doc 12's t
 | **S** | a specialist station (named) |
 | **Cr** | a crafting recipe |
 | **✋** | hand-made only: Automate and chaining never load, stage or collect it (doc 12 §9) |
+| **⚡** | a Required power condition (Vapor, Fulgur or Flamma Viva from a neighbour), never an input (v0.8) |
 
 Rules behind the assignments (proposals; doc 13 can move a row with a reason):
 - **Aether stays arcane.** Anything with Aether in its recipe has no ⚙︎ kind. Engineering focuses magic but can't reach the heavens, which keeps pillar 1's two routes distinct.
 - **Tier 1 is runnable on both lines** wherever Aether isn't involved, so a mechanical player never hits a wall at the first tier. A few Tier 1 cells are arcane-only by theme (Flamma Viva, Tempestas, Phlogiston, Motus).
 - **Operation follows the classical process** the substance names: ash and smoke are Calcination, brines and solvents Dissolution, spirits and dews Distillation, fixed and crystalline things Coagulation, unions Conjunction, putrefaction Fermentation.
 - **Power outputs** (Flamma Viva, Vapor, Fulgur) run on the Table only as a discovery: the Table reveals them and leaves a puff (doc 12 §3). Their working source is the apparatus listed.
+- **Power is never an input** (v0.8, doc 13 §5): a recipe that needs Vapor, Fulgur or Flamma Viva lists it as a Required **power** condition (marked ⚡ below), met by an adjacent source or, for Flamma Viva, a kindled Athanor.
+- **Recipes without a T mark** (dark twins, ✦A-only and ✋ capstones) are discovered by performing them by hand, with their inputs learned from hints; the Table names the apparatus they need but doesn't make them (doc 07).
 - **Capstones, quest items and gifts** carry ✋ and run only on altars, circles or crafting. Ectoplasm is ✋ because its main uses are the Curator's and the Witch's quests (the hand-made-only rule below).
 
 ---
@@ -128,7 +131,7 @@ Three of the bright Tier 1 substances have shadow counterparts. Players get them
 
 | Bright | Dark twin | Inspiration | Notes | Apparatus class |
 |---|---|---|---|---|
-| Sol (Lux) | **Tenebrae** (Void) | [TC][SDV Void Essence] | Witch/Krobus tie-in | Fermentation (putrefaction) · ✦ ✦A |
+| Sol | **Tenebrae** (Void) | [TC][SDV Void Essence] | Witch/Krobus tie-in | Fermentation (putrefaction) · ✦ ✦A |
 | Vitae | **Mors** (Death) | [OM][TC Mortuus] | decay; composting, weed-killing, combat debuffs | Fermentation (putrefaction) · ✦ ✦A |
 | Ordo | **Perditio** (Entropy) | [TC] | breaks things down; ultra-efficient decomposition but adds residue | Fermentation (putrefaction) · ✦ ✦A |
 
@@ -148,21 +151,22 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 | **Aqua Vitae** | Vitae + Ros Maialis (distilled) | [C] | spirits; a distillation upgrade path off the Keg | Distillation · T ✦ V (Keg) |
 | **Electrum** ⚙︎ | Gold + Argentum smelted | [C] | mechanical alloy; reliable and bulk | Conjunction · T ⚙︎ V (Furnace) |
 | **Rebis** ✦ | Sol + Luna in Conjunction | [C][W3] | the "double thing": the same two inputs give a magical result, conditional and higher-tier | Conjunction · T ✦A (planetary day Required) |
-| **Orichalcum** | Metallum + Fulgur | [C] (Plato's lost metal; common in games) | late metal; tool/weapon forging sidegrade | Conjunction · T S (Quarry Crucible) |
+| **Orichalcum** | Metallum, ⚡ Fulgur | [C] (Plato's lost metal; common in games) | late metal; tool/weapon forging sidegrade | Conjunction · T S (Quarry Crucible; on the Table, beside a charged Lightning Coil) |
 | **Vigor** (Vigour) | Spiritus + Ros Maialis | [FF][C] | restores energy (Stardew's "mana" analog) | Distillation · T ⚙︎ ✦ |
 | **Elixir** | Vitae + Anima | [FF][C] | restores health | Distillation · T ✦ |
 | **Panacea** | Elixir + Ordo | [C] | cures debuffs | Coagulation · T ✦ ✦A |
-| **Cinis Phoenicis** (Phoenix Ash) | Flamma Viva + Vitae | [FF Phoenix Down][C] | combat: softens the death penalty (with a tradeoff); held to the combat cap below | Calcination · T ✦ |
+| **Cinis Phoenicis** (Phoenix Ash) | Vitae, ⚡ Flamma Viva | [FF Phoenix Down][C] | combat: softens the death penalty (with a tradeoff); held to the combat cap below | Calcination · T ✦ (a kindled Athanor, or the Table beside one) |
 | **Terra Viva** (Living Soil) | Limus + Vitae | [C] | premium fertilizer that competes with deluxe fertilizer, not above it | Fermentation · T ⚙︎ ✦ |
 | **Gelum** (Frost) | Tempestas + Sal Fixum | [TC][C] (salt-ice freezing mixtures) | preservation; Frozen Tear tie-in; winter content | Coagulation · T ⚙︎ ✦ |
 | **Venenum** (Poison) | Miasma + Mors | [TC] | weed and pest control; combat coatings | Fermentation · T ⚙︎ ✦ |
 | **Ectoplasm** | Spiritus + Limus | [common media] | the Curator's restoration requests and Witch quests (kept: the item budget was loosened, doc 03b) | Conjunction · T ✦ ✋ |
-| **Perpetuum Mobile** | Motus + Vapor + Ordo | [C] perpetual motion | Mechanist capstone candidate (always has a cost) | Craft · T³ Cr ✋ |
+| **Perpetuum Mobile** | Motus + Ordo + Orichalcum, ⚡ Vapor *(proposal, v0.8)* | [C] perpetual motion | Mechanist capstone candidate (always has a cost); an altar fed by Tobin's steam, the first blended moment (doc 04). Orichalcum keeps it late | Ritual · T³ ✦A ✋ (a Boiler beside the altar) |
 | **Seed transmutation** *(approved candidate)* | a stack of seeds + Vitae, as a ritual | [C] the "growing" of matter | turns one crop's seeds into another's (same season, similar value); a guiding-star use for cheap seeds and the main legal outlet for living transmutation | Ritual · ✦A ✦C |
 | **Radicula** (Rootling) *(approved candidate; working name)* | Anima + Terra Viva + a crop | [C] the homunculus, as a plant | a small plant homunculus that tends one crop patch (waters, or nudges growth); hand-made only; the furthest the ban allows | Ritual · T³ ✦A ✋ |
 | **Cauda Pavonis** (Peacock's Tail) | *process state*, not an item or recipe | [C] the iridescent stage of the Opus | shown when a brew passes nigredo→albedo; ties to Prismatic Shard | — (process state, shown in any stage advance) |
-| **Planetary metals** | via Metallum + the planet's substance on its weekday | [C][OM] | Argentum/Silver (Mon), Stannum/Tin (Thu), Plumbum/Lead (Sat) are new items, bought and certified by Agnes; Copper, Iron and Gold exist in vanilla. Advanced transmutation needs the Quarry bridge | Conjunction · S (Quarry Crucible; weekday Required) |
+| **Planetary metals** | Metallum + the planet's substance on its weekday: **Luna** → Argentum (Mon), **Tempestas** → Stannum (Thu; Jupiter the sky-father's weather), **Mors** → Plumbum (Sat; Saturn's lead and the nigredo) *(Stannum and Plumbum inputs are proposals, v0.8)* | [C][OM] | Argentum/Silver (Mon), Stannum/Tin (Thu), Plumbum/Lead (Sat) are new items, bought and certified by Agnes; Copper, Iron and Gold exist in vanilla. Advanced transmutation needs the Quarry bridge | Conjunction · S (Quarry Crucible; weekday Required) |
 | **Caput Mortuum** | residue of any reduction | [C] | waste; see residue below | — (residue rule of every recipe) |
+| **Smaltum** (Glaze) *(v0.8; working name)* | Caput Mortuum + Calx | [C] smalt, the glassy blue of potters | a cheap sellable glaze; its outside use (glazed pots or décor) is for doc 15 to confirm, else it's cut | Calcination · T ⚙︎ ✦ |
 
 ---
 
@@ -194,7 +198,7 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 
 **Caput Mortuum** ("dead head"): the by-product of reductions and failed experiments. Very low sell price, plus minor uses:
 - low-grade fertilizer (a small chance of quality, slight weed growth)
-- mixed with Calx into a cheap **Glaze** for decorative pottery
+- mixed with Calx into a cheap glaze, **Smaltum** (Tier 2 table above)
 - ballast for apparatus construction
 - **late reveal:** the source of Prima Materia (above), so a player who kept a residue pile is rewarded
 

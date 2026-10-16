@@ -1,6 +1,6 @@
 # 12 · Recipe & Process Model
 
-Status: **DRAFT v0.2** (2026-10-16) · Readiness: not ready (the resolver details still open, owned by doc 13)
+Status: **DRAFT v0.2** (2026-10-16) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
 Depends on: 01, 03, 03a, 03b, 04, 07 · Feeds: 03/03a (data shape, apparatus column), 05, 06, 07, 09, 13, 14, 15, 17
 
 ## Purpose
@@ -178,7 +178,7 @@ No new items are created by this doc; every row's output already exists in doc 0
 Doc 06 metrics read straight from this data: GPTD and value per tile and per ingredient use recipe inputs, outputs, times and quality caps; arcane recipes are averaged over a week of conditions. Placeholders to tune in the sweep: `k`, `e`, `QualityBonus`, `Threshold`, `ExchangeRatio`, per-apparatus yield and residue rates, quality caps, Bonus condition sizes, ready times, and residue amounts. The sweep also reports days-per-year per recipe (condition stacking), Prime source diversity from the tag table, and the all-six-professions quality clamp.
 
 ## Open questions
-- `[blocks-arch]` **Resolver details:** the placement is decided (one resolver behind `OutputMethod`, Charles 2026-10-16). Still open: match caching under Automate polling, how much Automate and Lookup Anything see natively, and `OutputMethod` behaviour for locked outputs. *Owner: doc 13 / doc 09.*
+- ~~`[blocks-arch]` **Resolver details**~~ **settled in doc 13 §6** (v0.1, 2026-10-16): a C# staging tray feeds every apparatus, one Automate factory claims them all, a per-apparatus recipe index serves polling, locks are a `modData` flag, and the codex is the recipe browser.
 - `[blocks-content]` **Table unlock scope, balance revisit:** Charles approved "only that recipe" on condition it's revisited in the balance pass if codex completion feels too obnoxious. Doc 07's "another manual way also unlocks it" is read as releasing a locked output of that item, not unlocking every route; doc 07 should adopt that wording. *Owner: doc 07 / doc 06.*
 - `[blocks-content]` **Secret re-roll:** does a discovered secret stay after a re-roll (re-roll adds) or get replaced? Default: replaced, with its codex entry kept as lore. *Owner: Charles.*
 - `[blocks-content]` **ValleyOpus items decompose** by pinned profile at a loss (default), or refuse decomposition outright. *Owner: Charles.*
