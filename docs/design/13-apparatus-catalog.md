@@ -1,6 +1,6 @@
 # 13 · Apparatus Catalog
 
-Status: **DRAFT v0.2** (2026-10-16) · Readiness: ready for architecture once Charles confirms the defaults marked *(default)* below; no `[blocks-arch]` item is left open
+Status: **DRAFT v0.3** (2026-10-16) · Readiness: ready for architecture once Charles confirms the defaults marked *(default)* below; no `[blocks-arch]` item is left open
 Depends on: 01, 02, 03, 03a, 04, 12 · Feeds: 05, 06, 07, 09, 14, 15, 16, 17, 18
 
 ## Purpose
@@ -24,12 +24,21 @@ Every machine the player places, what operations it offers, how it is fed and au
 ## Rules & systems
 
 ### 1 · How condensation works
-An apparatus offers a **set of operations**. Some are always on; others are **enabled by a neighbour** (power, heat, darkness or a pattern). The resolver already matches recipes by their inputs, so one vessel can offer several operations at once: the inputs decide which recipe runs, and the load-time validator rejects any two recipes that would collide on the same apparatus (doc 12 §3). A **mode switch** in doc 04's sense is the same inputs giving different recipes when a different neighbour is present (an Alembic dissolves cold and distills beside heat).
+An apparatus offers a **set of operations**. Some are always on; others are **enabled by a neighbour** (power, heat, darkness or a pattern). The resolver already matches recipes by their inputs, so one vessel can offer several operations at once: the inputs and the neighbour state decide which recipe runs (§1a). A **mode switch** in doc 04's sense is the same inputs giving different recipes when a different neighbour is present (an Alembic dissolves cold and distills beside heat).
+
+### 1a · One valid recipe, never a priority check (Charles, 2026-10-16)
+A player who controls the arrangement and the inputs must be able to **guarantee** the output. So the resolver never ranks candidates: by construction, at most one recipe can match.
+- **Neighbour state.** Each apparatus has a small, fixed set of **neighbour states**, evaluated once in the load-time snapshot and mutually exclusive. For example, the Process Vat's states are *No power*, *Vapor*, *Fulgur* and *Crossed* (both kinds adjacent). The Alembic's are *Cold* and *Heated*. Every recipe **names the states it runs in**. "Any neighbour is fine" is never allowed: a recipe that doesn't care lists every state explicitly, so adding a new state later forces a decision.
+- **Uniqueness.** No two recipes may share an apparatus kind, a neighbour state and an input set. Two recipes with the same inputs on the same apparatus are fine **only** when their state lists don't overlap. An example is Dissolution in *Cold* and Distillation in *Heated*.
+- **Overlap includes tags.** Two recipes overlap if any single set of real items could satisfy both, so `category_fish` and Tuna collide. The load-time validator checks every pair against the loaded item list and disables the later pack's row with a SMAPI error, so a collision never reaches play.
+- **Other selecting conditions follow the same rule.** A Variant (weather, weekday, moon; doc 12 §4) is a partition too: the named-product recipe requires *Storm*, and its base recipe requires *Not storm*. Bonus conditions only change quality, yield or speed, so they never select.
+- **Crossed power** runs nothing, and the machine says "crossed power" on hover and in the chain overlay (§7). That gives a clear failure state, not a hidden precedence rule.
+- **Overclock as a state.** The Lightning Coil's overclock is a recipe that lists the *Fulgur* state with a speed and residue effect. It isn't a blanket bonus, so a Coil never silently changes which recipe a machine runs.
 
 Three rules keep it readable:
 1. **At most two always-on operations per vessel**, plus at most two neighbour-enabled ones.
 2. **Neighbours are other apparatus, never decorations.** No item exists only to sit beside another one (the 03b purpose rule), so the doc 04 Salt Lamp, Bellows and Cooling Coil are cut (§4). **Provisional** (Charles, 2026-10-16): good on paper, but it may crowd automated layouts, where every neighbour slot is also a chaining or chest slot. Revisit once draft process layouts exist (doc 18); bringing back a small modifier block is the fallback.
-3. **Power and heat are the only neighbours that enable operations.** Everything else (darkness, flowers, ley nodes, the Lab tier) gives Bonus effects or satisfies a recipe's Required condition, as doc 12 §4 conditions.
+3. **Power and heat are the only neighbours that make up neighbour states.** Everything else (darkness, flowers, ley nodes, the Lab tier) gives Bonus effects or satisfies a recipe's Required condition, as doc 12 §4 conditions, under the same partition rule (§1a) whenever it selects between recipes.
 
 ### 2 · The behaviour classes
 These are what architecture needs; the rows in §3 are content.
@@ -56,7 +65,7 @@ Kinds and caps follow doc 12 §5. Names are working names; unlock sources are pr
 | **Process Vat** | Dissolution; Fermentation | **Distillation** with Vapor; **Separation** with Fulgur (electrolysis) | the shared engineered vessel; most of Tobin's line is Vats in a row | Tobin, Summer |
 | **Press** | Conjunction; Coagulation | — | alloys and moulds; Electrum, Pulvis Pyrius, Saxum | Tobin, Summer |
 | **Boiler** | Distillation of its own fuel recipe (Ignis + Aqua → Vapor) | — | power source: **Vapor** to up to N adjacent machines (placeholder 4) for a set time per charge | Tobin, Summer |
-| **Lightning Coil** | Conjunction of its own fuel recipe (Ignis + Aer → Fulgur) | storms charge it free, like a lightning rod | power source: **Fulgur**, stored as charges; also **overclocks** neighbours (faster, more residue), which replaces doc 04's Bellows | Tobin, after the first storm |
+| **Lightning Coil** | Conjunction of its own fuel recipe (Ignis + Aer → Fulgur) | storms charge it free, like a lightning rod | power source: **Fulgur**, stored as charges; also **overclocks**: recipes that list the *Fulgur* state may run faster with more residue (§1a), which replaces doc 04's Bellows | Tobin, after the first storm |
 
 **Minor arcane ✦ (Oriel)**
 | Apparatus | Always on | Enabled by a neighbour | Notes | Unlock (proposal) |
@@ -130,7 +139,7 @@ Vapor, Fulgur and Flamma Viva are **Power class** (doc 03b): never items. Three 
 7. **Hand-made-only and the acceptance hint.** Hand loading accepts an item only if it extends the tray toward some recipe, discovered or not (a manual first attempt must be possible). So an apparatus that accepts an item tells the player that item belongs in some recipe here: a deliberate, gentle hint (doc 07 layer 0).
 
 ### 6a · Which recipe an automated machine runs
-"Best" is never decided by the mod, so a line can make exactly the output the player wants even when a more advanced recipe is unlocked (Charles, 2026-10-16).
+"Best" is never decided by the mod, so a line can make exactly the output the player wants even when a more advanced recipe is unlocked (Charles, 2026-10-16). Recipe memory is an **input filter**: it says which multiset Automate pulls from a mixed chest. Once inputs are loaded, the recipe is fixed by inputs plus neighbour state (§1a), so memory never chooses between recipes.
 - **Recipe memory:** every apparatus remembers the **last recipe loaded by hand** (or picked in the Satchel picker). Automate and chaining only ever load that recipe. A machine set to Calx stays on Calx even if its chests could also feed Vitrum.
 - **Pinning:** the picker has a pin toggle. A pinned machine never changes recipe, even when the player hand-loads something else by accident; hand-loading a different recipe asks first.
 - **A fresh machine** with no memory takes nothing from automation until it's set once by hand, so a new line never starts on a surprise recipe. *(Default; the alternative is "first satisfiable in codex order".)*
@@ -166,13 +175,13 @@ All assets are public Content Patcher data under `CharlesDR.ValleyOpus/…`, wit
 
 | Asset | Kind | Key fields |
 |---|---|---|
-| `Apparatus` | CP data | `Id` (= BigCraftable ID), `Kind` (Engineered / MinorArcane / RitualAltar / Table / Specialist), `Operations` [{`Operation`, `EnabledBy` (condition ID or null)}], `Decompose` {`YieldMultiplier`, `ResidueRate`, `Concentration`, `Minutes`} or null, `QualityCap` (null = the kind's default), `TrayCapacity`, `Trigger` (Auto / Hand), `Automation` (Full / StageOnly / None), `Chaining` (bool), `Power` {`Emits` (substance ID), `MaxConsumers`, `Mode` (Duration / Charges / Permanent), `Amount`, `StormCharge`} or null, `NeighbourEffects` [condition IDs with Use Bonus, applied to every recipe here], `FeedbackStyle` (Mechanical / Arcane / Blended), `UnlockFlag` (doc 14), `NameKey`, `HintKey` |
+| `Apparatus` | CP data | `Id` (= BigCraftable ID), `Kind` (Engineered / MinorArcane / RitualAltar / Table / Specialist), `NeighbourStates` [{`Id`, `Test` (power kinds or heat adjacent, or none; mutually exclusive)}], `Operations` [{`Operation`, `States` [state IDs]}], `Decompose` {`YieldMultiplier`, `ResidueRate`, `Concentration`, `Minutes`} or null, `QualityCap` (null = the kind's default), `TrayCapacity`, `Trigger` (Auto / Hand), `Automation` (Full / StageOnly / None), `Chaining` (bool), `Power` {`Emits` (substance ID), `MaxConsumers`, `Mode` (Duration / Charges / Permanent), `Amount`, `StormCharge`} or null, `FeedbackStyle` (Mechanical / Arcane / Blended), `UnlockFlag` (doc 14), `NameKey`, `HintKey` |
 | `Arrangements` | CP data | `Id`, `FurnitureId` (the rug), `Centre` (apparatus kind it upgrades), `BecomesKind`, `Points` [tile offsets for catalysts], `BatchSize` |
 | `LeyNodes` | CP data | `Location`, `Tile`, `Profile` {Prime → weight}, `UnitsPerDay`, `RevealFlag` |
 | `Data/Machines` entries | CP data (generated pattern) | one `OutputRule` per apparatus: trigger `ItemPlacedInMachine`, `OutputMethod` = our resolver; Ley Tap uses `DayUpdate`; vanilla Furnace and Keg get appended rules |
 | Machine state | C# state, object `modData` | tray contents, recipe ID, condition snapshot, locked flag, stage, power state (`Emits`, `Until` or `Charges`), kindled flag, `RecipeMemory`, `Pinned` |
 
-Recipes keep `ApparatusKinds` and `ApparatusIds` as doc 12 defines; an apparatus runs a recipe when its `Kind` is listed (or its `Id`, for specialists and vanilla) and the recipe's `Operation` is in its currently enabled `Operations`.
+Recipes keep `ApparatusKinds` and `ApparatusIds` as doc 12 defines; an apparatus runs a recipe when its `Kind` is listed (or its `Id`, for specialists and vanilla) and the recipe's `Operation` is offered in the current neighbour state. Recipes gain one field for this: `NeighbourStates` [state IDs], which is required and never empty (§1a). The validator checks it against each listed apparatus kind's states.
 
 ## Content inventory
 - 14 BigCraftables (§3) and 1 Furniture rug (Circle Sigil); 2 appended vanilla machines.
@@ -204,5 +213,6 @@ Doc 06 metrics per apparatus: GPTD per tile including its share of power and che
 - `[2.0]` A flower-fed **trickle** (a Prime from a planted bed, no input) would be a world tap placed in a garden; arcane logistics replaces chaining through the item-route interface; blended late-game machines are designed with the capstones.
 
 ## Change log
+- **v0.3 (2026-10-16):** Charles's uniqueness rule (§1a): neighbour states are mutually exclusive and named by every recipe, there is no "any adjacency", and no two recipes share apparatus, state and inputs. Crossed power runs nothing, and overclock is a state, not a blanket bonus.
 - **v0.2 (2026-10-16):** Charles's review: rule 2 marked provisional; automated machines run their remembered or pinned recipe, never a "best" one (§6a); Lookup Anything display rules moved to 2.0; chaining visual-aid requirements (§7).
 - **v0.1 (2026-10-16):** first draft: condensation rules, seven behaviour classes, 14 BigCraftables plus the Circle Sigil, power and heat as conditions, the resolver details for `OutputMethod`, Automate and caching, chaining with multi-input recipes, and the four-T3-Lab check.

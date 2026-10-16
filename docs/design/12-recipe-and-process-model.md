@@ -66,7 +66,7 @@ A recipe is one row. Its inputs are a **multiset**: order never matters, and eac
 1. keeps recipes whose operation and kind the apparatus offers, and whose input specs can be satisfied one-to-one by the loaded items, with **exact count of inputs** (no partial matches: a three-item Table load containing a defined pair is not that pair);
 2. drops recipes that are disabled on this farm (unselected secret candidates, broken pack references) or not discovered, unless this is a manual first attempt (below);
 3. drops recipes whose **Required** conditions fail;
-4. picks the most **specific** survivor: exact item IDs beat tags, tags beat categories, more required conditions beat fewer. Two survivors with equal specificity are a **load-time validation error** for the pack that added the later one, so ambiguity never reaches play.
+4. returns the **single** survivor. By construction there is never more than one (Charles, 2026-10-16): no two recipes may share an apparatus kind, a neighbour state and an input set, where tags overlap if any real item satisfies both. Selecting conditions (neighbour states, Variants) are partitions, and no recipe matches "any" state. A pair that could both match is a **load-time validation error** for the pack that added the later one, so the resolver never ranks candidates and ambiguity never reaches play (doc 13 §1a).
 
 Condition snapshots are taken **when inputs are loaded** for apparatus (matching doc 04's adjacency rule) and **at trigger time** for rituals. The snapshot is stored with the machine, so reloads, chaining and multiplayer all see the same result.
 
@@ -81,9 +81,9 @@ Condition snapshots are taken **when inputs are loaded** for apparatus (matching
 ### 4 · Conditions
 A condition is a named record with a **kind** and a **use**:
 - **Kinds:** a GSQ (weekday, season, weather, time, location, festival); a ValleyOpus GSQ we register in C# (moon phase, planetary day or hour, darkness, ley node, inside a Lab of tier ≥ N, discovered); **adjacency** (a neighbour with a tag, in a direction set, within the 4 or 8 tile setting); **catalyst** (extra consumed items, or Shades from a Gloam Lantern); **power** (adjacent Vapor, Fulgur or a Flamma Viva lamp state).
-- **Uses:** **Required** (the recipe won't run without it), **Bonus** (adds quality steps, yield or speed when met), or **Variant** (selects a different recipe; per A2 that's only for named products, which are then separate recipe rows sharing inputs, with the Variant condition as their extra Required condition and the higher specificity).
+- **Uses:** **Required** (the recipe won't run without it), **Bonus** (adds quality steps, yield or speed when met), or **Variant** (selects a different recipe; per A2 that's only for named products, which are then separate recipe rows sharing inputs, with the Variant condition as their extra Required condition, while the base row requires its negation, so the two never both match).
 
-Conditions are referenced by ID, so the same "Monday" or "beside a heat source" record is reused everywhere and the codex can show "?" for an undiscovered neighbour effect. Doc 04's **mode switches** (an Alembic beside a heat source distills, beside a Cooling Coil condenses) are two recipes on the same apparatus whose Required adjacency conditions differ.
+Conditions are referenced by ID, so the same "Monday" or "beside a heat source" record is reused everywhere and the codex can show "?" for an undiscovered neighbour effect. Doc 04's **mode switches** (an Alembic beside a heat source distills, beside a Cooling Coil condenses) are two recipes on the same apparatus whose neighbour states don't overlap (doc 13 §1a).
 
 ### 5 · Quality stages
 Each recipe has a **quality rule**:
