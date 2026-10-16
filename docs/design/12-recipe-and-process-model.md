@@ -1,6 +1,6 @@
 # 12 · Recipe & Process Model
 
-Status: **DRAFT v0.2** (2026-10-16) · Readiness: not ready (the resolver details still open, owned by doc 13)
+Status: **DRAFT v0.2** (2026-10-16) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
 Depends on: 01, 03, 03a, 03b, 04, 07 · Feeds: 03/03a (data shape, apparatus column), 05, 06, 07, 09, 13, 14, 15, 17
 
 ## Purpose
@@ -66,7 +66,7 @@ A recipe is one row. Its inputs are a **multiset**: order never matters, and eac
 1. keeps recipes whose operation and kind the apparatus offers, and whose input specs can be satisfied one-to-one by the loaded items, with **exact count of inputs** (no partial matches: a three-item Table load containing a defined pair is not that pair);
 2. drops recipes that are disabled on this farm (unselected secret candidates, broken pack references) or not discovered, unless this is a manual first attempt (below);
 3. drops recipes whose **Required** conditions fail;
-4. picks the most **specific** survivor: exact item IDs beat tags, tags beat categories, more required conditions beat fewer. Two survivors with equal specificity are a **load-time validation error** for the pack that added the later one, so ambiguity never reaches play.
+4. returns the **single** survivor. By construction there is never more than one (Charles, 2026-10-16): no two recipes may share an apparatus kind, a neighbour state and an input set, where tags overlap if any real item satisfies both. Selecting conditions (neighbour states, Variants) are partitions, and no recipe matches "any" state. A pair that could both match is a **load-time validation error** for the pack that added the later one, so the resolver never ranks candidates and ambiguity never reaches play (doc 13 §1a).
 
 Condition snapshots are taken **when inputs are loaded** for apparatus (matching doc 04's adjacency rule) and **at trigger time** for rituals. The snapshot is stored with the machine, so reloads, chaining and multiplayer all see the same result.
 
@@ -81,9 +81,9 @@ Condition snapshots are taken **when inputs are loaded** for apparatus (matching
 ### 4 · Conditions
 A condition is a named record with a **kind** and a **use**:
 - **Kinds:** a GSQ (weekday, season, weather, time, location, festival); a ValleyOpus GSQ we register in C# (moon phase, planetary day or hour, darkness, ley node, inside a Lab of tier ≥ N, discovered); **adjacency** (a neighbour with a tag, in a direction set, within the 4 or 8 tile setting); **catalyst** (extra consumed items, or Shades from a Gloam Lantern); **power** (adjacent Vapor, Fulgur or a Flamma Viva lamp state).
-- **Uses:** **Required** (the recipe won't run without it), **Bonus** (adds quality steps, yield or speed when met), or **Variant** (selects a different recipe; per A2 that's only for named products, which are then separate recipe rows sharing inputs, with the Variant condition as their extra Required condition and the higher specificity).
+- **Uses:** **Required** (the recipe won't run without it), **Bonus** (adds quality steps, yield or speed when met), or **Variant** (selects a different recipe; per A2 that's only for named products, which are then separate recipe rows sharing inputs, with the Variant condition as their extra Required condition, while the base row requires its negation, so the two never both match). **For automatable recipes, a Variant may only use player-controlled conditions** (neighbour state, catalyst, location). Weekday, weather, season, moon and time may only gate or add a Bonus there, so an automated line never changes output with the environment (Charles, 2026-10-16; doc 13 §1a). Environmental Variants are for hand-triggered and hand-made recipes.
 
-Conditions are referenced by ID, so the same "Monday" or "beside a heat source" record is reused everywhere and the codex can show "?" for an undiscovered neighbour effect. Doc 04's **mode switches** (an Alembic beside a heat source distills, beside a Cooling Coil condenses) are two recipes on the same apparatus whose Required adjacency conditions differ.
+Conditions are referenced by ID, so the same "Monday" or "beside a heat source" record is reused everywhere and the codex can show "?" for an undiscovered neighbour effect. Doc 04's **mode switches** (an Alembic beside a heat source distills, beside a Cooling Coil condenses) are two recipes on the same apparatus whose neighbour states don't overlap (doc 13 §1a).
 
 ### 5 · Quality stages
 Each recipe has a **quality rule**:
@@ -178,7 +178,8 @@ No new items are created by this doc; every row's output already exists in doc 0
 Doc 06 metrics read straight from this data: GPTD and value per tile and per ingredient use recipe inputs, outputs, times and quality caps; arcane recipes are averaged over a week of conditions. Placeholders to tune in the sweep: `k`, `e`, `QualityBonus`, `Threshold`, `ExchangeRatio`, per-apparatus yield and residue rates, quality caps, Bonus condition sizes, ready times, and residue amounts. The sweep also reports days-per-year per recipe (condition stacking), Prime source diversity from the tag table, and the all-six-professions quality clamp.
 
 ## Open questions
-- `[blocks-arch]` **Resolver details:** the placement is decided (one resolver behind `OutputMethod`, Charles 2026-10-16). Still open: match caching under Automate polling, how much Automate and Lookup Anything see natively, and `OutputMethod` behaviour for locked outputs. *Owner: doc 13 / doc 09.*
+- `[blocks-content]` **Environment rule vs "residue instead of failure"** (Charles, 2026-10-16): an automatable recipe that only runs in a storm leaves its machine idle on other days, which sits uneasily with the gentle-failure precept. Charles may add exceptions once the recipe flow takes shape. *Owner: Charles, in a later recipe pass. Follow-up, not resolved here.*
+- ~~`[blocks-arch]` **Resolver details**~~ **settled in doc 13 §6** (v0.1, 2026-10-16): a C# staging tray feeds every apparatus, one Automate factory claims them all, a per-apparatus recipe index serves polling, locks are a `modData` flag, and the codex is the recipe browser.
 - `[blocks-content]` **Table unlock scope, balance revisit:** Charles approved "only that recipe" on condition it's revisited in the balance pass if codex completion feels too obnoxious. Doc 07's "another manual way also unlocks it" is read as releasing a locked output of that item, not unlocking every route; doc 07 should adopt that wording. *Owner: doc 07 / doc 06.*
 - `[blocks-content]` **Secret re-roll:** does a discovered secret stay after a re-roll (re-roll adds) or get replaced? Default: replaced, with its codex entry kept as lore. *Owner: Charles.*
 - `[blocks-content]` **ValleyOpus items decompose** by pinned profile at a loss (default), or refuse decomposition outright. *Owner: Charles.*
