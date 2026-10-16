@@ -1,6 +1,6 @@
 # 03 · Essences & Decomposition
 
-Status: **DRAFT v0.3** (2026-10-13). v0.3: content packs can add Primes, late-game sources (Ginger Island, Volcano, Skull Cavern), and the 1.0 tie-in mods (Charles's guiding answers, doc 01). Full substance list: [03a-substances-catalog.md](03a-substances-catalog.md) · Item rules: [03b-item-budget-and-inventory.md](03b-item-budget-and-inventory.md).
+Status: **DRAFT v0.4** (2026-10-16). v0.4: the **data shape** of decomposition (tag → Prime weights, category defaults, overrides, the yield formula and its settings), matching doc 12 §2. v0.3: content packs can add Primes, late-game sources (Ginger Island, Volcano, Skull Cavern), and the 1.0 tie-in mods (Charles's guiding answers, doc 01). Full substance list: [03a-substances-catalog.md](03a-substances-catalog.md) · Item rules: [03b-item-budget-and-inventory.md](03b-item-budget-and-inventory.md).
 
 ## The eight Primes (approved)
 Ignis, Aqua, Terra, Aer (elements) · Sal, Sulphur, Mercurius (tria prima) · **Aether** (rare).
@@ -44,3 +44,40 @@ Many products can be reached by a **mechanical route** (reliable, bulk, capped q
 
 ## Living transmutation: plants only (Charles, doc 01)
 Transmutation and animation of **living things is limited to plants**. Seeds can be transmuted into other seeds, crops coaxed into new forms, and simple plant homunculi made. **Animals and people are never subjects**, in recipes, flavour or rituals. In-world, this is a ban the **Wizard** enforces (doc 08). Every recipe proposal is checked against this rule.
+
+## Data shape (v0.4, per doc 12)
+Decomposition is one built-in rule over four data tables, not a recipe per item (doc 12 §2). All are **public Content Patcher assets** under `CharlesDR.ValleyOpus/…`, edited with `EditData`, each with a `FormatVersion`. They are identical on every screen, so decomposition needs no multiplayer sync, and nothing here touches the save.
+
+| Asset | Kind | Key | Fields |
+|---|---|---|---|
+| `Primes` | CP data | `Id` | `ItemId`, `Group` (Element / Principle / Rare / pack-defined), `Color`, `NameKey`, `GlossKey`, `SortOrder` (owned by doc 12; listed here because every weight names a Prime) |
+| `Decomposition/TagWeights` | CP data | a context tag (`category_fish`, `color_red`) or a category number | `Weights` {Prime `Id` → number}, `AetherSource` (true only for rows on the Aether source list) |
+| `Decomposition/CategoryDefaults` | CP data | category number, plus one `Default` row | `Weights` {Prime `Id` → number}; never carries Aether |
+| `Decomposition/Overrides` | CP data | item ID (qualified) | `Profile` {Prime `Id` → number} (optional), `Units` (optional), `Refuse` (true for hand-made-only items and capstones) |
+| `Decomposition/Settings` | CP data, read by the GMCM economy knobs | single row | `k`, `e`, `QualityBonus`, `Threshold`, `ExchangeRatio`, `DefaultResidue` {count, chance} |
+
+**Route modifiers** live on the decomposing apparatus, not here: `YieldMultiplier`, `ResidueRate` and an optional `Concentration` (keep the top N Primes, e.g. the Athanor's top two). Doc 13 owns those fields.
+
+### The computation
+Given an item, its quality and the decomposing apparatus:
+1. **Override first.** If `Overrides` has the item: `Refuse` rejects it at load-in; a pinned `Profile` or `Units` replaces the step it covers.
+2. **Profile.** Sum `Weights` over every context tag the item carries plus its category row in `TagWeights`. If nothing matched, use its `CategoryDefaults` row, else the `Default` row. Aether weight from a row without `AetherSource` is dropped (and reported by the validator), so the category defaults can never make Aether. Normalize to 1, drop Primes below `Threshold` (placeholder 0.10), renormalize. Apply the apparatus `Concentration` if it has one.
+3. **Units.** `units = max(1, floor(k · price^e · (1 + QualityBonus · quality) · YieldMultiplier))`, with `price` the item's base sell price, `quality` 0/1/2/4 and `e ≈ 0.5`.
+4. **Split.** Units are shared across the profile by largest remainder (ties broken by `SortOrder`), so the total is exact and deterministic.
+5. **Equivalent exchange.** If the Primes' summed sell value exceeds `ExchangeRatio · price` (placeholder 0.8), units are reduced until it doesn't. The validator lists every clamp.
+6. **Residue.** Caput Mortuum by the apparatus `ResidueRate` (or `DefaultResidue`), rolled on doc 12's deterministic seed (day, location, tile, recipe), so reloads and farmhands see the same result.
+
+Primes produced carry **no quality** (doc 12, approved 2026-10-16): the input's quality only raises `units`.
+
+**Derived, never stored:** each item's resolved profile (cached per item ID and invalidated on asset reload), the Assayer's Lens tooltip (shown once `assay:<ItemId>` is set in the farm codex, doc 12 §10), and the **source-diversity sweep**, which reads the same tables over the vanilla and tie-in item lists and reports any Prime with fewer than 3 viable Y1 sources.
+
+**Content packs** extend by adding rows: tag weights for their own tags, overrides for their items, and a `Primes` row plus pairing recipes for a new Prime (doc 12 holds the pack format). A row naming an unknown Prime is disabled with a SMAPI warning, never a crash.
+
+**Example rows** (placeholders, not tuned; `id_o_74` is the Prismatic Shard's vanilla ID tag):
+```json
+"Decomposition/TagWeights": {
+  "category_fish":  { "Weights": { "Aqua": 3, "Sal": 1 } },
+  "color_red":      { "Weights": { "Ignis": 1 } },
+  "id_o_74":        { "Weights": { "Aether": 4, "Terra": 1 }, "AetherSource": true }
+}
+```

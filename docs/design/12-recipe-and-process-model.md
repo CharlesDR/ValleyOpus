@@ -1,6 +1,6 @@
 # 12 · Recipe & Process Model
 
-Status: **DRAFT v0.1** (2026-10-15) · Readiness: not ready (open `[blocks-arch]` items below)
+Status: **DRAFT v0.2** (2026-10-16) · Readiness: not ready (the resolver details still open, owned by doc 13)
 Depends on: 01, 03, 03a, 03b, 04, 07 · Feeds: 03/03a (data shape, apparatus column), 05, 06, 07, 09, 13, 14, 15, 17
 
 ## Purpose
@@ -18,6 +18,9 @@ One model for everything that turns items into other items: decomposition into P
 - **Latin-first naming** (Charles, 2026-10-14, doc 03a): every material record carries a Latin display name and an English gloss as separate i18n keys.
 - **Content packs add Primes, substances and recipes** through Content Patcher in 1.0 (Charles, doc 01). The Tier 1 grid is derived from the Prime list, never fixed at eight.
 - **Condition counts grow by tier, with no upper bound** (Charles, doc 01); stacking is a balance risk the sweep reports (doc 06).
+- **Primes carry no quality** (Charles, 2026-10-16, default confirmed). An input's quality raises decomposition yield instead.
+- **A Table discovery unlocks only that recipe** on apparatus, not other routes to the same item (Charles, 2026-10-16, default confirmed). **Conditional:** revisit in the balance pass if completing the codex turns out too obnoxious.
+- **One C# resolver behind `Data/Machines` `OutputMethod`** (Charles, 2026-10-16, default confirmed). The details (caching, Automate and Lookup Anything visibility, locked outputs) settle in doc 13.
 
 ## Player-facing spec
 The model is invisible; the player meets it through four touchpoints:
@@ -91,7 +94,7 @@ Each recipe has a **quality rule**:
 
 Vanilla quality has no stage 3, so `Advance` steps over it (gold → iridium is one step).
 
-**Primes carry no quality** (default, see open questions). An item's quality raises its decomposition yield instead. Quality enters at the substance stage through apparatus, conditions and rituals, which keeps the Satchel to one stack per Prime and makes the arcane route the way to high stages.
+**Primes carry no quality** (Charles, 2026-10-16). An item's quality raises its decomposition yield instead. Quality enters at the substance stage through apparatus, conditions and rituals, which keeps the Satchel to one stack per Prime and makes the arcane route the way to high stages.
 
 ### 6 · Processes (multi-stage work)
 The Great Work is a chain of ordinary recipes, not a special system: a **stage-advance recipe** takes item X at stage *s* and returns X at stage *s+1* (Mode `Advance`). Lapis Philosophorum is Prima Materia advanced through all four stages, then a final hand-made-only ritual whose input spec requires Rubedo. **Process states** (Cauda Pavonis, and the colour stage names) are Process-state substances: codex entries shown in the machine and fired as discovery events (e.g. "first nigredo → albedo advance"), never items.
@@ -144,7 +147,7 @@ All registries are **public Content Patcher assets** under `CharlesDR.ValleyOpus
 | `Recipes` | CP data | `Id`, `Inputs` [{`Item` or `Tag` or `Category`, `Count`, `MinQuality`}], `Operation`, `ApparatusKinds` [], `ApparatusIds` [] (specialists and vanilla machines only), `Conditions` [{`ConditionId`, `Use`, `Soft`, `Effect`}], `Output` {`Id`, `Count`, `Flavor` (optional `DROP_IN`-style)}, `Quality` {`Mode`, `Steps`, `Cap`, `Floor`}, `Residue` {`Success`, `Partial`, `Failure`}, `Minutes` or `Days`, `HandMadeOnly`, `TwinGroup`, `Discovery` {`TableAttemptable`, `Hidden`, `HintKeys`}, `SecretPool` |
 | `Conditions` | CP data | `Id`, `Kind`, `Query` (GSQ string) or `Adjacency` {`Tag`, `Directions`, `Range`} or `Catalyst` {`Item`/`Shades`, `Count`} or `Power`, `NameKey`, `HintKey` |
 | `Operations` | CP data | `Id`, `NameKey` (packs may add operations; doc 13 maps them to apparatus) |
-| `Decomposition/TagWeights` | CP data | `Tag` or `Category` → {`Prime`: weight} |
+| `Decomposition/TagWeights` | CP data | `Tag` or `Category` → {`Weights` {`Prime`: weight}, `AetherSource`} (doc 03 has the full shape) |
 | `Decomposition/CategoryDefaults` | CP data | `Category` → profile |
 | `Decomposition/Overrides` | CP data | `ItemId` → {`Profile`, `Units`, `Refuse`} |
 | `Decomposition/Settings` | CP data (GMCM economy knobs read it) | `k`, `e`, `QualityBonus`, `Threshold`, `ExchangeRatio`, default residue |
@@ -164,7 +167,7 @@ Placeholder counts for 1.0 (rows, not final names):
 No new items are created by this doc; every row's output already exists in doc 03a or 03b.
 
 ## Tech hooks
-- **Resolver in C#.** One recipe resolver serves the Table, every apparatus, chaining, Automate input acceptance, the codex and Lookup Anything. Recommended (see open questions): apparatus are `Data/Machines` entries with a C# `OutputMethod` that calls the resolver, so Automate's native machine support still loads and collects, and our Automate factory only adds the discovery lock, hand-made-only refusal and ritual staging (doc 09).
+- **Resolver in C#.** One recipe resolver serves the Table, every apparatus, chaining, Automate input acceptance, the codex and Lookup Anything. Approved (Charles, 2026-10-16; details in doc 13): apparatus are `Data/Machines` entries with a C# `OutputMethod` that calls the resolver, so Automate's native machine support still loads and collects, and our Automate factory only adds the discovery lock, hand-made-only refusal and ritual staging (doc 09).
 - **Custom GSQs** registered in C# (`VALLEYOPUS_DISCOVERED`, moon phase, planetary hour, darkness, ley node, Lab tier) so conditions also work inside plain `Data/Machines` rules and other packs' data.
 - **Crafting** recipes compile into `Data/CraftingRecipes`; vanilla-machine rules are appended to `Data/Machines`, never replacing.
 - **Validation at load:** unresolved references, ambiguous matches, missing Tier 1 cells, equivalent-exchange clamps and hand-made-only recipes on automatable-only apparatus are reported in the SMAPI log; a console command dumps the report.
@@ -175,15 +178,15 @@ No new items are created by this doc; every row's output already exists in doc 0
 Doc 06 metrics read straight from this data: GPTD and value per tile and per ingredient use recipe inputs, outputs, times and quality caps; arcane recipes are averaged over a week of conditions. Placeholders to tune in the sweep: `k`, `e`, `QualityBonus`, `Threshold`, `ExchangeRatio`, per-apparatus yield and residue rates, quality caps, Bonus condition sizes, ready times, and residue amounts. The sweep also reports days-per-year per recipe (condition stacking), Prime source diversity from the tag table, and the all-six-professions quality clamp.
 
 ## Open questions
-- `[blocks-arch]` **Resolver placement:** apparatus as `Data/Machines` shells with a C# `OutputMethod` calling one resolver (recommended), versus compiling simple recipes into plain `Data/Machines` rules. The first keeps one source of truth; the second gives Automate and Lookup Anything more native visibility. *Owner: doc 13 / doc 09.*
-- `[blocks-arch]` **Primes carry no quality** (default picked here). Keeps Satchel stacks simple and makes quality an apparatus outcome. *Owner: Charles.*
-- `[blocks-arch]` **What the Table unlocks:** discovering a recipe at the Table unlocks that same recipe on apparatus (default), but not other routes to the same item. Doc 07 says discovering an item "another manual way also unlocks it"; this doc reads that as releasing a locked output of that item, not unlocking every route. *Owner: Charles / doc 07.*
+- `[blocks-arch]` **Resolver details:** the placement is decided (one resolver behind `OutputMethod`, Charles 2026-10-16). Still open: match caching under Automate polling, how much Automate and Lookup Anything see natively, and `OutputMethod` behaviour for locked outputs. *Owner: doc 13 / doc 09.*
+- `[blocks-content]` **Table unlock scope, balance revisit:** Charles approved "only that recipe" on condition it's revisited in the balance pass if codex completion feels too obnoxious. Doc 07's "another manual way also unlocks it" is read as releasing a locked output of that item, not unlocking every route; doc 07 should adopt that wording. *Owner: doc 07 / doc 06.*
 - `[blocks-content]` **Secret re-roll:** does a discovered secret stay after a re-roll (re-roll adds) or get replaced? Default: replaced, with its codex entry kept as lore. *Owner: Charles.*
 - `[blocks-content]` **ValleyOpus items decompose** by pinned profile at a loss (default), or refuse decomposition outright. *Owner: Charles.*
 - `[blocks-content]` **Electrum and Rebis** are listed in docs 03 and 03a as twin routes but are different outputs from different inputs. Doc 03a should say whether twin routes must share an output; the `TwinGroup` shape supports both. *Owner: doc 03a.*
 - `[blocks-content]` **Partial Table matches:** exact matching only (default), with an optional hint when a three-item load contains a defined pair. *Owner: doc 07.*
-- *For other docs (Phase 1 follow-ups, not edited here):* doc 03a needs its **apparatus class** column (operation + kinds per substance) and doc 03 its data shape, both per section 2 and the Data shape table; doc 00 says Satchel contents live in a global inventory while doc 03b says the item's `modData` (doc 17 should settle it).
+- *For other docs:* doc 03a's **apparatus class** column and doc 03's data shape are done (03a v0.7, 03 v0.4). Still open: doc 00 says Satchel contents live in a global inventory while doc 03b says the item's `modData` (doc 17 should settle it).
 - `[2.0]` Four-plus Table inputs need no model change. A Potion Craft–style brew map would add a new operation with its own resolver, plugged in beside this one.
 
 ## Change log
+- **v0.2 (2026-10-16):** Charles confirmed the three `[blocks-arch]` defaults (no quality on Primes; a Table discovery unlocks only that recipe, revisit in the balance pass; one resolver behind `OutputMethod`, details to doc 13). `TagWeights` gains `AetherSource` to match doc 03's data shape.
 - **v0.1 (2026-10-15):** first draft: records, decomposition, recipe matching, conditions, quality, processes, residue, discovery keys, the secret recipe and the content-pack data shape.
