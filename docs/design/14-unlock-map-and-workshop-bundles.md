@@ -84,14 +84,15 @@ Three bundles per room, CC-style (each slot an ingredient spec from doc 12 §3, 
 | I | **all vanilla** (P3) | Furnace Room | *Kindling* (Wood, Sap, Coal, Hardwood) · *Spring Gleanings* (any 4 Spring forage) · *Mine Salts* (Quartz, Earth Crystal, Copper Ore, Stone) |
 | II | vanilla, plus **one** bundle of Tier 1 substances | Cistern | *River and Lake* (4 freshwater fish) · *Fittings* (Copper Bar, Iron Bar, Refined Quartz) · *First Waters* (Ros Maialis, Limus, Sal Marinum) |
 | II | same | Library | *Bindings* (Cloth, Wool, Duck Feather) · *Curios* (any 3 artifacts) · *First Fires* (Calx, Magma, Pulvis) |
-| III | one-third mod products (Tier 1 and 2, automatable) | Sanctum | *Summer Light* (Sunflower, Starfruit, Solar Essence) · *Offerings* (Honey, any 3 flowers) · *Unions* (Vitrum, Electrum, any Tier 2 at silver) |
-| III | same | Undercroft | *Night Harvest* (Void Essence, Bat Wing, Purple Mushroom) · *Dark Things* (any 3 monster loot) · *Rot and Return* (Mors, Venenum, Caput Mortuum ×20) |
+| III | one-third mod products (Tier 1 and 2, automatable) | Sanctum | *Summer Light* (Sunflower, Starfruit, Solar Essence) · *Offerings* (Honey, any 3 flowers) · *Unions* (Vitrum, Vigor, any Tier 2 at silver) |
+| III | same | Undercroft | *Night Harvest* (Void Essence, Bat Wing, Purple Mushroom) · *Dark Things* (any 3 monster loot) · *Rot and Return* (Caput Mortuum ×20, Miasma, Terra Viva) |
 | IV | two-thirds mod products, some at a quality stage | Observatory | *Star Chart* (Luna, Sol, Spiritus) · *Clear Spirits* (Aqua Vitae, Vigor, Elixir at silver) · *Winter Sky* (any 4 Winter forage) |
-| IV | same | Crystal Vault | *Fixed Salts* (Sal Fixum, Mercurius Fixus, Gelum) · *Gems* (Diamond, Emerald, Vitreus ×5) · *Metals of the Week* (Argentum or Stannum or Plumbum, Gold Bar) |
+| IV | same | Crystal Vault | *Fixed Salts* (Sal Fixum, Mercurius Fixus, Gelum) · *Gems* (Diamond, Emerald, Vitreus ×5) · *Metals of the Week* (2 of 3: Argentum or Stannum or Plumbum, Gold Bar, Iron Bar) |
 | ★ | mostly mod products at gold | Great Work Chamber | *Nigredo* (dark twins) · *Albedo* (Tier 2 at silver ×3) · *Citrinitas* (Tier 2 at gold ×3) |
 
 - **Rewards** per bundle are small and useful, like the CC's: a stack of a Prime-rich vanilla item, an extra apparatus, a fertilizer stack. The room's unlocks are the main reward.
 - **Never ✋.** Bundles ask only for automatable items, and accept automated output (doc 10 #2).
+- **Critical-path rule** (Charles, 2026-10-17): every slot must be makeable with what is unlocked **when its room opens**, never with something the room itself (or a later room) unlocks. Checked against §2 and §4, the v0.3 list broke this twice, now fixed: the Sanctum asked for Electrum, which needs Argentum from the Quarry Crucible (a bridge-gated specialist), and the Undercroft asked for Mors and Venenum, the dark twins the Witch teaches only once the Undercroft is restored. A bundle may ask for something whose source is a base-game gate only through an "N of M" choice with a vanilla fallback (Metals of the Week). The sweep re-runs this check whenever bundles or unlocks change (balance hooks).
 - **Never a single source.** A slot names a tag or "any of" wherever possible, so one bad harvest or one undiscovered route can't stall a room.
 - **Metals of the Week** depends on the Quarry bridge (Quarry Crucible). It gives a "2 of 3" choice with a vanilla fallback slot *(approved)*, so a player who hasn't repaired the bridge can still finish the Crystal Vault.
 - **The final room** asks for the colour stages themselves, a quiet rehearsal of the Great Work's four stages.
@@ -195,7 +196,7 @@ All assets are public Content Patcher data under `CharlesDR.ValleyOpus/…`, wit
 - **1.7:** nothing here depends on 1.7 changes.
 
 ## Balance hooks
-Doc 06 reads the map as a **pace report**: for each season at a diligent pace, which recipes are reachable, the gold per tile-day of the best reachable route against the vanilla machines a player has by then (kegs and jars early), the Aether a player can gather against what that season's content asks for, and the number of hand actions per day the season's setups need (doc 16's quarter-day budget). Placeholders to tune: bundle contents and rewards, apparatus crafting costs, Hesper's heart threshold for the Ley Tap, Lark's discovery count, and skill-level unlocks.
+Doc 06 reads the map as a **pace report**, and the sweep also runs the **bundle critical-path check** (§3): for each bundle slot, the earliest unlock set that makes it reachable must be available when the slot's room opens. The pace report covers, for each season at a diligent pace, which recipes are reachable, the gold per tile-day of the best reachable route against the vanilla machines a player has by then (kegs and jars early), the Aether a player can gather against what that season's content asks for, and the number of hand actions per day the season's setups need (doc 16's quarter-day budget). Placeholders to tune: bundle contents and rewards, apparatus crafting costs, Hesper's heart threshold for the Ley Tap, Lark's discovery count, and skill-level unlocks.
 
 ## Open questions
 - `[blocks-content]` **Late-install fast start:** nothing is skipped automatically (approved); whether GMCM later offers an optional "fast start" that restores the Furnace Room is still open. *Owner: Charles / doc 16.*
@@ -208,6 +209,6 @@ Doc 06 reads the map as a **pace report**: for each season at a diligent pace, w
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
 
 ## Change log
-- **v0.3 (2026-10-17):** follows doc 15 v0.6 (PR #11): gated automated recipes wait idle; shops pay the shipping price, so NPCs open places to sell, not prices; Sorenson's contracts may reward an optional unlock (new `Contract` source); "Element" used for the umbrella term. Charles approved the contract-reward rule; "curio" defined.
+- **v0.3 (2026-10-17):** follows doc 15 v0.6 (PR #11): gated automated recipes wait idle; shops pay the shipping price, so NPCs open places to sell, not prices; Sorenson's contracts may reward an optional unlock (new `Contract` source); "Element" used for the umbrella term. Charles approved the contract-reward rule; "curio" defined; bundles checked against the critical path (Electrum and the dark twins replaced).
 - **v0.2 (2026-10-17):** Charles approved every default; doc 02's jungle ley node, doc 13's unlock column and the README updated to match.
 - **v0.1 (2026-10-17):** first draft: unlock kinds, "unlocks open means, never recipes", seven workshop rooms in four tiers plus the Great Work Chamber, 24 bundles with a currency rule per tier, NPC arrivals, base-game gates on both routes, skill-level proposals, Aether as the pacing valve, the Year 1 reachability table and the data shape.
