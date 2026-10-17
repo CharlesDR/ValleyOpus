@@ -106,7 +106,7 @@ Everything else uses vanilla stats: Speed, Defense, Attack, Immunity, MaxStamina
 | Ignis | **Kindled** | your hits set monsters burning on 20% of hits | every hit, and no lava or burn damage |
 | Aqua | **Undine's Gift** | (above) | |
 | Terra | **Stonesense** | a chance of an extra ore from stones | higher, and rocks break in one hit |
-| Aer | **Tailwind** | Speed +0.5 | Speed +1, and your horse also moves faster *(proposal)* |
+| Aer | **Tailwind** | Speed +0.5 | Speed +1, and your horse also moves faster |
 | Sal | **Fixative** | (above) | |
 | Sulphur | **Eruption** | 5% chance a broken stone bursts and breaks the stones around it | 15%, a wider burst that also hurts monsters, and extra Cinder Shards in the volcano |
 | Mercurius | **Volatile** | (above) | |
@@ -300,12 +300,11 @@ Doc 06 metrics: value-add measured end to end from raw inputs; gold per tile-day
 - `[blocks-content]` **Prime and famous-substance bonuses** from the brainstorm wait in the ideas backlog for Charles's picks. *Owner: Charles.*
 - `[blocks-content]` **Satchel auto-collect** takes reagents only; products go to the main inventory (default). *Owner: doc 03b / doc 16.*
 - `[blocks-content]` **Gift tastes** for Rosa Vitrea, Mel Vitae and Phiala Stellarum (approved products). *Owner: doc 20.*
-- `[blocks-content]` **Tailwind's strong tier:** the grass-and-crops part and the forage sparkle are gone (a vanilla book power and the long-list Windsight already cover them); the horse-speed augmentation is a proposal. *Owner: Charles.*
 - `[blocks-content]` **Capstone effects** (Perpetuum Mobile, Lapis Philosophorum and the other Tier 3 items). *Owner: doc 19.*
 - `[2.0]` Forging uses of Orichalcum, Electrum and Magma; custom-effect bombs; brew-map potions; Phlogiston in arcane logistics.
 
 ## Change log
-- **v0.6 (2026-10-17):** Charles's review: every default he owns approved; "Element" as the umbrella term; selling pays the shipping price everywhere, so per-vendor pricing is gone and Sorenson's contracts must pay more than shipping or give a non-monetary reward; price benchmarks follow the consumables pattern; more drinks than foods, with every food carrying a custom effect; the cost rule for alternate vanilla recipes; Tailwind loses its grass part; Rebis Amulet's strong window moves to noon–3pm and dusk; Ouroboros wording; the infusion table fixed; the environment rule's wrong-day behaviour is waiting idle.
+- **v0.6 (2026-10-17):** Charles's review: every default he owns approved; "Element" as the umbrella term; selling pays the shipping price everywhere, so per-vendor pricing is gone and Sorenson's contracts must pay more than shipping or give a non-monetary reward; price benchmarks follow the consumables pattern; more drinks than foods, with every food carrying a custom effect; the cost rule for alternate vanilla recipes; Tailwind loses its grass part and its strong tier adds horse speed (approved); Rebis Amulet's strong window moves to noon–3pm and dusk; Ouroboros wording; the infusion table fixed; the environment rule's wrong-day behaviour is waiting idle.
 - **v0.5 (2026-10-17):** Charles approved the thematic-effect catalogue (all but the long list): consumable effects, one bonus per Prime, worn and placed items, capstone tiers, and twelve animal infusions, which close the dead-end audit. Balance rules for indirect boosters and profession overlap added.
 - **v0.4 (2026-10-17):** animal infusions added as a sixth family, under Charles's five guard rails, which relax the plants-only rule; the control premium; planetary numbers updated to the ideas backlog.
 - **v0.3 (2026-10-16):** P2's cap suspended until the effect list's scale is settled; Charles's seven tiered effects (Fixative, Volatile, Lunar Dream, Undine's Gift, Vial Pendant, Smouldering Censer, Planetary Influence on a weak and a capstone ring); effects gain weak and strong tiers.
