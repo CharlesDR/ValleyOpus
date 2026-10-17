@@ -49,7 +49,9 @@ An **unlock** is one farm-wide flag plus the things it grants. Kinds:
 | **Story** | an event or quest line | the Great Work |
 | **Feature** | a mechanic switched on | Sorenson's contracts, Qi orders |
 
-**Contract rewards.** A Sorenson contract can grant an unlock as its non-monetary reward (doc 15 §6). Only **optional extras** are given this way (a décor set, a second Satchel picker pin, a Lab cosmetic, a contract-only curio), never an apparatus, Lab tier or story step on the main path, so a player who skips contracts loses nothing the rest of the map needs *(proposal)*.
+**Contract rewards.** A Sorenson contract can grant an unlock as its non-monetary reward (doc 15 §6). Only **optional extras** are given this way (a décor set, a second Satchel picker pin, a Lab cosmetic, a contract-only curio), never an apparatus, Lab tier or story step on the main path, so a player who skips contracts loses nothing the rest of the map needs (Charles, 2026-10-17).
+
+**Curio** (term): a collectible keepsake with **no gameplay effect**, placed as Furniture or kept on a shelf, whose value is story and display, like vanilla's Prize Machine trophies. Each Sorenson curio is a piece of her Joja past (an early "synthetic essence" vial, a redacted lab notebook) with a line of lore on hover. A curio is not a hint item: Finch's weekly **curiosity** (doc 07) is a different thing, a stock item whose flavour text hints at a recipe.
 
 **Recipes are never unlocked.** A recipe becomes *reachable* when (a) an apparatus kind that runs it is unlocked, (b) its inputs can be obtained and (c) its Required conditions can be met; it becomes *known* only through discovery (doc 07), and *automatable* only through `recipe:` (doc 12 §10). The one exception is story order: Tier 3 recipes carry a `RequiresUnlock` of **the Great Work** *(approved)*, so the capstones can't be stumbled on before the story reaches them. No other recipe carries an unlock requirement.
 
@@ -199,13 +201,13 @@ Doc 06 reads the map as a **pace report**: for each season at a diligent pace, w
 - `[blocks-content]` **Late-install fast start:** nothing is skipped automatically (approved); whether GMCM later offers an optional "fast start" that restores the Furnace Room is still open. *Owner: Charles / doc 16.*
 - `[blocks-content]` **Lightning Coil in Winter:** the Coil comes by letter after the next storm (approved). If a Cistern restored in Winter feels too slow in play, the fallback is to grant it with the room. *Owner: balance pass.*
 - `[blocks-content]` **Skill-level unlocks** (§6) are proposals for doc 05. *Owner: doc 05.*
-- `[blocks-content]` **Contract-reward unlocks:** optional extras only (proposal); the list is content. *Owner: Charles / doc 20.*
+- `[blocks-content]` **Contract-reward list:** optional extras only (approved); which extras and curios is content. *Owner: doc 20.*
 - `[blocks-content]` **Familiar bonding** trigger and cost. *Owner: doc 18.*
 - `[blocks-content]` **Bundle contents, rewards and NPC arrival scenes.** *Owner: doc 20 and the sweep.*
 - *For other docs:* doc 07's hint channels gain their unlock sources from §4 when it is next touched.
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
 
 ## Change log
-- **v0.3 (2026-10-17):** follows doc 15 v0.6 (PR #11): gated automated recipes wait idle; shops pay the shipping price, so NPCs open places to sell, not prices; Sorenson's contracts may reward an optional unlock (new `Contract` source); "Element" used for the umbrella term.
+- **v0.3 (2026-10-17):** follows doc 15 v0.6 (PR #11): gated automated recipes wait idle; shops pay the shipping price, so NPCs open places to sell, not prices; Sorenson's contracts may reward an optional unlock (new `Contract` source); "Element" used for the umbrella term. Charles approved the contract-reward rule; "curio" defined.
 - **v0.2 (2026-10-17):** Charles approved every default; doc 02's jungle ley node, doc 13's unlock column and the README updated to match.
 - **v0.1 (2026-10-17):** first draft: unlock kinds, "unlocks open means, never recipes", seven workshop rooms in four tiers plus the Great Work Chamber, 24 bundles with a currency rule per tier, NPC arrivals, base-game gates on both routes, skill-level proposals, Aether as the pacing valve, the Year 1 reachability table and the data shape.
