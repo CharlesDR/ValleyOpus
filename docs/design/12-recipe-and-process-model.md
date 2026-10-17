@@ -1,6 +1,6 @@
 # 12 · Recipe & Process Model
 
-Status: **DRAFT v0.2** (2026-10-16) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
+Status: **DRAFT v0.3** (2026-10-17) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
 Depends on: 01, 03, 03a, 03b, 04, 07 · Feeds: 03/03a (data shape, apparatus column), 05, 06, 07, 09, 13, 14, 15, 17
 
 ## Purpose
@@ -81,7 +81,7 @@ Condition snapshots are taken **when inputs are loaded** for apparatus (matching
 ### 4 · Conditions
 A condition is a named record with a **kind** and a **use**:
 - **Kinds:** a GSQ (weekday, season, weather, time, location, festival); a ValleyOpus GSQ we register in C# (moon phase, planetary day or hour, darkness, ley node, inside a Lab of tier ≥ N, discovered); **adjacency** (a neighbour with a tag, in a direction set, within the 4 or 8 tile setting); **catalyst** (extra consumed items, or Shades from a Gloam Lantern); **power** (adjacent Vapor, Fulgur or a Flamma Viva lamp state).
-- **Uses:** **Required** (the recipe won't run without it), **Bonus** (adds quality steps, yield or speed when met), or **Variant** (selects a different recipe; per A2 that's only for named products, which are then separate recipe rows sharing inputs, with the Variant condition as their extra Required condition, while the base row requires its negation, so the two never both match). **For automatable recipes, a Variant may only use player-controlled conditions** (neighbour state, catalyst, location). Weekday, weather, season, moon and time may only gate or add a Bonus there, so an automated line never changes output with the environment (Charles, 2026-10-16; doc 13 §1a). Environmental Variants are for hand-triggered and hand-made recipes.
+- **Uses:** **Required** (the recipe won't run without it), **Bonus** (adds quality steps, yield or speed when met), or **Variant** (selects a different recipe; per A2 that's only for named products, which are then separate recipe rows sharing inputs, with the Variant condition as their extra Required condition, while the base row requires its negation, so the two never both match). **For automatable recipes, a Variant may only use player-controlled conditions** (neighbour state, catalyst, location). Weekday, weather, season, moon and time may only gate or add a Bonus there, so an automated line never changes output with the environment (Charles, 2026-10-16; doc 13 §1a). Environmental Variants are for hand-triggered and hand-made recipes. On a day a gate isn't met, an automated machine **waits idle**: it refuses inputs and makes nothing, not even residue (Charles, 2026-10-17).
 
 Conditions are referenced by ID, so the same "Monday" or "beside a heat source" record is reused everywhere and the codex can show "?" for an undiscovered neighbour effect. Doc 04's **mode switches** (an Alembic beside a heat source distills, beside a Cooling Coil condenses) are two recipes on the same apparatus whose neighbour states don't overlap (doc 13 §1a).
 
@@ -178,16 +178,17 @@ No new items are created by this doc; every row's output already exists in doc 0
 Doc 06 metrics read straight from this data: GPTD and value per tile and per ingredient use recipe inputs, outputs, times and quality caps; arcane recipes are averaged over a week of conditions. Placeholders to tune in the sweep: `k`, `e`, `QualityBonus`, `Threshold`, `ExchangeRatio`, per-apparatus yield and residue rates, quality caps, Bonus condition sizes, ready times, and residue amounts. The sweep also reports days-per-year per recipe (condition stacking), Prime source diversity from the tag table, and the all-six-professions quality clamp.
 
 ## Open questions
-- `[blocks-content]` **Environment rule vs "residue instead of failure"** (Charles, 2026-10-16): an automatable recipe that only runs in a storm leaves its machine idle on other days, which sits uneasily with the gentle-failure precept. Charles may add exceptions once the recipe flow takes shape. *Owner: Charles, in a later recipe pass. Follow-up, not resolved here.*
+- ~~`[blocks-content]` **Environment rule vs "residue instead of failure"**~~ **settled** (Charles, 2026-10-17): **wait idle**. On a day its weather or calendar condition isn't met, an automated machine refuses inputs and resumes when the condition returns; nothing is consumed and no residue is made. "Residue instead of failure" applies to failed experiments and misjudged hand rituals, where a failure can actually happen (§4, doc 13 §1a).
 - ~~`[blocks-arch]` **Resolver details**~~ **settled in doc 13 §6** (v0.1, 2026-10-16): a C# staging tray feeds every apparatus, one Automate factory claims them all, a per-apparatus recipe index serves polling, locks are a `modData` flag, and the codex is the recipe browser.
 - `[blocks-content]` **Table unlock scope, balance revisit:** Charles approved "only that recipe" on condition it's revisited in the balance pass if codex completion feels too obnoxious. Doc 07's "another manual way also unlocks it" is read as releasing a locked output of that item, not unlocking every route; doc 07 should adopt that wording. *Owner: doc 07 / doc 06.*
 - `[blocks-content]` **Secret re-roll:** does a discovered secret stay after a re-roll (re-roll adds) or get replaced? Default: replaced, with its codex entry kept as lore. *Owner: Charles.*
-- `[blocks-content]` **ValleyOpus items decompose** by pinned profile at a loss (default), or refuse decomposition outright. *Owner: Charles.*
+- `[blocks-content]` **ValleyOpus items decompose** by pinned profile at a loss (default), or refuse decomposition outright. Caput Mortuum refuses decomposition (Charles, 2026-10-17, doc 15 §6), since it is what decomposition leaves. *Owner: Charles.*
 - `[blocks-content]` **Electrum and Rebis** are listed in docs 03 and 03a as twin routes but are different outputs from different inputs. Doc 03a should say whether twin routes must share an output; the `TwinGroup` shape supports both. *Owner: doc 03a.*
 - `[blocks-content]` **Partial Table matches:** exact matching only (default), with an optional hint when a three-item load contains a defined pair. *Owner: doc 07.*
 - *For other docs:* doc 03a's **apparatus class** column and doc 03's data shape are done (03a v0.7, 03 v0.4). Still open: doc 00 says Satchel contents live in a global inventory while doc 03b says the item's `modData` (doc 17 should settle it).
 - `[2.0]` Four-plus Table inputs need no model change. A Potion Craft–style brew map would add a new operation with its own resolver, plugged in beside this one.
 
 ## Change log
+- **v0.3 (2026-10-17):** the environment rule vs "residue instead of failure" is settled: an automated machine waits idle on days its gate isn't met (Charles). Caput Mortuum refuses decomposition (doc 15).
 - **v0.2 (2026-10-16):** Charles confirmed the three `[blocks-arch]` defaults (no quality on Primes; a Table discovery unlocks only that recipe, revisit in the balance pass; one resolver behind `OutputMethod`, details to doc 13). `TagWeights` gains `AetherSource` to match doc 03's data shape.
 - **v0.1 (2026-10-15):** first draft: records, decomposition, recipe matching, conditions, quality, processes, residue, discovery keys, the secret recipe and the content-pack data shape.
