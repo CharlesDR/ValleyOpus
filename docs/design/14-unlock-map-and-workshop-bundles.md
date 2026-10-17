@@ -1,6 +1,6 @@
 # 14 · Unlock Map & Workshop Bundles
 
-Status: **DRAFT v0.2** (2026-10-17) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
+Status: **DRAFT v0.3** (2026-10-17) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03a, 05, 07, 08, 08a, 12, 13, 15 · Feeds: 05, 06, 09, 11, 16, 17, 18, 19, 20
 
 ## Purpose
@@ -14,7 +14,9 @@ When and how each part of ValleyOpus opens up: every apparatus, tool, Table upgr
 - **Both routes** (doc 08): the workshop sits under the CC on both routes; no unlock names a CC-only flag (docs 12 and 13 already rely on this).
 - **Power baselines** (Charles, 2026-10-16): early and mid-game unlocks are paced so products stay at or below vanilla; the late tier is benchmarked against SVE (doc 15).
 - **The v0.1 defaults** (Charles, 2026-10-17): the seven rooms with the "any one room" tier rule, the Athanor as an intro gift, the bundle currency by tier, Tier 3 recipes requiring the Great Work, product crafting recipes learned from their defining substance, the Lightning Coil letter after a storm (granted with the room as the fallback if Winter proves a problem), and no automatic fast start on a late install.
-- **Recipe uniqueness and the environment rule** (Charles, 2026-10-16; doc 13 §1a): unlocks never add a recipe, so they can't create a collision; an unlock that is itself gated by weather (the Lightning Coil letter) only delays, it never changes what a line makes.
+- **Recipe uniqueness and the environment rule** (Charles, 2026-10-16; doc 13 §1a): unlocks never add a recipe, so they can't create a collision; an unlock that is itself gated by weather (the Lightning Coil letter) only delays, it never changes what a line makes. A gated automated recipe **waits idle** on days its condition isn't met (Charles, 2026-10-17; doc 13 §1a), so an unlock schedule never has to plan around wasted inputs.
+- **Selling and contracts** (Charles, 2026-10-17; doc 06 v0.6, doc 15 §6): every shop pays the shipping price, so an NPC arrival opens a **place to sell**, never a better price. Dr. Sorenson's contracts pay more than shipping **or** give a significant non-monetary reward, and an unlock may be that reward (§4).
+- **Element** (Charles, 2026-10-17; doc 03a): the umbrella term for Primes, substances and anything derived from them; this doc uses it wherever a rule covers all of them.
 
 ## Player-facing spec
 
@@ -25,7 +27,7 @@ When and how each part of ValleyOpus opens up: every apparatus, tool, Table upgr
 4. **The Great Work.** Once all seven rooms are restored, the sealed chamber opens: the Curator's identity, the Great Work quest, Laboratory T3 and the Familiars.
 
 ### What the player sees
-- **The bundle board** shows each room's bundles with vanilla items as icons and mod items as **silhouettes with a one-line hint** until discovered. Asking for a mod item counts as an `Existence` hint (doc 07): a bundle never asks for something the player can't find out how to make.
+- **The bundle board** shows each room's bundles with vanilla items as icons and Elements as **silhouettes with a one-line hint** until discovered. Asking for an Element counts as an `Existence` hint (doc 07): a bundle never asks for something the player can't find out how to make.
 - **Restoration scenes** are short (clock frozen, skippable after the first view) and end on a mail or a hold-up of what was unlocked.
 - **New crafting recipes** appear in the vanilla crafting menu with a "learned" notice, as vanilla skill recipes do. Robin's menu gains each Lab tier when it unlocks.
 - **The codex has an Unlocks page** listing every unlock as a silhouette with its source ("Restore the Cistern", "Hesper, 2 hearts", "Repair the Quarry bridge"), so the path forward is always readable in-game.
@@ -46,6 +48,8 @@ An **unlock** is one farm-wide flag plus the things it grants. Kinds:
 | **Place** | ley nodes revealed, a ritual site usable | the first Aether-bearing ley node |
 | **Story** | an event or quest line | the Great Work |
 | **Feature** | a mechanic switched on | Sorenson's contracts, Qi orders |
+
+**Contract rewards.** A Sorenson contract can grant an unlock as its non-monetary reward (doc 15 §6). Only **optional extras** are given this way (a décor set, a second Satchel picker pin, a Lab cosmetic, a contract-only curio), never an apparatus, Lab tier or story step on the main path, so a player who skips contracts loses nothing the rest of the map needs *(proposal)*.
 
 **Recipes are never unlocked.** A recipe becomes *reachable* when (a) an apparatus kind that runs it is unlocked, (b) its inputs can be obtained and (c) its Required conditions can be met; it becomes *known* only through discovery (doc 07), and *automatable* only through `recipe:` (doc 12 §10). The one exception is story order: Tier 3 recipes carry a `RequiresUnlock` of **the Great Work** *(approved)*, so the capstones can't be stumbled on before the story reaches them. No other recipe carries an unlock requirement.
 
@@ -99,8 +103,8 @@ Three bundles per room, CC-style (each slot an ingredient spec from doc 12 §3, 
 | **Finch** | the week after the Furnace Room | his weekly route: sells rare reagents, buys surplus, stocks a curiosity hint (doc 07) |
 | **Ivo** | the Guild, once the Furnace Room is restored and the Guild is open | bounties (vanilla loot); his Pulvis Pyrius hints wait for the Table's third slot |
 | **Hesper** | the Library | visiting days, the weekly almanac; **Ley Tap** recipe at 2 hearts; Observatory content |
-| **Dr. Sorenson** | the Cistern | bulk contracts (doc 15 §6); her Joja arc runs through the Great Work |
-| **Agnes** | in Clint's shop, the first visit after any Tier II room | assaying and metal buying; the **Quarry Crucible** once the **Quarry bridge** is repaired |
+| **Dr. Sorenson** | the Cistern | bulk contracts that pay above shipping or reward an optional unlock (doc 15 §6, §1 above); her Joja arc runs through the Great Work |
+| **Agnes** | in Clint's shop, the first visit after any Tier II room | assaying; a place to sell metals (at the shipping price); the **Quarry Crucible** once the **Quarry bridge** is repaired |
 | **Delta** | at the beach, once the Furnace Room is restored and the player has Fishing level 2 | fish requests; sea-substance hints (Sal Marinum, Luna, Hydragenum) |
 | **Bennet** | after the **bus repair**, once the Furnace Room is restored | the **Pelican** recipe; glassware commissions (apparatus upgrades) |
 | **Lark** | after the farm's 10th discovery | the comic hint channel |
@@ -165,9 +169,9 @@ All assets are public Content Patcher data under `CharlesDR.ValleyOpus/…`, wit
 
 | Asset | Kind | Key fields |
 |---|---|---|
-| `Unlocks` | CP data | `Id`, `Kind` (Apparatus / Tool / Capacity / Building / NPC / HintChannel / Place / Story / Feature / pack-defined), `Grants` [{`Type` (CraftingRecipe / Item / Flag / Blueprint / Event / Mail), `Ref`, `Count`}], `Source` {`Type` (Intro / WorkshopRoom / NPC / Friendship / SkillLevel / BaseGame / Discovery / Unlock), `Ref`}, `Requires` [unlock IDs or GSQs; all must hold], `Announce` (mail, event or toast key), `Pace` (Spring / Summer / Fall / Winter / Year2; **informational only**, read by the sweep, never by the game), `NameKey`, `SourceKey` (the codex "how to unlock" line) |
+| `Unlocks` | CP data | `Id`, `Kind` (Apparatus / Tool / Capacity / Building / NPC / HintChannel / Place / Story / Feature / pack-defined), `Grants` [{`Type` (CraftingRecipe / Item / Flag / Blueprint / Event / Mail), `Ref`, `Count`}], `Source` {`Type` (Intro / WorkshopRoom / NPC / Friendship / SkillLevel / BaseGame / Discovery / Contract / Unlock), `Ref`}, `Requires` [unlock IDs or GSQs; all must hold], `Announce` (mail, event or toast key), `Pace` (Spring / Summer / Fall / Winter / Year2; **informational only**, read by the sweep, never by the game), `NameKey`, `SourceKey` (the codex "how to unlock" line) |
 | `WorkshopRooms` | CP data | `Id`, `Tier`, `Motif` (operation), `Host`, `Opens` {`AnyOf` or `AllOf` room IDs}, `Bundles` [bundle IDs], `Unlocks` [unlock IDs], `RestoreEvent`, `MapArea` |
-| `WorkshopBundles` | CP data | `Id`, `Room`, `Slots` [doc 12 ingredient specs: item, tag or category, `Count`, `MinQuality`], `Required` (N of M), `Reward` {item, count}, `NameKey`, `HintKeys` (shown for undiscovered mod items) |
+| `WorkshopBundles` | CP data | `Id`, `Room`, `Slots` [doc 12 ingredient specs: item, tag or category, `Count`, `MinQuality`], `Required` (N of M), `Reward` {item, count}, `NameKey`, `HintKeys` (shown for undiscovered Elements) |
 | Recipe field | CP data (doc 12 `Recipes`) | `RequiresUnlock` (optional; only Tier 3 uses it) |
 | Craft-recipe learning | CP data (doc 12 `Craft` recipes) | `LearnedBy` {`Item` (an `item:` key) or `Unlock` (an unlock ID)} |
 | Farm unlock state | C# state, host save data | unlocked IDs with day and player; bundle slot progress; rooms restored; mirrored as mail flags `CharlesDR.ValleyOpus_Unlock_<Id>` on every player |
@@ -195,11 +199,13 @@ Doc 06 reads the map as a **pace report**: for each season at a diligent pace, w
 - `[blocks-content]` **Late-install fast start:** nothing is skipped automatically (approved); whether GMCM later offers an optional "fast start" that restores the Furnace Room is still open. *Owner: Charles / doc 16.*
 - `[blocks-content]` **Lightning Coil in Winter:** the Coil comes by letter after the next storm (approved). If a Cistern restored in Winter feels too slow in play, the fallback is to grant it with the room. *Owner: balance pass.*
 - `[blocks-content]` **Skill-level unlocks** (§6) are proposals for doc 05. *Owner: doc 05.*
+- `[blocks-content]` **Contract-reward unlocks:** optional extras only (proposal); the list is content. *Owner: Charles / doc 20.*
 - `[blocks-content]` **Familiar bonding** trigger and cost. *Owner: doc 18.*
 - `[blocks-content]` **Bundle contents, rewards and NPC arrival scenes.** *Owner: doc 20 and the sweep.*
 - *For other docs:* doc 07's hint channels gain their unlock sources from §4 when it is next touched.
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
 
 ## Change log
+- **v0.3 (2026-10-17):** follows doc 15 v0.6 (PR #11): gated automated recipes wait idle; shops pay the shipping price, so NPCs open places to sell, not prices; Sorenson's contracts may reward an optional unlock (new `Contract` source); "Element" used for the umbrella term.
 - **v0.2 (2026-10-17):** Charles approved every default; doc 02's jungle ley node, doc 13's unlock column and the README updated to match.
 - **v0.1 (2026-10-17):** first draft: unlock kinds, "unlocks open means, never recipes", seven workshop rooms in four tiers plus the Great Work Chamber, 24 bundles with a currency rule per tier, NPC arrivals, base-game gates on both routes, skill-level proposals, Aether as the pacing valve, the Year 1 reachability table and the data shape.
