@@ -1,6 +1,6 @@
 # 06 · Economy & Balance
 
-Status: **DRAFT v0.5** (2026-10-16). v0.5: value-add is measured end to end along a chain, and prices derive from inputs by tier markup (doc 15 §6); effect rules from Charles's thematic-effect review (tiers, control premium, indirect boosters, no profession overlap). v0.4: time-share and combat benchmarks, condition stacking as a balance risk, and the late-game Lab sizing check (Charles's guiding answers, doc 01). v0.3: economy knobs in GMCM; targets hold at defaults (doc 00, U3). Benchmarks are to be computed in the balance sweep; the targets below are approved policy.
+Status: **DRAFT v0.6** (2026-10-17). v0.6: selling pays the shipping price everywhere; contracts pay more than shipping or give a non-monetary reward; price benchmarks follow the consumables pattern; the cost rule for alternate vanilla recipes (Charles's doc 15 review). v0.5: value-add is measured end to end along a chain, and prices derive from inputs by tier markup (doc 15 §6); effect rules from Charles's thematic-effect review (tiers, control premium, indirect boosters, no profession overlap). v0.4: time-share and combat benchmarks, condition stacking as a balance risk, and the late-game Lab sizing check (Charles's guiding answers, doc 01). v0.3: economy knobs in GMCM; targets hold at defaults (doc 00, U3). Benchmarks are to be computed in the balance sweep; the targets below are approved policy.
 
 ## Metrics (approved: compare on both)
 For any production setup (a machine plus its required neighbours and support):
@@ -28,9 +28,11 @@ Rules that keep this honest:
 - Essences themselves sell for less than their inputs (decomposition never prints money).
 - **Chains are measured end to end** (doc 15 §6): value-add runs from the raw vanilla inputs that were decomposed to the final product, never per step, since markups compound. Product prices derive from their inputs by a tier markup, and the arcane line earns through quality rather than a higher markup.
 - Alchemy's main draw is **non-monetary**: buffs, fertilizers, combat aids, tools and capstones (player-experience pillar 1).
-- **Finch** (Travelling Merchant) buy and sell prices respect the same caps. He's a valve for bottlenecks, not a money printer.
-- **Dr. Sorenson's bulk contracts:** fixed-price orders for standardized (mechanical-quality) products. They trade a lower unit price for guaranteed volume and story progress, and count toward the caps.
-- **Agnes** buys planetary metals at prices benchmarked against vanilla bars.
+- **Selling pays the shipping price everywhere** (Charles, 2026-10-17; the vanilla convention). Finch, Agnes and any other buyer pay an item's shipping price; they are places to sell, never price levers. Finch's own stock respects the caps: he's a valve for bottlenecks, not a money printer.
+- **Dr. Sorenson's bulk contracts:** players are cash-motivated, so a contract pays **more per unit than shipping** or gives a significant non-monetary reward (story, an unlock, a unique item). They count toward the caps.
+- **Planetary metals** are priced against vanilla bars.
+- **Price benchmarks** (Charles, 2026-10-17): the same pattern as consumables: vanilla machines and goods early and mid game, and the top end set by what's possible with vanilla plus SVE.
+- **Alternate recipes for vanilla items** never cost more than the vanilla recipe; a discount above about 10% needs a more complex route (crafted ingredients, extra steps). Higher effort for a better ratio is the accepted trade, as in ore processing.
 - **Grand rituals** are measured per batch-day *and* per tile (the circle's footprint), averaged over the conditions needed to run them.
 
 ## Other benchmarks (v0.4)
