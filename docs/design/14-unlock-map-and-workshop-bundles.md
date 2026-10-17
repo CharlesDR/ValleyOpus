@@ -216,7 +216,7 @@ Doc 06 reads the map as a **pace report**, and the sweep also runs the **bundle 
 ## Open questions
 - `[blocks-content]` **Late-install fast start:** nothing is skipped automatically (approved); whether GMCM later offers an optional "fast start" that restores the Furnace Room is still open. *Owner: Charles / doc 16.*
 - `[blocks-content]` **Lightning Coil in Winter:** the Coil comes by letter after the next storm (approved). If a Cistern restored in Winter feels too slow in play, the fallback is to grant it with the room. *Owner: balance pass.*
-- `[blocks-content]` **Skill-level unlocks** (§6) are proposals for doc 05. *Owner: doc 05.*
+- ~~`[blocks-content]` **Skill-level unlocks** (§6) are proposals for doc 05.~~ Adopted in doc 05 v0.6 §3; the odd levels (1, 3, 7, 9) stay open there.
 - `[blocks-content]` **Contract-reward list:** optional extras only (approved); which extras and curios is content. *Owner: doc 20.*
 - `[blocks-content]` **Familiar bonding** trigger and cost. *Owner: doc 18.*
 - `[blocks-content]` **Bundle contents, rewards and NPC arrival scenes.** *Owner: doc 20 and the sweep.*
