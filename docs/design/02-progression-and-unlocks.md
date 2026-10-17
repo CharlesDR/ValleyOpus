@@ -1,6 +1,6 @@
 # 02 · Progression & Unlocks
 
-Status: **DRAFT v0.5** (2026-10-13). v0.5: Lab size and floorplan direction, Lab design moved before the architecture gate, late-game gates and escalating conditions approved (Charles). v0.4: pacing targets, no calendar gates, escalating conditions, the 1.0 "finished" state, Lab sizing for the late game, and late-game gates (Ginger Island, Volcano, Skull Cavern, Mr. Qi), all from Charles's guiding answers in doc 01. v0.3: Lab tier direction from Charles; the first playable slice is Spring Y1 (doc 00, S1). The seasonal roll-out is a proposal to react to.
+Status: **DRAFT v0.6** (2026-10-17). v0.6: the full unlock map and the workshop rooms now live in doc 14; island ley nodes yield Primes. v0.5: Lab size and floorplan direction, Lab design moved before the architecture gate, late-game gates and escalating conditions approved (Charles). v0.4: pacing targets, no calendar gates, escalating conditions, the 1.0 "finished" state, Lab sizing for the late game, and late-game gates (Ginger Island, Volcano, Skull Cavern, Mr. Qi), all from Charles's guiding answers in doc 01. v0.3: Lab tier direction from Charles; the first playable slice is Spring Y1 (doc 00, S1). The seasonal roll-out is a proposal to react to.
 
 ## Soft start (approved; details to be specified later)
 - **Trigger:** 2 days after the Community Center opens, the first time the player enters **Town** between **6:00am and 3:00pm**.
@@ -39,7 +39,7 @@ Stages follow the seven operations of the Magnum Opus. Each row's unlocks come m
 - **Bus repair** (Vault, or Joja) → the desert, Bennet's glassware commissions and advanced arcane apparatus. Basic glassware never depends on the desert.
 - **Adventurer's Guild access** → Ivo's bounties.
 - **Skull Cavern** (proposal) → deeper Ivo bounties and Shade-rich hunting for Gloam Lanterns (doc 04).
-- **Ginger Island** (proposal) → island ley nodes (Volcano → Ignis and Magma, the island jungle → Vitae) and a tropical source column in the sweep.
+- **Ginger Island** (proposal) → island ley nodes (the Volcano node → Ignis and Terra, the island jungle node → Terra and Aether; ley nodes yield Primes, doc 14) and a tropical source column in the sweep.
 - **Volcano forge** (proposal) → a Ignis-aligned ritual site; the obvious home for a combat or forging capstone, with forging itself still 2.0.
 - **Mr. Qi** (proposal) → a few Qi special orders that ask for alchemical feats, paid in Qi Gems, plus a hard late recipe that uses Qi Beans or Radioactive Ore.
 
