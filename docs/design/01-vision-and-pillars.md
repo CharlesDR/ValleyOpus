@@ -56,6 +56,7 @@ Charles's direction on the areas that were open stubs in v0.5. The other docs we
 - The tone of the mod can be dark in a "rated PG" sort of way. Dark alchemy should feel spooky and ominous but not grotesque; ghosts and skeletons are okay but blood and gore is not. It should be close to the Vanilla Stardew thematic tone (which includes ghosts, zombies, skeletons, etc).
 - Humour should be mostly gentle whimsy with some characters occasionally getting sassy in cutscenes. Slapstick should be reserved for the characters it fits particularly well.
 - Homunculi and living transmutation should only include plants as subjects. Immortality is on the table thematically for worldbuilding purposes (as an aspirational goal) but not for gameplay mechanics. Homunculi/transmutation of animals and people is explicitly forbidden, and the Wizard enforces the ban.
+- *Relaxed slightly (Charles, 2026-10-17):* **animal infusions** may change how a farm animal lives or what it gives, never what it is, under the guard rails in doc 15 §7a.
 - After a big day of Alchemy, the player should feel accomplished, and frequently they should feel clever for having worked out a tricky solution.
 
 ### Target player and complexity ceiling

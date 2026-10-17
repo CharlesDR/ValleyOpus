@@ -1,6 +1,6 @@
 # 07 · Discovery & the Codex
 
-Status: **DRAFT v0.7** (2026-10-16) · Readiness: ready for architecture (no `[blocks-arch]` item open)
+Status: **DRAFT v0.8** (2026-10-17) · Readiness: ready for architecture (no `[blocks-arch]` item open)
 Depends on: 01, 03a, 04, 12, 13 · Feeds: 05, 06, 14, 16, 17, 20
 
 v0.7: retrofitted to the doc 00 template; adopts doc 12's discovery keys and Charles's "a Table discovery unlocks only that recipe" rule; adds the discovery path for recipes the Table can't make, power and heat at the Table, and the codex data shape. v0.6: the target player and complexity ceiling, "feeling clever" as a design goal, the pace of discovery and hand-made-only entries (Charles's guiding answers, doc 01). v0.5: Experiment Table input counts (doc 00, R2). v0.4 applies Charles's verdicts on the discovery research ([research/inspiration-discovery-moments.md](../research/inspiration-discovery-moments.md)).
@@ -59,6 +59,7 @@ A layered hint system, from subtle to explicit:
 1. Item flavour text ("It smells faintly of brimstone…"), and apparatus that accept an item only if it belongs in one of their recipes.
 2. The codex grid shows silhouettes and "warmer" hints for pairs adjacent to known ones. A three-item Table load that contains a defined pair fails as usual but adds a "something here wants a partner" line *(default)*.
 3. **Residue divination (Charles, v0.4):** spend Caput Mortuum to divine a hint (cost may scale with how far the target is from what's known). Every pile of residue is a choice: fertilizer, a tiny sale, saving it for late recipes that turn residue into valuable materials, or hints. Working things out yourself stays optimal; savings get you unstuck.
+   - **Lunar Dream** (Charles, 2026-10-17; doc 15 §3a): a Luna food or drink taken before bed shows a hint from the same pool when the player wakes (weak tier: an `Existence` hint; strong tier: an `Inputs` hint). It sets `hint:` like divination, so it never repeats a hint already shown. Channel: `Dream`.
 4. NPC channels, one per owner (vanilla and SVE villagers add flavour reactions, not new hint channels; doc 08): **Oriel** (ritual and concept advice), **Tobin** (machine and layout tips), **Hesper** (the weekly almanac letter: planetary days, weather, celestial events), **Finch** (curiosity items), **Lark** (gentle comic attempts that point at untried pairs), **the Curator** (workshop lore).
 5. In-world readables in the derelict workshop under the CC (Cyprian's journals, half-burned notes, the wordless Silent Pages).
 
@@ -92,7 +93,7 @@ Entries gain a lore line at 1, 10 and 50 crafted, with a progress pip toward the
 |---|---|---|
 | `Codex/Pages` | CP data | `Id`, `Group` (Primes / Tier 1 grid / Tier 2 / Dark twins / Metals / Great Work / Apparatus / Places / pack-defined), `SortOrder`, `TitleKey`; entries are **derived** from `Primes`, `Substances` and `Recipes` (doc 12) and placed by their tier and tags, so packs get pages without extra rows |
 | `Codex/Lore` | CP data | `TargetId` (item or recipe), `Threshold` (1, 10, 50), `TextKey` |
-| `Hints` | CP data | `Id`, `Target` (recipe, item or condition ID), `Channel` (Flavour / Grid / Divination / NPC name / Readable), `Reveals` (Inputs / Apparatus / Condition / Existence), `Requires` (GSQ or unlock flag), `DivinationCost` (residue count), `TextKey` |
+| `Hints` | CP data | `Id`, `Target` (recipe, item or condition ID), `Channel` (Flavour / Grid / Divination / Dream / NPC name / Readable), `Reveals` (Inputs / Apparatus / Condition / Existence), `Requires` (GSQ or unlock flag), `DivinationCost` (residue count), `TextKey` |
 | `Milestones` | CP data | `Id`, `Trigger` (first of a tier, a row complete, a process state), `Celebration` (Toast / HoldUp / Flourish), `TextKey` |
 | Farm codex | C# state, host save data | doc 12 §10 keys plus `hint:` and `milestone:`, each with day and player; secret picks and re-roll count; Table capacity flag |
 | Player prefs | GMCM config, per player | toast frequency, staged-altar HUD notice, celebration skip |
@@ -119,6 +120,7 @@ Doc 06 reads discovery pace from this data: hints per recipe, divination costs, 
 - `[blocks-content]` **Hint wording and counts** per recipe. *Owner: doc 20.*
 
 ## Change log
+- **v0.8 (2026-10-17):** Lunar Dream (doc 15) as a `Dream` hint channel drawing on the same hint pool.
 - **v0.7 (2026-10-16):** template retrofit; doc 12 keys and the "only that recipe" rule; discovery path for non-Table recipes; neighbours at the Table; apparatus acceptance as a hint; codex data shape.
 - **v0.6 (2026-10-13):** target player, complexity, feeling clever, pace, hand-made-only entries.
 - **v0.5:** Table input counts. **v0.4:** Charles's verdicts on the discovery research.

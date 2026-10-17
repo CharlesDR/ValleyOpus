@@ -20,3 +20,4 @@ An alchemy and automation expansion for Stardew Valley. These are **drafts** (20
 | [10 Roadmap & Open Questions](10-roadmap-and-open-questions.md) | 1.0 vs 2.0, Charles's action items, pending decisions, upcoming tasks |
 | [12 Recipe & Process Model](12-recipe-and-process-model.md) | the keystone: Primes, substances, recipes, conditions, quality, residue, discovery keys, pack format |
 | [13 Apparatus Catalog](13-apparatus-catalog.md) | the 14 machines, behaviour classes, power and heat, the resolver behind `OutputMethod`, chaining, the four-Lab check |
+| [15 Products & Outside Uses](15-products-and-outside-uses.md) | product families, the effect system, fertilizers, combat items, prices and buyers, gifts, Smaltum |
