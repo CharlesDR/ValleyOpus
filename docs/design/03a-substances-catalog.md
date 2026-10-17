@@ -1,6 +1,6 @@
 # 03a · Substances Catalog (Combinatorics)
 
-Status: **DRAFT v0.8** (2026-10-16). v0.8: consistency fixes from doc 13 (Charles's content-pass checks): Power substances are never inputs, so Orichalcum, Cinis Phoenicis and Perpetuum Mobile take them as Required power conditions; Stannum and Plumbum get their planetary substances (proposal); Sol's stray "(Lux)" removed; the residue glaze becomes **Smaltum** with an apparatus class; recipes without a T mark get their discovery path (doc 07). v0.7: every substance gets an **apparatus class** (its operation and the apparatus kinds that run it, per doc 12); see the legend below. v0.6: **naming rule, Latin first** (Charles): every material's display name is its Latin or classical form, with an English gloss second; names swept across all docs. v0.5: seed transmutation and the Radicula approved as candidates; trinket-slot items added (Charles). v0.4: the plants-only rule for living transmutation, plant transmutation candidates, hand-made-only products, the combat-strength cap and the immortality rule (Charles's guiding answers, doc 01). v0.3: Golem Clay dropped (doc 00, R5); colour stages confirmed as vanilla quality (R1). This is a candidate list. Names, recipes and tiers are proposals for review, not commitments.
+Status: **DRAFT v0.9** (2026-10-16). v0.9: doc 15 confirms **Smaltum** as a blue dye and the input of a small glazed décor set (default, pending Charles), Cinnabaris becomes a red dye, Caput Mortuum's fertilizer drops the weed tradeoff (default), and doc 15's dead-end audit lists ten substances still needing a downstream. v0.8: consistency fixes from doc 13 (Charles's content-pass checks): Power substances are never inputs, so Orichalcum, Cinis Phoenicis and Perpetuum Mobile take them as Required power conditions; Stannum and Plumbum get their planetary substances (proposal); Sol's stray "(Lux)" removed; the residue glaze becomes **Smaltum** with an apparatus class; recipes without a T mark get their discovery path (doc 07). v0.7: every substance gets an **apparatus class** (its operation and the apparatus kinds that run it, per doc 12); see the legend below. v0.6: **naming rule, Latin first** (Charles): every material's display name is its Latin or classical form, with an English gloss second; names swept across all docs. v0.5: seed transmutation and the Radicula approved as candidates; trinket-slot items added (Charles). v0.4: the plants-only rule for living transmutation, plant transmutation candidates, hand-made-only products, the combat-strength cap and the immortality rule (Charles's guiding answers, doc 01). v0.3: Golem Clay dropped (doc 00, R5); colour stages confirmed as vanilla quality (R1). This is a candidate list. Names, recipes and tiers are proposals for review, not commitments.
 Parent doc: [03-essences-and-decomposition.md](03-essences-and-decomposition.md) · **Inventory rule:** not every substance below is a carriable item. Many are power, process states or in-machine intermediates. See [03b-item-budget-and-inventory.md](03b-item-budget-and-inventory.md).
 
 ## Naming rule: Latin first (Charles, 2026-10-14)
@@ -114,7 +114,7 @@ Every unordered pair of Primes, including a Prime with itself, yields one Tier 1
 |---|---|---|---|---|
 | Sal + Sulphur | **Vitriol** (the Green Lion) | [C][W3] | the great solvent of metals; "devours the sun" (dissolves gold) | Dissolution · T ⚙︎ ✦ |
 | Sal + Mercurius | **Mercurius Fixus** (Fixed Mercury) | [C] "fixing the volatile" | Coagulation stage; locks a quality tier in | Coagulation · T ✦ ✦A |
-| Sulphur + Mercurius | **Cinnabaris** (Vermilion) | [C][W3] (cinnabar really is mercury sulfide) | red pigment and dye; rubedo catalyst | Conjunction · T ⚙︎ ✦ |
+| Sulphur + Mercurius | **Cinnabaris** (Vermilion) | [C][W3] (cinnabar really is mercury sulfide) | red pigment: a strong **red dye** in vanilla dye pots (doc 15 §8); rubedo catalyst | Conjunction · T ⚙︎ ✦ |
 
 ### Principle × Aether (3)
 | Recipe | Substance | Inspiration | Gameplay hook | Apparatus class |
@@ -166,7 +166,7 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 | **Cauda Pavonis** (Peacock's Tail) | *process state*, not an item or recipe | [C] the iridescent stage of the Opus | shown when a brew passes nigredo→albedo; ties to Prismatic Shard | — (process state, shown in any stage advance) |
 | **Planetary metals** | Metallum + the planet's substance on its weekday: **Luna** → Argentum (Mon), **Tempestas** → Stannum (Thu; Jupiter the sky-father's weather), **Mors** → Plumbum (Sat; Saturn's lead and the nigredo) *(Stannum and Plumbum inputs are proposals, v0.8)* | [C][OM] | Argentum/Silver (Mon), Stannum/Tin (Thu), Plumbum/Lead (Sat) are new items, bought and certified by Agnes; Copper, Iron and Gold exist in vanilla. Advanced transmutation needs the Quarry bridge | Conjunction · S (Quarry Crucible; weekday Required) |
 | **Caput Mortuum** | residue of any reduction | [C] | waste; see residue below | — (residue rule of every recipe) |
-| **Smaltum** (Glaze) *(v0.8; working name)* | Caput Mortuum + Calx | [C] smalt, the glassy blue of potters | a cheap sellable glaze; its outside use (glazed pots or décor) is for doc 15 to confirm, else it's cut | Calcination · T ⚙︎ ✦ |
+| **Smaltum** (Glaze) *(working name)* | Caput Mortuum + Calx | [C] smalt, the glassy blue of potters | a cheap glaze: a strong **blue dye** and the input of a small glazed décor set (doc 15 §9, default; cut is the fallback) | Calcination · T ⚙︎ ✦ |
 
 ---
 
@@ -197,14 +197,17 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 ## Waste residue (approved direction)
 
 **Caput Mortuum** ("dead head"): the by-product of reductions and failed experiments. Very low sell price, plus minor uses:
-- low-grade fertilizer (a small chance of quality, slight weed growth)
-- mixed with Calx into a cheap glaze, **Smaltum** (Tier 2 table above)
+- low-grade fertilizer (a small chance of quality; the weed-growth tradeoff is dropped by default, doc 15 §4)
+- mixed with Calx into a cheap glaze, **Smaltum** (Tier 2 table above): a blue dye and glazed décor
 - ballast for apparatus construction
 - **late reveal:** the source of Prima Materia (above), so a player who kept a residue pile is rewarded
 
-Open to more. *(The v0.2 "Rust Slimes" idea, feeding residue to a Slime Hutch, is dropped: it would transmute a living creature, which the plants-only rule forbids.)*
+It refuses decomposition (doc 15 §6, default). Prices and every product's outside uses: [15-products-and-outside-uses.md](15-products-and-outside-uses.md). Open to more. *(The v0.2 "Rust Slimes" idea, feeding residue to a Slime Hutch, is dropped: it would transmute a living creature, which the plants-only rule forbids.)*
 
 ---
+
+## Animal infusions (Charles, 2026-10-17)
+The plants-only rule is relaxed slightly for **animal infusions**: tonics fed to a farm animal that change how it lives or what it gives, never what it is. They are hand-made, one per animal, and washed out by Panacea. Guard rails and shape: doc 15 §7a.
 
 ## Hand-made only (Charles, doc 01)
 **Gifts, quest items and capstones are always hand-made**: through a crafting recipe or, preferably, a ritual. Automate and directional chaining never produce them (doc 04). In this catalog that covers the four Tier 3 substances, Perpetuum Mobile, the Radicula, and any product whose main use is gifting or a quest. The recipe model marks this with a hand-made-only flag (doc 12).

@@ -1,6 +1,6 @@
 # 03b · Item Budget & Inventory
 
-Status: **DRAFT v0.7** (2026-10-14). v0.7: **the item budget is loosened** (Charles, full review): restraint applies only to items that drop in adventure areas (the mines, Skull Cavern, the Volcano and similar). The ~40-item cap and the general forage ban are gone. v0.6: where late-area reagents appear (with or without SVE), no forage in hidden areas, and alchemical trinkets in the census (Charles). v0.5: rule 1 softened from "no" to "few" new monster drops and mine finds, matching Charles's edit to the inventory rule in doc 01; Radicula added to the census. v0.4: Gloam Lanterns added. This responds to Charles's warning: be careful creating new items, especially monster drops and mine/Skull Cavern finds, because inventory space is already tight.
+Status: **DRAFT v0.8** (2026-10-16). v0.8: the Satchel auto-collects reagents only, and the census adds doc 15's gift products and décor (doc 15). v0.7: **the item budget is loosened** (Charles, full review): restraint applies only to items that drop in adventure areas (the mines, Skull Cavern, the Volcano and similar). The ~40-item cap and the general forage ban are gone. v0.6: where late-area reagents appear (with or without SVE), no forage in hidden areas, and alchemical trinkets in the census (Charles). v0.5: rule 1 softened from "no" to "few" new monster drops and mine finds, matching Charles's edit to the inventory rule in doc 01; Radicula added to the census. v0.4: Gloam Lanterns added. This responds to Charles's warning: be careful creating new items, especially monster drops and mine/Skull Cavern finds, because inventory space is already tight.
 
 ## Rules
 1. **Few new monster drops or mine/Skull Cavern finds** (Charles changed "no" to "few" in doc 01). The default is still **existing vanilla loot**; new drops and finds are **high-value specialty reagents found only in late-game areas** (Charles). **With SVE installed** they appear in SVE's late-game locations; **without SVE** they're grouped into fitting vanilla places instead (Skull Cavern, the Volcano, Ginger Island). Combat and mining reagents otherwise come from vanilla loot (Slime, Bug Meat, Bat Wing, Bone Fragment, Solar Essence, Void Essence, Cinder Shard, ores, geodes, minerals) through context-tag decomposition. Ivo's bounties count **kills** or ask for **vanilla** drops.
@@ -24,7 +24,7 @@ Status: **DRAFT v0.7** (2026-10-14). v0.7: **the item budget is loosened** (Char
 ## Reagent Satchel spec (draft)
 Inspired by Minecraft's bundle (hover to see contents), with a proper menu.
 - **Seeing contents:** hovering the satchel shows a tooltip listing its contents with counts. Right-click (or the use-tool button) opens a chest-style grid with tabs (Essences, Substances, Products). The icon shows a fill state and a count badge.
-- **Putting items in:** while the satchel is in the inventory, ValleyOpus items picked up from machines, drops or Ley Taps go into it automatically, with a small "+3 Ignis" HUD notice (GMCM toggle). Items can also be dropped onto it, chest-style. It accepts only items tagged `valleyopus_reagent`.
+- **Putting items in:** while the satchel is in the inventory, ValleyOpus **reagents** (Primes and recipe inputs) picked up from machines, drops or Ley Taps go into it automatically; finished products whose main use is outside the mod (food, fertilizer, combat, gifts) go to the main inventory instead (doc 15, default), with a small "+3 Ignis" HUD notice (GMCM toggle). Items can also be dropped onto it, chest-style. It accepts only items tagged `valleyopus_reagent`.
 - **Taking items out:** drag from the grid into the inventory or a chest. Clicking a machine while holding the satchel opens a **picker filtered to that machine's valid inputs**.
 - **Capacity:** a limited number of item types (≈24 to start), upgradeable through Tobin. It's a progression sink, not infinite storage.
 - **Not inside it:** shipping, gifting and selling all require taking the item out first, which keeps vanilla flows untouched.
@@ -35,12 +35,14 @@ Inspired by Minecraft's bundle (hover to see contents), with a proper menu.
 ## Item census (v0.2 estimate, to refine)
 - 8 Primes (items)
 - ~12 bottled Tier 1 substances; the other ~24 Tier 1 substances are power, process states or in-machine only
-- ~15 Tier 2 products with outside uses (elixirs, fertilizers, bombs, coatings, glass)
+- ~15 Tier 2 products with outside uses (elixirs, fertilizers, bombs, coatings, glass); doc 15 lists them by family
+- 3 gift products (Rosa Vitrea, Mel Vitae, Phiala Stellarum) and 2–3 glazed décor Furniture pieces (doc 15, proposals)
 - 3 planetary metals (Argentum, Stannum, Plumbum)
 - 4 Tier 3 capstone items
 - 1 residue (Caput Mortuum), which now also buys hints (doc 07)
 - 1 Radicula, the plant homunculus (candidate; doc 03a)
 - 0–3 late-area specialty reagents under the softened rule 1 (none chosen yet)
-- 2–3 alchemical trinkets (trinket slot; doc 03a)
+- 6 alchemical trinkets (Vial Pendant, Smouldering Censer and Rebis Amulet, weak and strong) and 3 rings (Planetary Band, Ring of the Seven, Ouroboros Ring) (doc 15 §3a)
+- 4 effect products and placed items (Midas Draught, Hourglass of Mercury, Azoth Diffuser, Ever-burning Lamp) and 2 infusion produce items (Brimstone Egg, Golden Fleece); the 12 animal infusions themselves (doc 15 §7a)
 - 1–2 Gloam Lanterns (base and upgraded; doc 04). These are a **deliberate inventory cost**: they work only from the main inventory, and carrying more fills faster at diminishing returns. They are crafted tools, not monster drops, so rule 1 holds.
-- **≈ 48–52** in total. There's no cap now; the census stays as a planning count, and only the late-area reagents are held to rule 1's restraint.
+- **≈ 75–80** in total. There's no cap now; the census stays as a planning count, and only the late-area reagents are held to rule 1's restraint.

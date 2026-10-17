@@ -43,7 +43,7 @@ Primes combine pairwise into the 36 Tier 1 substances (a complete grid), then in
 Many products can be reached by a **mechanical route** (reliable, bulk, capped quality) or an **arcane route** (conditional, higher ceiling). Example: Gold + Argentum smelted into **Electrum**, versus Sol + Luna conjoined into **Rebis**. This is pillar 1 made concrete.
 
 ## Living transmutation: plants only (Charles, doc 01)
-Transmutation and animation of **living things is limited to plants**. Seeds can be transmuted into other seeds, crops coaxed into new forms, and simple plant homunculi made. **Animals and people are never subjects**, in recipes, flavour or rituals. In-world, this is a ban the **Wizard** enforces (doc 08). Every recipe proposal is checked against this rule.
+Transmutation and animation of **living things is limited to plants**. Seeds can be transmuted into other seeds, crops coaxed into new forms, and simple plant homunculi made. **Animals and people are never subjects**, in recipes, flavour or rituals. In-world, this is a ban the **Wizard** enforces (doc 08). Every recipe proposal is checked against this rule. **One careful exception** (Charles, 2026-10-17): **animal infusions** are tonics that change how a farm animal lives or what it gives, never what it is (doc 15 §7a).
 
 ## Data shape (v0.4, per doc 12)
 Decomposition is one built-in rule over four data tables, not a recipe per item (doc 12 §2). All are **public Content Patcher assets** under `CharlesDR.ValleyOpus/…`, edited with `EditData`, each with a `FormatVersion`. They are identical on every screen, so decomposition needs no multiplayer sync, and nothing here touches the save.
