@@ -1,6 +1,6 @@
 # 13 · Apparatus Catalog
 
-Status: **DRAFT v0.4** (2026-10-16) · Readiness: ready for architecture once Charles confirms the defaults marked *(default)* below; no `[blocks-arch]` item is left open
+Status: **DRAFT v0.5** (2026-10-17) · Readiness: ready for architecture once Charles confirms the defaults marked *(default)* below; no `[blocks-arch]` item is left open
 Depends on: 01, 02, 03, 03a, 04, 12 · Feeds: 05, 06, 07, 09, 14, 15, 16, 17, 18
 
 ## Purpose
@@ -58,38 +58,38 @@ These are what architecture needs; the rows in §3 are content.
 Tools (Assayer's Lens, Gloam Lantern, Reagent Satchel) are not apparatus; docs 07, 04 and 03b own them.
 
 ### 3 · The 1.0 machine list (14 BigCraftables)
-Kinds and caps follow doc 12 §5. Names are working names; unlock sources are proposals for doc 14.
+Kinds and caps follow doc 12 §5. Names are working names; unlock sources are set by doc 14 (§2, §4), summarized here.
 
 **Engineered ⚙︎ (Tobin)**
-| Apparatus | Always on | Enabled by a neighbour | Notes | Unlock (proposal) |
+| Apparatus | Always on | Enabled by a neighbour | Notes | Unlock (doc 14) |
 |---|---|---|---|---|
-| **Calcinator** | Calcination; **decomposition** | — | fast bulk decomposition; burns a fuel (coal or Bitumen) as an additional consumed item | first workshop room (Spring), Tobin's first visit |
-| **Process Vat** | Dissolution; Fermentation | **Distillation** with Vapor; **Separation** with Fulgur (electrolysis) | the shared engineered vessel; most of Tobin's line is Vats in a row | Tobin, Summer |
-| **Press** | Conjunction; Coagulation | — | alloys and moulds; Electrum, Pulvis Pyrius, Saxum | Tobin, Summer |
-| **Boiler** | Distillation of its own fuel recipe (Ignis + Aqua → Vapor) | — | power source: **Vapor** to up to N adjacent machines (placeholder 4) for a set time per charge | Tobin, Summer |
-| **Lightning Coil** | Conjunction of its own fuel recipe (Ignis + Aer → Fulgur) | storms charge it free, like a lightning rod | power source: **Fulgur**, stored as charges; also **overclocks**: recipes that list the *Fulgur* state may run faster with more residue (§1a), which replaces doc 04's Bellows | Tobin, after the first storm |
+| **Calcinator** | Calcination; **decomposition** | — | fast bulk decomposition; burns a fuel (coal or Bitumen) as an additional consumed item | Tobin, who arrives after the Furnace Room |
+| **Process Vat** | Dissolution; Fermentation | **Distillation** with Vapor; **Separation** with Fulgur (electrolysis) | the shared engineered vessel; most of Tobin's line is Vats in a row | Cistern |
+| **Press** | Conjunction; Coagulation | — | alloys and moulds; Electrum, Pulvis Pyrius, Saxum | Cistern |
+| **Boiler** | Distillation of its own fuel recipe (Ignis + Aqua → Vapor) | — | power source: **Vapor** to up to N adjacent machines (placeholder 4) for a set time per charge | Cistern |
+| **Lightning Coil** | Conjunction of its own fuel recipe (Ignis + Aer → Fulgur) | storms charge it free, like a lightning rod | power source: **Fulgur**, stored as charges; also **overclocks**: recipes that list the *Fulgur* state may run faster with more residue (§1a), which replaces doc 04's Bellows | Tobin's letter after the first storm once the Cistern is restored |
 
 **Minor arcane ✦ (Oriel)**
 | Apparatus | Always on | Enabled by a neighbour | Notes | Unlock (proposal) |
 |---|---|---|---|---|
-| **Athanor** | Calcination; **decomposition** | — | slow, better profile (top two Primes), little residue. Fed Ignis + Ignis it **kindles** (Flamma Viva) and stays lit for good, and is then an arcane **heat** source for up to 2 neighbours | first workshop room (Spring) |
-| **Alembic** | Dissolution | **Distillation** with heat (a kindled Athanor or a Boiler) | starter glassware | Oriel, intro |
-| **Retort** | Separation; Coagulation | — | starter glassware; the neighbour-sensitive one (most adjacency Bonus effects target it) | Oriel, intro |
-| **Hermetic Vessel** (Vas Hermeticum) | Conjunction; Fermentation | — | the sealed egg of the Work: unions in the light, putrefaction in darkness (darkness is the Required condition of every putrefaction recipe) | Oriel, first workshop room |
+| **Athanor** | Calcination; **decomposition** | — | slow, better profile (top two Primes), little residue. Fed Ignis + Ignis it **kindles** (Flamma Viva) and stays lit for good, and is then an arcane **heat** source for up to 2 neighbours | one given by Oriel at the intro; recipe from the Furnace Room |
+| **Alembic** | Dissolution | **Distillation** with heat (a kindled Athanor or a Boiler) | starter glassware | intro (recipe + one) |
+| **Retort** | Separation; Coagulation | — | starter glassware; the neighbour-sensitive one (most adjacency Bonus effects target it) | intro (recipe + one) |
+| **Hermetic Vessel** (Vas Hermeticum) | Conjunction; Fermentation | — | the sealed egg of the Work: unions in the light, putrefaction in darkness (darkness is the Required condition of every putrefaction recipe) | Furnace Room |
 | **Pelican** | Distillation | — | Bennet's advanced shape: runs `Advance` recipes (doc 12 §5) up to gold, a slow arcane route to quality | Bennet, after the bus repair |
 
 **Ritual ✦A / ✦C**
 | Apparatus | Offers | Notes | Unlock (proposal) |
 |---|---|---|---|
-| **Ritual Altar** | every operation, for recipes marked ✦A, plus Ritual | merges doc 04's Conjunction and Fixing Altars; catalysts are staged on it; Required planetary day, hour or moon conditions live on the recipes | Oriel, mid-game workshop room |
-| **Circle Sigil** *(Furniture, not a BigCraftable)* | turns the altar at its centre into a **Ritual Circle** (✦C): one batch of up to a stack, catalysts at the four points | a 5×5 walkable rug, so it costs floor but no machine slot | Oriel, late workshop room |
+| **Ritual Altar** | every operation, for recipes marked ✦A, plus Ritual | merges doc 04's Conjunction and Fixing Altars; catalysts are staged on it; Required planetary day, hour or moon conditions live on the recipes | Sanctum |
+| **Circle Sigil** *(Furniture, not a BigCraftable)* | turns the altar at its centre into a **Ritual Circle** (✦C): one batch of up to a stack, catalysts at the four points | a 5×5 walkable rug, so it costs floor but no machine slot | Crystal Vault |
 
 **Specialists and discovery**
 | Apparatus | Offers | Notes | Unlock (proposal) |
 |---|---|---|---|
-| **Experiment Table** | Combination (every recipe marked T) | two slots, three after a workshop unlock (a flag, not a new item); respects neighbours, so power and heat recipes can be discovered here (§5) | intro |
+| **Experiment Table** | Combination (every recipe marked T) | two slots, three after a workshop unlock (a flag, not a new item); respects neighbours, so power and heat recipes can be discovered here (§5) | intro; third slot from the Library |
 | **Quarry Crucible** | Conjunction for metals (S) | planetary metals on their weekday; Orichalcum with Fulgur | Agnes, after the Quarry bridge |
-| **Ley Tap** | none (world tap) | placeable only on a ley-node tile; yields that node's Primes daily | Hesper |
+| **Ley Tap** | none (world tap) | placeable only on a ley-node tile; yields that node's Primes daily | Hesper, 2 hearts |
 
 **Appended vanilla rules:** Furnace (Gold Bar + Argentum → Electrum; Metallum rules), Keg (Vitae + Ros Maialis → Aqua Vitae). They only accept discovered recipes; their first discovery comes from the Table or our apparatus.
 
@@ -209,13 +209,13 @@ Doc 06 metrics per apparatus: GPTD per tile including its share of power and che
 - `[blocks-content]` **Ectoplasm hand-made only** (03a v0.7): if it stays ✋, the Hermetic Vessel runs it only from a hand load; if not, it is ordinary minor-arcane output. Default: keep ✋. *Owner: Charles.*
 - `[blocks-content]` **Condensation rule 2 (no modifier blocks)** is provisional: revisit against draft process layouts. *Owner: doc 18 / Charles.*
 - `[blocks-content]` **Chaining visual aids** (§7) and the recipe-memory icon (§6a): exact art and controls. *Owner: doc 16.*
-- `[blocks-content]` **Starter set and unlock sources** in §3 are proposals. *Owner: doc 14.*
 - `[blocks-content]` **Lab footprint numbers** in §9 are estimates. *Owner: doc 18.*
 - *For other docs:* doc 04's proposal tables and doc 09's "native Automate support for engineered and minor arcane" are superseded by §3 and §6; both should point here when next touched.
 - `[2.0]` Display-only `Data/Machines` rules that mirror our recipes, so Lookup Anything can list them (Charles, 2026-10-16).
 - `[2.0]` A flower-fed **trickle** (a Prime from a planted bed, no input) would be a world tap placed in a garden; arcane logistics replaces chaining through the item-route interface; blended late-game machines are designed with the capstones.
 
 ## Change log
+- **v0.5 (2026-10-17):** the unlock column follows doc 14 (Charles approved): Oriel gives one Athanor at the intro, rooms supply the rest.
 - **v0.4 (2026-10-16):** Charles's extension: uncontrollable conditions only gate or bonus automatable recipes, never vary their output. Neighbour state comes from arrangement, not charge. The tension with gentle failure is logged as a follow-up.
 - **v0.3 (2026-10-16):** Charles's uniqueness rule (§1a): neighbour states are mutually exclusive and named by every recipe, there is no "any adjacency", and no two recipes share apparatus, state and inputs. Crossed power runs nothing, and overclock is a state, not a blanket bonus.
 - **v0.2 (2026-10-16):** Charles's review: rule 2 marked provisional; automated machines run their remembered or pinned recipe, never a "best" one (§6a); Lookup Anything display rules moved to 2.0; chaining visual-aid requirements (§7).
