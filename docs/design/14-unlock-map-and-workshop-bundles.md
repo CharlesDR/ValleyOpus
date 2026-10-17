@@ -77,25 +77,40 @@ Seven rooms, one for each operation of the Magnum Opus in doc 02's seasonal orde
 **Why the Athanor is a gift at the intro** *(Charles, 2026-10-17; doc 13 updated)*: decomposition is the first verb of the mod, and without a decomposer the Table has nothing to combine. Oriel's own old Athanor makes the first evening playable; its crafting recipe still comes with the Furnace Room, so a second one is the room's reward.
 
 ### 3 · Workshop bundles (proposal)
-Three bundles per room, CC-style (each slot an ingredient spec from doc 12 §3, so tags work: "any Spring forage", "any Tier 1 Ignis substance"; a bundle may need N of M slots). 24 bundles in all. Contents below are placeholders for doc 20 and the sweep; what is fixed here is the **currency rule** per tier:
+Three bundles per room, four in the Great Work Chamber, CC-style: each slot is an ingredient spec from doc 12 §3, so tags work ("any Spring forage", "any Tier 1 Ignis substance"), and a bundle may need N of M slots. That makes 25 bundles. Contents are placeholders for doc 20 and the sweep; what is fixed here is the **stretch rule** and the **currency rule** per tier.
 
-| Tier | Currency rule | Room | Bundles (themes, example slots) |
-|---|---|---|---|
-| I | **all vanilla** (P3) | Furnace Room | *Kindling* (Wood, Sap, Coal, Hardwood) · *Spring Gleanings* (any 4 Spring forage) · *Mine Salts* (Quartz, Earth Crystal, Copper Ore, Stone) |
-| II | vanilla, plus **one** bundle of Tier 1 substances | Cistern | *River and Lake* (4 freshwater fish) · *Fittings* (Copper Bar, Iron Bar, Refined Quartz) · *First Waters* (Ros Maialis, Limus, Sal Marinum) |
-| II | same | Library | *Bindings* (Cloth, Wool, Duck Feather) · *Curios* (any 3 artifacts) · *First Fires* (Calx, Magma, Pulvis) |
-| III | one-third mod products (Tier 1 and 2, automatable) | Sanctum | *Summer Light* (Sunflower, Starfruit, Solar Essence) · *Offerings* (Honey, any 3 flowers) · *Unions* (Vitrum, Vigor, any Tier 2 at silver) |
-| III | same | Undercroft | *Night Harvest* (Void Essence, Bat Wing, Purple Mushroom) · *Dark Things* (any 3 monster loot) · *Rot and Return* (Caput Mortuum ×20, Miasma, Terra Viva) |
-| IV | two-thirds mod products, some at a quality stage | Observatory | *Star Chart* (Luna, Sol, Spiritus) · *Clear Spirits* (Aqua Vitae, Vigor, Elixir at silver) · *Winter Sky* (any 4 Winter forage) |
-| IV | same | Crystal Vault | *Fixed Salts* (Sal Fixum, Mercurius Fixus, Gelum) · *Gems* (Diamond, Emerald, Vitreus ×5) · *Metals of the Week* (2 of 3: Argentum or Stannum or Plumbum, Gold Bar, Iron Bar) |
-| ★ | mostly mod products at gold | Great Work Chamber | *Nigredo* (dark twins) · *Albedo* (Tier 2 at silver ×3) · *Citrinitas* (Tier 2 at gold ×3) |
+**Stretch rule** (Charles, 2026-10-17): every bundle is completable with what is unlocked when its room opens (the critical-path rule below), but it should be a **challenge at that point**, pushing the player to use the tools they already have to their limit rather than wait for the next ones. Each room's three bundles therefore follow one pattern:
+1. **A tools bundle** that asks the newest apparatus for something at its edge: a discovery puzzle (an arrangement the player hasn't tried), volume that rewards a small automated line, or a quality stage just inside the apparatus's cap.
+2. **A progress bundle** tied to base-game progress expected at that point: the next band of the Mines, a skill level's tool, the season's harder crops or fish.
+3. **A gathering bundle** of the room's theme, the easiest of the three, so every room starts with a foothold.
+
+**What a diligent player likely has when each room opens** (the stretch is measured against this):
+| Room opens | Base game | Alchemy |
+|---|---|---|
+| Furnace Room (Spring, about day 7) | copper tools coming, Mines to about 20, Spring crops, no animals | Athanor, Alembic, Retort, Table (2), a handful of Tier 1 discoveries |
+| Tier II (late Spring) | copper tools, Mines to about 40, a coop or the first sprinklers | the full Spring kit (Hermetic Vessel, Calcinator, Lab T1), most non-Aether Tier 1 cells, residue piling up |
+| Tier III (Summer) | steel tools, Mines to about 80, bee houses, first kegs | Tobin's line (Vat, Press, Boiler, Coil) **or** Table (3), Hesper and the Ley Tap; first Tier 2 by hand; Aether still rare |
+| Tier IV (Fall) | Mines bottom or close, Quarry bridge likely, Skull Cavern not yet | the Ritual Altar **or** the Gloam Lantern; Lab T2; Aether as a daily trickle if the Sanctum is done |
+| Great Work Chamber (Winter) | Mines done, the desert open, Skull Cavern started | all seven rooms: altars, the Circle, the Pelican if the bus is repaired, quality stages up to iridium |
+
+| Tier | Currency | Room | Tools bundle (stretch) | Progress bundle | Gathering bundle |
+|---|---|---|---|---|---|
+| I | **all vanilla** (P3) | Furnace Room | *Kindling*: Hardwood ×10 (a copper axe), Coal ×5, Sap ×20 | *Mine Salts*: Copper Bar ×5, Frozen Tear, Earth Crystal, Quartz ×3 (Mines 40) | *Spring Gleanings*: any 4 different Spring forage |
+| II | vanilla plus **one** bundle of Tier 1 substances | Cistern | *First Waters*: Ros Maialis ×5 (needs heat: an Alembic beside a kindled Athanor, the first arrangement puzzle), Sal Marinum ×10, Limus ×10 | *Fittings*: Iron Bar ×5, Refined Quartz ×5, a Sprinkler (Farming 2) | *River and Lake*: any 4 different freshwater fish |
+| II | same | Library | *First Fires*: Calx ×10 at silver (an Athanor with a flower Bonus), Magma ×5, Vitrum (the first Tier 2) | *Curios*: any 3 different artifacts, one of them donated (Gunther) | *Bindings*: Fiber ×50, Clay ×10, any 2 different Spring flowers |
+| III | one-third mod products (Tier 1 and 2, automatable) | Sanctum | *Unions*: Vitrum ×20 (volume: a small automated line or a patient week), Vigor (Aether), any 3 different Tier 2 at silver | *Offerings*: Honey ×5 (bee houses), any 3 different flowers, a gold-quality crop | *Summer Light*: Sunflower, Melon, Solar Essence ×5 |
+| III | same | Undercroft | *Rot and Return*: Caput Mortuum ×50, Miasma ×10, Bitumen ×10 (volume with no Aether, since this room can open before the Sanctum's ley node) | *Night Harvest*: Purple Mushroom (Mines 81+), Void Essence ×5, Bat Wing ×10 | *Dark Things*: any 3 different monster loot |
+| IV | two-thirds mod products, some at a quality stage | Observatory | *Star Chart*: any 2 of Luna, Sol and Spiritus, ×3 each (an Aether supply: the Sanctum's ley node, or Void and Solar Essence decomposed) | *Clear Spirits*: Aqua Vitae ×5, Elixir at gold (arcane quality), any Wine or Mead | *Winter Sky*: any 4 different Winter forage |
+| IV | same | Crystal Vault | *Fixed Salts*: Sal Fixum ×10, Mercurius Fixus at silver, Gelum ×5 | *Gems*: Diamond, Emerald, Vitreus ×10 | *Metals of the Week*: 2 of 3: Argentum or Stannum or Plumbum, Gold Bar ×5, Iron Bar ×10 |
+| ★ | mostly mod products at a stage | Great Work Chamber | *Nigredo*: each dark twin ×3 · *Albedo*: any 5 different Tier 2 at silver · *Citrinitas*: any 3 different Tier 2 at gold · *Rubedo*: one Tier 2 at iridium (altar) | | |
 
 - **Rewards** per bundle are small and useful, like the CC's: a stack of a Prime-rich vanilla item, an extra apparatus, a fertilizer stack. The room's unlocks are the main reward.
 - **Never ✋.** Bundles ask only for automatable items, and accept automated output (doc 10 #2).
 - **Critical-path rule** (Charles, 2026-10-17): every slot must be makeable with what is unlocked **when its room opens**, never with something the room itself (or a later room) unlocks. Checked against §2 and §4, the v0.3 list broke this twice, now fixed: the Sanctum asked for Electrum, which needs Argentum from the Quarry Crucible (a bridge-gated specialist), and the Undercroft asked for Mors and Venenum, the dark twins the Witch teaches only once the Undercroft is restored. A bundle may ask for something whose source is a base-game gate only through an "N of M" choice with a vanilla fallback (Metals of the Week). The sweep re-runs this check whenever bundles or unlocks change (balance hooks).
 - **Never a single source.** A slot names a tag or "any of" wherever possible, so one bad harvest or one undiscovered route can't stall a room.
 - **Metals of the Week** depends on the Quarry bridge (Quarry Crucible). It gives a "2 of 3" choice with a vanilla fallback slot *(approved)*, so a player who hasn't repaired the bridge can still finish the Crystal Vault.
-- **The final room** asks for the colour stages themselves, a quiet rehearsal of the Great Work's four stages.
+- **The final room** asks for the four colour stages themselves, a rehearsal of the Great Work: the Rubedo bundle is the first time most players push a product to iridium.
+- **Stretch, not grind.** Counts stay in the range a diligent player reaches in about a week of the season's normal play (placeholders for the sweep). A slot that needs more than that is a design bug, not a challenge.
 
 ### 4 · NPC arrivals and their unlocks
 | NPC | Arrives | Then unlocks |
@@ -183,7 +198,7 @@ All assets are public Content Patcher data under `CharlesDR.ValleyOpus/…`, wit
 
 ## Content inventory
 - About **40 unlocks**: 14 apparatus and the Circle Sigil, 4 tools and upgrades, 1 capacity, 3 Lab tiers, 12 NPC arrivals, 6 hint channels, 4 ley-node reveals, the Great Work and a few features.
-- **8 workshop areas** (the Entrance Hall plus 7 rooms) and the Great Work Chamber; **24 bundles** (placeholder contents above).
+- **8 workshop areas** (the Entrance Hall plus 7 rooms) and the Great Work Chamber; **25 bundles** (placeholder contents above).
 - **9 restoration scenes** (one per room plus the hall and the finale) and about 12 arrival scenes or letters (doc 20 writes them).
 - Crafting recipes for every apparatus and tool, with costs: early apparatus cost only vanilla items (Clay, Refined Quartz, Copper Bar, Stone); later ones use Saxum, Vitrum and metals (doc 13).
 
@@ -209,6 +224,6 @@ Doc 06 reads the map as a **pace report**, and the sweep also runs the **bundle 
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
 
 ## Change log
-- **v0.3 (2026-10-17):** follows doc 15 v0.6 (PR #11): gated automated recipes wait idle; shops pay the shipping price, so NPCs open places to sell, not prices; Sorenson's contracts may reward an optional unlock (new `Contract` source); "Element" used for the umbrella term. Charles approved the contract-reward rule; "curio" defined; bundles checked against the critical path (Electrum and the dark twins replaced).
+- **v0.3 (2026-10-17):** follows doc 15 v0.6 (PR #11): gated automated recipes wait idle; shops pay the shipping price, so NPCs open places to sell, not prices; Sorenson's contracts may reward an optional unlock (new `Contract` source); "Element" used for the umbrella term. Charles approved the contract-reward rule; "curio" defined; bundles checked against the critical path (Electrum and the dark twins replaced); bundles rebuilt on Charles's stretch rule (a tools, a progress and a gathering bundle per room, against the player's likely state), and the Great Work Chamber gains a Rubedo bundle (25 in all).
 - **v0.2 (2026-10-17):** Charles approved every default; doc 02's jungle ley node, doc 13's unlock column and the README updated to match.
 - **v0.1 (2026-10-17):** first draft: unlock kinds, "unlocks open means, never recipes", seven workshop rooms in four tiers plus the Great Work Chamber, 24 bundles with a currency rule per tier, NPC arrivals, base-game gates on both routes, skill-level proposals, Aether as the pacing valve, the Year 1 reachability table and the data shape.
