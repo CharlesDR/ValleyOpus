@@ -22,3 +22,4 @@ An alchemy and automation expansion for Stardew Valley. These are **drafts** (20
 | [13 Apparatus Catalog](13-apparatus-catalog.md) | the 14 machines, behaviour classes, power and heat, the resolver behind `OutputMethod`, chaining, the four-Lab check |
 | [14 Unlock Map & Workshop Bundles](14-unlock-map-and-workshop-bundles.md) | what opens when: workshop rooms and bundles, NPC arrivals, base-game gates on both routes, Aether pacing |
 | [15 Products & Outside Uses](15-products-and-outside-uses.md) | product families, the effect system, fertilizers, combat items, prices and buyers, gifts, Smaltum |
+| [18 Laboratory & Familiars](18-laboratory-and-familiars.md) | the three Lab tiers, costs and bonuses, nested floorplans with hearths and dark alcoves, the space check, the four Familiars and their bonding |
