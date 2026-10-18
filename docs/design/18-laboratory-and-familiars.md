@@ -16,6 +16,7 @@ The Laboratory is alchemy's home building: a Shed-like building from Robin that 
 - **Late-game space** (Charles, doc 01): four T3 Labs, one per Familiar, hold a setup for every item with room to spare, and one Lab does not hold everything.
 - **Built-in features count** (Charles, 2026-10-18): hearth tiles give the *Heated* neighbour state and alcove tiles are always dark (§2a).
 - **Condensation rule 2 is final** (Charles, 2026-10-18): no modifier blocks; the room and range-2 conditions give those bonuses (§2b).
+- **Lab tier and Familiar are Bonus only** in ValleyOpus's own recipes (Charles, 2026-10-18; §1a): no product needs a Lab.
 - **Perk rules apply** (doc 05): Lab and Familiar bonuses are variables in doc 05's combine table; they add, then clamp, and never change which recipe a machine runs.
 
 ## Player-facing spec
@@ -44,7 +45,7 @@ Numbers are placeholders for the sweep (doc 06); the shape is the proposal.
 - **Mid-game target.** Doc 06 sets "Lab T2 + L5 profession" as roughly par with vanilla on alchemy's best routes, so the T2 numbers are the ones the sweep tunes first.
 
 ### 1a · What a Lab never does
-- **It never selects a recipe.** In ValleyOpus's own data, Lab tier and Familiar are **Bonus conditions only**: never Required, never a Variant *(default; Charles to confirm, see Open questions)*. That keeps doc 02's promise that machines work anywhere, and it means moving a line from a Shed into a Lab only ever speeds it up. Content packs may still use the Lab GSQs (§Tech hooks) as they like; the validator does not forbid it.
+- **It never selects a recipe.** In ValleyOpus's own data, Lab tier and Familiar are **Bonus conditions only**: never Required, never a Variant (Charles, 2026-10-18). That keeps doc 02's promise that machines work anywhere, and it means moving a line from a Shed into a Lab only ever speeds it up. Content packs may still use the Lab GSQs (§Tech hooks) as they like; the validator does not forbid it.
 - **It never changes a neighbour state when its tier or Familiar changes.** Upgrading, bonding or releasing never flips a machine from one recipe to another (doc 13 §1a). The only built-in features that touch neighbour states are fixed parts of the floorplan (§2), present from the moment the tier is built.
 
 ### 2 · Floorplans
@@ -214,7 +215,7 @@ Doc 06 reads: per-tier speed and quality chance against the phase targets (T2 + 
 ## Open questions
 - ~~`[blocks-arch]` **Built-in features as neighbours** (§2a)~~ **settled** (Charles, 2026-10-18): both count; neighbour tests read map tiles as well as objects.
 - ~~`[blocks-content]` **Condensation rule 2** (doc 13)~~ **settled** (Charles, 2026-10-18): "no modifier blocks" is final.
-- `[blocks-content]` **Lab tier in recipes** (§1a): Bonus only in our own data (default), or allow Lab- or Familiar-only named Variants. *Owner: Charles.*
+- ~~`[blocks-content]` **Lab tier in recipes** (§1a)~~ **settled** (Charles, 2026-10-18): Bonus only in our own data.
 - `[blocks-content]` **Familiar specialization by operation** (§3) rather than by output Prime. *Owner: Charles. Default: by operation.*
 - `[blocks-content]` Familiar meeting places, gift lists and heart events. *Owner: doc 20.*
 - `[blocks-content]` Every bonus, cost and Familiar number. *Owner: the sweep.*
