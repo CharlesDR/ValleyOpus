@@ -9,6 +9,7 @@ The first build a player can install and play: **Spring of Year 1, end to end** 
 ## Decisions locked
 - **S1 · Slice scope** (Charles, 2026-10-13): Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel.
 - **Chaining and Automate are in the slice** (Charles, 2026-10-18), so their technical risks surface in the first build (§1).
+- **Oriel, Tobin and the Curator are workshop-bound in the slice** (Charles, 2026-10-18): the cutscene, a few hint and reaction lines, time in the workshop; hearts, gift tastes and town schedules come later.
 - **Lab T1 is in the slice**, with its hearth and dark alcove (Charles, 2026-10-13; doc 18).
 - **Everything already locked in docs 12, 13, 14, 05, 07, 15 and 18 applies unchanged.** The slice adds no rule of its own; where it differs from 1.0, it ships *fewer rows*, never a different behaviour.
 - **i18n from the first build** (S4): every string is an i18n key, English only in the slice.
@@ -86,7 +87,7 @@ As in 1.0: an undefined Table pair gives residue, a little XP and a "tried" mark
 | **Skill** (doc 05) | SpaceCore skill, every XP source, the vanilla curve, levels 1–4 and their unlocks | professions (L5, L10) and their recipes; XP banks past L4 *(default)* |
 | **Workshop** (doc 14) | the Town warp behind the CC, the Entrance Hall, the Furnace Room (ruined and restored states), the bundle board with all seven rooms laid out | the other six rooms' bundles, scenes and map states |
 | **Bundles** | the Furnace Room's three: *Kindling*, *Mine Salts*, *Spring Gleanings* (all vanilla) | the other 22 |
-| **NPCs** | **Oriel**, **Tobin**, **the Curator** as workshop-bound characters *(default)*: the cutscene, short daily presence in the workshop, a few hint and reaction lines; no hearts, gifts or schedules outside the workshop | full villager treatment for all three; Finch, Ivo and every other arrival |
+| **NPCs** | **Oriel**, **Tobin**, **the Curator** as workshop-bound characters (Charles, 2026-10-18): the cutscene, short daily presence in the workshop, a few hint and reaction lines; no hearts, gifts or schedules outside the workshop | full villager treatment for all three; Finch, Ivo and every other arrival |
 | **Unlocks** (doc 14 §1) | the Intro and Furnace Room rows, with every grant; Finch's and Ivo's unlock flags are set but nothing appears yet | every later row |
 | **Laboratory** (doc 18) | T1 at Robin's: cost, interior map, hearth and alcove, Speed +10% and the 5% step chance | T2, T3, Familiars |
 | **Products** (doc 15) | energy (Sal Volatile, Vigor), **Undine's Gift** weak tier (Ros Maialis), fertilizers (Caput Mortuum, Terra Viva), the blue dye (Smaltum), derived prices and the Artisan category; every other slice item is sellable only | Second Wind, Cleanse, Glow and the rest of §3a; trinkets, rings, combat items, gifts, contracts, the décor set |
@@ -185,7 +186,7 @@ The slice is the first data the sweep sees. Placeholders it tunes or checks:
 
 ## Open questions
 - ~~`[blocks-content]` **Chaining and Automate in the slice.**~~ **In** (Charles, 2026-10-18).
-- `[blocks-content]` **Oriel, Tobin and the Curator:** workshop-bound with a few lines *(default)*, or full villagers (hearts, gift tastes, schedules) in the slice. *Owner: Charles.*
+- ~~`[blocks-content]` **Oriel, Tobin and the Curator.**~~ **Workshop-bound** (Charles, 2026-10-18).
 - `[blocks-content]` **Save carry-forward:** slice saves migrate into later builds *(default)*, or slice saves are disposable. *Owner: Charles.*
 - `[blocks-content]` **Level 5 in the slice:** XP banks past level 4 and applies later *(default)*, or professions ship in the slice. *Owner: Charles.*
 - `[blocks-content]` **Oriel's three starter quests** *(default)*: keep, or teach only through the cutscene and hints. *Owner: Charles / doc 16.*
