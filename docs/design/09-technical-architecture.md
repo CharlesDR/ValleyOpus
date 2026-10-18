@@ -1,6 +1,6 @@
 # 09 · Technical Architecture
 
-Status: **DRAFT v0.5** (2026-10-14). v0.5: integration and compatibility targets chosen from Charles's export of the 80 most-downloaded mods. v0.4: content-pack extensibility in 1.0, three more 1.0 tie-in mods, villager integration, the hand-made-only flag and compatibility-safe world changes (Charles's guiding answers, doc 01). v0.3: requirements from the Part 4 decisions. Platform facts: [research](../research/comparators-and-concepts.md).
+Status: **DRAFT v0.6** (2026-10-18). This doc stays a sketch until the architecture gate, when it is rewritten as the architecture plan; where it and docs 12–18 differ, those docs win. v0.6: cleanup sweep: machines, Automate and Lookup Anything follow doc 13 §6; Familiar state follows doc 18; NPC count follows doc 08a; Charles's item ID and sort-key rules added. v0.5: integration and compatibility targets chosen from Charles's export of the 80 most-downloaded mods. v0.4: content-pack extensibility in 1.0, three more 1.0 tie-in mods, villager integration, the hand-made-only flag and compatibility-safe world changes (Charles's guiding answers, doc 01). v0.3: requirements from the Part 4 decisions. Platform facts: [research](../research/comparators-and-concepts.md).
 
 ## Targets
 - Stardew Valley **1.6.15** (latest), SMAPI 4.x. Recipes and tag data are kept isolated so the **1.7** migration (data-model recipes, `Data/ContextTags`) is cheap.
@@ -15,6 +15,8 @@ Status: **DRAFT v0.5** (2026-10-14). v0.5: integration and compatibility targets
 
 Unique ID: **`CharlesDR.ValleyOpus`**. All item and machine IDs are prefixed `CharlesDR.ValleyOpus_`, so they never collide with other alchemy mods.
 
+**Room to grow in IDs and sort keys** (Charles, 2026-10-18): new items must fit into any category or subcategory without breaking a sequence or reassigning an existing ID. 1.6 item IDs are strings, so every ID is a **stable name** (`CharlesDR.ValleyOpus_<Name>`) that never changes (renumbering breaks saves) and carries **no order**. Any ordering number (category values, sort keys) lives separately and is **spaced with gaps at every level** (for example groups by 1000, tiers by 100, items by 10). The inventory sort order these keys serve is in doc 03b.
+
 ## Dependencies
 - Required: SMAPI, Content Patcher, SpaceCore.
 - Optional: Automate (expected and first-class, but never required: every feature works by hand plus directional chaining), Generic Mod Config Menu, Walk of Life (works without it), and the 1.0 tie-in mods above.
@@ -22,24 +24,24 @@ Unique ID: **`CharlesDR.ValleyOpus`**. All item and machine IDs are prefixed `Ch
 
 ## Key systems
 - **Decomposition:** a data table of tag → Prime weights, category defaults and overrides; √price yield scaling; computed at runtime in an `OutputMethod` so any modded item works.
-- **Machines:** `Data/Machines` with `RequiredTags`, GSQ `Condition`s (weekday, weather, season, location), and flavored outputs (`DROP_IN`, `{0}` names, `CopyPrice`). C# `OutputMethod`s for decomposition, adjacency and staged rituals.
-- **Adjacency:** a neighbour scan when input is loaded; a data-driven effect table.
-- **Laboratory effects:** a custom GSQ (e.g. `CharlesDR.ValleyOpus_IN_LAB <tier>`) used in machine rules, plus C# modifiers.
+- **Machines:** one `Data/Machines` output rule per apparatus whose `OutputMethod` calls **one C# resolver** fed by a staging tray (doc 13 §6); the resolver handles decomposition, recipes, neighbour states, conditions and staged rituals. Plain `Data/Machines` rules (with our `VALLEYOPUS_DISCOVERED` GSQ) are used only for the appended Furnace and Keg rules.
+- **Adjacency:** a neighbour scan when input is loaded, giving each apparatus one of its mutually exclusive neighbour states (doc 13 §1a); neighbour tests read map tiles (Lab hearths and alcoves) as well as objects (doc 18 §2a).
+- **Laboratory effects:** Lab tier and Familiar are Bonus effects applied by the resolver at load (doc 18 §1a); a custom GSQ (e.g. `CharlesDR.ValleyOpus_IN_LAB <tier>`) stays available to content packs.
 - **Codex:** host-owned save data; farmhand → host → broadcast sync via SMAPI multiplayer messages.
-- **Automate:** engineered and minor arcane apparatus use Automate's native `Data/Machines` support. Ritual altars and the Ritual Circle use our `IAutomationFactory`: `SetInput` stages materials until the recipe is complete, and `GetState` reports *processing* (not *empty*) while staged-but-untriggered, so Automate stops feeding it. Output is collected normally after the player triggers the ritual.
+- **Automate:** one `IAutomationFactory` claims **every** ValleyOpus apparatus, so Automate's generic `Data/Machines` handler never sees them (doc 13 §6, superseding the earlier native-support plan). `SetInput` loads only a discovered, non-hand-made recipe chosen by the machine's recipe memory (doc 13 §6a); `GetOutput` refuses locked outputs; `GetState` reports *processing* for staged-but-untriggered altars, so Automate stops feeding them. The appended Furnace and Keg rules stay on Automate's native support.
 - **Derelict workshop:** a new indoor location (CP map) with a warp **behind the Community Center** on the Town map. Risk: Town map edits by SVE and other town mods. Use a minimal tile patch and test against SVE early. It must work on both the CC and Joja routes.
 - **Reagent Satchel:** a one-slot container tool for ValleyOpus items (doc 03b); hand-loading pulls from it. Needs multiplayer-safe item handling.
 - **Ley nodes:** a data table of map + tile + Prime profile; the Ley Tap is a `Data/Machines` machine with a location-based GSQ.
 - **Grand rituals:** C# for the multi-tile circle detection, the conditions check and the batch animation.
-- **Familiars:** a per-Lab bond (T3 Labs only) stored in the building's `modData`; uniqueness enforced farm-wide.
-- **NPCs:** 10 new NPCs (plus 4 Familiars as non-villager spirits). Hesper's visiting schedule is 3–4 days a week with intra-day wandering. Every NPC needs SVE-aware schedules.
+- **Familiars:** bonds and hearts are farm-wide C# state in host save data, mirrored in the Lab building's `modData` for fast lookup; one per T3 Lab, uniqueness enforced farm-wide (doc 18).
+- **NPCs:** 11 new NPCs (doc 08a; plus 4 Familiars as non-villager spirits). Hesper's visiting schedule is 3–4 days a week with intra-day wandering. Every NPC needs SVE-aware schedules.
 - **Vanilla and SVE villagers (Charles):** every villager gets alchemy dialogue, gift tastes and, where it fits, events. All of it is Content Patcher data (`Characters/Dialogue/*`, `Data/NPCGiftTastes`, `Data/Events/*`) conditioned on our flags, appended rather than replacing, and fully i18n. The Witch's content switches to Alecto's NPC when that mod is installed.
 - **Hand-made-only recipes:** a flag in recipe data. Our Automate factory and the chaining logic refuse such inputs, so gifts, quest items and capstones are only ever made by the player (doc 04).
 - **World changes from capstones:** delivered as conditional Content Patcher patches on locations we own, decorations on tiles no common mod edits, and dialogue, event or appearance changes for NPCs. No edits to shared map areas such as Town. Each one is checked against SVE, RSV and East Scarp (doc 17).
 - **Hidden alchemy areas:** new small locations reached by a warp added on a minimal tile patch, chosen where the 1.0 tie-in mods don't edit.
 
 ## Requirements from the Part 4 decisions (doc 00, 2026-10-13)
-- **Uninstall safety (S3, confirmed):** vanilla object types only, no custom item subclasses; state lives in `modData` and mod save data; Satchel contents in a global inventory; a "prepare for removal" command.
+- **Uninstall safety (S3, confirmed):** vanilla object types only, no custom item subclasses; state lives in `modData` and mod save data; Satchel contents in a global inventory (doc 03b says the item's `modData`; doc 17 settles it, see doc 10); a "prepare for removal" command.
   - **Labs without the mod (Charles, 2026-10-13):** they simply **disappear**. Labs are ordinary `Data/Buildings` entries with no save-time swap, so their footprint and interior are free design choices. Anything inside a Lab is lost; "prepare for removal" offers to empty Labs into a chest first. **Test early:** confirm 1.6 drops a building with missing data cleanly on load (no crash, no stuck tiles).
   - **Workshop without the mod:** the entrance comes from our Content Patcher patch to the Town map, so it disappears with the mod and the spot does nothing. Items left inside the workshop are lost.
 - **i18n (S4):** every player-facing string goes through `i18n/` from the first build.
@@ -63,9 +65,9 @@ Chosen from Charles's export of the 80 most-downloaded Stardew mods on Nexus (20
 **Integrations (1.0):** we call or support their APIs.
 | Mod | What we do |
 |---|---|
-| **Automate** | first-class: native `Data/Machines` support plus our factory for altars, chaining priority and the discovery gate (above) |
+| **Automate** | first-class: our factory for every apparatus, with chaining priority, recipe memory and the discovery gate (above, doc 13 §6) |
 | **Generic Mod Config Menu** | our config UI (U3) |
-| **Lookup Anything** | show Prime profiles, apparatus recipes, conditions and codex state on hover; Lookup Anything is the wiki-in-game many players use |
+| **Lookup Anything** | it shows our machines' processing state with no extra work (doc 13 §6); in 1.0 the codex is the recipe browser, and display-only rules listing our recipes are `[2.0]` (Charles, 2026-10-16) |
 | **Better Crafting** | let its crafting menu draw ingredients from the Reagent Satchel, and make sure hand-made-only recipes appear correctly |
 
 **Compatibility to test (1.0):** no integration code planned, but each goes in the doc 17 test matrix.

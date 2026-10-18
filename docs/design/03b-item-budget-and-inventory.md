@@ -1,6 +1,6 @@
 # 03b · Item Budget & Inventory
 
-Status: **DRAFT v0.8** (2026-10-16). v0.8: the Satchel auto-collects reagents only, and the census adds doc 15's gift products and décor (doc 15). v0.7: **the item budget is loosened** (Charles, full review): restraint applies only to items that drop in adventure areas (the mines, Skull Cavern, the Volcano and similar). The ~40-item cap and the general forage ban are gone. v0.6: where late-area reagents appear (with or without SVE), no forage in hidden areas, and alchemical trinkets in the census (Charles). v0.5: rule 1 softened from "no" to "few" new monster drops and mine finds, matching Charles's edit to the inventory rule in doc 01; Radicula added to the census. v0.4: Gloam Lanterns added. This responds to Charles's warning: be careful creating new items, especially monster drops and mine/Skull Cavern finds, because inventory space is already tight.
+Status: **DRAFT v0.9** (2026-10-18). v0.9: Charles's inventory sort order (rule 5), moved here from the to-do list (cleanup sweep). v0.8: the Satchel auto-collects reagents only, and the census adds doc 15's gift products and décor (doc 15). v0.7: **the item budget is loosened** (Charles, full review): restraint applies only to items that drop in adventure areas (the mines, Skull Cavern, the Volcano and similar). The ~40-item cap and the general forage ban are gone. v0.6: where late-area reagents appear (with or without SVE), no forage in hidden areas, and alchemical trinkets in the census (Charles). v0.5: rule 1 softened from "no" to "few" new monster drops and mine finds, matching Charles's edit to the inventory rule in doc 01; Radicula added to the census. v0.4: Gloam Lanterns added. This responds to Charles's warning: be careful creating new items, especially monster drops and mine/Skull Cavern finds, because inventory space is already tight.
 
 ## Rules
 1. **Few new monster drops or mine/Skull Cavern finds** (Charles changed "no" to "few" in doc 01). The default is still **existing vanilla loot**; new drops and finds are **high-value specialty reagents found only in late-game areas** (Charles). **With SVE installed** they appear in SVE's late-game locations; **without SVE** they're grouped into fitting vanilla places instead (Skull Cavern, the Volcano, Ginger Island). Combat and mining reagents otherwise come from vanilla loot (Slime, Bug Meat, Bat Wing, Bone Fragment, Solar Essence, Void Essence, Cinder Shard, ores, geodes, minerals) through context-tag decomposition. Ivo's bounties count **kills** or ask for **vanilla** drops.
@@ -11,6 +11,8 @@ Status: **DRAFT v0.8** (2026-10-16). v0.8: the Satchel auto-collects reagents on
    - **Process state:** a stage of a batch, shown in the machine and codex but never an item (Cauda Pavonis, the colour stages).
    - **In-machine intermediate:** consumed inside a multi-stage apparatus without being bottled, unless the player chooses to bottle it (many Tier 1 substances).
 4. **No overall cap** (loosened 2026-10-14). Restraint applies only to rule 1's adventure-area drops. Every new item still needs a purpose, an outside-the-mod use (player-experience pillar 1) or a role as a required input, and must follow the mod's established naming and behaviour patterns (internal consistency, doc 01).
+
+5. **Inventory sort order** (Charles, 2026-10-18): vanilla Organize and the common sort mods put alchemy items in this order: **base Primes first, then substances by tier, then endgame Elements last**, alphabetical within each group. The sort keys behind it follow doc 09's ID rule (stable string IDs with no order; separately spaced sort keys). *Still to verify before tags, categories and IDs are assigned:* what those sorters actually key on (category number, display name, item ID or context tags). If they sort by display name, alphabetical-within-group works in every language but the grouping must come from category values or sort keys (doc 10).
 
 ## Carrying alchemy items: options
 | Option | How it works | Pros | Cons |
@@ -28,7 +30,7 @@ Inspired by Minecraft's bundle (hover to see contents), with a proper menu.
 - **Taking items out:** drag from the grid into the inventory or a chest. Clicking a machine while holding the satchel opens a **picker filtered to that machine's valid inputs**.
 - **Capacity:** a limited number of item types (≈24 to start), upgradeable through Tobin. It's a progression sink, not infinite storage.
 - **Not inside it:** shipping, gifting and selling all require taking the item out first, which keeps vanilla flows untouched.
-- **Multiplayer:** each player has their own satchel; contents are saved in the item's `modData`.
+- **Multiplayer:** each player has their own satchel; contents are saved in the item's `modData`. *(Docs 00 and 09 say a 1.6 global inventory keyed by the satchel's ID, for uninstall safety; doc 17 settles it, see doc 10.)*
 - **Automate:** never reads the satchel; chest-fed lines are unaffected.
 - **Compatibility to test:** Chests Anywhere, Lookup Anything, Convenient Inventory-style mods, and controller UI.
 

@@ -1,6 +1,6 @@
 # 02 · Progression & Unlocks
 
-Status: **DRAFT v0.6** (2026-10-17). v0.6: the full unlock map and the workshop rooms now live in doc 14; island ley nodes yield Primes. v0.5: Lab size and floorplan direction, Lab design moved before the architecture gate, late-game gates and escalating conditions approved (Charles). v0.4: pacing targets, no calendar gates, escalating conditions, the 1.0 "finished" state, Lab sizing for the late game, and late-game gates (Ginger Island, Volcano, Skull Cavern, Mr. Qi), all from Charles's guiding answers in doc 01. v0.3: Lab tier direction from Charles; the first playable slice is Spring Y1 (doc 00, S1). The seasonal roll-out is a proposal to react to.
+Status: **DRAFT v0.7** (2026-10-18). v0.7: the Laboratory section is cut to what this curve needs and points to doc 18, which owns the Lab (cleanup sweep). v0.6: the full unlock map and the workshop rooms now live in doc 14; island ley nodes yield Primes. v0.5: Lab size and floorplan direction, Lab design moved before the architecture gate, late-game gates and escalating conditions approved (Charles). v0.4: pacing targets, no calendar gates, escalating conditions, the 1.0 "finished" state, Lab sizing for the late game, and late-game gates (Ginger Island, Volcano, Skull Cavern, Mr. Qi), all from Charles's guiding answers in doc 01. v0.3: Lab tier direction from Charles; the first playable slice is Spring Y1 (doc 00, S1).
 
 ## Soft start (approved; details to be specified later)
 - **Trigger:** 2 days after the Community Center opens, the first time the player enters **Town** between **6:00am and 3:00pm**.
@@ -23,7 +23,9 @@ Status: **DRAFT v0.6** (2026-10-17). v0.6: the full unlock map and the workshop 
 | Player builds here? | no | yes |
 | Progress | restoration bundles (like the CC) | apparatus, adjacency layouts, Lab tiers |
 
-## Year 1 roll-out (proposal)
+## Year 1 roll-out
+The narrative shape of Year 1. The approved, authoritative versions are doc 14 §2 (rooms), §5 (base-game gates) and §8 (what's reachable each season); where this summary and doc 14 differ, doc 14 wins.
+
 Stages follow the seven operations of the Magnum Opus. Each row's unlocks come mostly from workshop bundles. **Seasons here are the expected pace for a diligent player, not gates:** every row unlocks through progress, so a player who restores the workshop faster moves faster.
 
 | Season | Opus stages | New concepts | Key unlocks |
@@ -48,15 +50,13 @@ Stages follow the seven operations of the Magnum Opus. Each row's unlocks come m
 - **After finishing, 1.0 still offers** codex depth tiers, NPC heart events, the secret recipe re-roll, rare-condition recipes (special weekday and weather combos, Hesper's celestial events) and integration content for installed mods. None of it is required, and none of it reopens the story.
 - **2.0 adds an endless long tail** with no defined endpoint (prestige perks, the brew map, new arcs).
 
-## Laboratory (approved: 3 tiers; design deferred)
-- A Shed-like building from Robin. Machines work anywhere; the Lab makes them better but isn't required. Players may build several.
-- **3 buildings** (Charles, 2026-10-13): **T1** matches the base Shed's footprint and interior, **T2** the Big Shed's, and **T3** is larger again and more expensive.
-- **Bonuses:** T1 and T2 give small but escalating bonuses to apparatus inside. That is a reason to pick a Lab over a Shed for alchemy, but not a replacement for Sheds otherwise. T3 gives a modestly stronger version of the same bonus.
-- **Familiars augment T3 only:** a T3 Lab can be augmented by assigning one of the four elemental Familiars. **One Familiar per Lab, and a Familiar can be assigned to only one Lab**, so at most **4 Labs per farm are augmented**; other Labs still work without one. Assigning a Familiar **is** the lateral specialization, so three buildings give the variety of more.
-- **Without the mod installed:** Labs simply disappear (doc 09). Because no conversion to Sheds is needed, Lab sizes are not tied to the Shed sizes; matching them stays a gameplay choice for the Lab pass.
-- **Late-game scale (Charles, doc 01):** a setup producing every endgame item spreads across **several T3 Labs**. **One T3 Lab of each specialization (one per Familiar, so four) must be more than enough room** for a production setup for every item in the mod. That's the sizing target for the T3 interior: generous, but not so large that one Lab holds everything.
-- **Size and floorplans (Charles, 2026-10-13):** **T3's interior is 50% larger than T2's.** Every tier gets **aesthetic touches** (alchemical decor that doesn't take up working floor) and a **unique floorplan**, not a plain rectangle: alcoves, pillars, a hearth wall, a raised dais and so on, shaped to **encourage creative automation setups** that fit the space (west-to-east chains, adjacency clusters, a ritual corner). T1 and T2 start from the Shed's and Big Shed's floor area, laid out in their own shapes, and are each 3 tiles wider for a central aisle (Charles, 2026-10-18; doc 18).
-- **When:** Laboratory design now happens **before the design docs are finalized** (Charles), as doc 18 on the critical path after the apparatus catalog (doc 00).
+## Laboratory (designed in doc 18)
+[Doc 18](18-laboratory-and-familiars.md) owns the Laboratory: tiers, costs, bonuses, floorplans and Familiars. The parts this curve depends on:
+- A Shed-like building from Robin with three tiers. **Machines work anywhere**; a Lab makes ValleyOpus apparatus inside it a little better but is never required, and Lab tier is a Bonus condition only, so no product needs a Lab (Charles, 2026-10-18). Players may build several.
+- **Pace:** T1 after the Furnace Room (Spring), T2 after the Sanctum (Fall), T3 and Familiar bonding after the Great Work Chamber (Year 2 at a diligent pace; doc 14).
+- **Familiars** specialize one T3 Lab each, so at most four Labs per farm are specialized; further Labs still work without one.
+- **Late-game scale (Charles, doc 01):** one T3 Lab per Familiar (four) is more than enough room for a setup producing every item, and one Lab does not hold everything (checked in doc 18 §2c).
+- **Without the mod installed:** Labs simply disappear (doc 00, S3).
 
 ## Capstones (approved direction; design deferred)
 Multiple capstones in different areas (farming, combat, exploration, economy, automation), each with tradeoffs. Candidate hosts: Ivo (combat), Hesper (exploration), Dr. Sorenson (economy), Tobin (automation), Oriel and Cyprian (the Lapis Philosophorum). Seeds are in doc 03a.

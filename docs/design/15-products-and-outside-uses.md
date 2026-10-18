@@ -1,6 +1,6 @@
 # 15 · Products & Outside Uses
 
-Status: **DRAFT v0.6** (2026-10-17) · Readiness: ready for architecture (Charles approved every default he owns on 2026-10-17; no `[blocks-arch]` item is open)
+Status: **DRAFT v0.7** (2026-10-18) · Readiness: ready for architecture (Charles approved every default he owns on 2026-10-17; no `[blocks-arch]` item is open)
 Depends on: 01, 03, 03a, 03b, 05, 06, 07, 12, 13 · Feeds: 03a, 03b, 05, 06, 14, 16, 17, 19, 20
 
 ## Purpose
@@ -294,16 +294,17 @@ New items this doc adds to the census: 3 gifts, 2–3 décor Furniture pieces, a
 Doc 06 metrics: value-add measured end to end from raw inputs; gold per tile-day for each production route to a product; quality-weighted at realistic quality. Placeholders to tune in the sweep: markup bands, `Flat`, Primes' prices, metal prices, residue price, every effect's size and duration, fertilizer numbers, Mors's radius, bomb yields, contract prices. The sweep also reports each consumable against its tier's benchmark (vanilla early and mid, SVE late), each combat item against the trinket benchmark, and the all-six-professions ceiling.
 
 ## Open questions
+Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` **Effect and infusion carriers:** which item carries each Prime's bonus, and the recipes for the new items (Midas Draught, Hourglass, the worn and placed items, Brimstone Egg, Golden Fleece). *Owner: doc 03a content pass / doc 14.*
 - `[blocks-content]` **Giant's Catalyst and Divining Rod** are approved but have no rows yet. *Owner: content pass.*
 - `[blocks-content]` **Effect count:** the 2–3 cap stays suspended until the scale is settled; the approved catalogue (§3a) is the 1.0 list for now. The registry handles any number, so this is content, not shape. *Owner: Charles.*
-- `[blocks-content]` **Prime and famous-substance bonuses** from the brainstorm wait in the ideas backlog for Charles's picks. *Owner: Charles.*
-- `[blocks-content]` **Satchel auto-collect** takes reagents only; products go to the main inventory (default). *Owner: doc 03b / doc 16.*
+- `[blocks-content]` **Satchel auto-collect** takes reagents only; products go to the main inventory *(default; already in doc 03b)*. *Owner: Charles.*
 - `[blocks-content]` **Gift tastes** for Rosa Vitrea, Mel Vitae and Phiala Stellarum (approved products). *Owner: doc 20.*
 - `[blocks-content]` **Capstone effects** (Perpetuum Mobile, Lapis Philosophorum and the other Tier 3 items). *Owner: doc 19.*
 - `[2.0]` Forging uses of Orichalcum, Electrum and Magma; custom-effect bombs; brew-map potions; Phlogiston in arcane logistics.
 
 ## Change log
+- **v0.7 (2026-10-18):** cleanup sweep: the "Prime and famous-substance bonuses wait for picks" question is closed, since Charles approved them with the catalogue (v0.5) and they are in §3a; Satchel auto-collect is listed with the defaults awaiting Charles.
 - **v0.6 (2026-10-17):** Charles's review: every default he owns approved; "Element" as the umbrella term; selling pays the shipping price everywhere, so per-vendor pricing is gone and Sorenson's contracts must pay more than shipping or give a non-monetary reward; price benchmarks follow the consumables pattern; more drinks than foods, with every food carrying a custom effect; the cost rule for alternate vanilla recipes; Tailwind loses its grass part and its strong tier adds horse speed (approved); Rebis Amulet's strong window moves to noon–3pm and dusk; Ouroboros wording; the infusion table fixed; the environment rule's wrong-day behaviour is waiting idle.
 - **v0.5 (2026-10-17):** Charles approved the thematic-effect catalogue (all but the long list): consumable effects, one bonus per Prime, worn and placed items, capstone tiers, and twelve animal infusions, which close the dead-end audit. Balance rules for indirect boosters and profession overlap added.
 - **v0.4 (2026-10-17):** animal infusions added as a sixth family, under Charles's five guard rails, which relax the plants-only rule; the control premium; planetary numbers updated to the ideas backlog.

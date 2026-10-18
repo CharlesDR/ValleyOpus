@@ -1,6 +1,6 @@
 # 00 · Design Critical Path to Architecture
 
-Status: **DRAFT v0.4** (2026-10-13). v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
+Status: **DRAFT v0.5** (2026-10-18). v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
 
 ## The governing rule
 Architecture needs the **shape** of every system, not its **content**. Shape means what kinds of things exist, the rules connecting them, and which of them need C# rather than Content Patcher data. Content means names, numbers, dialogue, art and exact recipes. Content can be filled in during execution as long as it is data-driven, so it never blocks architecture. Rework comes from changing shape late, so the path front-loads shape decisions and pushes content behind the gate.
@@ -47,36 +47,37 @@ Which doc 06 metrics apply, and which numbers are placeholders to tune in the sw
 Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 
 ## Change log
-- **v0.4 (2026-10-13):** doc 18 (Laboratory) moved before the gate, with Charles's size and floorplan direction.
-- **v0.3 (2026-10-13):** requirements from Charles's guiding answers in doc 01; S5 done; U2 widened to four tie-in mods.
+- **vX.Y (date):** what changed and why.
 ```
 
 ---
 
 ## Part 2 · Doc inventory and gaps
 
-| # | Doc | Today | What's missing before the gate |
+State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authoritative; open items for every doc are collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
+
+| # | Doc | State (2026-10-18) | What's still missing before the gate |
 |---|---|---|---|
-| 01 | Vision & Pillars | v0.5 plus Charles's guiding answers, solid | nothing; the reference all other docs check against |
-| 02 | Progression & Unlocks | v0.2 | the full unlock map moves to new doc 14; keep 02 as the narrative of the Year 1 curve |
-| 03 | Essences & Decomposition | v0.2 | the data shape of the tag → Prime table and the yield formula |
-| 03a | Substances Catalog | v0.2 | **which apparatus makes which substance**; Golem Clay dropped (R5) |
-| 03b | Items & Inventory | v0.7 (budget loosened) | the census refreshed once 13 and 15 exist |
-| 04 | Machines & Automation | v0.4 | philosophy is done; the per-machine catalog moves to new doc 13 |
-| 05 | Skill & Professions | v0.3 | XP curve shape and the perk-stacking rule as data |
-| 06 | Economy & Balance | v0.2 | policy is done; numbers come from the sweep (execution) |
-| 07 | Discovery & Codex | v0.4 | the recipe-resolution model (new doc 12) and the codex data shape |
+| 01 | Vision & Pillars | v0.7 | nothing; the reference all other docs check against |
+| 02 | Progression & Unlocks | v0.7, the narrative of the Year 1 curve | nothing; the unlock map is doc 14 and the Lab is doc 18 |
+| 03 | Essences & Decomposition | v0.4, data shape done | nothing |
+| 03a | Substances Catalog | v0.10, apparatus column done | nothing; recipe rows are content |
+| 03b | Items & Inventory | v0.9 | the census refreshed once doc 11's rows land |
+| 04 | Machines & Automation | v0.8, philosophy only | nothing; the machine list is doc 13 |
+| 05 | Skill & Professions | v0.7, ready | nothing |
+| 06 | Economy & Balance | v0.6 | policy is done; numbers come from the sweep (execution) |
+| 07 | Discovery & Codex | v0.9, ready | nothing |
 | 08 / 08a | Narrative & Cast | v0.4 / approved | only the hooks architecture needs (triggers, flags, locations); scripts come later |
-| 09 | Technical Architecture | v0.2 | stays a sketch; it becomes the architecture plan after the gate |
-| 10 | Roadmap | v0.4 | gains the slice definition (below) |
-| **11** | **First Playable Slice** *(new)* | — | what the first build contains end to end |
-| **12** | **Recipe & Process Model** *(new)* | — | the keystone: one model for decomposition, combination, machine recipes, quality stages, conditions and discovery state |
-| **13** | **Apparatus Catalog** *(new)* | — | one row per machine: kind, inputs, outputs, timing, footprint, automation class, adjacency, unlock source |
-| **14** | **Unlock Map & Workshop Bundles** *(new)* | — | every unlock → its source (bundle, NPC, skill level, base-game gate), with both CC and Joja routes |
-| **15** | **Products & Outside Uses** *(new)* | — | what leaves the mod: food, buffs, fertilizer, combat items, sellables, gifts (pillar: outputs must matter) |
-| **16** | **UX & Interface** *(new)* | — | codex, Satchel, Experiment Table, tooltips, celebrations, GMCM options, controller support |
-| **17** | **Multiplayer, Saves & Compatibility** *(new)* | — | ownership of every piece of state, save migration, uninstall behaviour, SVE and Automate test matrix |
-| **18** | **Laboratory & Familiars** *(moved before the gate)* | — | tiers, sizes (T3 = 1.5× T2), floorplans, aesthetic touches, bonuses and Familiars; checked against the four-T3-Lab target |
+| 09 | Technical Architecture | v0.6, a sketch | rewritten as the architecture plan at the gate |
+| 10 | Roadmap & Open Questions | v0.9 | nothing; it collects every open item |
+| **11** | **First Playable Slice** | v0.1 in review (PR #14) | Charles's review |
+| **12** | **Recipe & Process Model** | v0.4, ready | nothing |
+| **13** | **Apparatus Catalog** | v0.6, ready once its defaults are confirmed (doc 10) | Charles's confirmation of the defaults |
+| **14** | **Unlock Map & Workshop Bundles** | v0.4, ready | nothing |
+| **15** | **Products & Outside Uses** | v0.7, ready | nothing |
+| **16** | **UX & Interface** | not started | codex, Satchel, Experiment Table, tooltips, celebrations, GMCM options, controller support, chaining visual aids (doc 13 §7) |
+| **17** | **Multiplayer, Saves & Compatibility** | not started | ownership of every piece of state, save migration, uninstall behaviour, SVE and Automate test matrix |
+| **18** | **Laboratory & Familiars** | v0.2, ready | nothing |
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |
 | 20 | Content Script *(after gate)* | — | events, mail, dialogue, schedules |
 | 21 | Art & Audio List *(after gate)* | — | sprites, animations, sounds; placeholders until commissioned |
@@ -86,6 +87,8 @@ Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 ## Part 3 · The critical path
 
 Each phase only starts once the decisions it depends on are made. Inside a phase, docs can be written in parallel.
+
+**Progress (2026-10-18):** Phases 0–3 are done except doc 11, which is in review (PR #14). Phase 4 (docs 16 and 17) is next, then the gate. No code before the gate (Charles).
 
 ```
 Phase 0  Scope lock ─────────────► decisions S1–S5
@@ -160,12 +163,12 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 
 **Cons**
 - No custom C# item or object subclasses. Behaviour that would naturally live in a subclass (the Satchel, staged altars, the Ritual Circle) has to sit in C# handlers keyed off `modData`. That is somewhat more code and more care.
-- The **Satchel's contents** must live outside the item, for example in a 1.6 global inventory keyed by the satchel's ID. Without the mod, those contents are orphaned, so an uninstall needs a helper that empties satchels into a chest first.
-- **Custom buildings and locations** (the Laboratory, the workshop under the CC) need testing to confirm how 1.6 handles them once their data is gone. Mitigation is part of the same uninstall helper (for example, warning the player or converting Labs to Sheds).
+- The **Satchel's contents** must live outside the item, for example in a 1.6 global inventory keyed by the satchel's ID. Without the mod, those contents are orphaned, so an uninstall needs a helper that empties satchels into a chest first. *(Doc 03b v0.8 says the item's `modData` instead; doc 17 settles it, see doc 10.)*
+- **Custom buildings and locations** (the Laboratory, the workshop under the CC) need testing to confirm how 1.6 handles them once their data is gone. Mitigation is part of the same uninstall helper. *(Superseded for Labs by the S3 answer above: they simply disappear, with no conversion to Sheds.)*
 - Some rich features get harder: anything that stores complex state on a placed object has to serialize into `modData` strings.
 - Ongoing test cost: every release adds a "remove the mod and load the save" check.
 
-**Recommendation:** go with safe-to-uninstall, defined as "the save loads and plays, mod content is lost", plus a console command (and a GMCM button) that prepares a save for removal by emptying satchels, unstaging altars and converting Labs. That costs a little architecture now and is very hard to add later.
+**Recommendation:** go with safe-to-uninstall, defined as "the save loads and plays, mod content is lost", plus a console command (and a GMCM button) that prepares a save for removal by emptying satchels, unstaging altars and emptying Labs into chests (Labs then disappear; no conversion, per the S3 answer). That costs a little architecture now and is very hard to add later.
 
 ### Phase 1 · Recipe & Process Model
 - **R1 · Quality model:** ✅ colour stages are exactly vanilla quality.
@@ -180,7 +183,7 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 
 ### Phase 3 · Products, Unlocks, Skill, Slice
 - **P1 · Product families:** ✅ consumables, fertilizers, combat preparations, sellable compounds and gifts in 1.0; tool and weapon forging in 2.0.
-- **P2 · Buffs:** ✅ vanilla buff stats plus 2–3 custom effects. The effect system must be **extensible**, since more custom effects will come up during the build.
+- **P2 · Buffs:** ✅ vanilla buff stats plus 2–3 custom effects. The effect system must be **extensible**, since more custom effects will come up during the build. *Update (Charles, 2026-10-16): the 2–3 cap is suspended until the effect list's scale is settled; doc 15 §3a's approved catalogue is the 1.0 list.*
 - **P3 · Bundle currency:** ✅ both vanilla items and mod substances, with early bundles all vanilla.
 - **P4 · Skill curve:** ✅ vanilla speed. **Level 10 does not mean the player has discovered everything.** Recipe discovery, the codex, workshop restoration and NPC hearts are progression tracks separate from XP.
 
@@ -194,12 +197,15 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
   - **T1** matches the base Shed's footprint and interior, and **T2** matches the Big Shed's. **T3** is larger again, and more expensive.
   - T1 and T2 give **small but escalating bonuses** to apparatus inside. That is enough reason to choose a Lab over a Shed for alchemy, but not enough to replace Sheds for anything else.
   - T3 gives a modestly stronger version of the same bonus, **plus Familiar assignment**. Assigning a Familiar is the lateral specialization, so three buildings give the variety of more. One Familiar per Lab; a Familiar can be assigned to only one Lab.
-  - Detailed design is doc 18, in Phase 3.
-- Still deferred: capstones, the cutscene spec, the skill's display name, Lark's family, Hesper's outdoor spot, and all balance numbers.
+  - *Update (Charles, 2026-10-18):* T1 and T2 are each 3 tiles wider than the Shed and Big Shed, for a central aisle. Doc 18 (v0.2) owns the Lab design.
+- Still deferred: capstones, the cutscene spec, the skill's display name, Lark's family, Hesper's outdoor spot, and all balance numbers (listed in doc 10).
 
 ---
 
 
 ## Change log
+- **v0.5 (2026-10-18):** docs cleanup sweep: doc inventory shows each doc's current state; progress line on the path; S3's Lab conversion and Satchel storage notes marked as superseded or open; P2's suspended cap and the wider Lab tiers noted; doc 00's own v0.3 and v0.4 change-log entries moved out of the template example.
+- **v0.4 (2026-10-13):** doc 18 (Laboratory) moved before the gate, with Charles's size and floorplan direction.
+- **v0.3 (2026-10-13):** requirements from Charles's guiding answers in doc 01; S5 done; U2 widened to four tie-in mods.
 - **v0.2 (2026-10-13):** Charles's answers to Part 4 recorded, with the S3 pros and cons and the new Lab tier direction.
 - **v0.1 (2026-10-13):** first draft: template, doc inventory, critical path and decision list.

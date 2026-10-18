@@ -137,10 +137,13 @@ In 1.0 the six profession rows are fixed, but every perk value and XP amount is 
 Doc 06 reads: XP per day at a diligent pace against the L5 and L10 targets; gold per tile-day with and without each profession; the all-six case against the 150% ceiling; the hand-time share of a Mystic altar setup with and without the trigger radius. Placeholders: every XP amount, every perk value, the speed clamp.
 
 ## Open questions
+Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` **The six signature recipes** (§4): design one per profession in the content pass, each with inputs and adjacency that overlap no existing recipe. *Owner: content pass.*
+- `[blocks-content]` **Odd-level conveniences** (levels 1, 3, 7, 9; §3): picked in the content pass. *Owner: content pass.*
 - `[2.0]` Prestige / Ultimate Mastery perks; content-pack professions.
 
 ## Change log
+- **Cleanup sweep (2026-10-18):** the odd-level conveniences are listed as an open content item; doc 14 §6 now points here for the skill-level table.
 - **v0.7 (2026-10-18):** Charles's review. Perks may lower costs and grant recipes, but never change an existing setup. Automated output gives a quarter of the XP instead of none. Profession-granted recipes give no discovery XP. Engineer's residue perk is replaced by a fuel saving for machine-fed ⚙︎ apparatus (Charles's pick). The odd-level default is approved. Skill levels may also grant recipes, under a critical-path guard and an order-of-operations check (§3).
 - **v0.6 (2026-10-17):** retrofitted to the doc 00 template. XP source table with once-only keys and no XP from automation; pace targets (L5 early Summer, L10 late Winter); doc 14 §6 skill-level unlocks adopted; perks made independent of Automate and of item provenance; bridges made physical; the rule that perks never choose recipes; the perk-variable combine table; whose perks apply in multiplayer and under automation; data shape and tech hooks.
 - **v0.5 (2026-10-13):** pacing check and the combat cap on perks (Charles's guiding answers, doc 01).
