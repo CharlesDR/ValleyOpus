@@ -1,6 +1,6 @@
 # 11 · First Playable Slice
 
-Status: **DRAFT v0.1** (2026-10-18) · Readiness: not ready (Charles's review pending; no `[blocks-arch]` item open once the defaults marked *(default)* are confirmed)
+Status: **DRAFT v0.1** (2026-10-18) · Readiness: not ready (Charles's review pending; no `[blocks-arch]` item open)
 Depends on: 00, 02, 03, 03a, 03b, 05, 07, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 16, 17, execution planning
 
 ## Purpose
@@ -11,6 +11,7 @@ The first build a player can install and play: **Spring of Year 1, end to end** 
 - **Chaining and Automate are in the slice** (Charles, 2026-10-18), so their technical risks surface in the first build (§1).
 - **Oriel, Tobin and the Curator are workshop-bound in the slice** (Charles, 2026-10-18): the cutscene, a few hint and reaction lines, time in the workshop; hearts, gift tastes and town schedules come later.
 - **Slice saves carry forward** (Charles, 2026-10-18): save data has a schema version from day one and later builds migrate it (§5).
+- **Defaults confirmed** (Charles, 2026-10-18): XP banks past level 4 with professions later, Oriel's three starter quests, a slice for Charles and a few testers (not Nexus), darkness tested through a test pack.
 - **Lab T1 is in the slice**, with its hearth and dark alcove (Charles, 2026-10-13; doc 18).
 - **Everything already locked in docs 12, 13, 14, 05, 07, 15 and 18 applies unchanged.** The slice adds no rule of its own; where it differs from 1.0, it ships *fewer rows*, never a different behaviour.
 - **i18n from the first build** (S4): every string is an i18n key, English only in the slice.
@@ -35,7 +36,7 @@ The slice is "played through" when all of these are true. They are the slice's a
 ### The first evening (the most important ten minutes)
 - **The Encounter:** 2 days after the CC opens, the first Town entry between 6:00am and 3:00pm (doc 14). Oriel's short cutscene, the walk behind the CC, the Entrance Hall. The clock is frozen throughout; the scene is skippable after the first view.
 - **The gifts:** Satchel, Lens, Experiment Table, one Alembic, one Retort (each with its recipe) and one Athanor (gift only; its recipe comes with the Furnace Room).
-- **Oriel's three starter tasks** *(default)*, as vanilla quests in the quest log, so the first steps are always written down:
+- **Oriel's three starter tasks**, as vanilla quests in the quest log, so the first steps are always written down:
   1. *"Take it apart"*: decompose any item in the Athanor. Teaches the Satchel filling itself.
   2. *"Two become one"*: make any discovery at the Experiment Table. Teaches the anticipation beat and the first toast.
   3. *"The Furnace Room"*: restore the room's three bundles at the Curator's board. Points at the workshop's long game.
@@ -59,7 +60,7 @@ The slice is "played through" when all of these are true. They are the slice's a
 - **The bundle board** shows all seven rooms. Rooms past the Furnace Room show their name and a sealed door with the line *"Sealed. (Not in this build.)"*, so the board's final layout is tested now.
 - **The codex Unlocks page** lists Tier II unlocks as silhouettes with their sources, marked the same way.
 - **Aether** is rare, as doc 14 §7 intends: a Prismatic Shard, Solar or Void Essence, or a legendary fish can be decomposed for a few units, enough to discover an Aether pair or make one Vigor or Terra Viva, not to run them.
-- **Alchemy level 5:** the slice ships no professions *(default)*. XP keeps banking past level 4; a player who reaches the level 5 threshold sees "Your next level arrives in a later build", and the level and its choice apply when the build with professions is installed.
+- **Alchemy level 5:** the slice ships no professions. XP keeps banking past level 4; a player who reaches the level 5 threshold sees "Your next level arrives in a later build", and the level and its choice apply when the build with professions is installed.
 
 ### Failure states
 As in 1.0: an undefined Table pair gives residue, a little XP and a "tried" mark; apparatus refuse items that can't lead to a recipe they run; locked outputs sparkle and wait. Nothing in the slice can destroy an item without giving residue or XP.
@@ -85,7 +86,7 @@ As in 1.0: an undefined Table pair gives residue, a little XP and a "tried" mark
 | **Celebrations** | all three tiers, the anticipation beat, clock freeze, feedback styles (arcane and mechanical) | Cauda Pavonis (first stage advance needs an altar) |
 | **Satchel** (doc 03b) | full spec: auto-fill, tabs, picker, ≈24 types; the level 2 extra tab | Tobin's capacity upgrades |
 | **Assayer's Lens** | items, places, fixtures; the level 4 whole-chest assay | — |
-| **Skill** (doc 05) | SpaceCore skill, every XP source, the vanilla curve, levels 1–4 and their unlocks | professions (L5, L10) and their recipes; XP banks past L4 *(default)* |
+| **Skill** (doc 05) | SpaceCore skill, every XP source, the vanilla curve, levels 1–4 and their unlocks | professions (L5, L10) and their recipes; XP banks past L4 |
 | **Workshop** (doc 14) | the Town warp behind the CC, the Entrance Hall, the Furnace Room (ruined and restored states), the bundle board with all seven rooms laid out | the other six rooms' bundles, scenes and map states |
 | **Bundles** | the Furnace Room's three: *Kindling*, *Mine Salts*, *Spring Gleanings* (all vanilla) | the other 22 |
 | **NPCs** | **Oriel**, **Tobin**, **the Curator** as workshop-bound characters (Charles, 2026-10-18): the cutscene, short daily presence in the workshop, a few hint and reaction lines; no hearts, gifts or schedules outside the workshop | full villager treatment for all three; Finch, Ivo and every other arrival |
@@ -189,9 +190,9 @@ The slice is the first data the sweep sees. Placeholders it tunes or checks:
 - ~~`[blocks-content]` **Chaining and Automate in the slice.**~~ **In** (Charles, 2026-10-18).
 - ~~`[blocks-content]` **Oriel, Tobin and the Curator.**~~ **Workshop-bound** (Charles, 2026-10-18).
 - ~~`[blocks-content]` **Save carry-forward.**~~ **Carry forward** (Charles, 2026-10-18).
-- `[blocks-content]` **Level 5 in the slice:** XP banks past level 4 and applies later *(default)*, or professions ship in the slice. *Owner: Charles.*
-- `[blocks-content]` **Oriel's three starter quests** *(default)*: keep, or teach only through the cutscene and hints. *Owner: Charles / doc 16.*
-- `[blocks-content]` **Who plays the slice:** Charles only, a few invited testers, or a public preview. Default: Charles and a few testers, not on Nexus (doc 10's public beta is 1.0). *Owner: Charles.*
+- ~~`[blocks-content]` **Level 5 in the slice.**~~ XP banks past level 4 and applies later (default confirmed by Charles, 2026-10-18).
+- ~~`[blocks-content]` **Oriel's three starter quests.**~~ Kept (default confirmed by Charles, 2026-10-18).
+- ~~`[blocks-content]` **Who plays the slice.**~~ Charles and a few testers, not on Nexus (default confirmed by Charles, 2026-10-18).
 - `[blocks-content]` **Draft scripts** for the cutscene, restoration scene and starter quests. *Owner: doc 20 (slice drafts written during execution).*
 - *For other docs:* doc 13's content-inventory line ("plus the Hermetic Vessel if room allows") is settled here: all six are in. Doc 16 must spec the slice's menus first (Table, Satchel grid and picker, codex, bundle board, minimal chain overlay); doc 17 must spec the schema version and migration before the build starts.
 
