@@ -25,7 +25,7 @@ The Laboratory is alchemy's home building: a Shed-like building from Robin that 
 - **Inside.** Each tier is a room with character: shelves of glassware and star charts on the walls, a **hearth** set into the north wall, a shuttered **dark alcove**, and from T2 a raised **ritual dais** and stub pillars where Robin knocked through the old wall. The décor sits on wall tiles, so all floor is working floor.
 - **Seeing the bonus.** An apparatus inside a Lab shows a small Lab mark on hover with its tier bonus ("Laboratory II: 15% faster, 10% chance of a better stage"). The chain overlay (doc 13 §7) tints hearth-heated and dark tiles so the player spots them while planning.
 - **Upgrading keeps everything where it is.** Each tier's floorplan contains the previous one at the same coordinates (§2), so an upgrade never moves or drops a machine.
-- **Familiars.** Once the Great Work Chamber opens, Cyprian tells of four elemental spirits. Each waits somewhere fitting its element (§4). After meeting one, the player bonds it in a T3 Lab with a hand-made offering ritual at a Ritual Altar there. The Familiar then lives in that Lab, wanders between the machines it favours (which sparkle while boosted), and can be greeted daily and given small gifts. Its name and element show on the Lab's door when hovered from outside.
+- **Familiars.** Once the Great Work Chamber opens, Cyprian tells of four elemental spirits. Each waits somewhere fitting its element (§4). After meeting one, the spirit comes to the workshop under the CC and stays there until the player has a T3 Lab for it (Charles, 2026-10-18). The player then bonds it in a T3 Lab with a hand-made offering ritual at a Ritual Altar there. The Familiar then lives in that Lab, wanders between the machines it favours (which sparkle while boosted), and can be greeted daily and given small gifts. Its name and element show on the Lab's door when hovered from outside.
 - **Failure state:** none. A Lab never stops a machine working, a fifth T3 Lab simply has no Familiar, and releasing a Familiar (§4) is free and keeps its friendship.
 
 ## Rules & systems
@@ -164,14 +164,15 @@ So a Salamander Lab is the decomposition house, an Undine Lab the cellar of vats
 *Alternative considered:* boosting recipes whose output contains the Familiar's Prime. It reads closer to "machines of its element" (doc 08a), but most substances are pairs of Primes, so every Lab would boost a scattered quarter of everything and specialization would blur. By operation, a player can plan a Lab around one Familiar.
 
 ### 4 · Meeting, bonding and release
-1. **Opening.** The Great Work Chamber scene (doc 14 ★) has Cyprian name the four spirits. Each then appears at its place once the player has a T3 Lab *(proposal; places are content, doc 20)*:
+1. **Opening.** The Great Work Chamber scene (doc 14 ★) has Cyprian name the four spirits. Each then appears at its place *(proposal; places are content, doc 20)*. Meeting needs no Lab:
    - Salamander: the Mines' lava floors (80+) or the Volcano.
    - Undine: the Mountain lake on a rainy morning.
    - Sylph: the Mountain on a windy day (falling leaves or petals) or in a storm.
    - Gnome: the Quarry (after the bridge) or the Mines' 40–79 floors.
    All are recurring conditions, never calendar gates (doc 14). Meeting is a short event and a codex page.
+   **After meeting, the spirit waits in the workshop** (Charles, 2026-10-18): it moves into the Great Work Chamber under the CC and lingers there, unbonded, until a T3 Lab has room for it. The player can greet and gift it there, so bond hearts can grow before bonding. The workshop works on both routes (doc 14), so this does too.
 2. **Bonding** is a **hand-made ritual** (✋, doc 12 §9) on a Ritual Altar **inside the T3 Lab** that will host the spirit: **Anima** (the offering doc 03a already names) plus the element's pure pair: Ros Maialis (Undine), Saxum (Gnome), Pneuma (Sylph). Flamma Viva is power, never an item (doc 13 §5), so the Salamander's rite is Anima + Fire Quartz with a **Required Flamma Viva**: a kindled Athanor beside the altar. Triggering it binds the Familiar to that Lab. This is the "attuned in Mystic rituals" of doc 08a; any player can perform it, Mystic or not (perks never forbid).
-3. **Release** is free: interact with the shrine and confirm. The Familiar returns to its place and can be bonded again elsewhere with a new offering. Demolishing a Lab releases its Familiar. Moving a Lab with Robin keeps the bond.
+3. **Release** is free: interact with the shrine and confirm. The Familiar goes back to the workshop and can be bonded again elsewhere with a new offering. Demolishing a Lab releases its Familiar. Moving a Lab with Robin keeps the bond.
 4. **Bond hearts** (0–5): +1 point per daily greeting and per liked gift (Tier 1 substances of its element). Heart events at 1, 3 and 5 (doc 20); 5 hearts adds a shrine décor variant and a lore page. **Hearts give no power**: the full Lab bonus applies from the day of bonding, so no one grinds friendship for throughput.
 
 Because the bonding rite is hand-made only, an environmental Variant may decorate it (a stronger first-day glow on the element's planetary day), as doc 12 allows for hand-triggered recipes.
@@ -191,7 +192,7 @@ Because the bonding rite is hand-made only, an environmental Variant may decorat
 | `LabTiers` | CP data | `Tier`, `BuildingId`, `Perks` [same shape as doc 05: `Variable`, `Scope` (apparatus kinds), `Op`, `Value`], `FamiliarSlots` (0 or 1) |
 | Interior maps | CP map assets | one per tier, nested coordinates (§2); tile properties `ValleyOpus_Heat` (on hearth wall tiles, with the tiles they heat), `ValleyOpus_Dark` (alcove tiles), `ValleyOpus_Shrine` |
 | `Familiars` | CP data | `Id`, `Element` (Prime ID), `Operations` [operation IDs], `Perks` [doc 05 shape, scoped to those operations], `Signature` [doc 05 perk rows, e.g. `FuelCost`, `ChargeLength`, `CatalystSaveChance`, `IndoorStormCharge`], `MeetEvent`, `BondRecipe` (a ✋ recipe ID), `LikedGifts` [ingredient specs], `HeartEvents` [3 IDs], `NameKey`, `Sprite` |
-| Familiar state | C# state, host save data | per Familiar: `Met`, `BondedLab` (building GUID or null), `BondPoints`, `GreetedToday`; mirrored in the Lab building's `modData` (`FamiliarId`) for fast lookup |
+| Familiar state | C# state, host save data | per Familiar: `Met`, `BondedLab` (building GUID, or null while it waits in the workshop), `BondPoints`, `GreetedToday`; mirrored in the Lab building's `modData` (`FamiliarId`) for fast lookup |
 | New perk variables | CP data (doc 05 `PerkVariables`) | `CatalystSaveChance` (add, max 50%), `IndoorStormCharge` (bool, max) |
 
 ## Content inventory
@@ -224,5 +225,5 @@ Doc 06 reads: per-tier speed and quality chance against the phase targets (T2 + 
 - `[2.0]` Familiars from tie-in packs; Familiar heart perks; more Lab specializations (doc 10).
 
 ## Change log
-- **v0.2 (2026-10-18):** Charles answered all four cards: built-in hearths and alcoves count as neighbours, condensation rule 2 is final, Lab tier and Familiar are Bonus only, and Familiars specialize by operation. Readiness: ready for architecture.
+- **v0.2 (2026-10-18):** a met but unbonded Familiar waits in the workshop under the CC (Charles). Charles also answered all four cards: built-in hearths and alcoves count as neighbours, condensation rule 2 is final, Lab tier and Familiar are Bonus only, and Familiars specialize by operation. Readiness: ready for architecture.
 - **v0.1 (2026-10-18):** first draft: three tiers with costs and bonuses, nested floorplans with hearths, alcoves, a dais and a colonnade, draft process layouts that test doc 13's rule 2, the space check on real floor areas, four Familiars specialized by operation, meeting, bonding by hand-made rite, release and bond hearts, data shape and tech hooks.
