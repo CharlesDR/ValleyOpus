@@ -95,7 +95,7 @@ A player may own **all six** professions through Walk of Life resets. To keep th
 | Power reach | Mechanist | Boiler N, Coil charges (doc 13) | add |
 
 ### 6 · Whose perks apply
-- **Hand load:** the player who loaded the machine. **Chain or Automate load:** the machine's owner (the player who placed it).
+- **Hand load:** the player who loaded the machine. **Chain or Automate load:** the machine's owner, the player who placed it (Charles, 2026-10-18).
 - **Ritual trigger:** the triggering player's perks (catalyst saving, trigger radius, quality). Altars set off by the Mystic radius use that same player's perks.
 - XP goes to the acting player; a farmhand's action never credits the host. XP from automated output goes to the machine's owner while they are in the game, and is not banked while they are away.
 
@@ -128,7 +128,6 @@ In 1.0 the six profession rows are fixed, but every perk value and XP amount is 
 Doc 06 reads: XP per day at a diligent pace against the L5 and L10 targets; gold per tile-day with and without each profession; the all-six case against the 150% ceiling; the hand-time share of a Mystic altar setup with and without the trigger radius. Placeholders: every XP amount, every perk value, the speed clamp.
 
 ## Open questions
-- `[blocks-content]` **Whose perks and XP apply to chain or Automate loads** (§6). Default: the machine's owner, the player who placed it. *Owner: Charles.*
 - `[blocks-content]` **Signature recipes per profession** (§5 rule 2). Default: perks may grant recipes, but none is planned until the content pass. *Owner: Charles.*
 - `[2.0]` Prestige / Ultimate Mastery perks; content-pack professions.
 
