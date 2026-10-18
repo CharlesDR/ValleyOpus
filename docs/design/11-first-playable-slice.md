@@ -10,6 +10,7 @@ The first build a player can install and play: **Spring of Year 1, end to end** 
 - **S1 · Slice scope** (Charles, 2026-10-13): Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel.
 - **Chaining and Automate are in the slice** (Charles, 2026-10-18), so their technical risks surface in the first build (§1).
 - **Oriel, Tobin and the Curator are workshop-bound in the slice** (Charles, 2026-10-18): the cutscene, a few hint and reaction lines, time in the workshop; hearts, gift tastes and town schedules come later.
+- **Slice saves carry forward** (Charles, 2026-10-18): save data has a schema version from day one and later builds migrate it (§5).
 - **Lab T1 is in the slice**, with its hearth and dark alcove (Charles, 2026-10-13; doc 18).
 - **Everything already locked in docs 12, 13, 14, 05, 07, 15 and 18 applies unchanged.** The slice adds no rule of its own; where it differs from 1.0, it ships *fewer rows*, never a different behaviour.
 - **i18n from the first build** (S4): every string is an i18n key, English only in the slice.
@@ -123,7 +124,7 @@ No slice recipe needs darkness: putrefaction makes only the dark twins, which ar
 - **SVE:** not integrated in the slice, but the build is smoke-tested with SVE installed: the Town warp behind the CC must stay reachable and must not overlap SVE's Town edits (doc 17 test item, brought forward).
 - **Controller:** every slice menu (Table, Satchel grid, picker, codex, bundle board) is playable with a gamepad (U1).
 - **Uninstall (S3):** the slice test plan removes the mod from a played save and loads it: the Lab disappears cleanly, the workshop entrance does nothing, apparatus become inert items, no crash. "Prepare for removal" empties Satchels and staging trays into a chest and offers to empty Labs first. This is doc 09's "test early" item for building removal.
-- **Save carry-forward** *(default)*: slice save data carries a schema version from day one, and later builds migrate it, so a slice save continues into the next build. That tests migration early (doc 17 owns the mechanism).
+- **Save carry-forward** (Charles, 2026-10-18): slice save data carries a schema version from day one, and later builds migrate it, so a slice save continues into the next build. That tests migration early (doc 17 owns the mechanism).
 - **Festival days:** a soft start, restoration scene or Tobin's arrival due on a festival moves to the next day (doc 14 §9).
 
 ## Data shape
@@ -187,7 +188,7 @@ The slice is the first data the sweep sees. Placeholders it tunes or checks:
 ## Open questions
 - ~~`[blocks-content]` **Chaining and Automate in the slice.**~~ **In** (Charles, 2026-10-18).
 - ~~`[blocks-content]` **Oriel, Tobin and the Curator.**~~ **Workshop-bound** (Charles, 2026-10-18).
-- `[blocks-content]` **Save carry-forward:** slice saves migrate into later builds *(default)*, or slice saves are disposable. *Owner: Charles.*
+- ~~`[blocks-content]` **Save carry-forward.**~~ **Carry forward** (Charles, 2026-10-18).
 - `[blocks-content]` **Level 5 in the slice:** XP banks past level 4 and applies later *(default)*, or professions ship in the slice. *Owner: Charles.*
 - `[blocks-content]` **Oriel's three starter quests** *(default)*: keep, or teach only through the cutscene and hints. *Owner: Charles / doc 16.*
 - `[blocks-content]` **Who plays the slice:** Charles only, a few invited testers, or a public preview. Default: Charles and a few testers, not on Nexus (doc 10's public beta is 1.0). *Owner: Charles.*
