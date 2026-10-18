@@ -8,6 +8,7 @@ The first build a player can install and play: **Spring of Year 1, end to end** 
 
 ## Decisions locked
 - **S1 · Slice scope** (Charles, 2026-10-13): Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel.
+- **Chaining and Automate are in the slice** (Charles, 2026-10-18), so their technical risks surface in the first build (§1).
 - **Lab T1 is in the slice**, with its hearth and dark alcove (Charles, 2026-10-13; doc 18).
 - **Everything already locked in docs 12, 13, 14, 05, 07, 15 and 18 applies unchanged.** The slice adds no rule of its own; where it differs from 1.0, it ships *fewer rows*, never a different behaviour.
 - **i18n from the first build** (S4): every string is an i18n key, English only in the slice.
@@ -75,8 +76,8 @@ As in 1.0: an undefined Table pair gives residue, a little XP and a "tried" mark
 | **Apparatus** | **6**: Experiment Table; Athanor, Alembic, Retort, Hermetic Vessel (minor arcane ✦); Calcinator (engineered ⚙︎) | Process Vat, Press, Boiler, Lightning Coil, Pelican, Ritual Altar, Circle Sigil, Quarry Crucible, Ley Tap; the Furnace and Keg appended rules |
 | **Neighbour states** | *Cold* / *Heated* on the Alembic (heat from a kindled Athanor or a Lab hearth) | *Vapor*, *Fulgur*, *Crossed* (no sources yet) |
 | **Conditions** | Required power (Flamma Viva, for kindling and heat), one Bonus adjacency (flowers by tag within range 2, on the Athanor, Retort and Hermetic Vessel), the Lab-tier Bonus, the darkness GSQ (built and tested, see §3) | weekday, weather, moon, ley node, catalysts, Shades |
-| **Directional chaining** | **in** *(default)*: West in, East out, South chest second, behind the item-route interface; a minimal chain overlay | the full overlay and teaching visuals (doc 16), Tobin's chaining lesson (Cistern) |
-| **Automate** | **in** *(default)*: our `IAutomationFactory` for every apparatus, recipe memory, refusal of locked outputs | — |
+| **Directional chaining** | **in** (Charles, 2026-10-18): West in, East out, South chest second, behind the item-route interface; a minimal chain overlay | the full overlay and teaching visuals (doc 16), Tobin's chaining lesson (Cistern) |
+| **Automate** | **in** (Charles, 2026-10-18): our `IAutomationFactory` for every apparatus, recipe memory, refusal of locked outputs | — |
 | **Codex** | pages: Primes, Tier 1 grid, Tier 2, Apparatus, Unlocks; silhouettes, "tried" marks, warm hints, lore lines at 1/10/50 | Dark twins, Metals, Great Work and Places pages (they exist but stay empty) |
 | **Hints** | layer 1 (flavour, acceptance), layer 2 (grid warmth), layer 4 (Oriel, Tobin and the Curator, a few lines each), layer 5 (a handful of Cyprian journal pages in the Entrance Hall) | residue divination (Library), Lunar Dream, Hesper, Finch, Lark |
 | **Celebrations** | all three tiers, the anticipation beat, clock freeze, feedback styles (arcane and mechanical) | Cauda Pavonis (first stage advance needs an altar) |
@@ -183,7 +184,7 @@ The slice is the first data the sweep sees. Placeholders it tunes or checks:
 - **Lab T1 cost** reachable in Spring, including the 10 Saxum.
 
 ## Open questions
-- `[blocks-content]` **Chaining and Automate in the slice:** in *(default)*, so their technical risks surface early; the alternative is a Spring build with hand loading only and both arriving with the Summer build. *Owner: Charles.*
+- ~~`[blocks-content]` **Chaining and Automate in the slice.**~~ **In** (Charles, 2026-10-18).
 - `[blocks-content]` **Oriel, Tobin and the Curator:** workshop-bound with a few lines *(default)*, or full villagers (hearts, gift tastes, schedules) in the slice. *Owner: Charles.*
 - `[blocks-content]` **Save carry-forward:** slice saves migrate into later builds *(default)*, or slice saves are disposable. *Owner: Charles.*
 - `[blocks-content]` **Level 5 in the slice:** XP banks past level 4 and applies later *(default)*, or professions ship in the slice. *Owner: Charles.*
