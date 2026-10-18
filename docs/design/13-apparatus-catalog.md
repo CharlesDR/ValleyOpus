@@ -209,7 +209,7 @@ Doc 06 metrics per apparatus: GPTD per tile including its share of power and che
 - `[blocks-content]` **Ectoplasm hand-made only** (03a v0.7): if it stays ✋, the Hermetic Vessel runs it only from a hand load; if not, it is ordinary minor-arcane output. Default: keep ✋. *Owner: Charles.*
 - ~~`[blocks-content]` **Condensation rule 2 (no modifier blocks)**~~ **final** (Charles, 2026-10-18, after doc 18 §2b's draft layouts).
 - `[blocks-content]` **Chaining visual aids** (§7) and the recipe-memory icon (§6a): exact art and controls. *Owner: doc 16.*
-- ~~`[blocks-content]` **Lab footprint numbers** in §9 are estimates.~~ **Re-checked** in doc 18 §2c on real floorplans (T3 ≈280 usable tiles): one Lab can't hold everything, two can, four are more than enough.
+- ~~`[blocks-content]` **Lab footprint numbers** in §9 are estimates.~~ **Re-checked** in doc 18 §2c on real floorplans (T3 ≈330 usable tiles): one Lab can't hold everything, two can, four are more than enough.
 - *For other docs:* doc 04's proposal tables and doc 09's "native Automate support for engineered and minor arcane" are superseded by §3 and §6; both should point here when next touched.
 - `[2.0]` Display-only `Data/Machines` rules that mirror our recipes, so Lookup Anything can list them (Charles, 2026-10-16).
 - `[2.0]` A flower-fed **trickle** (a Prime from a planted bed, no input) would be a world tap placed in a garden; arcane logistics replaces chaining through the item-route interface; blended late-game machines are designed with the capstones.

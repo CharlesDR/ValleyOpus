@@ -7,7 +7,8 @@ Depends on: 01, 02, 03a, 05, 06, 08a, 12, 13, 14, 15 · Feeds: 06, 09, 11, 16, 1
 The Laboratory is alchemy's home building: a Shed-like building from Robin that makes ValleyOpus apparatus inside it a little better, gives each tier a floorplan worth designing a layout for, and at Tier 3 takes a bonded **Familiar**, an elemental spirit that turns the Lab into a specialist room. It serves pillar 1 (layouts that reward thought: West-to-East chains, power clusters, a ritual corner), the "feel clever" player-experience pillar (each floorplan is a small puzzle, not an empty rectangle), and doc 01's late-game scale target (one T3 Lab per Familiar is more than enough room for everything). Labs are never required: every apparatus works anywhere (doc 02).
 
 ## Decisions locked
-- **Three tiers** (Charles, 2026-10-13): T1 has the Shed's floor area, T2 the Big Shed's, and **T3 is 50% larger than T2** and more expensive.
+- **Three tiers** (Charles, 2026-10-13): T1 starts from the Shed's floor, T2 from the Big Shed's, and **T3 is 50% larger than T2** and more expensive.
+- **Three tiles wider for a central aisle** (Charles, 2026-10-18): T1 and T2 are each 3 tiles wider than the Shed and Big Shed, and T3 keeps T2's width, so every tier has a central aisle from front to back.
 - **Small, escalating bonuses** (Charles, 2026-10-13): T1 and T2 give small bonuses to apparatus inside, enough to choose a Lab over a Shed for alchemy but not to replace Sheds for anything else; T3 gives a modestly stronger version of the same bonus.
 - **Familiars at T3 only; one per Lab; a Familiar bonds to one Lab** (Charles, 2026-10-13), so at most four Labs per farm are specialized and further Labs still work without one. Assigning a Familiar **is** the lateral specialization.
 - **Unique floorplans and aesthetic touches** (Charles, 2026-10-13): every tier has its own shape (alcoves, pillars, a hearth wall, a dais) that encourages creative automation, and décor that takes no working floor.
@@ -35,9 +36,9 @@ Numbers are placeholders for the sweep (doc 06); the shape is the proposal.
 
 | Tier | Floor (§2) | Source (doc 14) | Robin's cost (placeholder) | Build | Bonus to ValleyOpus apparatus inside |
 |---|---|---|---|---|---|
-| **T1 · Still Room** | 11×9 + 2×2 alcove (≈103 tiles) | Furnace Room (Spring) | 17,500g, 300 Wood, 20 Refined Quartz, 5 Copper Bar | 2 days, new building | Speed +10%; 5% chance of +1 quality step |
-| **T2 · Long Bench** | 17×12 + alcove (≈206) | Sanctum (Fall) | 25,000g, 550 Wood, 300 Stone, 20 Vitrum, 10 Saxum | 2 days, upgrade of T1 | Speed +15%; 10% chance of +1 step |
-| **T3 · Great Hall** | 17×18 + two alcoves (≈310) | Great Work Chamber (Year 2) | 60,000g, 200 Hardwood, 30 Saxum, 10 Iridium Bar, 1 Quinta Essentia | 3 days, upgrade of T2 | Speed +20%; 15% chance of +1 step; **one Familiar** (§3) |
+| **T1 · Still Room** | 14×9 + 2×2 alcove (≈130 tiles) | Furnace Room (Spring) | 17,500g, 300 Wood, 20 Refined Quartz, 5 Copper Bar | 2 days, new building | Speed +10%; 5% chance of +1 quality step |
+| **T2 · Long Bench** | 20×12 + alcove (≈242) | Sanctum (Fall) | 25,000g, 550 Wood, 300 Stone, 20 Vitrum, 10 Saxum | 2 days, upgrade of T1 | Speed +15%; 10% chance of +1 step |
+| **T3 · Great Hall** | 20×18 + two alcoves (≈364) | Great Work Chamber (Year 2) | 60,000g, 200 Hardwood, 30 Saxum, 10 Iridium Bar, 1 Quinta Essentia | 3 days, upgrade of T2 | Speed +20%; 15% chance of +1 step; **one Familiar** (§3) |
 
 - **Costs.** T1 is a Shed plus a little glass and copper, all vanilla, so it is buildable in Spring. T2 asks for Tier 1 and 2 Elements the player makes by Fall (Saxum is already "construction material for Lab upgrades" in doc 03a). T3 asks for a Quinta Essentia, so it follows the Aether supply.
 - **What the bonus touches.** Only ValleyOpus apparatus of the Engineered, Minor arcane and ritual kinds (doc 13 §3). Specialists (Experiment Table, Quarry Crucible, Ley Tap) take no Lab bonus, as they take no perks (doc 05). Vanilla machines inside a Lab (kegs, jars) get nothing, which is what keeps a Lab from replacing a Shed.
@@ -52,67 +53,67 @@ Numbers are placeholders for the sweep (doc 06); the shape is the proposal.
 ### 2 · Floorplans
 Each tier contains the previous tier's floor **at the same coordinates**: T2 knocks through the east and south walls of T1, and T3 adds a hall to the south of T2. Nothing that exists in a lower tier ever becomes a wall, so upgrading in place is always safe.
 
-Legend: `.` floor · `#` wall · `+` door · `H` hearth in the wall (the floor tile beside it is **heated**) · `D` shuttered alcove (always **dark**) · `O` stub pillar (blocks a tile) · `~` raised ritual dais (ordinary floor; exactly fits a 5×5 Circle Sigil) · `S` Familiar's shrine niche (in the wall, no floor)
+Legend: `.` floor · `#` wall · `+` door · `H` hearth in the wall (the floor tile beside it is **heated**) · `D` shuttered alcove (always **dark**) · `O` stub pillar (blocks a tile) · `:` central aisle (ordinary floor, kept clear in the default layouts) · `~` raised ritual dais (ordinary floor; exactly fits a 5×5 Circle Sigil) · `S` Familiar's shrine niche (in the wall, no floor)
 
-**T1 · Still Room** (11×9 and a 2×2 alcove)
+**T1 · Still Room** (14×9 and a 2×2 alcove)
 ```
-  ######HH#####
-  #...........#
-  #...........#
-  #...........#
-  #...........#
-###...........#
-#DD...........#
-#DD...........#
-###...........#
-  #...........#
-  ######+######
+  ######HH########
+  #.......:......#
+  #.......:......#
+  #.......:......#
+  #.......:......#
+###.......:......#
+#DD.......:......#
+#DD.......:......#
+###.......:......#
+  #.......:......#
+  ########+#######
 ```
-A plain room on purpose, for Spring: the hearth lets two Alembics distill without a kindled Athanor or Boiler, and the alcove is the farm's first guaranteed place to putrefy in darkness. It takes **two Tobin lines of 9** (rows 1–3 and 5–7) with walkways in rows 0, 4 and 8 and an aisle down each side, so the hearth at the back stays reachable while both lines run (§2d).
+A plain room on purpose, for Spring: the hearth lets two Alembics distill without a kindled Athanor or Boiler, and the alcove is the farm's first guaranteed place to putrefy in darkness. It takes **two Tobin lines**, each split by the central aisle into halves of 6 and 5 (rows 1–3 and 5–7), with walkways in rows 0, 4 and 8 and an aisle down each side, so the hearth at the back stays reachable while both lines run (§2d). The door opens onto the central aisle.
 
-**T2 · Long Bench** (17×12)
+**T2 · Long Bench** (20×12)
 ```
-  ######HH###########
-  #............~~~~~#
-  #...........O~~~~~#
-  #............~~~~~#
-  #...........O~~~~~#
-###............~~~~~#
-#DD.................#
-#DD.................#
-###.................#
-  #.................#
-  #.................#
-  #.................#
-  #.................#
-  #################+#
+  ######HH##############
+  #.......:.......~~~~~#
+  #.......:......O~~~~~#
+  #.......:.......~~~~~#
+  #.......:......O~~~~~#
+###.......:.......~~~~~#
+#DD.......:............#
+#DD.......:............#
+###.......:............#
+  #.......:............#
+  #.......:............#
+  #.......:............#
+  #.......:............#
+  ########+#############
 ```
-The knocked-through rows give the "long bench": **two Tobin lines of 15** (rows 5–7 and 9–11) with a one-tile aisle at each end, plus the T1 line of 9 in rows 1–3 beside the dais. The door moves to the east aisle so no line ever blocks it. The two stub pillars mark the old east wall between the hearth bay and the **ritual dais** in the north-east corner, a ritual corner ready for the Circle Sigil (Crystal Vault, Winter); walkway rows 0, 4 and 8 stay open past them.
+The knocked-through rows give the "long bench": **two Tobin lines** (rows 5–7 and 9–11), each a west half of 6 and an east half of 11, with a one-tile aisle at each end, plus the T1 line in rows 1–3 beside the dais. The central aisle continues from T1 and the door stays on it, so no line ever blocks it. The two stub pillars mark the old east wall between the hearth bay and the **ritual dais** in the north-east corner, a ritual corner ready for the Circle Sigil (Crystal Vault, Winter); walkway rows 0, 4 and 8 stay open past them.
 
-**T3 · Great Hall** (17×18; two alcoves, two hearths)
+**T3 · Great Hall** (20×18; two alcoves, two hearths)
 ```
-  ######HH###########
-  #............~~~~~#
-  #...........O~~~~~#
-  #............~~~~~#
-  #...........O~~~~~#
-###............~~~~~#
-#DD.................#
-#DD.................#
-###.................#
-  #.................#
-  #.................#
-  #.................#
-  #.................#
-  #.................#
-  #.................#
-  #.................###
-  #.................DD#
-  #.................DD#
-  #......O..O.......###
-  ###HH########SS##+#
+  ######HH##############
+  #.......:.......~~~~~#
+  #.......:......O~~~~~#
+  #.......:.......~~~~~#
+  #.......:......O~~~~~#
+###.......:.......~~~~~#
+#DD.......:............#
+#DD.......:............#
+###.......:............#
+  #.......:............#
+  #.......:............#
+  #.......:............#
+  #.......:............#
+  #.......:............#
+  #.......:............#
+  #.......:............###
+  #.......:............DD#
+  #.......:............DD#
+  #.....O.:..O.........###
+  ###HH###+#####SS######
 ```
-The new hall adds a **fourth line of 15** (rows 13–15, walkways 12 and 16) and a back strip (row 17) along the south wall with a second hearth, two buttress pillars that make small bays for Alembic and Athanor clusters or Garden Pots, and the **Familiar's shrine**, where the bonded spirit rests. A second dark alcove opens off the east aisle. Floor grows from 204 to 306 tiles before features (the 50% rule).
+The new hall adds a **fourth line** of 6 + 11 (rows 13–15, walkways 12 and 16) and a back strip (row 17) along the south wall with a second hearth, two buttress pillars that make small bays for Alembic and Athanor clusters or Garden Pots, and the **Familiar's shrine**, where the bonded spirit rests. A second dark alcove opens off the east aisle. Floor grows from 240 to 360 tiles before features (the 50% rule).
 
 **Exterior.** All tiers keep the Shed's 7×3 footprint; the sprite grows taller and grander per tier, as the Big Shed's does *(default)*. 1.6 building skins give each tier one or two exterior styles.
 
@@ -137,24 +138,24 @@ Every side of every Vat is already spoken for: West and East by the chain, South
 
 **(b) Hearth corner** (T1, Spring): two Alembics on the hearth tiles distill with no fuel, each chaining East into a Retort, with chests South. The only free heat in the building, so it is the obvious first layout.
 
-**(c) Ritual corner** (T2 dais): the Circle Sigil on the dais, the altar at its centre, catalysts on its four points, and a Boiler beside the altar for Perpetuum Mobile (doc 13 §5). Walkway row 4 and the aisle at column 11 give access for hand-triggering.
+**(c) Ritual corner** (T2 dais): the Circle Sigil on the dais, the altar at its centre, catalysts on its four points, and a Boiler beside the altar for Perpetuum Mobile (doc 13 §5). Walkway row 4 and the gaps between the stub pillars give access for hand-triggering.
 
 **Finding:** the crowding Charles foresaw is real. Every neighbour slot of an automated machine is already a chaining, chest or power slot, so modifier blocks would mostly be in the way. The bonuses a modifier block would have given now come from the **room** (Lab tier, Familiar, hearth, alcove) and from **range-2 conditions** such as flowers in Garden Pots, which use no adjacent side. **Decided** (Charles, 2026-10-18): rule 2 is final, so there are no modifier blocks.
 
 ### 2c · Space check (doc 13 §9, re-run on real floorplans)
-- Floor per tier: T1 ≈103, T2 ≈206, T3 ≈310 tiles (vanilla Shed 11×9 and Big Shed 17×12, per the Stardew wiki; pillars and features counted). Allowing a walkway, a T3 Lab works out to about **280 usable tiles**.
+- Floor per tier: T1 ≈130, T2 ≈242, T3 ≈364 tiles (each 3 tiles wider than the vanilla Shed's 11×9 and Big Shed's 17×12, per the Stardew wiki; pillars and features counted). Keeping the aisles and walkways clear, a T3 Lab works out to about **330 usable tiles**.
 - Doc 13's "everything at once" estimate is ~75 machines at ~5 tiles each plus 2–3 Circles: **~450 tiles**.
-- **One T3 Lab can't hold everything** (280 < 450) ✓. **Two hold it** (560), and **four** (1,120) are more than enough, with room for scale and decoration ✓.
+- **One T3 Lab can't hold everything** (330 < 450) ✓. **Two hold it** (660), and **four** (1,320) are more than enough, with room for scale and decoration ✓.
 - **Per Familiar** (§3): the operations split roughly Ignis ~15 machines, Aqua ~20, Aer ~20, Terra ~20 plus the altars. At ~5 tiles each plus one Circle, the largest share is about 125–150 tiles, half a T3 Lab ✓.
 
 ### 2d · Lines and access (Charles, 2026-10-18)
 Every floorplan must fit a horizontal Tobin line (doc 13 §7: West to East, power North, chests South) **and** leave room to walk all the way round it, with the hearths at the back reachable while the Lab is in use. The plans above are drawn to that rule:
 | Tier | Lines (3 rows each: power, machines, chests) | Walkways | Hearth access |
 |---|---|---|---|
-| T1 | 2 × 9 machines | rows 0, 4, 8; aisles at columns 0 and 10 | row 0 runs along the hearth, reached from either aisle |
-| T2 | 1 × 9 and 2 × 15 | rows 0, 4, 8; aisles at columns 0 and 16 (the door sits in the east aisle) | unchanged from T1 |
-| T3 | 1 × 9 and 3 × 15 | adds rows 12 and 16 | the new hearth faces row 17, reached from row 16 |
-- **Line length is width minus two**, so a line never touches both side walls and the aisles always join the front and back of the room.
+| T1 | 2 lines of 6 + 5 (22 machines) | rows 0, 4, 8; side aisles at columns 0 and 13; central aisle at column 7 (the door opens onto it) | row 0 runs along the hearth, reached from any aisle |
+| T2 | the T1 line (6 + 5) and 2 lines of 6 + 11 (45 machines) | rows 0, 4, 8; side aisles at columns 0 and 19; central aisle at column 7 | unchanged from T1 |
+| T3 | adds a line of 6 + 11 (62 machines) | adds rows 12 and 16 | the new hearth faces row 17, reached from row 16 |
+- **Lines stop one tile short of each wall and break at the central aisle**, so the aisles always join the front and back of the room. The central aisle is ordinary floor: a player who wants one long line can bridge it with a machine and walk round the ends instead.
 - **Arrival tiles and alcoves sit on aisles**, so no line can cut off the door or the dark alcoves.
 - The plans are a guarantee, not a requirement: players may still pack the room wall to wall if they choose, but the default layouts the doc 16 overlay previews follow this rule.
 
@@ -177,7 +178,7 @@ So a Salamander Lab is the decomposition house, an Undine Lab the cellar of vats
 ### 4 · Meeting, bonding and release
 1. **Opening.** The Great Work Chamber scene (doc 14 ★) has Cyprian name the four spirits. Each then appears at its place *(proposal; places are content, doc 20)*. Meeting needs no Lab:
    - Salamander: the Mines' lava floors (80+) or the Volcano.
-   - Undine: the Cindersap Forest pond on a rainy morning (Charles, 2026-10-18: not the Mountain, which already hosts the Sylph).
+   - Undine: the Cindersap Forest pond on a rainy or snowy morning (Charles, 2026-10-18: not the Mountain, which already hosts the Sylph).
    - Sylph: the Mountain on a windy day (falling leaves or petals) or in a storm.
    - Gnome: the Quarry (after the bridge) or the Mines' 40–79 floors.
    All are recurring conditions, never calendar gates (doc 14). Meeting is a short event and a codex page.
@@ -236,5 +237,5 @@ Doc 06 reads: per-tier speed and quality chance against the phase targets (T2 + 
 - `[2.0]` Familiars from tie-in packs; Familiar heart perks; more Lab specializations (doc 10).
 
 ## Change log
-- **v0.2 (2026-10-18):** floorplans redrawn so each tier fits full-width Tobin lines with aisles and walkways round them and the hearths reachable (§2d); Sylph signature is now a small daily charge chance in any weather; the Undine meets the player at the forest pond (Charles). A met but unbonded Familiar waits in the workshop under the CC (Charles). Charles also answered all four cards: built-in hearths and alcoves count as neighbours, condensation rule 2 is final, Lab tier and Familiar are Bonus only, and Familiars specialize by operation. Readiness: ready for architecture.
+- **v0.2 (2026-10-18):** every tier 3 tiles wider for a central aisle, and the Undine also appears in snow (Charles). Floorplans redrawn so each tier fits full-width Tobin lines with aisles and walkways round them and the hearths reachable (§2d); Sylph signature is now a small daily charge chance in any weather; the Undine meets the player at the forest pond (Charles). A met but unbonded Familiar waits in the workshop under the CC (Charles). Charles also answered all four cards: built-in hearths and alcoves count as neighbours, condensation rule 2 is final, Lab tier and Familiar are Bonus only, and Familiars specialize by operation. Readiness: ready for architecture.
 - **v0.1 (2026-10-18):** first draft: three tiers with costs and bonuses, nested floorplans with hearths, alcoves, a dais and a colonnade, draft process layouts that test doc 13's rule 2, the space check on real floor areas, four Familiars specialized by operation, meeting, bonding by hand-made rite, release and bond hearts, data shape and tech hooks.
