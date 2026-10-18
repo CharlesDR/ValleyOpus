@@ -1,6 +1,6 @@
 # 13 · Apparatus Catalog
 
-Status: **DRAFT v0.6** (2026-10-18) · Readiness: ready for architecture once Charles confirms the defaults listed in Open questions; no `[blocks-arch]` item is left open
+Status: **DRAFT v0.6** (2026-10-18) · Readiness: ready for architecture (Charles confirmed the power, Electrum/Rebis and Ectoplasm defaults on 2026-10-18; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03, 03a, 04, 12 · Feeds: 05, 06, 07, 09, 14, 15, 16, 17, 18
 
 ## Purpose
@@ -122,12 +122,12 @@ Doc 04 proposed about 25 machines (7 engineered, 2 support, 5 minor arcane, 2 al
 | Flower-fed apparatus | an **adjacency Bonus condition** (crops or flowers with a tag within range 2) on the Athanor, Hermetic Vessel and Retort; flowers wilt as they feed, so it stays a real crop. No new machine |
 
 ### 5 · Power, heat and the "power inputs" rule
-Vapor, Fulgur and Flamma Viva are **Power class** (doc 03b): never items. Three recipes in doc 03a listed them as inputs (consistency check 1). **Rule (default):** a Power substance is never a recipe input; a recipe that needs one carries a **Required `power` condition** instead (doc 12 §4 already has the kind), met when a supplying source is adjacent or, for Flamma Viva, when the apparatus itself is a kindled Athanor.
+Vapor, Fulgur and Flamma Viva are **Power class** (doc 03b): never items. Three recipes in doc 03a listed them as inputs (consistency check 1). **Rule** (Charles, 2026-10-18): a Power substance is never a recipe input; a recipe that needs one carries a **Required `power` condition** instead (doc 12 §4 already has the kind), met when a supplying source is adjacent or, for Flamma Viva, when the apparatus itself is a kindled Athanor.
 | Recipe | Was | Now |
 |---|---|---|
 | **Orichalcum** | Metallum + Fulgur | Metallum, Required Fulgur, at the Quarry Crucible (or the Table beside a charged Coil) |
 | **Cinis Phoenicis** | Flamma Viva + Vitae | Vitae, Required Flamma Viva: calcined in a kindled Athanor (or on the Table beside one) |
-| **Perpetuum Mobile** | Motus + Vapor + Ordo, crafted | Motus + Ordo + Orichalcum, Required Vapor, as a hand-made **ritual at the Altar with a Boiler beside it**. Crafting can't read neighbours, and an altar fed by Tobin's steam is the first of doc 04's **blended** moments, fitting a Mechanist capstone. Orichalcum keeps it late (proposal; doc 03a v0.8) |
+| **Perpetuum Mobile** | Motus + Vapor + Ordo, crafted | Motus + Ordo + Orichalcum, Required Vapor, as a hand-made **ritual at the Altar with a Boiler beside it**. Crafting can't read neighbours, and an altar fed by Tobin's steam is the first of doc 04's **blended** moments, fitting a Mechanist capstone. Orichalcum keeps it late (Charles, 2026-10-18; doc 03a) |
 
 **Supplying power.** Adjacency sets the neighbour state; charge only decides whether a powered recipe can run now (§1a). A source holds a power state in `modData`: Vapor and kindled Flamma Viva run for a duration (Vapor) or for good (Flamma Viva); Fulgur holds charges, and each powered cycle it feeds spends one. A source feeds at most `MaxConsumers` adjacent machines, chosen in a fixed order (N, E, S, W) so the result never depends on load order. Power is checked in the **load-time snapshot** (doc 12 §3), so a Boiler going cold mid-cycle never ruins a batch.
 
@@ -144,7 +144,7 @@ Vapor, Fulgur and Flamma Viva are **Power class** (doc 03b): never items. Three 
 "Best" is never decided by the mod, so a line can make exactly the output the player wants even when a more advanced recipe is unlocked (Charles, 2026-10-16). Recipe memory is an **input filter**: it says which multiset Automate pulls from a mixed chest. Once inputs are loaded, the recipe is fixed by inputs plus neighbour state (§1a), so memory never chooses between recipes.
 - **Recipe memory:** every apparatus remembers the **last recipe loaded by hand** (or picked in the Satchel picker). Automate and chaining only ever load that recipe. A machine set to Calx stays on Calx even if its chests could also feed Vitrum.
 - **Pinning:** the picker has a pin toggle. A pinned machine never changes recipe, even when the player hand-loads something else by accident; hand-loading a different recipe asks first.
-- **A fresh machine** with no memory takes nothing from automation until it's set once by hand, so a new line never starts on a surprise recipe. *(Default; the alternative is "first satisfiable in codex order".)*
+- **A fresh machine** with no memory takes nothing from automation until it's set once by hand, so a new line never starts on a surprise recipe. *(Default, kept for now: Charles wants to playtest how it feels, 2026-10-18; the alternative is "first satisfiable in codex order".)*
 - **Visible:** the remembered recipe's output shows as a small icon on the machine and in its hover tooltip, with a pin mark when pinned.
 - Stored in `modData` (`RecipeMemory`, `Pinned`), so it syncs in multiplayer and is inert without the mod.
 
@@ -204,12 +204,13 @@ Doc 06 metrics per apparatus: GPTD per tile including its share of power and che
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
-- `[blocks-content]` **Defaults awaiting Charles's confirmation** (all applied in the docs already; doc 10 lists them together): the **power-inputs rule** (§5: a Power substance is never an input, and Perpetuum Mobile is an altar ritual beside a Boiler with Orichalcum as a third input; 03a v0.8); **Electrum and Rebis** as a counterpart pair, not twin routes (doc 12); **Ectoplasm hand-made only** (03a v0.7; if not, it is ordinary minor-arcane output on the Hermetic Vessel); a **fresh machine takes nothing from automation** until set once by hand (§6a). *Owner: Charles.*
+- `[blocks-content]` **Fresh machine and automation** (§6a): a machine takes nothing from automation until set once by hand *(default, kept for now)*. Charles wants to playtest how it feels before locking it (2026-10-18). *Owner: Charles, after playtesting.*
 - `[blocks-content]` **Chaining visual aids** (§7) and the recipe-memory icon (§6a): exact art and controls. *Owner: doc 16.*
 - `[2.0]` Display-only `Data/Machines` rules that mirror our recipes, so Lookup Anything can list them (Charles, 2026-10-16).
 - `[2.0]` A flower-fed **trickle** (a Prime from a planted bed, no input) would be a world tap placed in a garden; arcane logistics replaces chaining through the item-route interface; blended late-game machines are designed with the capstones.
 
 ## Change log
+- **v0.6 (2026-10-18), Charles's answers:** the power-inputs rule, Electrum and Rebis as a counterpart pair, and Ectoplasm hand-made only are confirmed; the fresh-machine default stays until playtesting.
 - **v0.6 (2026-10-18):** cleanup sweep: unlock columns marked as doc 14's approved sources; §9 points to doc 18 §2c's re-check; settled open questions removed and the four remaining defaults grouped for Charles; doc 04's tables and doc 09's Automate plan now point here.
 - **v0.5 (2026-10-17):** the unlock column follows doc 14 (Charles approved): Oriel gives one Athanor at the intro, rooms supply the rest.
 - **v0.4 (2026-10-16):** Charles's extension: uncontrollable conditions only gate or bonus automatable recipes, never vary their output. Neighbour state comes from arrangement, not charge. The tension with gentle failure is logged as a follow-up.

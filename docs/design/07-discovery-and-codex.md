@@ -75,6 +75,7 @@ Entries gain a lore line at 1, 10 and 50 crafted, with a progress pip toward the
 ### The farm's secret recipe (approved v0.4)
 - One or two late-game **secret recipes are seeded per farm** from a candidate pool, so guides can't spoil them. They're revealed through in-world readables and Hesper's almanac, which hints early at *which* secret this farm holds.
 - **Re-roll:** an expensive, time-consuming and difficult way to re-seed it (e.g. a multi-day grand ritual needing Quinta Essentia and rare catalysts). Restarting a Stardew save is a huge undertaking, so players aiming for a specific late recipe must never be stuck without it.
+- A re-roll **replaces** a discovered secret; its codex entry stays as lore (Charles, 2026-10-18).
 - Multiplayer-safe: stored with the farm's shared codex.
 
 ### The shared farm codex (approved)
@@ -118,7 +119,6 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[blocks-content]` **Table unlock scope, balance revisit** (from doc 12): only that recipe for now; if codex completion is too obnoxious, options are letting a Table discovery also unlock the same output's twin route, or a cheaper divination for already-known items. *Owner: doc 06 balance pass / Charles.*
 - `[blocks-content]` **Partial Table matches:** exact matching only, with the "wants a partner" line on a three-item load containing a defined pair *(default)*. *Owner: Charles.*
 - `[blocks-content]` **Table outputs at Nigredo** *(default)*, so the Table discovers and apparatus produce quality. *Owner: Charles.*
-- `[blocks-content]` **Secret re-roll:** a discovered secret is replaced on re-roll, its codex entry kept as lore *(default, doc 12)*. *Owner: Charles.*
 - `[blocks-content]` **Hint wording and counts** per recipe. *Owner: doc 20.*
 
 ## Change log

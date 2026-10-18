@@ -62,18 +62,12 @@ Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition
 The one list of everything still open, across all docs (collected in the 2026-10-18 cleanup sweep). Each doc's own Open questions section keeps its items with a tag and owner; when an item is settled, it is written into its owning doc and removed from both lists.
 
 ### Awaiting Charles: defaults already applied in the docs
-Each is written into the docs as the default; confirming it just removes the *(default)* mark.
+Each is written into the docs as the default; confirming it just removes the *(default)* mark. **Confirmed by Charles on 2026-10-18:** D1 power is never a recipe input (Perpetuum Mobile is an altar ritual beside a Boiler), D2 Electrum and Rebis are a counterpart pair, D3 Ectoplasm is hand-made only, D7 a re-roll replaces the discovered secret, D8 ValleyOpus items decompose at a loss, D9 the Satchel auto-collects reagents only.
 | # | Default | Where |
 |---|---|---|
-| D1 | **Power is never a recipe input**: Power substances become Required power conditions, and Perpetuum Mobile is a hand-made altar ritual beside a Boiler (Motus + Ordo + Orichalcum) | doc 13 §5, doc 03a |
-| D2 | **Electrum and Rebis are a counterpart pair**, not twin routes (a twin route always shares its output) | docs 12, 13, 03a |
-| D3 | **Ectoplasm is hand-made only** (✋) | doc 03a, doc 13 |
-| D4 | **A fresh machine takes nothing from automation** until set once by hand (the alternative: first satisfiable in codex order) | doc 13 §6a |
+| D4 | **A fresh machine takes nothing from automation** until set once by hand (the alternative: first satisfiable in codex order). *Kept for now; Charles will playtest how it feels.* | doc 13 §6a |
 | D5 | **Partial Table matches:** exact matching only, plus a "wants a partner" line on a three-item load containing a defined pair | doc 07 |
 | D6 | **Table outputs at Nigredo** | doc 07 |
-| D7 | **Secret re-roll replaces** the discovered secret, keeping its codex entry as lore | docs 07, 12 |
-| D8 | **ValleyOpus items decompose** by a pinned profile at a loss (not refuse) | doc 12 §2 |
-| D9 | **The Satchel auto-collects reagents only**; products go to the main inventory | docs 15, 03b |
 
 ### Design questions still open
 - `[blocks-arch]` **Satchel storage:** a 1.6 global inventory keyed by the satchel (docs 00, 09: uninstall safety) or the item's `modData` (doc 03b). *Owner: doc 17.*

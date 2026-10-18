@@ -61,7 +61,7 @@ State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authorit
 | 01 | Vision & Pillars | v0.7 | nothing; the reference all other docs check against |
 | 02 | Progression & Unlocks | v0.7, the narrative of the Year 1 curve | nothing; the unlock map is doc 14 and the Lab is doc 18 |
 | 03 | Essences & Decomposition | v0.4, data shape done | nothing |
-| 03a | Substances Catalog | v0.10, apparatus column done | nothing; recipe rows are content |
+| 03a | Substances Catalog | v0.11, apparatus column done | nothing; recipe rows are content |
 | 03b | Items & Inventory | v0.9 | the census refreshed once doc 11's rows land |
 | 04 | Machines & Automation | v0.8, philosophy only | nothing; the machine list is doc 13 |
 | 05 | Skill & Professions | v0.7, ready | nothing |
@@ -72,7 +72,7 @@ State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authorit
 | 10 | Roadmap & Open Questions | v0.9 | nothing; it collects every open item |
 | **11** | **First Playable Slice** | v0.1 in review (PR #14) | Charles's review |
 | **12** | **Recipe & Process Model** | v0.4, ready | nothing |
-| **13** | **Apparatus Catalog** | v0.6, ready once its defaults are confirmed (doc 10) | Charles's confirmation of the defaults |
+| **13** | **Apparatus Catalog** | v0.6, ready | nothing (the fresh-machine default waits on playtesting) |
 | **14** | **Unlock Map & Workshop Bundles** | v0.4, ready | nothing |
 | **15** | **Products & Outside Uses** | v0.7, ready | nothing |
 | **16** | **UX & Interface** | not started | codex, Satchel, Experiment Table, tooltips, celebrations, GMCM options, controller support, chaining visual aids (doc 13 §7) |
