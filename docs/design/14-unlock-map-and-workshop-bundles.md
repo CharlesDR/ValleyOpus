@@ -9,7 +9,7 @@ When and how each part of ValleyOpus opens up: every apparatus, tool, Table upgr
 ## Decisions locked
 - **Soft start** (Charles, doc 02): 2 days after the Community Center opens, the first entry into Town between 6:00am and 3:00pm; Oriel walks the player to the workshop behind the CC.
 - **No hard calendar gates** (Charles, doc 01): every unlock is gated by progress (a bundle, a skill level, friendship, a base-game milestone, a discovery). Recurring conditions (weekday, weather, season, moon) are allowed because they come round again. Seasons in this doc are the **expected pace for a diligent player**, never a requirement.
-- **Discovery over shopping** (Charles, doc 01): automation only runs discovered recipes, and **no unlock grants a recipe**. Unlocks give apparatus, tools, places, people and hints; the recipes themselves are learned by experimenting (doc 07).
+- **Discovery over shopping** (Charles, doc 01): automation only runs discovered recipes, and **no unlock grants a recipe**. Unlocks give apparatus, tools, places, people and hints; the recipes themselves are learned by experimenting (doc 07). *One exception (Charles, 2026-10-18): Alchemy professions and skill levels may grant new recipes that change no existing setup, and nothing on the critical path may depend on one (doc 05 §3, §5).*
 - **Workshop bundles** (P3, Charles): they take vanilla items and mod substances; early bundles are all vanilla; they never ask for a ✋ item (doc 15 §10).
 - **Both routes** (doc 08): the workshop sits under the CC on both routes; no unlock names a CC-only flag (docs 12 and 13 already rely on this).
 - **Power baselines** (Charles, 2026-10-16): early and mid-game unlocks are paced so products stay at or below vanilla; the late tier is benchmarked against SVE (doc 15).
@@ -216,7 +216,7 @@ Doc 06 reads the map as a **pace report**, and the sweep also runs the **bundle 
 ## Open questions
 - `[blocks-content]` **Late-install fast start:** nothing is skipped automatically (approved); whether GMCM later offers an optional "fast start" that restores the Furnace Room is still open. *Owner: Charles / doc 16.*
 - `[blocks-content]` **Lightning Coil in Winter:** the Coil comes by letter after the next storm (approved). If a Cistern restored in Winter feels too slow in play, the fallback is to grant it with the room. *Owner: balance pass.*
-- `[blocks-content]` **Skill-level unlocks** (§6) are proposals for doc 05. *Owner: doc 05.*
+- ~~`[blocks-content]` **Skill-level unlocks** (§6) are proposals for doc 05.~~ Adopted in doc 05 v0.6 §3; the odd levels (1, 3, 7, 9) stay open there.
 - `[blocks-content]` **Contract-reward list:** optional extras only (approved); which extras and curios is content. *Owner: doc 20.*
 - `[blocks-content]` **Familiar bonding** trigger and cost. *Owner: doc 18.*
 - `[blocks-content]` **Bundle contents, rewards and NPC arrival scenes.** *Owner: doc 20 and the sweep.*
