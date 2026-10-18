@@ -1,6 +1,6 @@
 # 12 · Recipe & Process Model
 
-Status: **DRAFT v0.3** (2026-10-17) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
+Status: **DRAFT v0.4** (2026-10-18) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
 Depends on: 01, 03, 03a, 03b, 04, 07 · Feeds: 03/03a (data shape, apparatus column), 05, 06, 07, 09, 13, 14, 15, 17
 
 ## Purpose
@@ -54,7 +54,7 @@ Decomposition is a single built-in rule rather than a recipe per item, because i
 4. **Route modifiers.** The decomposing apparatus applies a yield multiplier, a residue rate and optionally a *concentration* (the Athanor's "better profile" keeps only the top two Primes). The Perditio route raises yield and residue together. These are data on the apparatus (doc 13), not on the item.
 5. **Equivalent exchange.** The summed value of the Primes produced must stay below `ratio · sell price` (placeholder 0.8). The loader clamps units to enforce it and the sweep reports every clamp, so no item decomposes for profit.
 6. **Aether is gated.** Only tags on the explicit Aether source list (prismatic shard, solar and void essence, legendary fish, Mr. Qi items, ley nodes) carry Aether weight; the category defaults never do.
-7. **ValleyOpus items** decompose by a pinned override at a loss (default; see open questions). Hand-made-only items and capstones refuse decomposition.
+7. **ValleyOpus items** decompose by a pinned override at a loss (Charles, 2026-10-18); Caput Mortuum refuses decomposition (doc 15 §6). Hand-made-only items and capstones refuse decomposition.
 
 ### 3 · Recipes
 A recipe is one row. Its inputs are a **multiset**: order never matters, and each input is an **ingredient spec**:
@@ -83,13 +83,13 @@ A condition is a named record with a **kind** and a **use**:
 - **Kinds:** a GSQ (weekday, season, weather, time, location, festival); a ValleyOpus GSQ we register in C# (moon phase, planetary day or hour, darkness, ley node, inside a Lab of tier ≥ N, discovered); **adjacency** (a neighbour with a tag, in a direction set, within the 4 or 8 tile setting); **catalyst** (extra consumed items, or Shades from a Gloam Lantern); **power** (adjacent Vapor, Fulgur or a Flamma Viva lamp state).
 - **Uses:** **Required** (the recipe won't run without it), **Bonus** (adds quality steps, yield or speed when met), or **Variant** (selects a different recipe; per A2 that's only for named products, which are then separate recipe rows sharing inputs, with the Variant condition as their extra Required condition, while the base row requires its negation, so the two never both match). **For automatable recipes, a Variant may only use player-controlled conditions** (neighbour state, catalyst, location). Weekday, weather, season, moon and time may only gate or add a Bonus there, so an automated line never changes output with the environment (Charles, 2026-10-16; doc 13 §1a). Environmental Variants are for hand-triggered and hand-made recipes. On a day a gate isn't met, an automated machine **waits idle**: it refuses inputs and makes nothing, not even residue (Charles, 2026-10-17).
 
-Conditions are referenced by ID, so the same "Monday" or "beside a heat source" record is reused everywhere and the codex can show "?" for an undiscovered neighbour effect. Doc 04's **mode switches** (an Alembic beside a heat source distills, beside a Cooling Coil condenses) are two recipes on the same apparatus whose neighbour states don't overlap (doc 13 §1a).
+Conditions are referenced by ID, so the same "Monday" or "beside a heat source" record is reused everywhere and the codex can show "?" for an undiscovered neighbour effect. Doc 04's **mode switches** (an Alembic dissolves *Cold* and distills *Heated*) are two recipes on the same apparatus whose neighbour states don't overlap (doc 13 §1a).
 
 ### 5 · Quality stages
 Each recipe has a **quality rule**:
 - **Base mode:** `Fixed` (a set stage), `InheritMin` (the lowest input quality, the default for engineered lines), `InheritAverage` (rounded down), or `Advance` (input quality + N; for stage-advancing rituals).
 - **Modifiers**, all additive with one clamp: met Bonus conditions, catalysts (Sal Fixum prevents a drop; Mercurius Fixus locks the current stage), the Lab tier bonus (doc 18), and perks (doc 05's rule: each perk a distinct variable, shared variables add then clamp).
-- **Cap:** from the apparatus kind unless the recipe sets a lower one. Defaults from doc 04: Engineered = silver (gold with perks), Minor arcane = gold, Ritual altar and circle = iridium. Perks may raise a cap only where doc 05 says so, and never past iridium.
+- **Cap:** from the apparatus kind unless the recipe sets a lower one. Defaults (doc 04, doc 13 §3): Engineered = silver (gold with perks), Minor arcane = gold, Ritual altar and circle = iridium. Perks may raise a cap only where doc 05 says so, and never past iridium.
 - **Floor:** the recipe's minimum, so a degraded ritual drops at most to its floor.
 
 Vanilla quality has no stage 3, so `Advance` steps over it (gold → iridium is one step).
@@ -100,7 +100,7 @@ Vanilla quality has no stage 3, so `Advance` steps over it (gold → iridium is 
 The Great Work is a chain of ordinary recipes, not a special system: a **stage-advance recipe** takes item X at stage *s* and returns X at stage *s+1* (Mode `Advance`). Lapis Philosophorum is Prima Materia advanced through all four stages, then a final hand-made-only ritual whose input spec requires Rubedo. **Process states** (Cauda Pavonis, and the colour stage names) are Process-state substances: codex entries shown in the machine and fired as discovery events (e.g. "first nigredo → albedo advance"), never items.
 
 ### 7 · Twin routes and dark twins
-- **Twin routes:** recipes can share a `TwinGroup` ID. The codex shows a group's mechanical and arcane members side by side, and the sweep compares them. Usually the members share an output and differ in cost, conditions and quality cap; a group may also pair a mechanical product with its arcane counterpart (see open questions on Electrum and Rebis).
+- **Twin routes:** recipes can share a `TwinGroup` ID. The codex shows a group's mechanical and arcane members side by side, and the sweep compares them. Usually the members share an output and differ in cost, conditions and quality cap; a twin route always shares its output. A group may instead mark a **counterpart pair**: different outputs from different inputs shown side by side, like Electrum (⚙︎) and Rebis (✦A) (Charles, 2026-10-18).
 - **Dark twins:** a substance may name its `Polarity` twin. Putrefaction recipes (bright → dark) are ordinary Fermentation recipes with a darkness condition and, for higher tiers, a Shades catalyst.
 
 ### 8 · Residue
@@ -127,7 +127,7 @@ Each key records the day and the discovering player for the shared-codex notice.
 - Recipes flagged `SecretCandidate` belong to a named **pool**. On a new save, the farm seed (`hash(game unique ID, reroll count)`) picks the pool's set number of recipes (1–2) for this farm. Unpicked candidates are **disabled**: the resolver ignores them and the Table treats their inputs as undefined.
 - The pick and the re-roll count live in the farm's codex data, so every player shares it.
 - Hesper's almanac and readables reference the picked recipe by ID, so hints follow the seed automatically.
-- **Re-roll:** the re-roll ritual (doc 07) increments the count and re-picks. Whether an already-discovered secret survives a re-roll is open (below); the data shape holds either answer.
+- **Re-roll:** the re-roll ritual (doc 07) increments the count and re-picks. A discovered secret is **replaced** on re-roll, and its codex entry stays as lore (Charles, 2026-10-18).
 
 ### 12 · Edge cases
 - **Multiplayer:** the host is authoritative for discovery and the secret seed; machines resolve recipes where they are, from the same synced data. Seeded residue makes results identical on every screen.
@@ -178,17 +178,15 @@ No new items are created by this doc; every row's output already exists in doc 0
 Doc 06 metrics read straight from this data: GPTD and value per tile and per ingredient use recipe inputs, outputs, times and quality caps; arcane recipes are averaged over a week of conditions. Placeholders to tune in the sweep: `k`, `e`, `QualityBonus`, `Threshold`, `ExchangeRatio`, per-apparatus yield and residue rates, quality caps, Bonus condition sizes, ready times, and residue amounts. The sweep also reports days-per-year per recipe (condition stacking), Prime source diversity from the tag table, and the all-six-professions quality clamp.
 
 ## Open questions
-- ~~`[blocks-content]` **Environment rule vs "residue instead of failure"**~~ **settled** (Charles, 2026-10-17): **wait idle**. On a day its weather or calendar condition isn't met, an automated machine refuses inputs and resumes when the condition returns; nothing is consumed and no residue is made. "Residue instead of failure" applies to failed experiments and misjudged hand rituals, where a failure can actually happen (§4, doc 13 §1a).
-- ~~`[blocks-arch]` **Resolver details**~~ **settled in doc 13 §6** (v0.1, 2026-10-16): a C# staging tray feeds every apparatus, one Automate factory claims them all, a per-apparatus recipe index serves polling, locks are a `modData` flag, and the codex is the recipe browser.
-- `[blocks-content]` **Table unlock scope, balance revisit:** Charles approved "only that recipe" on condition it's revisited in the balance pass if codex completion feels too obnoxious. Doc 07's "another manual way also unlocks it" is read as releasing a locked output of that item, not unlocking every route; doc 07 should adopt that wording. *Owner: doc 07 / doc 06.*
-- `[blocks-content]` **Secret re-roll:** does a discovered secret stay after a re-roll (re-roll adds) or get replaced? Default: replaced, with its codex entry kept as lore. *Owner: Charles.*
-- `[blocks-content]` **ValleyOpus items decompose** by pinned profile at a loss (default), or refuse decomposition outright. Caput Mortuum refuses decomposition (Charles, 2026-10-17, doc 15 §6), since it is what decomposition leaves. *Owner: Charles.*
-- `[blocks-content]` **Electrum and Rebis** are listed in docs 03 and 03a as twin routes but are different outputs from different inputs. Doc 03a should say whether twin routes must share an output; the `TwinGroup` shape supports both. *Owner: doc 03a.*
-- `[blocks-content]` **Partial Table matches:** exact matching only (default), with an optional hint when a three-item load contains a defined pair. *Owner: doc 07.*
-- *For other docs:* doc 03a's **apparatus class** column and doc 03's data shape are done (03a v0.7, 03 v0.4). Still open: doc 00 says Satchel contents live in a global inventory while doc 03b says the item's `modData` (doc 17 should settle it).
+Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
+- `[blocks-content]` **Table unlock scope, balance revisit:** Charles approved "only that recipe" on condition it's revisited in the balance pass if codex completion feels too obnoxious (options in doc 07). *Owner: doc 06 balance pass.*
+- `[blocks-content]` **Where darkness holds outside a Lab** (raised by doc 18, 2026-10-18): darkness is the Required condition of every putrefaction recipe (§4, doc 13 §3), and doc 18 only guarantees a Lab's dark alcove tiles. Night outdoors, caves and unlit rooms need a definition. *Owner: doc 12.*
+- `[blocks-arch]` **Satchel storage:** doc 00 (S3) and doc 09 say Satchel contents live in a 1.6 global inventory keyed by the satchel's ID, for uninstall safety; doc 03b says the item's `modData`. *Owner: doc 17.*
 - `[2.0]` Four-plus Table inputs need no model change. A Potion Craft–style brew map would add a new operation with its own resolver, plugged in beside this one.
 
 ## Change log
+- **v0.4 (2026-10-18), Charles's answers:** ValleyOpus items decompose at a loss; a re-roll replaces the discovered secret; Electrum and Rebis are a counterpart pair, and twin routes always share their output.
+- **v0.4 (2026-10-18):** cleanup sweep: settled open questions removed (doc 07 already adopted the "releases a locked output" wording); darkness outside a Lab added as an open question from doc 18; the Satchel-storage conflict tagged for doc 17; the Cooling Coil example replaced (doc 13 cut it).
 - **v0.3 (2026-10-17):** the environment rule vs "residue instead of failure" is settled: an automated machine waits idle on days its gate isn't met (Charles). Caput Mortuum refuses decomposition (doc 15).
 - **v0.2 (2026-10-16):** Charles confirmed the three `[blocks-arch]` defaults (no quality on Primes; a Table discovery unlocks only that recipe, revisit in the balance pass; one resolver behind `OutputMethod`, details to doc 13). `TagWeights` gains `AetherSource` to match doc 03's data shape.
 - **v0.1 (2026-10-15):** first draft: records, decomposition, recipe matching, conditions, quality, processes, residue, discovery keys, the secret recipe and the content-pack data shape.

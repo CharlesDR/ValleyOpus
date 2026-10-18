@@ -1,6 +1,6 @@
 # 10 · Roadmap & Open Questions
 
-Status: **DRAFT v0.8** (2026-10-14). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
+Status: **DRAFT v0.9** (2026-10-18). v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
 
 ## Version scope
 | | 1.0 | 2.0 |
@@ -9,8 +9,8 @@ Status: **DRAFT v0.8** (2026-10-14). v0.8: Charles's full-review feedback (item 
 | Engineered and arcane apparatus, **adjacency**, **grand rituals**, staged altars (animation) | ✓ | **ritual mini-game** |
 | Ley nodes and Ley Taps | ✓ | |
 | Skill with L5/L10 professions (vanilla-speed curve) | ✓ | **prestige / Ultimate Mastery** perks |
-| Laboratory, 3 tiers by interior size, Familiars augment T3 (max 4) | ✓ | more specializations |
-| Derelict workshop, storyline, cast of 10 + Familiars | ✓ | more arcs |
+| Laboratory, 3 tiers by interior size, Familiars specialize T3 Labs (max 4; doc 18) | ✓ | more specializations |
+| Derelict workshop, storyline, cast of 11 + Familiars (doc 08a) | ✓ | more arcs |
 | Shared codex and discovery celebrations | ✓ | |
 | Content Patcher extensibility (Primes, substances, apparatus, recipes) | ✓ | |
 | Vanilla and SVE villagers integrated (dialogue, gift tastes, events) | ✓ | |
@@ -28,7 +28,7 @@ Status: **DRAFT v0.8** (2026-10-14). v0.8: Charles's full-review feedback (item 
 
 ## Charles's action items
 1. ~~**Nexus popularity export**~~: done (2026-10-14). Charles supplied the top-80 list; the targets are in doc 09.
-2. **Full review of the design docs** before the next stage (Phase 1, doc 12).
+2. ~~Full review of the design docs~~: done (2026-10-14, applied in v0.8).
 3. ~~Answer the questions from the v0.6 pass~~: done (below).
 
 ## Answers to the v0.6 questions (Charles, 2026-10-13 21:47)
@@ -52,32 +52,61 @@ All 18 answered and applied in v0.7.
 17. All the added scope stays in 1.0.
 18. The public beta ships as 1.0.0, marked beta on Nexus.
 
-## Waiting on Charles (earlier)
-- Part 4 decisions: all answered and confirmed 2026-10-13 (doc 00).
-- ~~Soul-stone name~~: decided, **Gloam Lantern** collecting **Shades** (doc 04).
-
-Earlier items, all decided as of 2026-10-13 17:39, and the defaults (mod ID, 36-cell grid, dark twins, perks-only-add, residue → Prima Materia) are confirmed.
-1. ~~Cast names~~: approved; the apprentice is Lark.
-2. ~~Inventory approach~~: decided, Reagent Satchel (doc 03b).
-3. ~~Arcane automation default~~: decided. Minor arcane apparatus are fully automatable; ritual altars are staged by Automate and triggered by hand (doc 04).
-4. ~~Ritual mini-game~~: decided. 1.0 is animation only; the mini-game moves to 2.0.
+## Earlier decisions
+All Part 4 decisions (doc 00) and the earlier pending items were answered by 2026-10-13: cast names (the apprentice is Lark), the Reagent Satchel (doc 03b), the arcane automation model (doc 04), the ritual mini-game in 2.0, the Gloam Lantern collecting Shades (doc 04), and the defaults (mod ID, 36-cell grid, dark twins, perks-only-add, residue → Prima Materia).
 
 ## First playable slice (S1)
-Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel. Specced in doc 11.
+Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel. Specced in doc 11 (v0.1, in review as PR #14).
 
-## Deferred design passes (agreed to come later)
+## Open questions
+The one list of everything still open, across all docs (collected in the 2026-10-18 cleanup sweep). Each doc's own Open questions section keeps its items with a tag and owner; when an item is settled, it is written into its owning doc and removed from both lists.
+
+### Awaiting Charles: defaults already applied in the docs
+Each is written into the docs as the default; confirming it just removes the *(default)* mark. **Confirmed by Charles on 2026-10-18:** D1 power is never a recipe input (Perpetuum Mobile is an altar ritual beside a Boiler), D2 Electrum and Rebis are a counterpart pair, D3 Ectoplasm is hand-made only, D7 a re-roll replaces the discovered secret, D8 ValleyOpus items decompose at a loss, D9 the Satchel auto-collects reagents only, D5 exact Table matching with a "something here is feeling crowded" line for a valid subset, D6 Table outputs at Nigredo.
+| # | Default | Where |
+|---|---|---|
+| D4 | **A fresh machine takes nothing from automation** until set once by hand (the alternative: first satisfiable in codex order). *Kept for now; Charles will playtest how it feels.* | doc 13 §6a |
+
+### Design questions still open
+- `[blocks-arch]` **Satchel storage:** a 1.6 global inventory keyed by the satchel (docs 00, 09: uninstall safety) or the item's `modData` (doc 03b). *Owner: doc 17.*
+- `[blocks-content]` **Where darkness holds outside a Lab** (night outdoors, caves, unlit rooms), since darkness is Required for every putrefaction recipe. *Owner: doc 12.*
+- `[blocks-content]` **Inventory sort keys:** verify what vanilla Organize and the common sort mods key on before tags, categories and IDs are assigned (doc 03b rule 5, doc 09). *Owner: the data layer.*
+- `[blocks-content]` **Late-install fast start** as an optional GMCM setting. *Owner: Charles / doc 16 (doc 14).*
+- `[blocks-content]` **Effect count:** the 2–3 cap stays suspended; doc 15 §3a's catalogue is the 1.0 list for now. *Owner: Charles (doc 15).*
+
+### For the Phase 4 docs (16 UX, 17 Multiplayer, Saves & Compat)
+- **Doc 16:** chaining visual aids and the recipe-memory icon (doc 13 §6a, §7); Finch's curiosity hint hidden in his shop tooltip (doc 07); the quarter-day hand-action budget (doc 02); the Satchel UI (doc 03b); codex, toasts and flourishes (doc 07).
+- **Doc 17:** Satchel storage (above); clock freeze in multiplayer (doc 07); locked outputs and third-party extractors (doc 13 §6); 1.6 dropping a missing building cleanly (doc 09); the tie-in test matrix (doc 00).
+
+### Content pass (rows, docs 19 and 20)
+- The six profession signature recipes and the odd-level conveniences (doc 05).
+- Effect and infusion carriers, Giant's Catalyst and Divining Rod rows, gift tastes for the three gift products (doc 15).
+- Capstone effects (doc 19, from doc 15).
+- Hint wording and counts (doc 20, from doc 07); bundle contents, rewards and arrival scenes; the contract-reward list (doc 20, from doc 14).
+- Familiar meeting places, gift lists and heart events (doc 20, from doc 18).
+
+### Balance pass (the sweep, doc 06)
+- Table unlock scope: "only that recipe" is revisited if codex completion is too obnoxious (docs 07, 12).
+- The Lightning Coil letter in Winter; grant it with the room if it feels too slow (doc 14).
+- The 150% late-game cap is to be revisited later (Charles, doc 06); condition stacking (docs 02, 06).
+- Every Lab, Familiar, perk and price number (docs 05, 15, 18).
+
+### Deferred design passes (agreed to come later)
 - Opening cutscene spec (doc 02).
-- Capstones, once progression is coherent.
+- Capstones, once progression is coherent (doc 19).
 - Skill display name (working name: Alchemy).
 - Lark's family (Jodi's or Pam's) and Hesper's outdoor spot.
 
+### 2.0
+Collected in the version-scope table above and tagged `[2.0]` in each doc: arcane logistics, forging, the brew map, the ritual mini-game, prestige perks, Lookup Anything recipe rules, flower-fed trickles, tie-in Familiars and more Lab specializations, custom-effect bombs.
+
 ## Upcoming tasks
 - Balance sweep tooling (doc 06), including the item census (doc 03b).
-- Nexus popularity ranking for integration targets. This needs a manual export or the browser, because Nexus blocks automated access from cloud sessions.
 - Lore check: read the vanilla and SVE wiki entries for every villager with a planned alchemy angle (doc 08), and the Alecto the Witch, Ridgeside Village and East Scarp pages for tie-in spots and map edits to avoid.
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
 
 ## Change log
+- **v0.9 (2026-10-18):** cleanup sweep: an Open questions hub collects every open item across the docs (defaults awaiting Charles, design questions, Phase 4, content and balance passes, deferred passes, 2.0); the earlier-decisions list is collapsed; the full-review action item and the Nexus ranking task are marked done; the cast count follows doc 08a (11).
 - **v0.8b (2026-10-14):** material names swept to Latin first, English gloss second (Charles's choice); the rule is in doc 03a.
 - **v0.8 (2026-10-14):** Charles's full review: the item budget is loosened to adventure-area drops only (doc 03b), internal consistency becomes a core principle (doc 01), and integration and compatibility targets are chosen from his top-80 export (doc 09). 
 - **v0.7 (2026-10-13):** Charles answered all 18 v0.6 questions (capstone rituals fully manual, Evelyn as a secret alchemist, Andy as the skeptic, trinket-slot items, late-area reagents placed by SVE presence), and set the Lab direction: T3 is 50% larger than T2, every tier gets aesthetic touches and a unique floorplan, and Lab design now comes before the architecture gate (doc 00).

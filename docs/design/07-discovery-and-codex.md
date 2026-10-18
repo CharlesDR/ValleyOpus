@@ -1,6 +1,6 @@
 # 07 · Discovery & the Codex
 
-Status: **DRAFT v0.8** (2026-10-17) · Readiness: ready for architecture (no `[blocks-arch]` item open)
+Status: **DRAFT v0.9** (2026-10-18) · Readiness: ready for architecture (no `[blocks-arch]` item open)
 Depends on: 01, 03a, 04, 12, 13 · Feeds: 05, 06, 14, 16, 17, 20
 
 v0.7: retrofitted to the doc 00 template; adopts doc 12's discovery keys and Charles's "a Table discovery unlocks only that recipe" rule; adds the discovery path for recipes the Table can't make, power and heat at the Table, and the codex data shape. v0.6: the target player and complexity ceiling, "feeling clever" as a design goal, the pace of discovery and hand-made-only entries (Charles's guiding answers, doc 01). v0.5: Experiment Table input counts (doc 00, R2). v0.4 applies Charles's verdicts on the discovery research ([research/inspiration-discovery-moments.md](../research/inspiration-discovery-moments.md)).
@@ -57,11 +57,12 @@ Three tiers, from small to large:
 ### Hints (approachability pillar)
 A layered hint system, from subtle to explicit:
 1. Item flavour text ("It smells faintly of brimstone…"), and apparatus that accept an item only if it belongs in one of their recipes.
-2. The codex grid shows silhouettes and "warmer" hints for pairs adjacent to known ones. A three-item Table load that contains a defined pair fails as usual but adds a "something here wants a partner" line *(default)*.
-3. **Residue divination (Charles, v0.4):** spend Caput Mortuum to divine a hint (cost may scale with how far the target is from what's known). Every pile of residue is a choice: fertilizer, a tiny sale, saving it for late recipes that turn residue into valuable materials, or hints. Working things out yourself stays optimal; savings get you unstuck.
+2. The codex grid shows silhouettes and "warmer" hints for pairs adjacent to known ones. A three-item Table load that contains a defined pair fails as usual but adds a **"something here is feeling crowded"** line (Charles, 2026-10-18): exact matching only, so a valid subset never quietly succeeds.
+3. **Residue divination (Charles, v0.4; opens with the Library, doc 14 §2):** spend Caput Mortuum at the bundle board to divine a hint (cost may scale with how far the target is from what's known). Every pile of residue is a choice: fertilizer, a tiny sale, saving it for late recipes that turn residue into valuable materials, or hints. Working things out yourself stays optimal; savings get you unstuck.
    - **Lunar Dream** (Charles, 2026-10-17; doc 15 §3a): a Luna food or drink taken before bed shows a hint from the same pool when the player wakes (weak tier: an `Existence` hint; strong tier: an `Inputs` hint). It sets `hint:` like divination, so it never repeats a hint already shown. Channel: `Dream`.
-4. NPC channels, one per owner (vanilla and SVE villagers add flavour reactions, not new hint channels; doc 08): **Oriel** (ritual and concept advice), **Tobin** (machine and layout tips), **Hesper** (the weekly almanac letter: planetary days, weather, celestial events), **Finch** (curiosity items), **Lark** (gentle comic attempts that point at untried pairs), **the Curator** (workshop lore).
-5. In-world readables in the derelict workshop under the CC (Cyprian's journals, half-burned notes, the wordless Silent Pages).
+4. NPC channels, one per owner (vanilla and SVE villagers add flavour reactions, not new hint channels; doc 08). Each opens when its NPC arrives (doc 14 §4): **Oriel** (ritual and concept advice; from the soft start), **Tobin** (machine and layout tips; the day after the Furnace Room), **Hesper** (the weekly almanac letter: planetary days, weather, celestial events; from the Library), **Finch** (curiosity items; the week after the Furnace Room), **Lark** (gentle comic attempts that point at untried pairs; after the farm's 10th discovery), **the Curator** (workshop lore; from the start).
+   - **Finch's curiosity hint stays hidden in his shop** (Charles, 2026-10-17): the curiosity's hint flavour text never shows in his shop inventory tooltip; it appears only once the item is owned (bought, then in the inventory or the codex). Doc 16 owns the shop UI that enforces it.
+5. In-world readables in the derelict workshop under the CC (Cyprian's journals, from the Library; half-burned notes; the wordless Silent Pages).
 
 Hints never cost real money and are never gated outside the game.
 
@@ -74,6 +75,7 @@ Entries gain a lore line at 1, 10 and 50 crafted, with a progress pip toward the
 ### The farm's secret recipe (approved v0.4)
 - One or two late-game **secret recipes are seeded per farm** from a candidate pool, so guides can't spoil them. They're revealed through in-world readables and Hesper's almanac, which hints early at *which* secret this farm holds.
 - **Re-roll:** an expensive, time-consuming and difficult way to re-seed it (e.g. a multi-day grand ritual needing Quinta Essentia and rare catalysts). Restarting a Stardew save is a huge undertaking, so players aiming for a specific late recipe must never be stuck without it.
+- A re-roll **replaces** a discovered secret; its codex entry stays as lore (Charles, 2026-10-18).
 - Multiplayer-safe: stored with the farm's shared codex.
 
 ### The shared farm codex (approved)
@@ -84,7 +86,7 @@ Entries gain a lore line at 1, 10 and 50 crafted, with a progress pip toward the
 - **Keys.** Discovery state is doc 12 §10's keys (`recipe:`, `item:`, `tried:`, `assay:`, `effect:`, `count:`), plus two owned here: `hint:<HintId>` (a hint was shown, so divination never sells it twice) and `milestone:<MilestoneId>` (a flourish played).
 - **What sets `recipe:`.** A Table success, or unloading a locked output by hand. Nothing else: assaying, hints and discovering the item elsewhere never set it.
 - **What sets `item:`.** Any manual route that produces or reveals the item. It releases locked outputs of that item and shows its codex entry; it doesn't make any recipe automatable.
-- **The Table.** Accepts 1 to capacity inputs. Matching is exact (doc 12 §3). Outcomes, in order: (1) a defined, Table-attemptable recipe whose Required conditions hold → its output (Item class) or a reveal and a puff (Power or Process-state class), at Nigredo; (2) the inputs of a defined recipe that isn't Table-attemptable, or whose Required conditions fail → nothing consumed, a line naming the missing apparatus or condition kind; (3) otherwise → residue, a little XP and a `tried:` key. A disabled secret candidate counts as undefined.
+- **The Table.** Accepts 1 to capacity inputs. Matching is exact (doc 12 §3). Outcomes, in order: (1) a defined, Table-attemptable recipe whose Required conditions hold → its output (Item class) or a reveal and a puff (Power or Process-state class), at Nigredo (Charles, 2026-10-18: the Table discovers, apparatus and rituals produce quality); (2) the inputs of a defined recipe that isn't Table-attemptable, or whose Required conditions fail → nothing consumed, a line naming the missing apparatus or condition kind; (3) otherwise → residue, a little XP and a `tried:` key. A disabled secret candidate counts as undefined.
 - **Tried signatures** are the sorted input item IDs, so "A + B" and "B + A" are one entry; a Table condition doesn't change the signature (the codex's "tried" mark means "tried in these conditions" only in its tooltip).
 - **Edge cases.** Multiplayer: a farmhand's discovery is sent to the host, recorded, then broadcast; two players discovering the same thing in one tick both get a toast, and the first recorded wins attribution. Joja route: hints tied to workshop rooms use doc 14's unlock flags, set on both routes. Removed packs: their keys stay hidden, not deleted (doc 12). Uninstall: codex data is mod save data and is simply ignored.
 
@@ -113,13 +115,13 @@ Entries gain a lore line at 1, 10 and 50 crafted, with a progress pip toward the
 Doc 06 reads discovery pace from this data: hints per recipe, divination costs, XP per discovery and per tried combination, and the number of recipes reachable before each unlock. The sweep reports how many recipes a player must make separately for codex completion (the Table-unlock revisit) and how many non-Table recipes have only one hint.
 
 ## Open questions
+Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` **Table unlock scope, balance revisit** (from doc 12): only that recipe for now; if codex completion is too obnoxious, options are letting a Table discovery also unlock the same output's twin route, or a cheaper divination for already-known items. *Owner: doc 06 balance pass / Charles.*
-- `[blocks-content]` **Partial Table matches:** exact matching only, with the "wants a partner" line on a three-item load containing a defined pair *(default)*. *Owner: Charles.*
-- `[blocks-content]` **Table outputs at Nigredo** *(default)*, so the Table discovers and apparatus produce quality. *Owner: Charles.*
-- `[blocks-content]` **Secret re-roll:** a discovered secret is replaced on re-roll, its codex entry kept as lore *(default, doc 12)*. *Owner: Charles.*
 - `[blocks-content]` **Hint wording and counts** per recipe. *Owner: doc 20.*
 
 ## Change log
+- **v0.9 (2026-10-18), Charles's answers:** exact Table matching with the "something here is feeling crowded" line for a valid subset; Table outputs at Nigredo.
+- **v0.9 (2026-10-18):** cleanup sweep: each hint channel names its unlock source from doc 14 §4; Finch's curiosity hint stays hidden in his shop tooltip (Charles, 2026-10-17, moved here from the to-do list); open questions moved to doc 10.
 - **v0.8 (2026-10-17):** Lunar Dream (doc 15) as a `Dream` hint channel drawing on the same hint pool.
 - **v0.7 (2026-10-16):** template retrofit; doc 12 keys and the "only that recipe" rule; discovery path for non-Table recipes; neighbours at the Table; apparatus acceptance as a hint; codex data shape.
 - **v0.6 (2026-10-13):** target player, complexity, feeling clever, pace, hand-made-only entries.

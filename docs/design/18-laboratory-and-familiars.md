@@ -227,15 +227,14 @@ Because the bonding rite is hand-made only, an environmental Variant may decorat
 Doc 06 reads: per-tier speed and quality chance against the phase targets (T2 + L5 at par; T3 + Familiar + L10 + all six professions under the 150% ceiling), Familiar signatures as cost reductions in GPTD, Robin's costs against the Shed and Big Shed, and the §2c space check with real machine counts once content exists. Placeholders: every bonus number, every cost, the Familiar numbers.
 
 ## Open questions
-- ~~`[blocks-arch]` **Built-in features as neighbours** (§2a)~~ **settled** (Charles, 2026-10-18): both count; neighbour tests read map tiles as well as objects.
-- ~~`[blocks-content]` **Condensation rule 2** (doc 13)~~ **settled** (Charles, 2026-10-18): "no modifier blocks" is final.
-- ~~`[blocks-content]` **Lab tier in recipes** (§1a)~~ **settled** (Charles, 2026-10-18): Bonus only in our own data.
-- ~~`[blocks-content]` **Familiar specialization**~~ **settled** (Charles, 2026-10-18): by operation (§3).
+Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` Familiar meeting places, gift lists and heart events. *Owner: doc 20.*
 - `[blocks-content]` Every bonus, cost and Familiar number. *Owner: the sweep.*
-- *For doc 12:* darkness outside a Lab (night outdoors, caves, unlit rooms) needs a definition; this doc only guarantees the alcove. *Owner: doc 12 follow-up.*
 - `[2.0]` Familiars from tie-in packs; Familiar heart perks; more Lab specializations (doc 10).
 
+Where darkness holds outside a Lab is now a doc 12 open question.
+
 ## Change log
+- **Cleanup sweep (2026-10-18):** settled open questions removed; the darkness-outside-a-Lab item moved to doc 12's open questions.
 - **v0.2 (2026-10-18):** T1 costs more and needs Saxum (Charles); every tier 3 tiles wider for a central aisle, and the Undine also appears in snow (Charles). Floorplans redrawn so each tier fits full-width Tobin lines with aisles and walkways round them and the hearths reachable (§2d); Sylph signature is now a small daily charge chance in any weather; the Undine meets the player at the forest pond (Charles). A met but unbonded Familiar waits in the workshop under the CC (Charles). Charles also answered all four cards: built-in hearths and alcoves count as neighbours, condensation rule 2 is final, Lab tier and Familiar are Bonus only, and Familiars specialize by operation. Readiness: ready for architecture.
 - **v0.1 (2026-10-18):** first draft: three tiers with costs and bonuses, nested floorplans with hearths, alcoves, a dais and a colonnade, draft process layouts that test doc 13's rule 2, the space check on real floor areas, four Familiars specialized by operation, meeting, bonding by hand-made rite, release and bond hearts, data shape and tech hooks.

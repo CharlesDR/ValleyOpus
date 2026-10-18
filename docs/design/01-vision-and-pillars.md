@@ -1,6 +1,6 @@
 # 01 · Vision & Pillars
 
-Status: **DRAFT v0.7** (2026-10-14). v0.7: internal consistency added as a core principle, and the inventory rule loosened to adventure-area drops only (Charles's full review). v0.6: Charles answered every guiding-area stub, and the other docs were revised to match (doc 10 lists the follow-up questions). v0.5: stub sections for guiding areas that still need Charles's direction (see "Open guiding areas"). v0.4: Lore & Worldbuilding pillar, the guiding star, the clock-freeze rule and the discovery gate on automation (Charles's feedback on the inspiration research). Sources: the startup context transcript, Charles's answers, and [research](../research/comparators-and-concepts.md).
+Status: **DRAFT v0.8** (2026-10-18). v0.8: the guiding star's flower example follows doc 13 (a flower Bonus on existing apparatus, not new machines). v0.7: internal consistency added as a core principle, and the inventory rule loosened to adventure-area drops only (Charles's full review). v0.6: Charles answered every guiding-area stub, and the other docs were revised to match (doc 10 lists the follow-up questions). v0.5: stub sections for guiding areas that still need Charles's direction (see "Open guiding areas"). v0.4: Lore & Worldbuilding pillar, the guiding star, the clock-freeze rule and the discovery gate on automation (Charles's feedback on the inspiration research). Sources: the startup context transcript, Charles's answers, and [research](../research/comparators-and-concepts.md).
 
 ## Vision
 ValleyOpus brings **alchemy and automation** to Stardew Valley in a way that feels native to the valley: mechanical ingenuity and Hermetic magic are two different ways of working the world, and the interesting choices happen where they meet. It should feel like *wonder you can industrialize, a little, at a price*, never "a medieval sweatshop simulator" (the Alchemy Factory warning).
@@ -25,7 +25,7 @@ ValleyOpus brings **alchemy and automation** to Stardew Valley in a way that fee
 3. **Lore must feel native to the valley**: unattributed sayings (the Fourfold Saying), in-world texts (the Verdant Tablet, the Silent Pages) and the cast's own histories. Inspiration: [research/inspiration-lore-and-npcs.md](../research/inspiration-lore-and-npcs.md).
 
 ## Guiding star (Charles)
-**Boost underwhelming base-game activities and items.** The model is flowers: without the mod, growing them in bulk is suboptimal (honey boosts, the odd gift), but flower-fed arcane apparatus (doc 04) make it worthwhile. Look for the same opportunity with other cheap, plentiful, under-used things (fiber, sap, common forage, trash, monster loot, moss) in the balance sweep.
+**Boost underwhelming base-game activities and items.** The model is flowers: without the mod, growing them in bulk is suboptimal (honey boosts, the odd gift), but flowers planted beside arcane apparatus give them a Bonus (doc 13 §4) that makes it worthwhile. Look for the same opportunity with other cheap, plentiful, under-used things (fiber, sap, common forage, trash, monster loot, moss) in the balance sweep.
 
 ## Inventory rule (Charles)
 Inventory space is precious. Few new monster drops or mine finds, and a Reagent Satchel by default (doc 03b). *(2026-10-14: restraint applies only to items that drop in adventure areas such as the mines; there's no overall item cap.)*

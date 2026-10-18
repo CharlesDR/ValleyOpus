@@ -1,6 +1,6 @@
 # 08a · Cast
 
-Status: **APPROVED** (2026-10-13). The apprentice was renamed from Wren to Lark to avoid a Sunberry Village clash. v0.6 pass: fixed Dr. Sorenson's first name in the table (Ulla, as decided), which an earlier rename had overwritten.
+Status: **APPROVED** (2026-10-13). The apprentice was renamed from Wren to Lark to avoid a Sunberry Village clash. v0.6 pass: fixed Dr. Sorenson's first name in the table (Ulla, as decided), which an earlier rename had overwritten. Cleanup sweep (2026-10-18): the trope check is closed (Ivo approved as written) and the Familiars follow doc 18.
 Parent doc: [08-narrative-and-npcs.md](08-narrative-and-npcs.md). This replaces the v0.1 candidate list.
 
 ## How names and genders were chosen
@@ -14,7 +14,7 @@ Names also avoid vanilla and SVE NPC names (e.g. Robin, Maru, Marnie, Morgan, Vi
 
 **Gender assignment:** two were fixed by Charles's direction (the Mentor is female; the Glassblower is Sandy's *nephew*). The other nine were shuffled with a cryptographic RNG into a split that makes 11 humans come out as near 50/50 as possible. The result is **6 female, 5 male**. The Familiars are spirits and have no gender.
 
-**Trope check:** after assignment, one combination leans on a stereotype: the Reagent Hunter came out male with a "scarred, gruff" characterization. I kept the background as written (your instruction), but suggest either softening "gruff" to something like "meticulous and dryly funny" or swapping the hunter's gender with another NPC's. The rest read as counter-trope or neutral.
+**Trope check:** after assignment, one combination leaned on a stereotype: the Reagent Hunter came out male with a "scarred, gruff" characterization. Charles approved Ivo as written (2026-10-13). The rest read as counter-trope or neutral.
 
 | # | Role | Name | Gender | Undertone |
 |---|---|---|---|---|
@@ -90,11 +90,11 @@ Names also avoid vanilla and SVE NPC names (e.g. Robin, Maru, Marnie, Morgan, Vi
 - **Function:** the narrative engine for workshop restoration, an emotional arc for Tobin, and a Spiritus source. Gives the Great Work its payoff.
 
 ### 9. Lark: the Eager Apprentice (flavour, approachability)
-- **Who:** an enthusiastic young cousin of one of the town families (Jodi's or Pam's, TBD) who idolizes the player's experiments.
+- **Who:** an enthusiastic young cousin of one of the town families (Jodi's or Pam's; a deferred pass, doc 10) who idolizes the player's experiments.
 - **Does:** copies recent discoveries with gently comic results, remarks on what the player hasn't tried yet, and occasionally gifts residue "projects".
 - **Function:** a **discovery hint** system disguised as flavour. **Tone guard:** mischief stays small and warm, in Stardew's register (closer to Vincent and Jas than slapstick), and appears rarely.
 
 ### 10. The Four Familiars: Elemental Spirits (Laboratory, Mystic flavour)
 - **Who:** a Salamander (Ignis), Undine (Aqua), Gnome (Terra) and Sylph (Aer): small spirits who bond with a Laboratory.
-- **Does:** assigned to a **Tier 3** Laboratory to augment it. **One familiar per Laboratory, no duplicates.** Each boosts machines of its element in that Lab, has small heart events, and can be attuned in Mystic rituals.
-- **Function:** gives the Laboratory a soul and makes passive Lab effects diegetic. It creates a **soft cap of 4 specialized Labs per farm**: a 5th or later Lab still works but has no familiar bonus. Details are designed with the Lab tiers (doc 02).
+- **Does:** bonded to a **Tier 3** Laboratory to specialize it. **One familiar per Laboratory, no duplicates.** Each boosts the operations of its element in that Lab (Salamander: Calcination and decomposition; Undine: Dissolution and Fermentation; Sylph: Separation and Distillation; Gnome: Conjunction and Coagulation), has small heart events, and is bonded by a hand-made rite any player can perform (doc 18 §3–4).
+- **Function:** gives the Laboratory a soul and makes passive Lab effects diegetic. It creates a **soft cap of 4 specialized Labs per farm**: a 5th or later Lab still works but has no familiar bonus. Details are in doc 18.

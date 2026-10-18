@@ -40,7 +40,7 @@ Two v0.2 additions widen sources without adding items. **Ley Taps** on ley nodes
 Primes combine pairwise into the 36 Tier 1 substances (a complete grid), then into Tier 2 compounds and Tier 3 capstones. Every combination is a discovery. See doc 07 for how players experiment, and 03a for the list.
 
 ## Twin routes
-Many products can be reached by a **mechanical route** (reliable, bulk, capped quality) or an **arcane route** (conditional, higher ceiling). Example: Gold + Argentum smelted into **Electrum**, versus Sol + Luna conjoined into **Rebis**. This is pillar 1 made concrete.
+Many products can be reached by a **mechanical route** (reliable, bulk, capped quality) or an **arcane route** (conditional, higher ceiling). The same output's routes form a twin group. Gold + Argentum smelted into **Electrum** versus Sol + Luna conjoined into **Rebis** is a related case, a **counterpart pair** (different outputs, shown side by side; Charles, 2026-10-18; doc 12 §7). This is pillar 1 made concrete.
 
 ## Living transmutation: plants only (Charles, doc 01)
 Transmutation and animation of **living things is limited to plants**. Seeds can be transmuted into other seeds, crops coaxed into new forms, and simple plant homunculi made. **Animals and people are never subjects**, in recipes, flavour or rituals. In-world, this is a ban the **Wizard** enforces (doc 08). Every recipe proposal is checked against this rule. **One careful exception** (Charles, 2026-10-17): **animal infusions** are tonics that change how a farm animal lives or what it gives, never what it is (doc 15 §7a).
