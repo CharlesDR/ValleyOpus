@@ -39,7 +39,7 @@ A player who controls the arrangement and the inputs must be able to **guarantee
 
 Three rules keep it readable:
 1. **At most two always-on operations per vessel**, plus at most two neighbour-enabled ones.
-2. **Neighbours are other apparatus, never decorations.** No item exists only to sit beside another one (the 03b purpose rule), so the doc 04 Salt Lamp, Bellows and Cooling Coil are cut (§4). **Provisional** (Charles, 2026-10-16): good on paper, but it may crowd automated layouts, where every neighbour slot is also a chaining or chest slot. Revisit once draft process layouts exist (doc 18); bringing back a small modifier block is the fallback.
+2. **Neighbours are other apparatus, never decorations.** No item exists only to sit beside another one (the 03b purpose rule), so the doc 04 Salt Lamp, Bellows and Cooling Coil are cut (§4). **Final** (Charles, 2026-10-18): doc 18's draft layouts showed every neighbour slot of an automated machine is already a chaining, chest or power slot, so the room (Lab tier, Familiar, hearths, alcoves) and range-2 conditions carry those bonuses instead.
 3. **Power and heat are the only neighbours that make up neighbour states.** Everything else (darkness, flowers, ley nodes, the Lab tier) gives Bonus effects or satisfies a recipe's Required condition, as doc 12 §4 conditions, under the same partition rule (§1a) whenever it selects between recipes.
 
 ### 2 · The behaviour classes
@@ -207,7 +207,7 @@ Doc 06 metrics per apparatus: GPTD per tile including its share of power and che
 - `[blocks-content]` **Power-inputs rule** (§5): Power substances become Required power conditions, and Perpetuum Mobile becomes an altar ritual beside a Boiler with Orichalcum as a third input. *Owner: Charles (default applied in 03a v0.8).*
 - `[blocks-content]` **Electrum and Rebis** (doc 12, owner 03a): recommended default is that a **twin route** always shares its output, and Electrum (⚙︎ Press or Furnace) and Rebis (✦A Altar) are instead a **counterpart pair** shown side by side through the same `TwinGroup`. No machine changes either way. *Owner: Charles.*
 - `[blocks-content]` **Ectoplasm hand-made only** (03a v0.7): if it stays ✋, the Hermetic Vessel runs it only from a hand load; if not, it is ordinary minor-arcane output. Default: keep ✋. *Owner: Charles.*
-- `[blocks-content]` **Condensation rule 2 (no modifier blocks)** is provisional: revisit against draft process layouts. *Owner: doc 18 / Charles. Doc 18 §2b drafted the layouts and recommends making it final.*
+- ~~`[blocks-content]` **Condensation rule 2 (no modifier blocks)**~~ **final** (Charles, 2026-10-18, after doc 18 §2b's draft layouts).
 - `[blocks-content]` **Chaining visual aids** (§7) and the recipe-memory icon (§6a): exact art and controls. *Owner: doc 16.*
 - ~~`[blocks-content]` **Lab footprint numbers** in §9 are estimates.~~ **Re-checked** in doc 18 §2c on real floorplans (T3 ≈280 usable tiles): one Lab can't hold everything, two can, four are more than enough.
 - *For other docs:* doc 04's proposal tables and doc 09's "native Automate support for engineered and minor arcane" are superseded by §3 and §6; both should point here when next touched.

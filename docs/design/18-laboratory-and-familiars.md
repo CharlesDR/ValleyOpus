@@ -15,6 +15,7 @@ The Laboratory is alchemy's home building: a Shed-like building from Robin that 
 - **Unlocks** (doc 14, approved): T1 at Robin's after the Furnace Room, T2 after the Sanctum, T3 and Familiar bonding after the Great Work Chamber.
 - **Late-game space** (Charles, doc 01): four T3 Labs, one per Familiar, hold a setup for every item with room to spare, and one Lab does not hold everything.
 - **Built-in features count** (Charles, 2026-10-18): hearth tiles give the *Heated* neighbour state and alcove tiles are always dark (§2a).
+- **Condensation rule 2 is final** (Charles, 2026-10-18): no modifier blocks; the room and range-2 conditions give those bonuses (§2b).
 - **Perk rules apply** (doc 05): Lab and Familiar bonuses are variables in doc 05's combine table; they add, then clamp, and never change which recipe a machine runs.
 
 ## Player-facing spec
@@ -136,7 +137,7 @@ Every side of every Vat is already spoken for: West and East by the chain, South
 
 **(c) Ritual corner** (T2 dais): the Circle Sigil on the dais, the altar at its centre, catalysts on its four points, and a Boiler beside the altar for Perpetuum Mobile (doc 13 §5). The pillar beside the dais leaves a one-tile walkway for hand-triggering.
 
-**Finding:** the crowding Charles foresaw is real. Every neighbour slot of an automated machine is already a chaining, chest or power slot, so modifier blocks would mostly be in the way. The bonuses a modifier block would have given now come from the **room** (Lab tier, Familiar, hearth, alcove) and from **range-2 conditions** such as flowers in Garden Pots, which use no adjacent side. **Recommendation:** make rule 2 final (no modifier blocks) *(Charles to confirm)*.
+**Finding:** the crowding Charles foresaw is real. Every neighbour slot of an automated machine is already a chaining, chest or power slot, so modifier blocks would mostly be in the way. The bonuses a modifier block would have given now come from the **room** (Lab tier, Familiar, hearth, alcove) and from **range-2 conditions** such as flowers in Garden Pots, which use no adjacent side. **Decided** (Charles, 2026-10-18): rule 2 is final, so there are no modifier blocks.
 
 ### 2c · Space check (doc 13 §9, re-run on real floorplans)
 - Floor per tier: T1 ≈103, T2 ≈206, T3 ≈309 tiles (vanilla Shed 11×9 and Big Shed 17×12, per the Stardew wiki; pillars and features counted). Allowing a walkway, a T3 Lab works out to about **280 usable tiles**.
@@ -212,7 +213,7 @@ Doc 06 reads: per-tier speed and quality chance against the phase targets (T2 + 
 
 ## Open questions
 - ~~`[blocks-arch]` **Built-in features as neighbours** (§2a)~~ **settled** (Charles, 2026-10-18): both count; neighbour tests read map tiles as well as objects.
-- `[blocks-content]` **Condensation rule 2** (doc 13): the draft layouts (§2b) show neighbour sides are already full in automated lines; recommendation is to make "no modifier blocks" final. *Owner: Charles.*
+- ~~`[blocks-content]` **Condensation rule 2** (doc 13)~~ **settled** (Charles, 2026-10-18): "no modifier blocks" is final.
 - `[blocks-content]` **Lab tier in recipes** (§1a): Bonus only in our own data (default), or allow Lab- or Familiar-only named Variants. *Owner: Charles.*
 - `[blocks-content]` **Familiar specialization by operation** (§3) rather than by output Prime. *Owner: Charles. Default: by operation.*
 - `[blocks-content]` Familiar meeting places, gift lists and heart events. *Owner: doc 20.*
