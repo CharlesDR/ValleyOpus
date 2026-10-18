@@ -1,6 +1,6 @@
 # 18 · Laboratory & Familiars
 
-Status: **DRAFT v0.1** (2026-10-18) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
+Status: **DRAFT v0.2** (2026-10-18) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
 Depends on: 01, 02, 03a, 05, 06, 08a, 12, 13, 14, 15 · Feeds: 06, 09, 11, 16, 17, 20, 21
 
 ## Purpose
@@ -17,6 +17,7 @@ The Laboratory is alchemy's home building: a Shed-like building from Robin that 
 - **Built-in features count** (Charles, 2026-10-18): hearth tiles give the *Heated* neighbour state and alcove tiles are always dark (§2a).
 - **Condensation rule 2 is final** (Charles, 2026-10-18): no modifier blocks; the room and range-2 conditions give those bonuses (§2b).
 - **Lab tier and Familiar are Bonus only** in ValleyOpus's own recipes (Charles, 2026-10-18; §1a): no product needs a Lab.
+- **Familiars specialize by operation** (Charles, 2026-10-18; §3), not by the Primes in a recipe's output.
 - **Perk rules apply** (doc 05): Lab and Familiar bonuses are variables in doc 05's combine table; they add, then clamp, and never change which recipe a machine runs.
 
 ## Player-facing spec
@@ -149,7 +150,7 @@ Every side of every Vat is already spoken for: West and East by the chain, South
 ### 3 · Familiars
 Four elemental spirits from Paracelsus (doc 08a): no gender, not villagers, one per T3 Lab, farm-wide unique.
 
-**Specialization by operation** *(default; Charles to confirm)*. Each Familiar favours the operations of its element, the classical reading of the seven operations of the Magnum Opus. In its Lab, every recipe whose operation is one of these (on any apparatus kind, altars included; the Experiment Table excepted) gains **Speed +10%** and **+10% chance of +1 quality step**, on top of the T3 bonus and inside doc 05's clamps. Each also has one **signature** that lowers a cost or adds a convenience, never a new neighbour state.
+**Specialization by operation** (Charles, 2026-10-18). Each Familiar favours the operations of its element, the classical reading of the seven operations of the Magnum Opus. In its Lab, every recipe whose operation is one of these (on any apparatus kind, altars included; the Experiment Table excepted) gains **Speed +10%** and **+10% chance of +1 quality step**, on top of the T3 bonus and inside doc 05's clamps. Each also has one **signature** that lowers a cost or adds a convenience, never a new neighbour state.
 
 | Familiar | Element | Favoured operations | Signature (in its Lab) |
 |---|---|---|---|
@@ -216,11 +217,12 @@ Doc 06 reads: per-tier speed and quality chance against the phase targets (T2 + 
 - ~~`[blocks-arch]` **Built-in features as neighbours** (§2a)~~ **settled** (Charles, 2026-10-18): both count; neighbour tests read map tiles as well as objects.
 - ~~`[blocks-content]` **Condensation rule 2** (doc 13)~~ **settled** (Charles, 2026-10-18): "no modifier blocks" is final.
 - ~~`[blocks-content]` **Lab tier in recipes** (§1a)~~ **settled** (Charles, 2026-10-18): Bonus only in our own data.
-- `[blocks-content]` **Familiar specialization by operation** (§3) rather than by output Prime. *Owner: Charles. Default: by operation.*
+- ~~`[blocks-content]` **Familiar specialization**~~ **settled** (Charles, 2026-10-18): by operation (§3).
 - `[blocks-content]` Familiar meeting places, gift lists and heart events. *Owner: doc 20.*
 - `[blocks-content]` Every bonus, cost and Familiar number. *Owner: the sweep.*
 - *For doc 12:* darkness outside a Lab (night outdoors, caves, unlit rooms) needs a definition; this doc only guarantees the alcove. *Owner: doc 12 follow-up.*
 - `[2.0]` Familiars from tie-in packs; Familiar heart perks; more Lab specializations (doc 10).
 
 ## Change log
+- **v0.2 (2026-10-18):** Charles answered all four cards: built-in hearths and alcoves count as neighbours, condensation rule 2 is final, Lab tier and Familiar are Bonus only, and Familiars specialize by operation. Readiness: ready for architecture.
 - **v0.1 (2026-10-18):** first draft: three tiers with costs and bonuses, nested floorplans with hearths, alcoves, a dais and a colonnade, draft process layouts that test doc 13's rule 2, the space check on real floor areas, four Familiars specialized by operation, meeting, bonding by hand-made rite, release and bond hearts, data shape and tech hooks.
