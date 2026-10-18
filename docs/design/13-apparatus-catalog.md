@@ -1,6 +1,6 @@
 # 13 · Apparatus Catalog
 
-Status: **DRAFT v0.5** (2026-10-17) · Readiness: ready for architecture once Charles confirms the defaults marked *(default)* below; no `[blocks-arch]` item is left open
+Status: **DRAFT v0.6** (2026-10-18) · Readiness: ready for architecture (Charles confirmed the power, Electrum/Rebis and Ectoplasm defaults on 2026-10-18; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03, 03a, 04, 12 · Feeds: 05, 06, 07, 09, 14, 15, 16, 17, 18
 
 ## Purpose
@@ -70,7 +70,7 @@ Kinds and caps follow doc 12 §5. Names are working names; unlock sources are se
 | **Lightning Coil** | Conjunction of its own fuel recipe (Ignis + Aer → Fulgur) | storms charge it free, like a lightning rod | power source: **Fulgur**, stored as charges; also **overclocks**: recipes that list the *Fulgur* state may run faster with more residue (§1a), which replaces doc 04's Bellows | Tobin's letter after the first storm once the Cistern is restored |
 
 **Minor arcane ✦ (Oriel)**
-| Apparatus | Always on | Enabled by a neighbour | Notes | Unlock (proposal) |
+| Apparatus | Always on | Enabled by a neighbour | Notes | Unlock (doc 14) |
 |---|---|---|---|---|
 | **Athanor** | Calcination; **decomposition** | — | slow, better profile (top two Primes), little residue. Fed Ignis + Ignis it **kindles** (Flamma Viva) and stays lit for good, and is then an arcane **heat** source for up to 2 neighbours | one given by Oriel at the intro; recipe from the Furnace Room |
 | **Alembic** | Dissolution | **Distillation** with heat (a kindled Athanor or a Boiler) | starter glassware | intro (recipe + one) |
@@ -79,13 +79,13 @@ Kinds and caps follow doc 12 §5. Names are working names; unlock sources are se
 | **Pelican** | Distillation | — | Bennet's advanced shape: runs `Advance` recipes (doc 12 §5) up to gold, a slow arcane route to quality | Bennet, after the bus repair |
 
 **Ritual ✦A / ✦C**
-| Apparatus | Offers | Notes | Unlock (proposal) |
+| Apparatus | Offers | Notes | Unlock (doc 14) |
 |---|---|---|---|
 | **Ritual Altar** | every operation, for recipes marked ✦A, plus Ritual | merges doc 04's Conjunction and Fixing Altars; catalysts are staged on it; Required planetary day, hour or moon conditions live on the recipes | Sanctum |
 | **Circle Sigil** *(Furniture, not a BigCraftable)* | turns the altar at its centre into a **Ritual Circle** (✦C): one batch of up to a stack, catalysts at the four points | a 5×5 walkable rug, so it costs floor but no machine slot | Crystal Vault |
 
 **Specialists and discovery**
-| Apparatus | Offers | Notes | Unlock (proposal) |
+| Apparatus | Offers | Notes | Unlock (doc 14) |
 |---|---|---|---|
 | **Experiment Table** | Combination (every recipe marked T) | two slots, three after a workshop unlock (a flag, not a new item); respects neighbours, so power and heat recipes can be discovered here (§5) | intro; third slot from the Library |
 | **Quarry Crucible** | Conjunction for metals (S) | planetary metals on their weekday; Orichalcum with Fulgur | Agnes, after the Quarry bridge |
@@ -122,12 +122,12 @@ Doc 04 proposed about 25 machines (7 engineered, 2 support, 5 minor arcane, 2 al
 | Flower-fed apparatus | an **adjacency Bonus condition** (crops or flowers with a tag within range 2) on the Athanor, Hermetic Vessel and Retort; flowers wilt as they feed, so it stays a real crop. No new machine |
 
 ### 5 · Power, heat and the "power inputs" rule
-Vapor, Fulgur and Flamma Viva are **Power class** (doc 03b): never items. Three recipes in doc 03a listed them as inputs (consistency check 1). **Rule (default):** a Power substance is never a recipe input; a recipe that needs one carries a **Required `power` condition** instead (doc 12 §4 already has the kind), met when a supplying source is adjacent or, for Flamma Viva, when the apparatus itself is a kindled Athanor.
+Vapor, Fulgur and Flamma Viva are **Power class** (doc 03b): never items. Three recipes in doc 03a listed them as inputs (consistency check 1). **Rule** (Charles, 2026-10-18): a Power substance is never a recipe input; a recipe that needs one carries a **Required `power` condition** instead (doc 12 §4 already has the kind), met when a supplying source is adjacent or, for Flamma Viva, when the apparatus itself is a kindled Athanor.
 | Recipe | Was | Now |
 |---|---|---|
 | **Orichalcum** | Metallum + Fulgur | Metallum, Required Fulgur, at the Quarry Crucible (or the Table beside a charged Coil) |
 | **Cinis Phoenicis** | Flamma Viva + Vitae | Vitae, Required Flamma Viva: calcined in a kindled Athanor (or on the Table beside one) |
-| **Perpetuum Mobile** | Motus + Vapor + Ordo, crafted | Motus + Ordo + Orichalcum, Required Vapor, as a hand-made **ritual at the Altar with a Boiler beside it**. Crafting can't read neighbours, and an altar fed by Tobin's steam is the first of doc 04's **blended** moments, fitting a Mechanist capstone. Orichalcum keeps it late (proposal; doc 03a v0.8) |
+| **Perpetuum Mobile** | Motus + Vapor + Ordo, crafted | Motus + Ordo + Orichalcum, Required Vapor, as a hand-made **ritual at the Altar with a Boiler beside it**. Crafting can't read neighbours, and an altar fed by Tobin's steam is the first of doc 04's **blended** moments, fitting a Mechanist capstone. Orichalcum keeps it late (Charles, 2026-10-18; doc 03a) |
 
 **Supplying power.** Adjacency sets the neighbour state; charge only decides whether a powered recipe can run now (§1a). A source holds a power state in `modData`: Vapor and kindled Flamma Viva run for a duration (Vapor) or for good (Flamma Viva); Fulgur holds charges, and each powered cycle it feeds spends one. A source feeds at most `MaxConsumers` adjacent machines, chosen in a fixed order (N, E, S, W) so the result never depends on load order. Power is checked in the **load-time snapshot** (doc 12 §3), so a Boiler going cold mid-cycle never ruins a batch.
 
@@ -144,7 +144,7 @@ Vapor, Fulgur and Flamma Viva are **Power class** (doc 03b): never items. Three 
 "Best" is never decided by the mod, so a line can make exactly the output the player wants even when a more advanced recipe is unlocked (Charles, 2026-10-16). Recipe memory is an **input filter**: it says which multiset Automate pulls from a mixed chest. Once inputs are loaded, the recipe is fixed by inputs plus neighbour state (§1a), so memory never chooses between recipes.
 - **Recipe memory:** every apparatus remembers the **last recipe loaded by hand** (or picked in the Satchel picker). Automate and chaining only ever load that recipe. A machine set to Calx stays on Calx even if its chests could also feed Vitrum.
 - **Pinning:** the picker has a pin toggle. A pinned machine never changes recipe, even when the player hand-loads something else by accident; hand-loading a different recipe asks first.
-- **A fresh machine** with no memory takes nothing from automation until it's set once by hand, so a new line never starts on a surprise recipe. *(Default; the alternative is "first satisfiable in codex order".)*
+- **A fresh machine** with no memory takes nothing from automation until it's set once by hand, so a new line never starts on a surprise recipe. *(Default, kept for now: Charles wants to playtest how it feels, 2026-10-18; the alternative is "first satisfiable in codex order".)*
 - **Visible:** the remembered recipe's output shows as a small icon on the machine and in its hover tooltip, with a pin mark when pinned.
 - Stored in `modData` (`RecipeMemory`, `Pinned`), so it syncs in multiplayer and is inert without the mod.
 
@@ -167,7 +167,7 @@ Vapor, Fulgur and Flamma Viva are **Power class** (doc 03b): never items. Three 
 - **Uninstall (S3):** apparatus are vanilla BigCraftables with `modData`; without the mod they become inert. Staged trays are emptied into a chest by the "prepare for removal" command.
 
 ### 9 · Late-game scale check (doc 00, doc 02)
-Target: one T3 Lab per Familiar (four) is **more than enough** for a setup producing every item. Rough count with placeholder numbers, to re-check against real floorplans in doc 18:
+Target: one T3 Lab per Familiar (four) is **more than enough** for a setup producing every item. The first rough count is below; **doc 18 §2c re-ran it on the real floorplans** (T3 ≈330 usable tiles): one Lab can't hold everything, two can, four are more than enough.
 - About 75 recipes in 1.0 (36 Tier 1, ~25 Tier 2, 3 dark twins, 3 metals, ~4 stage advances, 4 Tier 3). Recipes sharing an apparatus kind can share a machine over a week, but a "produce everything at once" setup needs about one machine each: **~75 machines**.
 - Each needs its share of a South chest, a power source and a walkway: about **5 tiles per machine**, so ~375 tiles; plus 2–3 Ritual Circles at 25 tiles each: **~450 tiles**.
 - Taking the Big Shed interior as roughly 200 usable tiles (to verify) and T3 as 1.5× that (~300), four T3 Labs hold ~1,200 tiles. The full setup fits in two, leaving room for scale and decoration. ✓
@@ -189,7 +189,7 @@ Recipes keep `ApparatusKinds` and `ApparatusIds` as doc 12 defines; an apparatus
 - 14 BigCraftables (§3) and 1 Furniture rug (Circle Sigil); 2 appended vanilla machines.
 - 3 power sources with their fuel recipes (already Tier 1 rows in 03a: Vapor, Fulgur, Flamma Viva).
 - About a dozen adjacency conditions (power, heat, darkness, flowers by tag, ley node, Lab tier, overclock), sharing doc 12's `Conditions` asset.
-- 6–10 ley nodes (doc 04's list).
+- 6–10 ley nodes (examples in doc 04; sources and reveals in doc 14).
 - Crafting recipes for every apparatus (doc 14 sets their unlocks; Vitrum for glassware, Saxum and metals for Tobin's machines).
 - Slice (S1): all six of Experiment Table, Athanor, Alembic, Retort, Hermetic Vessel and Calcinator (doc 11 §1).
 
@@ -203,18 +203,15 @@ Recipes keep `ApparatusKinds` and `ApparatusIds` as doc 12 defines; an apparatus
 Doc 06 metrics per apparatus: GPTD per tile including its share of power and chest tiles; Boiler `MaxConsumers` and duration (the Factorio ratio); Coil storm charge rate and overclock size; Athanor heat range; decomposition `YieldMultiplier`, `ResidueRate` and `Concentration` per decomposer; Ley Tap units per day; Circle batch size. All placeholders. The sweep also reports machines per endgame setup against §9.
 
 ## Open questions
-- ~~`[blocks-content]` **Environment rule vs "residue instead of failure"**~~ **settled** (Charles, 2026-10-17): the machine waits idle (§1a).
-- `[blocks-content]` **Power-inputs rule** (§5): Power substances become Required power conditions, and Perpetuum Mobile becomes an altar ritual beside a Boiler with Orichalcum as a third input. *Owner: Charles (default applied in 03a v0.8).*
-- `[blocks-content]` **Electrum and Rebis** (doc 12, owner 03a): recommended default is that a **twin route** always shares its output, and Electrum (⚙︎ Press or Furnace) and Rebis (✦A Altar) are instead a **counterpart pair** shown side by side through the same `TwinGroup`. No machine changes either way. *Owner: Charles.*
-- `[blocks-content]` **Ectoplasm hand-made only** (03a v0.7): if it stays ✋, the Hermetic Vessel runs it only from a hand load; if not, it is ordinary minor-arcane output. Default: keep ✋. *Owner: Charles.*
-- ~~`[blocks-content]` **Condensation rule 2 (no modifier blocks)**~~ **final** (Charles, 2026-10-18, after doc 18 §2b's draft layouts).
+Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
+- `[blocks-content]` **Fresh machine and automation** (§6a): a machine takes nothing from automation until set once by hand *(default, kept for now)*. Charles wants to playtest how it feels before locking it (2026-10-18). *Owner: Charles, after playtesting.*
 - `[blocks-content]` **Chaining visual aids** (§7) and the recipe-memory icon (§6a): exact art and controls. *Owner: doc 16.*
-- ~~`[blocks-content]` **Lab footprint numbers** in §9 are estimates.~~ **Re-checked** in doc 18 §2c on real floorplans (T3 ≈330 usable tiles): one Lab can't hold everything, two can, four are more than enough.
-- *For other docs:* doc 04's proposal tables and doc 09's "native Automate support for engineered and minor arcane" are superseded by §3 and §6; both should point here when next touched.
 - `[2.0]` Display-only `Data/Machines` rules that mirror our recipes, so Lookup Anything can list them (Charles, 2026-10-16).
 - `[2.0]` A flower-fed **trickle** (a Prime from a planted bed, no input) would be a world tap placed in a garden; arcane logistics replaces chaining through the item-route interface; blended late-game machines are designed with the capstones.
 
 ## Change log
+- **v0.6 (2026-10-18), Charles's answers:** the power-inputs rule, Electrum and Rebis as a counterpart pair, and Ectoplasm hand-made only are confirmed; the fresh-machine default stays until playtesting.
+- **v0.6 (2026-10-18):** cleanup sweep: unlock columns marked as doc 14's approved sources; §9 points to doc 18 §2c's re-check; settled open questions removed and the four remaining defaults grouped for Charles; doc 04's tables and doc 09's Automate plan now point here.
 - **v0.5 (2026-10-17):** the unlock column follows doc 14 (Charles approved): Oriel gives one Athanor at the intro, rooms supply the rest.
 - **v0.4 (2026-10-16):** Charles's extension: uncontrollable conditions only gate or bonus automatable recipes, never vary their output. Neighbour state comes from arrangement, not charge. The tension with gentle failure is logged as a follow-up.
 - **v0.3 (2026-10-16):** Charles's uniqueness rule (§1a): neighbour states are mutually exclusive and named by every recipe, there is no "any adjacency", and no two recipes share apparatus, state and inputs. Crossed power runs nothing, and overclock is a state, not a blanket bonus.

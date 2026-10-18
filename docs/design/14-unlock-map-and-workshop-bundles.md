@@ -1,6 +1,6 @@
 # 14 · Unlock Map & Workshop Bundles
 
-Status: **DRAFT v0.3** (2026-10-17) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
+Status: **DRAFT v0.4** (2026-10-18) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03a, 05, 07, 08, 08a, 12, 13, 15 · Feeds: 05, 06, 09, 11, 16, 17, 18, 19, 20
 
 ## Purpose
@@ -57,7 +57,7 @@ An **unlock** is one farm-wide flag plus the things it grants. Kinds:
 
 **Crafting recipes for products** (trinkets, rings, décor, the alternate Bomb and Rain Totem recipes; doc 12 §9 `Craft`) are learned when their **defining substance is discovered** (its `item:` key): discovering Pulvis Pyrius teaches the Bomb and Mega Bomb recipes, discovering Smaltum teaches the glazed décor set *(approved)*. Apparatus and tool recipes are the only crafting recipes that come from unlocks.
 
-### 2 · The workshop's rooms (proposal)
+### 2 · The workshop's rooms
 Seven rooms, one for each operation of the Magnum Opus in doc 02's seasonal order, plus the sealed Great Work chamber. Each room's motif is the operation the matching season introduces; it doesn't mean the operation was unavailable before (the Alembic dissolves from day one).
 
 | Tier | Room | Motif | Host | Opens when | Pace (diligent) | Unlocks on restoration |
@@ -76,7 +76,7 @@ Seven rooms, one for each operation of the Magnum Opus in doc 02's seasonal orde
 
 **Why the Athanor is a gift at the intro** *(Charles, 2026-10-17; doc 13 updated)*: decomposition is the first verb of the mod, and without a decomposer the Table has nothing to combine. Oriel's own old Athanor makes the first evening playable; its crafting recipe still comes with the Furnace Room, so a second one is the room's reward.
 
-### 3 · Workshop bundles (proposal)
+### 3 · Workshop bundles
 Three bundles per room, four in the Great Work Chamber, CC-style: each slot is an ingredient spec from doc 12 §3, so tags work ("any Spring forage", "any Tier 1 Ignis substance"), and a bundle may need N of M slots. That makes 25 bundles. Contents are placeholders for doc 20 and the sweep; what is fixed here is the **stretch rule** and the **currency rule** per tier.
 
 **Stretch rule** (Charles, 2026-10-17): every bundle is completable with what is unlocked when its room opens (the critical-path rule below), but it should be a **challenge at that point**, pushing the player to use the tools they already have to their limit rather than wait for the next ones. Each room's three bundles therefore follow one pattern:
@@ -128,7 +128,7 @@ Three bundles per room, four in the Great Work Chamber, CC-style: each slot is a
 | **Lark** | after the farm's 10th discovery | the comic hint channel |
 | **The Wizard** | the Sanctum (vanilla friendship gates still apply to his heart content) | bright-substance teaching; the first Aether ley node; the ban scene the first time Anima is made |
 | **The Witch** (or Alecto) | the Undercroft | the Gloam Lantern; dark-twin hints; Shades |
-| **The Familiars** | the Great Work Chamber and a T3 Lab | bonding, one per T3 Lab (doc 18 designs the bonding; proposal: a hand-made offering ritual of Anima plus a gift of the Familiar's element) |
+| **The Familiars** | the Great Work Chamber and a T3 Lab | met at their places, then wait in the workshop; bonding, one per T3 Lab, is a hand-made rite of Anima plus the element's pure pair at a Ritual Altar in that Lab (doc 18 §4) |
 
 ### 5 · Base-game gates (both routes)
 Each gate reads the vanilla milestone, whichever route reached it. Flag names are to verify (doc 10).
@@ -143,17 +143,8 @@ Each gate reads the vanilla milestone, whichever route reached it. Flag names ar
 | **Volcano forge** | reached | same | an Ignis ritual site (Required location for a late ritual); forging itself is 2.0 |
 | **Mr. Qi** | Qi's Walnut Room | same | a few Qi special orders for alchemical feats; the hard Qi Bean / Radioactive Ore recipe becomes reachable through its inputs |
 
-### 6 · Skill-level unlocks (proposal for doc 05)
-Vanilla skills hand out crafting recipes; ours mostly can't, because recipes come from discovery. Levels give **capacity and tool upgrades** instead:
-| Level | Unlock |
-|---|---|
-| 2 | Reagent Satchel: one more tab of capacity |
-| 4 | Assayer's Lens assays a whole chest's contents at once (codex profiles only) |
-| 5 | profession choice (doc 05) |
-| 6 | upgraded Gloam Lantern recipe (with the Undercroft restored) |
-| 8 | Satchel picker can pin a recipe on several machines at once (doc 13 §6a) |
-| 10 | profession choice (doc 05) |
-Level 10 never means everything is unlocked (P4): rooms, NPCs and the Great Work are separate tracks.
+### 6 · Skill-level unlocks
+Adopted and owned by **doc 05 §3**: levels give capacity and tool upgrades (Satchel tab, chest-wide assaying, the upgraded Gloam Lantern, multi-machine pinning), professions at 5 and 10, and may also grant recipes under doc 05's critical-path guard (the exception in Decisions locked). No bundle requires an Alchemy-level unlock. Level 10 never means everything is unlocked (P4): rooms, NPCs and the Great Work are separate tracks.
 
 ### 7 · Aether is the main pacing valve
 Every bright substance, every dark twin and most of Tier 2's arcane side need **Aether**. Its sources open in a fixed order of effort, which paces the arcane mid-game without a gate on any recipe:
@@ -214,16 +205,15 @@ All assets are public Content Patcher data under `CharlesDR.ValleyOpus/…`, wit
 Doc 06 reads the map as a **pace report**, and the sweep also runs the **bundle critical-path check** (§3): for each bundle slot, the earliest unlock set that makes it reachable must be available when the slot's room opens. The pace report covers, for each season at a diligent pace, which recipes are reachable, the gold per tile-day of the best reachable route against the vanilla machines a player has by then (kegs and jars early), the Aether a player can gather against what that season's content asks for, and the number of hand actions per day the season's setups need (doc 16's quarter-day budget). Placeholders to tune: bundle contents and rewards, apparatus crafting costs, Hesper's heart threshold for the Ley Tap, Lark's discovery count, and skill-level unlocks.
 
 ## Open questions
+Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` **Late-install fast start:** nothing is skipped automatically (approved); whether GMCM later offers an optional "fast start" that restores the Furnace Room is still open. *Owner: Charles / doc 16.*
 - `[blocks-content]` **Lightning Coil in Winter:** the Coil comes by letter after the next storm (approved). If a Cistern restored in Winter feels too slow in play, the fallback is to grant it with the room. *Owner: balance pass.*
-- ~~`[blocks-content]` **Skill-level unlocks** (§6) are proposals for doc 05.~~ Adopted in doc 05 v0.6 §3; the odd levels (1, 3, 7, 9) stay open there.
 - `[blocks-content]` **Contract-reward list:** optional extras only (approved); which extras and curios is content. *Owner: doc 20.*
-- ~~`[blocks-content]` **Familiar bonding** trigger and cost.~~ **Drafted** in doc 18 §4: meet the spirit at its place, then a hand-made rite of Anima plus the element's pure pair at an altar in the T3 Lab.
 - `[blocks-content]` **Bundle contents, rewards and NPC arrival scenes.** *Owner: doc 20 and the sweep.*
-- *For other docs:* doc 07's hint channels gain their unlock sources from §4 when it is next touched.
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
 
 ## Change log
+- **v0.4 (2026-10-18):** cleanup sweep: "(proposal)" dropped from §2 and §3 (Charles approved them in v0.2); §6's skill table now points to doc 05 §3, which owns it; the Familiar row follows doc 18 §4; doc 07's hint channels now carry their unlock sources; settled open questions removed.
 - **v0.3 (2026-10-17):** follows doc 15 v0.6 (PR #11): gated automated recipes wait idle; shops pay the shipping price, so NPCs open places to sell, not prices; Sorenson's contracts may reward an optional unlock (new `Contract` source); "Element" used for the umbrella term. Charles approved the contract-reward rule; "curio" defined; bundles checked against the critical path (Electrum and the dark twins replaced); bundles rebuilt on Charles's stretch rule (a tools, a progress and a gathering bundle per room, against the player's likely state), and the Great Work Chamber gains a Rubedo bundle (25 in all).
 - **v0.2 (2026-10-17):** Charles approved every default; doc 02's jungle ley node, doc 13's unlock column and the README updated to match.
 - **v0.1 (2026-10-17):** first draft: unlock kinds, "unlocks open means, never recipes", seven workshop rooms in four tiers plus the Great Work Chamber, 24 bundles with a currency rule per tier, NPC arrivals, base-game gates on both routes, skill-level proposals, Aether as the pacing valve, the Year 1 reachability table and the data shape.
