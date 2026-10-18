@@ -218,7 +218,7 @@ Doc 06 reads the map as a **pace report**, and the sweep also runs the **bundle 
 - `[blocks-content]` **Lightning Coil in Winter:** the Coil comes by letter after the next storm (approved). If a Cistern restored in Winter feels too slow in play, the fallback is to grant it with the room. *Owner: balance pass.*
 - ~~`[blocks-content]` **Skill-level unlocks** (§6) are proposals for doc 05.~~ Adopted in doc 05 v0.6 §3; the odd levels (1, 3, 7, 9) stay open there.
 - `[blocks-content]` **Contract-reward list:** optional extras only (approved); which extras and curios is content. *Owner: doc 20.*
-- `[blocks-content]` **Familiar bonding** trigger and cost. *Owner: doc 18.*
+- ~~`[blocks-content]` **Familiar bonding** trigger and cost.~~ **Drafted** in doc 18 §4: meet the spirit at its place, then a hand-made rite of Anima plus the element's pure pair at an altar in the T3 Lab.
 - `[blocks-content]` **Bundle contents, rewards and NPC arrival scenes.** *Owner: doc 20 and the sweep.*
 - *For other docs:* doc 07's hint channels gain their unlock sources from §4 when it is next touched.
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
