@@ -1,6 +1,6 @@
 # 05 · Skill & Professions
 
-Status: **DRAFT v0.7** (2026-10-18) · Readiness: ready for architecture once Charles answers the open questions
+Status: **DRAFT v0.7** (2026-10-18) · Readiness: ready for architecture (no `[blocks-arch]` item open; Charles answered every question on 2026-10-18)
 Depends on: 01, 02, 04, 06, 12, 13, 14, 15 · Feeds: 06, 09, 11, 16, 17, 18
 
 ## Purpose
@@ -15,6 +15,7 @@ The Alchemy skill rewards the player for doing alchemy by hand and paces the two
 - **Perks may lower costs and grant new recipes, but never change an existing setup** (Charles, 2026-10-18). This is the one exception to doc 14's "no unlock grants a recipe".
 - **Automated output gives reduced XP, not none** (Charles, 2026-10-18), as vanilla crab pots still give Fishing XP.
 - **Recipes granted by a profession give no discovery XP** (Charles, 2026-10-18).
+- **Each of the six professions grants one signature recipe** (Charles, 2026-10-18), on its own inputs and adjacency so no existing setup changes.
 - **No perk duplicates a vanilla profession** (Charles, doc 15 §3a): no sell-price perk, because our products are Artisan Goods and Artisan already applies (doc 15 §6).
 - **No prestige in 1.0**; "Ultimate Mastery" perks are 2.0.
 
@@ -112,7 +113,7 @@ A player may own **all six** professions through Walk of Life resets. To keep th
 In 1.0 the six profession rows are fixed, but every perk value and XP amount is data the sweep can rewrite. Content-pack professions are 2.0.
 
 ## Content inventory
-- One skill, 10 levels, 6 professions, 13 perks (above). Profession-granted recipes: none yet (see Open questions).
+- One skill, 10 levels, 6 professions, 13 perks (above). **One signature recipe per profession** (Charles, 2026-10-18), six in all, granted on choosing it; rows come in the content pass.
 - Four odd-level conveniences to name (levels 1, 3, 7, 9).
 - Art: a skill icon and 6 profession icons (doc 21). Text: level-up lines and profession descriptions, in i18n from the start.
 
@@ -128,7 +129,7 @@ In 1.0 the six profession rows are fixed, but every perk value and XP amount is 
 Doc 06 reads: XP per day at a diligent pace against the L5 and L10 targets; gold per tile-day with and without each profession; the all-six case against the 150% ceiling; the hand-time share of a Mystic altar setup with and without the trigger radius. Placeholders: every XP amount, every perk value, the speed clamp.
 
 ## Open questions
-- `[blocks-content]` **Signature recipes per profession** (§5 rule 2). Default: perks may grant recipes, but none is planned until the content pass. *Owner: Charles.*
+- `[blocks-content]` **The six signature recipes** (§4): design one per profession in the content pass, each with inputs and adjacency that overlap no existing recipe. *Owner: content pass.*
 - `[2.0]` Prestige / Ultimate Mastery perks; content-pack professions.
 
 ## Change log
