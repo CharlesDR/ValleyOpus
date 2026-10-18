@@ -20,6 +20,7 @@ Each subject has one owning doc; other docs summarize and link to it. Where an o
 | [08a Cast](08a-cast.md) | the approved cast, with names and genders |
 | [09 Technical Architecture](09-technical-architecture.md) | packaging, IDs, dependencies, key systems |
 | [10 Roadmap & Open Questions](10-roadmap-and-open-questions.md) | 1.0 vs 2.0, Charles's action items, **every open question across the docs**, upcoming tasks |
+| [11 First Playable Slice](11-first-playable-slice.md) | Spring Y1 end to end: the finish line, the first evening, what is in and out, the rows per asset, the technical risks the first build must surface |
 | [12 Recipe & Process Model](12-recipe-and-process-model.md) | the keystone: Primes, substances, recipes, conditions, quality, residue, discovery keys, pack format |
 | [13 Apparatus Catalog](13-apparatus-catalog.md) | the 14 machines, behaviour classes, power and heat, the resolver behind `OutputMethod`, chaining, the four-Lab check |
 | [14 Unlock Map & Workshop Bundles](14-unlock-map-and-workshop-bundles.md) | what opens when: workshop rooms and bundles, NPC arrivals, base-game gates on both routes, Aether pacing |

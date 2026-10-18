@@ -56,7 +56,7 @@ All 18 answered and applied in v0.7.
 All Part 4 decisions (doc 00) and the earlier pending items were answered by 2026-10-13: cast names (the apprentice is Lark), the Reagent Satchel (doc 03b), the arcane automation model (doc 04), the ritual mini-game in 2.0, the Gloam Lantern collecting Shades (doc 04), and the defaults (mod ID, 36-cell grid, dark twins, perks-only-add, residue → Prima Materia).
 
 ## First playable slice (S1)
-Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel. Specced in doc 11 (v0.1, in review as PR #14).
+Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel. Specced in doc 11 (v0.2, in review as PR #14): six apparatus, a five-quest starter chain, four test configurations (chaining-only first, SVE from the first build), unit tests, logging and a testing guide.
 
 ## Open questions
 The one list of everything still open, across all docs (collected in the 2026-10-18 cleanup sweep). Each doc's own Open questions section keeps its items with a tag and owner; when an item is settled, it is written into its owning doc and removed from both lists.
@@ -75,14 +75,15 @@ Each is written into the docs as the default; confirming it just removes the *(d
 - `[blocks-content]` **Effect count:** the 2–3 cap stays suspended; doc 15 §3a's catalogue is the 1.0 list for now. *Owner: Charles (doc 15).*
 
 ### For the Phase 4 docs (16 UX, 17 Multiplayer, Saves & Compat)
-- **Doc 16:** chaining visual aids and the recipe-memory icon (doc 13 §6a, §7); Finch's curiosity hint hidden in his shop tooltip (doc 07); the quarter-day hand-action budget (doc 02); the Satchel UI (doc 03b); codex, toasts and flourishes (doc 07).
-- **Doc 17:** Satchel storage (above); clock freeze in multiplayer (doc 07); locked outputs and third-party extractors (doc 13 §6); 1.6 dropping a missing building cleanly (doc 09); the tie-in test matrix (doc 00).
+- **Doc 16:** the slice's menus first (Table, Satchel grid and picker, codex, bundle board, minimal chain overlay; doc 11); chaining visual aids and the recipe-memory icon (doc 13 §6a, §7); Finch's curiosity hint hidden in his shop tooltip (doc 07); the quarter-day hand-action budget (doc 02); the Satchel UI (doc 03b); codex, toasts and flourishes (doc 07).
+- **Doc 17:** the save schema version and migration, before the slice is built (doc 11, carry-forward saves); Satchel storage (above); clock freeze in multiplayer (doc 07); locked outputs and third-party extractors (doc 13 §6); 1.6 dropping a missing building cleanly (doc 09); the tie-in test matrix (doc 00).
 
 ### Content pass (rows, docs 19 and 20)
 - The six profession signature recipes and the odd-level conveniences (doc 05).
 - Effect and infusion carriers, Giant's Catalyst and Divining Rod rows, gift tastes for the three gift products (doc 15).
 - Capstone effects (doc 19, from doc 15).
 - Hint wording and counts (doc 20, from doc 07); bundle contents, rewards and arrival scenes; the contract-reward list (doc 20, from doc 14).
+- Slice draft scripts: the soft-start cutscene, the Furnace Room scene and the starter chain (doc 11).
 - Familiar meeting places, gift lists and heart events (doc 20, from doc 18).
 
 ### Balance pass (the sweep, doc 06)
@@ -90,6 +91,8 @@ Each is written into the docs as the default; confirming it just removes the *(d
 - The Lightning Coil letter in Winter; grant it with the room if it feels too slow (doc 14).
 - The 150% late-game cap is to be revisited later (Charles, doc 06); condition stacking (docs 02, 06).
 - Every Lab, Familiar, perk and price number (docs 05, 15, 18).
+- Lab T1's 25,000g in late Spring Y1 is tight; the slice report measures it (doc 11 §1a).
+- Aether yield by source rarity: a trace from Solar and Void Essence, the bulk from Prismatic Shards and legendary fish (placeholder 1 : 15–20 per item; doc 11, for docs 03 and 14 §7).
 
 ### Deferred design passes (agreed to come later)
 - Opening cutscene spec (doc 02).

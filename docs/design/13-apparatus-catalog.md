@@ -191,7 +191,7 @@ Recipes keep `ApparatusKinds` and `ApparatusIds` as doc 12 defines; an apparatus
 - About a dozen adjacency conditions (power, heat, darkness, flowers by tag, ley node, Lab tier, overclock), sharing doc 12's `Conditions` asset.
 - 6–10 ley nodes (examples in doc 04; sources and reveals in doc 14).
 - Crafting recipes for every apparatus (doc 14 sets their unlocks; Vitrum for glassware, Saxum and metals for Tobin's machines).
-- Slice (S1): Experiment Table, Alembic, Retort, Athanor, Calcinator, plus the Hermetic Vessel if room allows (doc 11 picks).
+- Slice (S1): all six of Experiment Table, Athanor, Alembic, Retort, Hermetic Vessel and Calcinator (doc 11 §1).
 
 ## Tech hooks
 - **`Data/Machines`:** one rule per apparatus with `OutputMethod`; `AdditionalConsumedItems` for the Calcinator's fuel; `ReadyTimeModifiers` left empty (the resolver sets minutes); `DayUpdate` for the Ley Tap. Appended vanilla rules use our `VALLEYOPUS_DISCOVERED` GSQ.
