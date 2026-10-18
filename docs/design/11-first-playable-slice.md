@@ -199,7 +199,7 @@ The slice adds **no new tables**. It fills the assets other docs define with Spr
 - **Events and mail:** the soft-start cutscene, the Furnace Room restoration scene, Tobin's arrival, the Lab blueprint mail; the five-quest starter chain. Scripts are drafts written for the slice; doc 20 replaces them later.
 - **Readables:** about 5 Cyprian journal pages.
 - **Strings:** everything above through i18n, English only.
-- **Art** (Charles, 2026-10-18): Element icons are one stoppered vial sprite recoloured per Element (`Primes.Color` for Primes) with its Idylwild's Alchemical Codex rune (CC0); every other sprite (apparatus, NPCs, the workshop and Lab maps, tools) comes from open-license packs or the base game. Every shipped source gets a credit line in the art-sources attribution table, CC0 included. The apparatus show West intake and East spout even as placeholders (doc 13 §7).
+- **Art** (Charles, 2026-10-18): Element icons are one stoppered vial sprite recoloured per Element (`Primes.Color` for Primes) with its Idylwild's Alchemical Codex rune (CC0); every other sprite (apparatus, NPCs, the workshop and Lab maps, tools) comes from open-license packs or references the base game's own textures at load time (never copied into the mod). Every shipped source gets a credit line in the art-sources attribution table, CC0 included. The apparatus show West intake and East spout even as placeholders (doc 13 §7).
 
 ## Tech hooks
 The slice is where doc 09's architecture plan is first proven. The risks it must surface, each a test in the build's plan:
