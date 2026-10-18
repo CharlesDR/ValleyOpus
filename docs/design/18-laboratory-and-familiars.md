@@ -1,6 +1,6 @@
 # 18 · Laboratory & Familiars
 
-Status: **DRAFT v0.1** (2026-10-18) · Readiness: ready for architecture once Charles answers the `[blocks-arch]` item below (built-in features as neighbours); every other open item is content
+Status: **DRAFT v0.1** (2026-10-18) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
 Depends on: 01, 02, 03a, 05, 06, 08a, 12, 13, 14, 15 · Feeds: 06, 09, 11, 16, 17, 20, 21
 
 ## Purpose
@@ -14,6 +14,7 @@ The Laboratory is alchemy's home building: a Shed-like building from Robin that 
 - **Without the mod, Labs simply disappear** (Charles, S3); no conversion to Sheds, so sizes are free choices.
 - **Unlocks** (doc 14, approved): T1 at Robin's after the Furnace Room, T2 after the Sanctum, T3 and Familiar bonding after the Great Work Chamber.
 - **Late-game space** (Charles, doc 01): four T3 Labs, one per Familiar, hold a setup for every item with room to spare, and one Lab does not hold everything.
+- **Built-in features count** (Charles, 2026-10-18): hearth tiles give the *Heated* neighbour state and alcove tiles are always dark (§2a).
 - **Perk rules apply** (doc 05): Lab and Familiar bonuses are variables in doc 05's combine table; they add, then clamp, and never change which recipe a machine runs.
 
 ## Player-facing spec
@@ -210,7 +211,7 @@ Because the bonding rite is hand-made only, an environmental Variant may decorat
 Doc 06 reads: per-tier speed and quality chance against the phase targets (T2 + L5 at par; T3 + Familiar + L10 + all six professions under the 150% ceiling), Familiar signatures as cost reductions in GPTD, Robin's costs against the Shed and Big Shed, and the §2c space check with real machine counts once content exists. Placeholders: every bonus number, every cost, the Familiar numbers.
 
 ## Open questions
-- `[blocks-arch]` **Built-in features as neighbours** (§2a): hearths heat their tiles and alcoves are always dark. If yes, neighbour tests read map tiles as well as objects. *Owner: Charles. Default: yes.*
+- ~~`[blocks-arch]` **Built-in features as neighbours** (§2a)~~ **settled** (Charles, 2026-10-18): both count; neighbour tests read map tiles as well as objects.
 - `[blocks-content]` **Condensation rule 2** (doc 13): the draft layouts (§2b) show neighbour sides are already full in automated lines; recommendation is to make "no modifier blocks" final. *Owner: Charles.*
 - `[blocks-content]` **Lab tier in recipes** (§1a): Bonus only in our own data (default), or allow Lab- or Familiar-only named Variants. *Owner: Charles.*
 - `[blocks-content]` **Familiar specialization by operation** (§3) rather than by output Prime. *Owner: Charles. Default: by operation.*
