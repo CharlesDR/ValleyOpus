@@ -11,8 +11,8 @@ The Alchemy skill rewards the player for doing alchemy by hand and paces the two
 - **Vanilla-speed curve** (Charles, P4): level 10 arrives around late Year 1, and level 10 never means everything is discovered.
 - **Perks only add, never forbid**, and every combination of the six professions is safe (doc 01, Walk of Life).
 - **Combat cap** (Charles, doc 01): no perk pushes a combat preparation past a Combat Mastery trinket.
-- **Skill levels open means, never recipes** (Charles, doc 14): the even and odd level unlocks give capacity, tools and conveniences (odd levels picked in the content pass, approved 2026-10-18).
-- **Perks may lower costs and grant new recipes, but never change an existing setup** (Charles, 2026-10-18). This is the one exception to doc 14's "no unlock grants a recipe".
+- **Skill levels give capacity, tools and conveniences** (doc 14 §6; odd levels picked in the content pass, approved 2026-10-18), **and may also grant recipes** (Charles, 2026-10-18), under the critical-path guard in §3.
+- **Perks may lower costs and grant new recipes, but never change an existing setup** (Charles, 2026-10-18). Profession and level recipes are the one exception to doc 14's "no unlock grants a recipe".
 - **Automated output gives reduced XP, not none** (Charles, 2026-10-18), as vanilla crab pots still give Fishing XP.
 - **Recipes granted by a profession give no discovery XP** (Charles, 2026-10-18).
 - **Each of the six professions grants one signature recipe** (Charles, 2026-10-18), on its own inputs and adjacency so no existing setup changes.
@@ -59,6 +59,13 @@ Vanilla thresholds (100, 380, 770, 1300, 2150, 3300, 4800, 6900, 10000, 15000). 
 
 **No bundle requires an Alchemy-level unlock**, so the skill and the workshop stay separate tracks and the bundle critical-path check (doc 14 §3) never depends on XP.
 
+**Recipes granted at a level-up** (Charles, 2026-10-18). Any level may also grant a recipe. It is recorded as known and gives no discovery XP. Three guards keep the critical path intact:
+1. **Nothing important is locked behind a level.** No bundle, workshop room, story beat, Great Work step or other unlock may need a recipe that *only* a level grants. A level recipe is either optional (a convenience or an alternate route) or also reachable through discovery.
+2. **Order of operations.** A level recipe's apparatus, inputs and conditions must already be reachable at that level's expected pace (§2). A recipe granted at L3 can't need a machine from a Tier III room, or it would sit unusable.
+3. **The same rules as any recipe.** It overlaps no existing recipe (doc 13 §1a), so it changes no existing setup, and it follows the wait-idle rule.
+
+The sweep's pace report (doc 14, Balance hooks) checks guards 1 and 2 for every level and profession recipe, alongside the bundle critical-path check.
+
 ### 4 · Professions
 Numbers are placeholders. ⚙︎ = Engineered kind, ✦ = Minor arcane kind, ✦A / ✦C = altar and circle (doc 12, doc 13 §3). Specialists (Table, Quarry Crucible, Ley Tap) take no perks.
 
@@ -103,6 +110,7 @@ A player may own **all six** professions through Walk of Life resets. To keep th
 ## Data shape
 | Table | Kind | Fields |
 |---|---|---|
+| Level-up recipes | CP data | doc 14 `Unlocks` rows with `Source.Type = SkillLevel` and a `Grants` entry of a new type, Recipe, recorded as known |
 | `XpSources` | CP data | `Event` (Discovery / EffectDiscovery / RitualTrigger / HandCollect / AutoCollect / Assay / TriedKey), `Amount`, `TierScale`, `OncePer` (Recipe / Effect / Item / Key / none), `CapPerAction` |
 | `Professions` | CP data | `Id`, `Level` (5 / 10), `Parent` (L5 ID or null), `NameKey`, `DescKey`, `Icon`, `GrantsRecipes` [recipe IDs, recorded as known with no discovery XP], `Perks` [{`Variable`, `Scope` (apparatus kinds or IDs), `Op` (Add / Multiply / Max), `Value`, `Bonus` (optional condition ID, e.g. a powered Boiler adjacent or a kindled Athanor within 2)}] |
 | `PerkVariables` | CP data | `Id`, `Combine` (Add / Multiply / Max), `Min`, `Max` |
@@ -113,7 +121,7 @@ A player may own **all six** professions through Walk of Life resets. To keep th
 In 1.0 the six profession rows are fixed, but every perk value and XP amount is data the sweep can rewrite. Content-pack professions are 2.0.
 
 ## Content inventory
-- One skill, 10 levels, 6 professions, 13 perks (above). **One signature recipe per profession** (Charles, 2026-10-18), six in all, granted on choosing it; rows come in the content pass.
+- One skill, 10 levels, 6 professions, 13 perks (above). **One signature recipe per profession** (Charles, 2026-10-18), six in all, granted on choosing the profession. Any level-up recipes are optional extras. Rows come in the content pass.
 - Four odd-level conveniences to name (levels 1, 3, 7, 9).
 - Art: a skill icon and 6 profession icons (doc 21). Text: level-up lines and profession descriptions, in i18n from the start.
 
@@ -133,7 +141,7 @@ Doc 06 reads: XP per day at a diligent pace against the L5 and L10 targets; gold
 - `[2.0]` Prestige / Ultimate Mastery perks; content-pack professions.
 
 ## Change log
-- **v0.7 (2026-10-18):** Charles's review. Perks may lower costs and grant recipes, but never change an existing setup. Automated output gives a quarter of the XP instead of none. Profession-granted recipes give no discovery XP. Engineer's residue perk is replaced by a fuel saving for machine-fed ⚙︎ apparatus (Charles's pick). The odd-level default is approved.
+- **v0.7 (2026-10-18):** Charles's review. Perks may lower costs and grant recipes, but never change an existing setup. Automated output gives a quarter of the XP instead of none. Profession-granted recipes give no discovery XP. Engineer's residue perk is replaced by a fuel saving for machine-fed ⚙︎ apparatus (Charles's pick). The odd-level default is approved. Skill levels may also grant recipes, under a critical-path guard and an order-of-operations check (§3).
 - **v0.6 (2026-10-17):** retrofitted to the doc 00 template. XP source table with once-only keys and no XP from automation; pace targets (L5 early Summer, L10 late Winter); doc 14 §6 skill-level unlocks adopted; perks made independent of Automate and of item provenance; bridges made physical; the rule that perks never choose recipes; the perk-variable combine table; whose perks apply in multiplayer and under automation; data shape and tech hooks.
 - **v0.5 (2026-10-13):** pacing check and the combat cap on perks (Charles's guiding answers, doc 01).
 - **v0.4 (2026-10-13):** skill curve decided (doc 00, P4).
