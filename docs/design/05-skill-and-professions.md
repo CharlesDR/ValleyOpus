@@ -63,11 +63,11 @@ Numbers are placeholders. ⚙︎ = Engineered kind, ✦ = Minor arcane kind, ✦
 
 | L5 | L10 A (deepen) | L10 B (bridge) |
 |---|---|---|
-| **Mechanist**: ⚙︎ apparatus work 25% faster; each Boiler powers one more neighbour and each Lightning Coil stores one more charge | **Engineer**: ⚙︎ quality cap rises from silver to gold; a ⚙︎ apparatus that is fed by another machine rather than by hand has a 15% chance of one extra output | **Artificer**: ✦ apparatus also get the Mechanist speed bonus; an altar or circle with a powered Boiler beside it has a 25% chance of +1 quality step when triggered |
+| **Mechanist**: ⚙︎ apparatus work 25% faster; each Boiler powers one more neighbour and each Lightning Coil stores one more charge | **Engineer**: ⚙︎ quality cap rises from silver to gold; a ⚙︎ apparatus that is fed by another machine rather than by hand burns 25% less fuel (Calcinator fuel), and a Boiler or Lightning Coil fed that way makes each charge last 25% longer | **Artificer**: ✦ apparatus also get the Mechanist speed bonus; an altar or circle with a powered Boiler beside it has a 25% chance of +1 quality step when triggered |
 | **Mystic**: rituals use one fewer catalyst (never below one); triggering an altar also triggers every other staged altar of yours within 3 tiles | **Hermeticist**: met Bonus conditions on ✦, ✦A and ✦C apparatus count twice for quality; circle batches hold 25% more | **Theurgist**: ⚙︎ apparatus within 2 tiles of a kindled Athanor get +1 quality step (still capped at silver, or gold with Engineer) |
 
 Changes from v0.5, and why:
-- **Engineer's second perk** was "Automate groups with ≥4 machines make less residue". Less residue is no reward, because residue is the consolation for a failure (Charles, 2026-10-18), and Automate is optional (doc 04). It now gives a bonus-output chance to any ⚙︎ apparatus fed by another machine. A chain neighbour, a chest or Automate all count, so the wording never has to name Automate.
+- **Engineer's second perk** was "Automate groups with ≥4 machines make less residue". Less residue is no reward, because residue is the consolation for a failure (Charles, 2026-10-18), and Automate is optional (doc 04). It now lowers fuel cost for any ⚙︎ apparatus fed by another machine (Charles chose fuel saving over a bonus-output chance, 2026-10-18). A chain neighbour, a chest or Automate all count, so the wording never has to name Automate.
 - **Artificer's altar perk** read "altars staged by Automate". It now reads a Boiler beside the altar, the same blended picture as Perpetuum Mobile (doc 13 §3), and works without Automate.
 - **Theurgist** read "⚙︎-made inputs". Tagging an item by where it was made splits stacks (items with different mod data don't stack), so it now reads a kindled Athanor nearby.
 - **Hermeticist** read "the planet's day or matching weather". Bonus conditions are already defined per recipe (doc 12 §4), so the perk doubles those instead of adding its own calendar. The grand-ritual batch bonus moved here from Mystic so each L5 has two perks.
@@ -87,7 +87,7 @@ A player may own **all six** professions through Walk of Life resets. To keep th
 | Speed (per kind) | Mechanist, Artificer | Lab tier (doc 18); indirect boosters such as the Azoth Diffuser (strongest one only, doc 15) | add; total at most +50% (placeholder) |
 | Quality cap (⚙︎) | Engineer | the recipe's own lower cap | Engineer raises the kind's cap to gold; a recipe's lower cap still wins |
 | Quality steps | Artificer, Hermeticist, Theurgist | Bonus conditions, catalysts, Lab tier | add, then clamp at the cap (doc 12 §5) |
-| Yield (bonus-output chance) | Engineer | recipe yield, Bonus conditions | add chances; at most one extra output per batch |
+| Fuel cost and charge length | Engineer | the apparatus's fuel rule (doc 13) | multiply; a fuel item is still consumed, never less than one per stated interval |
 | Residue | none | Fulgur overclock (+), the recipe's rule | the recipe's rule; no perk lowers residue |
 | Catalyst count | Mystic | the recipe | subtract; never below one |
 | Trigger radius | Mystic | none | single source |
@@ -118,7 +118,7 @@ In 1.0 the six profession rows are fixed, but every perk value and XP amount is 
 
 ## Tech hooks
 - **SpaceCore** `Skills.RegisterSkill`: levels, professions, the level-up menu and multiplayer sync. The choice at 5 and 10 uses SpaceCore's two-option menu.
-- **Perk evaluation** lives in the one resolver behind `OutputMethod` (docs 12, 13): when it computes speed, quality, yield and batch size, it asks a small perk service for each variable's total, which applies the combine table. Ritual triggers call the same service.
+- **Perk evaluation** lives in the one resolver behind `OutputMethod` (docs 12, 13): when it computes speed, quality, fuel use and batch size, it asks a small perk service for each variable's total, which applies the combine table. Ritual triggers call the same service.
 - **Automated XP:** the resolver credits `AutoCollect` XP to the owner when a chain or Automate takes output, using the same hook that applies the owner's perks.
 - **Speed** sets the machine's `MinutesUntilReady` at load, so Automate and chaining see ordinary machines.
 - **Risks:** confirm whether SpaceCore custom-skill XP feeds 1.6 Mastery XP (default if not: it doesn't, and nothing else changes); confirm Walk of Life's resets see SpaceCore professions; the all-six fixture joins the test suite (doc 17).
@@ -128,13 +128,12 @@ In 1.0 the six profession rows are fixed, but every perk value and XP amount is 
 Doc 06 reads: XP per day at a diligent pace against the L5 and L10 targets; gold per tile-day with and without each profession; the all-six case against the 150% ceiling; the hand-time share of a Mystic altar setup with and without the trigger radius. Placeholders: every XP amount, every perk value, the speed clamp.
 
 ## Open questions
-- `[blocks-content]` **Engineer's bonus output** (§4): a 15% chance of one extra output when a ⚙︎ apparatus is fed by another machine. *Owner: Charles.*
 - `[blocks-content]` **Whose perks and XP apply to chain or Automate loads** (§6). Default: the machine's owner, the player who placed it. *Owner: Charles.*
 - `[blocks-content]` **Signature recipes per profession** (§5 rule 2). Default: perks may grant recipes, but none is planned until the content pass. *Owner: Charles.*
 - `[2.0]` Prestige / Ultimate Mastery perks; content-pack professions.
 
 ## Change log
-- **v0.7 (2026-10-18):** Charles's review. Perks may lower costs and grant recipes, but never change an existing setup. Automated output gives a quarter of the XP instead of none. Profession-granted recipes give no discovery XP. Engineer's residue perk is replaced by a bonus-output chance for machine-fed ⚙︎ apparatus. The odd-level default is approved.
+- **v0.7 (2026-10-18):** Charles's review. Perks may lower costs and grant recipes, but never change an existing setup. Automated output gives a quarter of the XP instead of none. Profession-granted recipes give no discovery XP. Engineer's residue perk is replaced by a fuel saving for machine-fed ⚙︎ apparatus (Charles's pick). The odd-level default is approved.
 - **v0.6 (2026-10-17):** retrofitted to the doc 00 template. XP source table with once-only keys and no XP from automation; pace targets (L5 early Summer, L10 late Winter); doc 14 §6 skill-level unlocks adopted; perks made independent of Automate and of item provenance; bridges made physical; the rule that perks never choose recipes; the perk-variable combine table; whose perks apply in multiplayer and under automation; data shape and tech hooks.
 - **v0.5 (2026-10-13):** pacing check and the combat cap on perks (Charles's guiding answers, doc 01).
 - **v0.4 (2026-10-13):** skill curve decided (doc 00, P4).
