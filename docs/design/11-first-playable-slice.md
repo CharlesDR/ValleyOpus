@@ -18,7 +18,7 @@ The first build a player can install and play: **Spring of Year 1, end to end** 
 - **Safe to uninstall** (S3) and **multiplayer-safe** from the first build: both are cheaper to prove now than to retrofit.
 - **Testing is built in** (Charles, 2026-10-18): at most four test configurations, unit tests and logging from the first commit, and a testing guide for Charles (§6).
 - **SVE from the start** (Charles, 2026-10-18): the slice is tested with SVE installed from the very first build; nothing in it may assume vanilla maps or items only (§6).
-- **Placeholder art** (Charles, doc 08 scope answers): reused vanilla sprites plus generated tinted icons; licensed or commissioned art is a separate track.
+- **Slice art** (Charles, 2026-10-18): Element icons follow the placeholder decision in the project's art-sources notes (one stoppered vial recoloured per Element, with its Idylwild's Alchemical Codex rune, CC0); everything else uses open-license assets or the base game's own sprites. Commissioned art comes before the 1.0 publish.
 
 ## Player-facing spec
 
@@ -199,7 +199,7 @@ The slice adds **no new tables**. It fills the assets other docs define with Spr
 - **Events and mail:** the soft-start cutscene, the Furnace Room restoration scene, Tobin's arrival, the Lab blueprint mail; the five-quest starter chain. Scripts are drafts written for the slice; doc 20 replaces them later.
 - **Readables:** about 5 Cyprian journal pages.
 - **Strings:** everything above through i18n, English only.
-- **Art:** reused vanilla sprites and generated tinted icons (one tint per Prime colour from `Primes.Color`, applied to a small set of base shapes: vial, powder, crystal, flame). The apparatus show West intake and East spout even as placeholders (doc 13 §7).
+- **Art** (Charles, 2026-10-18): Element icons are one stoppered vial sprite recoloured per Element (`Primes.Color` for Primes) with its Idylwild's Alchemical Codex rune (CC0); every other sprite (apparatus, NPCs, the workshop and Lab maps, tools) comes from open-license packs or the base game. Every shipped source gets a credit line in the art-sources attribution table, CC0 included. The apparatus show West intake and East spout even as placeholders (doc 13 §7).
 
 ## Tech hooks
 The slice is where doc 09's architecture plan is first proven. The risks it must surface, each a test in the build's plan:
