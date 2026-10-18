@@ -148,6 +148,8 @@ The slice adds **no new tables**. It fills the assets other docs define with Spr
 
 **Inventory sort order** (Charles, 2026-10-18): the slice's 46 objects must sort, under vanilla Organize and the common sort mods, as the eight Primes first, then substances by tier (Tier 1, then Tier 2, with Caput Mortuum among the substances), then endgame Elements last (none in the slice yet), alphabetical within each group. Before the slice assigns categories, item IDs or tags, the build verifies what those sorters key on (category number, display name, item ID or context tags) and picks the field that yields this order in every language. This may conflict with doc 15's Artisan Goods category for sellable compounds; the item-data pass resolves it (todo list).
 
+**Room in the ID sequence** (Charles, 2026-10-18): whatever ordering key the sort uses (an ID segment, a sort number or a category value), it leaves gaps between groups and subgroups, so later builds can add an item anywhere without reassigning existing IDs. Stardew 1.6 item IDs are strings (`CharlesDR.ValleyOpus_Calx`), and renaming one breaks saves, so if the order comes from the ID itself the scheme needs a gapped prefix (for example `10_`, `20_`), otherwise from a separate gapped sort field. The slice is the first build to fix IDs, and carry-forward saves (§5) make them permanent from then on.
+
 **Out-of-build rows** are simply absent, never present-and-disabled, except the seven `WorkshopRooms` rows, which the board needs for its layout.
 
 ## Content inventory
