@@ -1,6 +1,6 @@
 # 07 · Discovery & the Codex
 
-Status: **DRAFT v0.9** (2026-10-18) · Readiness: ready for architecture (no `[blocks-arch]` item open)
+Status: **DRAFT v0.9a** (2026-10-19) · Readiness: ready for architecture (no `[blocks-arch]` item open)
 Depends on: 01, 03a, 04, 12, 13 · Feeds: 05, 06, 14, 16, 17, 20
 
 v0.7: retrofitted to the doc 00 template; adopts doc 12's discovery keys and Charles's "a Table discovery unlocks only that recipe" rule; adds the discovery path for recipes the Table can't make, power and heat at the Table, and the codex data shape. v0.6: the target player and complexity ceiling, "feeling clever" as a design goal, the pace of discovery and hand-made-only entries (Charles's guiding answers, doc 01). v0.5: Experiment Table input counts (doc 00, R2). v0.4 applies Charles's verdicts on the discovery research ([research/inspiration-discovery-moments.md](../research/inspiration-discovery-moments.md)).
@@ -51,7 +51,7 @@ Three tiers, from small to large:
 - **Anticipation beat:** a 1–2 second simmer/glow on the Experiment Table before the result.
 - **Clock freeze:** every mandatory animation above pauses the in-game clock so it never eats daylight; optional ones can be skipped with one press. In multiplayer the clock is shared and can't pause for one player (to verify), so there these play as non-blocking overlays or stay under ~1 second.
 - **Feedback styles:** arcane apparatus get glow and shimmer, engineered ones a crisp mechanical clunk; **blended machines mix the two** to show the disciplines approaching harmony (doc 04; doc 13's `FeedbackStyle`).
-- **Cauda Pavonis** iridescent shimmer for the first time an item passes nigredo → albedo.
+- **Cauda Pavonis** iridescent shimmer for the first time an item passes nigredo → albedo (on screen: from base quality to silver; the stage names never label quality in game, doc 16 §2).
 - Settings in GMCM: toast frequency (all / milestones only) for players who find it noisy.
 
 ### Hints (approachability pillar)
@@ -86,7 +86,7 @@ Entries gain a lore line at 1, 10 and 50 crafted, with a progress pip toward the
 - **Keys.** Discovery state is doc 12 §10's keys (`recipe:`, `item:`, `tried:`, `assay:`, `effect:`, `count:`), plus two owned here: `hint:<HintId>` (a hint was shown, so divination never sells it twice) and `milestone:<MilestoneId>` (a flourish played).
 - **What sets `recipe:`.** A Table success, or unloading a locked output by hand. Nothing else: assaying, hints and discovering the item elsewhere never set it.
 - **What sets `item:`.** Any manual route that produces or reveals the item. It releases locked outputs of that item and shows its codex entry; it doesn't make any recipe automatable.
-- **The Table.** Accepts 1 to capacity inputs. Matching is exact (doc 12 §3). Outcomes, in order: (1) a defined, Table-attemptable recipe whose Required conditions hold → its output (Item class) or a reveal and a puff (Power or Process-state class), at Nigredo (Charles, 2026-10-18: the Table discovers, apparatus and rituals produce quality); (2) the inputs of a defined recipe that isn't Table-attemptable, or whose Required conditions fail → nothing consumed, a line naming the missing apparatus or condition kind; (3) otherwise → residue, a little XP and a `tried:` key. A disabled secret candidate counts as undefined.
+- **The Table.** Accepts 1 to capacity inputs. Matching is exact (doc 12 §3). Outcomes, in order: (1) a defined, Table-attemptable recipe whose Required conditions hold → its output (Item class) or a reveal and a puff (Power or Process-state class), at Nigredo, shown in game as base quality (Charles, 2026-10-18: the Table discovers, apparatus and rituals produce quality; doc 16 §2); (2) the inputs of a defined recipe that isn't Table-attemptable, or whose Required conditions fail → nothing consumed, a line naming the missing apparatus or condition kind; (3) otherwise → residue, a little XP and a `tried:` key. A disabled secret candidate counts as undefined.
 - **Tried signatures** are the sorted input item IDs, so "A + B" and "B + A" are one entry; a Table condition doesn't change the signature (the codex's "tried" mark means "tried in these conditions" only in its tooltip).
 - **Edge cases.** Multiplayer: a farmhand's discovery is sent to the host, recorded, then broadcast; two players discovering the same thing in one tick both get a toast, and the first recorded wins attribution. Joja route: hints tied to workshop rooms use doc 14's unlock flags, set on both routes. Removed packs: their keys stay hidden, not deleted (doc 12). Uninstall: codex data is mod save data and is simply ignored.
 
@@ -120,6 +120,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[blocks-content]` **Hint wording and counts** per recipe. *Owner: doc 20.*
 
 ## Change log
+- **v0.9a (2026-10-19):** pre-gate cleanup sweep: Cauda Pavonis and Table outputs say how quality reads on screen (base quality, vanilla stars; doc 16 §2).
 - **v0.9 (2026-10-18), Charles's answers:** exact Table matching with the "something here is feeling crowded" line for a valid subset; Table outputs at Nigredo.
 - **v0.9 (2026-10-18):** cleanup sweep: each hint channel names its unlock source from doc 14 §4; Finch's curiosity hint stays hidden in his shop tooltip (Charles, 2026-10-17, moved here from the to-do list); open questions moved to doc 10.
 - **v0.8 (2026-10-17):** Lunar Dream (doc 15) as a `Dream` hint channel drawing on the same hint pool.

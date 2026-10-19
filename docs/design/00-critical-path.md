@@ -1,6 +1,6 @@
 # 00 · Design Critical Path to Architecture
 
-Status: **DRAFT v0.5b** (2026-10-18). v0.5b: doc 17 drafted; the Satchel storage note points to it. v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
+Status: **DRAFT v0.5c** (2026-10-19). v0.5c: pre-gate cleanup sweep: Phase 4 is done and the doc inventory shows current versions. v0.5b: doc 17 drafted; the Satchel storage note points to it. v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
 
 ## The governing rule
 Architecture needs the **shape** of every system, not its **content**. Shape means what kinds of things exist, the rules connecting them, and which of them need C# rather than Content Patcher data. Content means names, numbers, dialogue, art and exact recipes. Content can be filled in during execution as long as it is data-driven, so it never blocks architecture. Rework comes from changing shape late, so the path front-loads shape decisions and pushes content behind the gate.
@@ -54,29 +54,29 @@ Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 
 ## Part 2 · Doc inventory and gaps
 
-State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authoritative; open items for every doc are collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
+State as of the 2026-10-19 pre-gate cleanup sweep. Each doc's own status line is authoritative; open items for every doc are collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
 
-| # | Doc | State (2026-10-18) | What's still missing before the gate |
+| # | Doc | State (2026-10-19) | What's still missing before the gate |
 |---|---|---|---|
-| 01 | Vision & Pillars | v0.7 | nothing; the reference all other docs check against |
+| 01 | Vision & Pillars | v0.8 | nothing; the reference all other docs check against |
 | 02 | Progression & Unlocks | v0.7, the narrative of the Year 1 curve | nothing; the unlock map is doc 14 and the Lab is doc 18 |
 | 03 | Essences & Decomposition | v0.4, data shape done | nothing |
 | 03a | Substances Catalog | v0.11, apparatus column done | nothing; recipe rows are content |
-| 03b | Items & Inventory | v0.9 | the census refreshed once doc 11's rows land |
+| 03b | Items & Inventory | v0.9c | the census refreshed once doc 11's rows land |
 | 04 | Machines & Automation | v0.8, philosophy only | nothing; the machine list is doc 13 |
 | 05 | Skill & Professions | v0.7, ready | nothing |
 | 06 | Economy & Balance | v0.6 | policy is done; numbers come from the sweep (execution) |
 | 07 | Discovery & Codex | v0.9, ready | nothing |
-| 08 / 08a | Narrative & Cast | v0.4 / approved | only the hooks architecture needs (triggers, flags, locations); scripts come later |
-| 09 | Technical Architecture | v0.6, a sketch | rewritten as the architecture plan at the gate |
-| 10 | Roadmap & Open Questions | v0.9 | nothing; it collects every open item |
-| **11** | **First Playable Slice** | v0.2 (PR #14 merged) | Charles's review |
+| 08 / 08a | Narrative & Cast | v0.6 / approved | only the hooks architecture needs (triggers, flags, locations); scripts come later |
+| 09 | Technical Architecture | v0.6c, a sketch | rewritten as the architecture plan at the gate |
+| 10 | Roadmap & Open Questions | v0.10c | nothing; it collects every open item |
+| **11** | **First Playable Slice** | v0.2a, ready (PR #14 merged) | nothing |
 | **12** | **Recipe & Process Model** | v0.4, ready | nothing |
 | **13** | **Apparatus Catalog** | v0.6b, ready | nothing |
 | **14** | **Unlock Map & Workshop Bundles** | v0.4, ready | nothing |
 | **15** | **Products & Outside Uses** | v0.7, ready | nothing |
-| **16** | **UX & Interface** | v0.1 (PR #17 merged; defaults D15–D19 confirmed) | nothing |
-| **17** | **Multiplayer, Saves & Compatibility** | v0.1d, ready | nothing |
+| **16** | **UX & Interface** | v0.1a, ready (PR #17 merged; defaults D15–D19 confirmed) | nothing |
+| **17** | **Multiplayer, Saves & Compatibility** | v0.1e, ready (PR #16 merged) | nothing |
 | **18** | **Laboratory & Familiars** | v0.2, ready | nothing |
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |
 | 20 | Content Script *(after gate)* | — | events, mail, dialogue, schedules |
@@ -88,7 +88,7 @@ State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authorit
 
 Each phase only starts once the decisions it depends on are made. Inside a phase, docs can be written in parallel.
 
-**Progress (2026-10-18):** Phases 0–3 are done. In Phase 4, doc 16 is merged and doc 17 is in review; then the gate. No code before the gate (Charles).
+**Progress (2026-10-19):** Phases 0–4 are done (docs 16 and 17 merged as PRs #17 and #16); next is the architecture gate. No code before the gate (Charles).
 
 ```
 Phase 0  Scope lock ─────────────► decisions S1–S5
@@ -204,6 +204,7 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 
 
 ## Change log
+- **v0.5c (2026-10-19):** pre-gate cleanup sweep: Phase 4 marked done; the doc inventory's versions and states brought up to date.
 - **v0.5 (2026-10-18):** docs cleanup sweep: doc inventory shows each doc's current state; progress line on the path; S3's Lab conversion and Satchel storage notes marked as superseded or open; P2's suspended cap and the wider Lab tiers noted; doc 00's own v0.3 and v0.4 change-log entries moved out of the template example.
 - **v0.4 (2026-10-13):** doc 18 (Laboratory) moved before the gate, with Charles's size and floorplan direction.
 - **v0.3 (2026-10-13):** requirements from Charles's guiding answers in doc 01; S5 done; U2 widened to four tie-in mods.

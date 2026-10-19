@@ -1,6 +1,6 @@
 # 03a · Substances Catalog (Combinatorics)
 
-Status: **DRAFT v0.11** (2026-10-18). v0.11: Charles confirmed Perpetuum Mobile's altar recipe (power is never an input), Ectoplasm as hand-made only, and Electrum and Rebis as a **counterpart pair** rather than twin routes (a twin route shares its output). v0.10: **Element** is Charles's umbrella term for Primes, substances and their derivatives; Smaltum and Caput Mortuum's defaults approved (doc 15 v0.6). v0.9: doc 15 confirms **Smaltum** as a blue dye and the input of a small glazed décor set (default, pending Charles), Cinnabaris becomes a red dye, Caput Mortuum's fertilizer drops the weed tradeoff (default), and doc 15's dead-end audit lists ten substances still needing a downstream. v0.8: consistency fixes from doc 13 (Charles's content-pass checks): Power substances are never inputs, so Orichalcum, Cinis Phoenicis and Perpetuum Mobile take them as Required power conditions; Stannum and Plumbum get their planetary substances (proposal); Sol's stray "(Lux)" removed; the residue glaze becomes **Smaltum** with an apparatus class; recipes without a T mark get their discovery path (doc 07). v0.7: every substance gets an **apparatus class** (its operation and the apparatus kinds that run it, per doc 12); see the legend below. v0.6: **naming rule, Latin first** (Charles): every material's display name is its Latin or classical form, with an English gloss second; names swept across all docs. v0.5: seed transmutation and the Radicula approved as candidates; trinket-slot items added (Charles). v0.4: the plants-only rule for living transmutation, plant transmutation candidates, hand-made-only products, the combat-strength cap and the immortality rule (Charles's guiding answers, doc 01). v0.3: Golem Clay dropped (doc 00, R5); colour stages confirmed as vanilla quality (R1). This is a candidate list. Names, recipes and tiers are proposals for review, not commitments.
+Status: **DRAFT v0.11a** (2026-10-19). v0.11a: pre-gate cleanup sweep: the colour-stage names are marked as internal design terms; in game, quality is "base quality" and the vanilla stars (doc 16 §2). v0.11: Charles confirmed Perpetuum Mobile's altar recipe (power is never an input), Ectoplasm as hand-made only, and Electrum and Rebis as a **counterpart pair** rather than twin routes (a twin route shares its output). v0.10: **Element** is Charles's umbrella term for Primes, substances and their derivatives; Smaltum and Caput Mortuum's defaults approved (doc 15 v0.6). v0.9: doc 15 confirms **Smaltum** as a blue dye and the input of a small glazed décor set (default, pending Charles), Cinnabaris becomes a red dye, Caput Mortuum's fertilizer drops the weed tradeoff (default), and doc 15's dead-end audit lists ten substances still needing a downstream. v0.8: consistency fixes from doc 13 (Charles's content-pass checks): Power substances are never inputs, so Orichalcum, Cinis Phoenicis and Perpetuum Mobile take them as Required power conditions; Stannum and Plumbum get their planetary substances (proposal); Sol's stray "(Lux)" removed; the residue glaze becomes **Smaltum** with an apparatus class; recipes without a T mark get their discovery path (doc 07). v0.7: every substance gets an **apparatus class** (its operation and the apparatus kinds that run it, per doc 12); see the legend below. v0.6: **naming rule, Latin first** (Charles): every material's display name is its Latin or classical form, with an English gloss second; names swept across all docs. v0.5: seed transmutation and the Radicula approved as candidates; trinket-slot items added (Charles). v0.4: the plants-only rule for living transmutation, plant transmutation candidates, hand-made-only products, the combat-strength cap and the immortality rule (Charles's guiding answers, doc 01). v0.3: Golem Clay dropped (doc 00, R5); colour stages confirmed as vanilla quality (R1). This is a candidate list. Names, recipes and tiers are proposals for review, not commitments.
 Parent doc: [03-essences-and-decomposition.md](03-essences-and-decomposition.md) · **Inventory rule:** not every substance below is a carriable item. Many are power, process states or in-machine intermediates. See [03b-item-budget-and-inventory.md](03b-item-budget-and-inventory.md).
 
 ## Terms (Charles, 2026-10-17)
@@ -166,7 +166,7 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 | **Perpetuum Mobile** | Motus + Ordo + Orichalcum, ⚡ Vapor | [C] perpetual motion | Mechanist capstone candidate (always has a cost); an altar fed by Tobin's steam, the first blended moment (doc 04). Orichalcum keeps it late | Ritual · T³ ✦A ✋ (a Boiler beside the altar) |
 | **Seed transmutation** *(approved candidate)* | a stack of seeds + Vitae, as a ritual | [C] the "growing" of matter | turns one crop's seeds into another's (same season, similar value); a guiding-star use for cheap seeds and the main legal outlet for living transmutation | Ritual · ✦A ✦C |
 | **Radicula** (Rootling) *(approved candidate; working name)* | Anima + Terra Viva + a crop | [C] the homunculus, as a plant | a small plant homunculus that tends one crop patch (waters, or nudges growth); hand-made only; the furthest the ban allows | Ritual · T³ ✦A ✋ |
-| **Cauda Pavonis** (Peacock's Tail) | *process state*, not an item or recipe | [C] the iridescent stage of the Opus | shown when a brew passes nigredo→albedo; ties to Prismatic Shard | — (process state, shown in any stage advance) |
+| **Cauda Pavonis** (Peacock's Tail) | *process state*, not an item or recipe | [C] the iridescent stage of the Opus | shown when a brew passes nigredo→albedo (on screen: base quality → silver, doc 16 §2); ties to Prismatic Shard | — (process state, shown in any stage advance) |
 | **Planetary metals** | Metallum + the planet's substance on its weekday: **Luna** → Argentum (Mon), **Tempestas** → Stannum (Thu; Jupiter the sky-father's weather), **Mors** → Plumbum (Sat; Saturn's lead and the nigredo) *(Stannum and Plumbum inputs are proposals, v0.8)* | [C][OM] | Argentum/Silver (Mon), Stannum/Tin (Thu), Plumbum/Lead (Sat) are new items, bought and certified by Agnes; Copper, Iron and Gold exist in vanilla. Advanced transmutation needs the Quarry bridge | Conjunction · S (Quarry Crucible; weekday Required) |
 | **Caput Mortuum** | residue of any reduction | [C] | waste; see residue below | — (residue rule of every recipe) |
 | **Smaltum** (Glaze) *(working name)* | Caput Mortuum + Calx | [C] smalt, the glassy blue of potters | a cheap glaze: a strong **blue dye** and the input of a small glazed décor set (doc 15 §9, approved 2026-10-17) | Calcination · T ⚙︎ ✦ |
@@ -186,14 +186,16 @@ Tier 2 is open-ended. These are the ones with clear gameplay purpose. "Twin rout
 
 ## Colour stages = quality tiers (approved, R1)
 
-| Stage | Colour | Stardew quality |
+| Stage (design term) | Colour | Stardew quality (on screen) |
 |---|---|---|
-| Nigredo | black | base (no star) |
-| Albedo | white | silver |
-| Citrinitas | yellow | gold |
-| Rubedo | red | iridium |
+| Nigredo | black | base quality (no star) |
+| Albedo | white | silver star |
+| Citrinitas | yellow | gold star |
+| Rubedo | red | iridium star |
 
-**Cauda Pavonis** (iridescent) is the flourish between nigredo and albedo: a discovery toast moment.
+**The stage names are internal design terms** (Charles, 2026-10-18; doc 16 §2): in game, quality is always "base quality" and the vanilla silver, gold and iridium stars. The colours and Latin names may appear in lore (codex flavour, Oriel's lines), never as a quality label.
+
+**Cauda Pavonis** (iridescent) is the flourish between nigredo and albedo: a discovery toast moment. On screen it plays the first time an item is raised from base quality to silver (doc 16 §8).
 
 ---
 

@@ -1,6 +1,6 @@
 # 16 · UX & Interface
 
-Status: **DRAFT v0.1** (2026-10-18) · Readiness: not ready (Charles's review pending; no `[blocks-arch]` item open)
+Status: **DRAFT v0.1a** (2026-10-19) · Readiness: ready for architecture (Charles reviewed and merged it as PR #17; no `[blocks-arch]` item open)
 Depends on: 01, 02, 03b, 04, 05, 07, 11, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 11 (the slice's menus), 17, 20, 21
 
 ## Purpose
@@ -8,7 +8,7 @@ Every screen, prompt, tooltip and in-world indicator the player meets, and the i
 
 ## Decisions locked
 Everything below was already decided elsewhere; this doc gathers it and adds no rule that contradicts it.
-- **Controller and split-screen are required for 1.0** (Charles, U1): every custom menu is fully playable on a gamepad, with per-screen state. **Groundwork first, in-game tests later** (Charles, 2026-10-18): Charles can't test controller or split-screen play for a while, so every build lays the groundwork (snapping IDs, per-screen state, no mouse-only actions) from the first menu, while in-game controller and split-screen test cases aren't expected to be done for the first few builds (§16).
+- **Controller and split-screen are required for 1.0** (Charles, U1): every custom menu is fully playable on a gamepad, with per-screen state. **Groundwork first, in-game tests later** (Charles, 2026-10-18, widened to online co-op on 2026-10-19): Charles can't test controller, split-screen or online co-op play for a while, so every build lays the groundwork (snapping IDs, per-screen state, no mouse-only actions) from the first menu and code review checks it, while their in-game tests are deferred until he can run them (§16; doc 17 §8b owns the rotation). All three stay 1.0 requirements.
 - **GMCM holds hints, celebrations and economy knobs** (Charles, U3). Balance targets apply at the defaults.
 - **Clock freeze** (Charles, doc 01): any mandatory animation that stops the player acting freezes the in-game clock; optional ones skip with one press. With farmhands connected, celebrations become non-blocking overlays or stay under about one second (doc 07).
 - **Three celebration tiers** (toast, hold-up, codex flourish), the anticipation beat, feedback styles by apparatus kind and the toast-frequency option (approved, doc 07).
@@ -254,7 +254,7 @@ Grouped as the GMCM page shows them. **Per player** options are saved locally; *
 - **Button map** inside our menus: A select or place, B back, X search (codex) or take back (tray), Y Combine (Table) or move stack (Satchel), shoulders switch tab or page, Start closes. Outside menus, nothing new is bound on the controller by default: the Satchel covers the overlay and codex (§ interaction model).
 - **Selected-tile tooltips:** the machine tooltip follows the controller's grab tile as well as the mouse.
 - **Split-screen:** every menu, overlay, toast and tooltip is per screen (per-screen state, sized to that screen's viewport); one player's overlay or celebration never draws on the other's screen. Menus are laid out to fit the smallest split-screen viewport at the default zoom.
-- **Testing:** until Charles can test in game, the controller and split-screen rules above are kept by construction and by code review (every control has neighbour IDs, every menu a default component, nothing reads the mouse directly); in-game checks join the test plan once he can run them (Charles, 2026-10-18).
+- **Testing:** until Charles can test in game, the controller and split-screen rules above are kept by construction and by code review (every control has neighbour IDs, every menu a default component, nothing reads the mouse directly); in-game checks join the test plan once he can run them (Charles, 2026-10-18; the same deferral covers online co-op, doc 17 §8b).
 - **Two players at one Table** (co-op or split-screen): the Table opens for one player at a time and says "Alex is using this", like a chest. How that is synced is doc 17's.
 
 ### 17 · The hand-action budget (doc 02, doc 06)
@@ -332,6 +332,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
+- **v0.1a (2026-10-19):** pre-gate cleanup sweep: marked ready (merged as PR #17); the in-game test deferral now also covers online co-op (doc 17 §8b).
 - **v0.1 (2026-10-18), Charles's review:** the quarter-day budget's "heavily invested" player is the 90th percentile of alchemy investment; bulk surprise divination (up to 10 at once, proportional residue) after 5 divinations; Finch never sells a curiosity whose hint points at something already discovered; quality shows on screen as "base quality" and the vanilla stars, never the Latin stage names; a codex entry's Used in list shows a "???" row for each undiscovered recipe that uses the item, and undiscovered routes use the same "???" mark; controller and split-screen groundwork from the first build, with in-game tests deferred while Charles can't test.
 - **v0.1 (2026-10-18), Charles's answers:** no late-install fast start (the GMCM row and open question are removed); defaults D15–D19 confirmed.
 - **v0.1 (2026-10-18):** first draft: principles, the interaction model, the screen inventory with slice flags, the Experiment Table menu with its before-Combine result panel, the Satchel tooltip, grid and picker, the machine tooltip order and tray view, the chain overlay in two levels with the placement preview, the codex pages, entries, Notes page and search, celebrations and clock freeze, Finch's shop hiding the curiosity hint, the bundle board and divination panel, the Lens, altar prompts, GMCM options, controller and split-screen rules, and the quarter-day hand-action budget with its levers.

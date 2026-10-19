@@ -1,6 +1,6 @@
 # 11 · First Playable Slice
 
-Status: **DRAFT v0.2** (2026-10-18) · Readiness: not ready (Charles's review pending; no `[blocks-arch]` item open)
+Status: **DRAFT v0.2a** (2026-10-19) · Readiness: ready for architecture (Charles reviewed and merged it as PR #14; no `[blocks-arch]` item open)
 Depends on: 00, 02, 03, 03a, 03b, 05, 07, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 16, 17, execution planning
 
 ## Purpose
@@ -137,11 +137,11 @@ No slice recipe needs darkness: putrefaction makes only the dark twins, which ar
 - **A test content pack**, never shipped to players: fixture recipes that exercise rules no slice row uses (darkness, a three-input recipe on a two-slot Table, a deliberate collision the validator must reject, a pack-added Prime). It proves the content-pack promise (doc 01) in the first build.
 
 ### 5 · Edge cases
-- **Multiplayer:** the slice must run in two-player co-op and in split-screen. Unlocks, bundles and the codex are farm-wide (host save data, mirrored mail flags); each player has their own Satchel; a farmhand's discovery reaches the host and is broadcast; toasts show to the discoverer and a quieter notice to others; clock freeze becomes a non-blocking overlay when farmhands are connected (doc 07; verified in the slice).
+- **Multiplayer:** the slice must run in two-player co-op and in split-screen. Unlocks, bundles and the codex are farm-wide (host save data, mirrored mail flags); each player has their own Satchel; a farmhand's discovery reaches the host and is broadcast; toasts show to the discoverer and a quieter notice to others; clock freeze becomes a non-blocking overlay when farmhands are connected (doc 07). The slice builds this and code review checks it; in-game co-op and split-screen runs are deferred until Charles can run them (Charles, 2026-10-19; doc 17 §8b), and they stay 1.0 requirements.
 - **Joja route:** the soft start fires before any route choice; the workshop stays reachable behind the warehouse. The test plan walks the finish line on both routes.
 - **Late install:** adding the slice to an existing save fires the soft start on the next eligible Town entry, whatever the season (doc 14 §9). No fast start.
 - **SVE:** no integration pack in the slice, but **SVE is a test configuration from the first build** (§6), so nothing in the slice may assume vanilla-only maps or items: the Town warp behind the CC must stay reachable and must not overlap SVE's Town edits, SVE items must decompose through tags and category defaults without errors, and SVE's own events must not collide with the soft start (doc 17 test items, brought forward).
-- **Controller:** every slice menu (Table, Satchel grid, picker, codex, bundle board) is playable with a gamepad (U1).
+- **Controller:** every slice menu (Table, Satchel grid, picker, codex, bundle board) is playable with a gamepad (U1): built and code-reviewed in the slice, tested in game later (doc 17 §8b).
 - **Uninstall (S3):** the slice test plan removes the mod from a played save and loads it: the Lab disappears cleanly, the workshop entrance does nothing, apparatus become inert items, no crash. "Prepare for removal" empties Satchels and staging trays into a chest and offers to empty Labs first. This is doc 09's "test early" item for building removal.
 - **Save carry-forward** (Charles, 2026-10-18): slice save data carries a schema version from day one, and later builds migrate it, so a slice save continues into the next build. That tests migration early (doc 17 owns the mechanism).
 - **Festival days:** a soft start, restoration scene or Tobin's arrival due on a festival moves to the next day (doc 14 §9).
@@ -163,7 +163,7 @@ No slice recipe needs darkness: putrefaction makes only the dark twins, which ar
 - how to set up each configuration, and which build and mod versions it was checked with;
 - **where the logs are:** Windows `%appdata%\StardewValley\ErrorLogs\SMAPI-latest.txt`, macOS and Linux `~/.config/StardewValley/ErrorLogs/SMAPI-latest.txt`; how to share one through smapi.io/log; where the slice report CSV is written;
 - the console commands (report, inspect, verbose, developer commands) and when to use them;
-- the **known low-confidence areas** to watch in game, updated each build: machines under Automate (does anything ever take a locked output?), many machines in one Lab (frame time), the Town warp with SVE, clock freeze with a farmhand connected, controller navigation in the Table and Satchel menus, removing the mod from a save with a Lab, and loading a slice save in the next build;
+- the **known low-confidence areas** to watch in game, updated each build: machines under Automate (does anything ever take a locked output?), many machines in one Lab (frame time), the Town warp with SVE, clock freeze with a farmhand connected and controller navigation in the Table and Satchel menus (both once their deferred in-game runs start, doc 17 §8b), removing the mod from a save with a Lab, and loading a slice save in the next build;
 - a short bug-report template: configuration, save day, what happened, the log link.
 
 ## Data shape
@@ -231,15 +231,10 @@ The slice is the first data the sweep sees. Placeholders it tunes or checks:
 - **Starter-chain rewards:** useful for the next step, never a whole bundle.
 
 ## Open questions
-- ~~`[blocks-content]` **Chaining and Automate in the slice.**~~ **In** (Charles, 2026-10-18).
-- ~~`[blocks-content]` **Oriel, Tobin and the Curator.**~~ **Workshop-bound** (Charles, 2026-10-18).
-- ~~`[blocks-content]` **Save carry-forward.**~~ **Carry forward** (Charles, 2026-10-18).
-- ~~`[blocks-content]` **Level 5 in the slice.**~~ XP banks past level 4 and applies later (default confirmed by Charles, 2026-10-18).
-- ~~`[blocks-content]` **Oriel's starter quests.**~~ Kept (Charles, 2026-10-18), and made a five-step chain whose rewards feed the next step (Charles review, v0.2).
-- ~~`[blocks-content]` **Who plays the slice.**~~ Charles and a few testers, not on Nexus (default confirmed by Charles, 2026-10-18).
+Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are in Decisions locked and the change log.
 - `[blocks-content]` **Draft scripts** for the cutscene, restoration scene and starter quests. *Owner: doc 20 (slice drafts written during execution).*
-- *For other docs:* doc 13's content-inventory line ("plus the Hermetic Vessel if room allows") is settled here: all six are in. Doc 03 and doc 14 §7 should note that Aether yield follows source rarity (§Player-facing spec). Doc 09's plan must keep the engine's pure logic testable without the game (§6). Doc 16 must spec the slice's menus first (Table, Satchel grid and picker, codex, bundle board, minimal chain overlay); doc 17 must spec the schema version and migration before the build starts.
 
 ## Change log
+- **v0.2a (2026-10-19):** pre-gate cleanup sweep: marked ready (merged as PR #14); co-op, split-screen and controller are built and code-reviewed, in-game runs deferred (doc 17 §8b); settled open questions and the "for other docs" notes removed (each now lives in its doc: 03, 09, 13, 14, 16, 17).
 - **v0.2 (2026-10-18):** Charles's review: the starter quests become a five-step chain whose rewards feed the next step; Aether yield follows source rarity (Solar and Void Essence give a trace, Prismatic Shards and legendary fish the bulk); a critical-path check of every finish-line step (§1a), which replaced "a Tier 1 row" with ten Tier 1 discoveries, fixed the end-of-Spring level, required a Spring-only Calcinator cost and flagged Lab T1's 25,000g as tight; a testing section (§6) with four configurations (chaining-only first, SVE from the start), unit tests, logging and a testing guide.
 - **v0.1 (2026-10-18):** first draft: the finish line, the first evening and Oriel's starter quests, the Spring loop, the in/out table (six apparatus, all 36 Tier 1 rows, four Tier 2 rows, chaining and Automate in, professions out), recipe rows, darkness via a test pack, build tooling (the slice report, developer commands, a test content pack), edge cases including save carry-forward, the data rows per asset, and the ten technical risks the slice must surface.

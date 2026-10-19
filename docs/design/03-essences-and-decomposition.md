@@ -1,6 +1,6 @@
 # 03 · Essences & Decomposition
 
-Status: **DRAFT v0.4** (2026-10-16). v0.4: the **data shape** of decomposition (tag → Prime weights, category defaults, overrides, the yield formula and its settings), matching doc 12 §2. v0.3: content packs can add Primes, late-game sources (Ginger Island, Volcano, Skull Cavern), and the 1.0 tie-in mods (Charles's guiding answers, doc 01). Full substance list: [03a-substances-catalog.md](03a-substances-catalog.md) · Item rules: [03b-item-budget-and-inventory.md](03b-item-budget-and-inventory.md).
+Status: **DRAFT v0.4a** (2026-10-19). v0.4a: pre-gate cleanup sweep: Aether yield follows source rarity (Charles, from doc 11). v0.4: the **data shape** of decomposition (tag → Prime weights, category defaults, overrides, the yield formula and its settings), matching doc 12 §2. v0.3: content packs can add Primes, late-game sources (Ginger Island, Volcano, Skull Cavern), and the 1.0 tie-in mods (Charles's guiding answers, doc 01). Full substance list: [03a-substances-catalog.md](03a-substances-catalog.md) · Item rules: [03b-item-budget-and-inventory.md](03b-item-budget-and-inventory.md).
 
 ## The eight Primes (approved)
 Ignis, Aqua, Terra, Aer (elements) · Sal, Sulphur, Mercurius (tria prima) · **Aether** (rare).
@@ -31,6 +31,8 @@ Each Prime needs ≥3 independent sources in different activities, available by 
 | Sulphur | sunflower and oil crops | mushrooms, sap | — | monster loot | eggs, mayonnaise |
 | Mercurius | fermented goods (wine) | — | roe, eels | ores (trace) | slime |
 | Aether | rare crops | Secret Woods, ley nodes | legendary fish | prismatic shard | solar/void essence, grand rituals |
+
+**Aether yield follows source rarity** (Charles, 2026-10-18; doc 11): common sources such as Solar and Void Essence give only a trace of Aether and decompose mostly into their own Primes; rare ones such as Prismatic Shards and legendary fish decompose mostly into Aether (placeholder ratio about 1 : 15–20 per item, set in the balance pass). `TagWeights` rows on the Aether source list carry weights to match.
 
 Late-game locations add columns rather than replace early ones (proposal): Ginger Island and the Volcano (Ignis, Magma, Vitae; ley nodes), Skull Cavern (Sulphur, Mercurius, Tenebrae from vanilla loot), and Mr. Qi's items as rare Aether sources.
 
