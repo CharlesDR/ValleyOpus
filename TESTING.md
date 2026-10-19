@@ -72,9 +72,9 @@ At most four per build (doc 11 §6). This build uses 1, 2 and 3.
 
 | # | Mods | Save | Run these spikes |
 |---|---|---|---|
-| 1 | ValleyOpus + Content Patcher + SpaceCore (no Automate, no SVE) | new save, solo | S1, S19, S3, S5, S11, S12, S14, S16, S13 |
-| 2 | configuration 1 + **SVE** | new save, solo | S13, S17, S11 (SVE adds sort mods' lists of items), S16 |
-| 3 | configuration 1 + **Automate** | an existing Spring save, solo | S2, then S1 again |
+| 1 | ValleyOpus + Content Patcher + SpaceCore (no Automate, no SVE) | new save, solo | §5, configuration 1 |
+| 2 | configuration 1 + **SVE** | new save, solo | §5, configuration 2 |
+| 3 | configuration 1 + **Automate** | new save, solo | §5, configuration 3 |
 | 4 | co-op, split-screen, controller | deferred until you can run them (doc 17 §8b) | none this build |
 
 Make a **new farm for each configuration**, named after it (`VO-1`, `VO-2`, `VO-3`), so you can tell them apart. Use a throwaway save: alpha.1 saves don't carry forward.
@@ -99,26 +99,33 @@ Each spike writes lines like `[S11] PASS …`, `[S11] FAIL …` or `[S11] LOOK �
 
 ---
 
-## 5 · The spike scripts
-Each script lists where to stand and what to type. Run them in this order; the whole set takes about an hour across the three configurations. If a command prints `ERROR` or `crashed`, share the log and move on to the next spike.
+## 5 · The spike scripts, by configuration
+Run one section at a time: set up that configuration's mods (§3), make its farm, then work down its list. Your first run (2026-10-19, with your full mod list and SVE) already answered most spikes; those are marked **done**, and the spike table (§6) has the results. If a command prints `ERROR` or `crashed`, share the log and move on to the next step.
 
-**Wave A (blocks item IDs and the machine path)**
+### Configuration 1 · ValleyOpus + Content Patcher + SpaceCore (farm `VO-1`)
+Still to do:
+- [ ] **S11 · Sort keys.** Anywhere: `valleyopus_spike S11`. Note which scheme says PASS (or "exact reverse"). Then face an empty tile, type `valleyopus_spike S11 chest`, open the chest, press vanilla's Organize button and note whether it kept the order in the LOOK line. Then switch the game's language to French (title screen → options), load, run `valleyopus_spike S11` again and note which scheme passes now.
+- [ ] **S13 · Workshop entrance, without SVE.** In Town: `valleyopus_spike S13 place 52 20` (the Community Center's front door, where the entrance is moving), then walk onto that tile. You should land in a shed-like room; `valleyopus_spike S13 back` brings you back. Note whether it worked.
+- [ ] **S17 · Robin's menu, without SVE.** `valleyopus_spike S17`, then open Robin's building menu and note where "Spike Lab" sits.
+- [ ] **S16 · Dye, by eye.** `debug item CharlesDR.ValleyOpus_Spike_S16_Dye` gives a "Spike Dye (blue)". Take it to Emily's dye pots and note whether it counts as blue.
+- [ ] **S14 · Level-up screens, by eye.** `valleyopus_spike S14`, then sleep. You should see level-up screens for levels 1 to 4 and none past 4; the skills page should show the Spike skill at level 4.
 
-- **S11 · Sort keys** (configs 1 and 2). Anywhere: `valleyopus_spike S11`. Note which scheme says PASS (or "exact reverse"). Then face an empty tile and `valleyopus_spike S11 chest`, open the chest, press vanilla's Organize button and every installed sort mod's button, and note whether each kept the order in the LOOK line. Then switch the game's language to French (title screen → options), load, run `valleyopus_spike S11` again and note which scheme passes now.
-- **S16 · Categories and dye** (config 1). Anywhere: `valleyopus_spike S16`. Then take a "Spike Dye (blue)" (`debug item CharlesDR.ValleyOpus_Spike_S16_Dye` gives one) to Emily's dye pots and note whether it counts as blue.
-- **S1 · Staging and output, S19 · speed modifiers** (configs 1 and 3). Stand on the farm with an open area in front of you: `valleyopus_spike S1`. It places two Spike Apparatus and runs both checks. Then do the by-hand check from the LOOK line with real Wood and Stone (`debug item 388 5`, `debug item 390 5`).
-- **S2 · Automate** (config 3 only). Place a Spike Apparatus (`debug item (BC)CharlesDR.ValleyOpus_Spike_Apparatus`) with a chest right next to it holding a few Wood and Stone. Wait two in-game hours (Automate puts in one item per pass, so a two-item recipe takes two passes), then type `valleyopus_spike S2`. You want **PASS**, and the chest should have lost exactly one Wood and one Stone per Coal. Then face the apparatus, type `valleyopus_spike S2 lock`, and let it make another Coal: when it's done, the machine should look empty, no Coal should appear in the chest, and clicking the machine yourself should hand you the Coal.
+Done on your first run (rerun only if you have time): S1 and S19 (`valleyopus_spike S1` on the farm, facing an open area), S5 (`valleyopus_spike S5` outdoors in the day), S12 (`valleyopus_spike S12 setup`, sleep, quit to title, load, `valleyopus_spike S12 check`).
 
-**Wave B (blocks world, saves and storage)**
+Skip: **S3** (removing the mod). It already failed, and the fix arrives in alpha.2, where it gets a fresh run.
 
-- **S3 · Removing the mod** (config 1). On the farm in an open area: `valleyopus_spike S3 build`. Sleep (this saves), quit to the desktop, remove the mod (§2c), start the game and load the farm. Note whether it loads with no crash or red errors. Sleep once (saves without the mod), quit, put the mod back, load, and run `valleyopus_spike S3 check`.
-- **S12 · Satchel storage** (config 1). `valleyopus_spike S12 setup`, sleep, quit to title, load, `valleyopus_spike S12 check`.
-- **S13 · Town warp** (configs 1 and 2). In Town: `valleyopus_spike S13`. If it FAILs, run `valleyopus_spike S13 scan` and share the line. Then walk behind the Community Center onto the warp; `valleyopus_spike S13 back` brings you back.
-- **S17 · Robin's menu** (config 2, and 1 for comparison). `valleyopus_spike S17`, then open Robin's building menu and note where "Spike Lab" sits.
-- **S5 · Clock during the hold-up** (config 1, solo). Outdoors during the day: `valleyopus_spike S5`. The farmer holds up a piece of coal; wait two seconds for the result line.
-- **S14 · SpaceCore skill** (config 1). `valleyopus_spike S14`, then sleep and note the level-up screens; open the skills page and check the Spike skill shows level 4.
+### Configuration 2 · configuration 1 + SVE (farm `VO-2`)
+Your first run had SVE installed, so S13 (the old tile fails, the front door works), S17 (Lab last, 22 of 22) and S11 are **done**. Still to do:
+- [ ] **S11 · Chest sort with sort mods** (only if you have any installed): `valleyopus_spike S11 chest`, open the chest, press each sort mod's button, and note whether each kept the order in the LOOK line.
 
-S15 (custom buffs and fertilizer) needs real products and runs in alpha.2.
+### Configuration 3 · configuration 1 + Automate (farm `VO-3`)
+Still to do:
+- [ ] **S2 · Automate runs our machine.** On the farm, place a Spike Apparatus (`debug item (BC)CharlesDR.ValleyOpus_Spike_Apparatus`) with a chest right next to it holding a few Wood (`debug item 388 5`) and Stone (`debug item 390 5`). Wait two in-game hours (Automate puts in one item per pass, so a two-item recipe takes two passes), then type `valleyopus_spike S2`. You want **PASS**, and the chest should have lost exactly one Wood and one Stone per Coal.
+- [ ] **S2 · Locked output.** Face the apparatus and type `valleyopus_spike S2 lock`, then let it make another Coal. When it's done, the machine should look empty, no Coal should appear in the chest, and clicking the machine yourself should hand you the Coal.
+- [ ] **S1 again, with Automate installed.** On the farm, facing an open area: `valleyopus_spike S1`. Both lines should still say PASS.
+
+### Later builds
+S15 (custom buffs and fertilizer) needs real products and runs in alpha.2. Co-op, split-screen and controller (configuration 4) are deferred until you can run them.
 
 ---
 
@@ -146,7 +153,7 @@ Desk results come from reading public sources before the build (doc 22 §4). In-
 What to keep an eye on in this build:
 - Anything Automate does with a Spike Apparatus (configuration 3): does a Coal ever reach the chest after `S2 lock`, or does the machine ever stay stuck after you collect by hand?
 - Loading the farm with the mod removed (S3): any crash or red error.
-- The warp tile behind the Community Center with SVE (S13).
+- The workshop entrance at the Community Center's front door without SVE (S13).
 - First compile on your PC: if the build fails, the Remote Control session fixes the code and tells Claude what changed.
 
 ---
