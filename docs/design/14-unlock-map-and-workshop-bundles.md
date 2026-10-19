@@ -167,7 +167,7 @@ A typical player covers the same map more slowly, finishing around Year 4 (doc 0
 ### 9 · Edge cases
 - **Multiplayer:** unlocks are **farm-wide**, stored with the shared farm codex in host save data and mirrored to every player as mail flags for Content Patcher conditions; a farmhand who joins later receives them on connect. Crafting recipes from unlocks are granted to every player, including late joiners. Bundles are shared, like the CC's.
 - **Joja route:** nothing in this doc reads a CC-only flag; the workshop and its bundles work the same; Sorenson's arc carries more weight (doc 08).
-- **Late install** (the mod added to an existing save): the soft start fires on the next eligible Town entry, however late; base-game gates already met apply at once. Nothing is skipped automatically (approved; an optional GMCM "fast start" is an open question).
+- **Late install** (the mod added to an existing save): the soft start fires on the next eligible Town entry, however late; base-game gates already met apply at once. Nothing is skipped automatically, and there is no optional GMCM fast start either (Charles, 2026-10-18; doc 16).
 - **SVE and tie-ins:** our gates read vanilla milestone flags, not CC bundle contents, so SVE's remixed bundles don't matter. SVE's Town map behind the CC must leave room for the workshop warp (doc 17). Tie-in mods add ley nodes and hints, never rooms, in 1.0.
 - **Festivals:** a restoration scene or NPC arrival due on a festival day moves to the next day, like the soft start.
 - **Removed packs:** an unlock row from a removed pack is kept but hidden, as discovery keys are (doc 12).
@@ -206,13 +206,13 @@ Doc 06 reads the map as a **pace report**, and the sweep also runs the **bundle 
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
-- `[blocks-content]` **Late-install fast start:** nothing is skipped automatically (approved); whether GMCM later offers an optional "fast start" that restores the Furnace Room is still open. *Owner: Charles / doc 16.*
 - `[blocks-content]` **Lightning Coil in Winter:** the Coil comes by letter after the next storm (approved). If a Cistern restored in Winter feels too slow in play, the fallback is to grant it with the room. *Owner: balance pass.*
 - `[blocks-content]` **Contract-reward list:** optional extras only (approved); which extras and curios is content. *Owner: doc 20.*
 - `[blocks-content]` **Bundle contents, rewards and NPC arrival scenes.** *Owner: doc 20 and the sweep.*
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
 
 ## Change log
+- **v0.4a (2026-10-18), Charles's answer:** no late-install fast start, not even as a GMCM option; the open question is closed.
 - **v0.4 (2026-10-18):** cleanup sweep: "(proposal)" dropped from §2 and §3 (Charles approved them in v0.2); §6's skill table now points to doc 05 §3, which owns it; the Familiar row follows doc 18 §4; doc 07's hint channels now carry their unlock sources; settled open questions removed.
 - **v0.3 (2026-10-17):** follows doc 15 v0.6 (PR #11): gated automated recipes wait idle; shops pay the shipping price, so NPCs open places to sell, not prices; Sorenson's contracts may reward an optional unlock (new `Contract` source); "Element" used for the umbrella term. Charles approved the contract-reward rule; "curio" defined; bundles checked against the critical path (Electrum and the dark twins replaced); bundles rebuilt on Charles's stretch rule (a tools, a progress and a gathering bundle per room, against the player's likely state), and the Great Work Chamber gains a Rubedo bundle (25 in all).
 - **v0.2 (2026-10-17):** Charles approved every default; doc 02's jungle ley node, doc 13's unlock column and the README updated to match.

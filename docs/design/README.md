@@ -2,7 +2,7 @@
 
 An alchemy and automation expansion for Stardew Valley. These are **drafts** (started 2026-10-13, last swept 2026-10-18); each doc's status line gives its version and readiness. This repo is their source of truth. **Every open question is collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).**
 
-Each subject has one owning doc; other docs summarize and link to it. Where an older summary and the owning doc differ, the owning doc wins. Doc numbers 16, 19, 20 and 21 are reserved on the path in doc 00.
+Each subject has one owning doc; other docs summarize and link to it. Where an older summary and the owning doc differ, the owning doc wins. Doc numbers 19, 20 and 21 are reserved on the path in doc 00 (doc 17 is in review).
 
 | Doc | Topic |
 |---|---|
@@ -25,5 +25,6 @@ Each subject has one owning doc; other docs summarize and link to it. Where an o
 | [13 Apparatus Catalog](13-apparatus-catalog.md) | the 14 machines, behaviour classes, power and heat, the resolver behind `OutputMethod`, chaining, the four-Lab check |
 | [14 Unlock Map & Workshop Bundles](14-unlock-map-and-workshop-bundles.md) | what opens when: workshop rooms and bundles, NPC arrivals, base-game gates on both routes, Aether pacing |
 | [15 Products & Outside Uses](15-products-and-outside-uses.md) | product families, the effect system, fertilizers, combat items, prices and buyers, gifts, Smaltum |
+| [16 UX & Interface](16-ux-and-interface.md) | every screen and indicator: the interaction model, Experiment Table, Satchel and picker, machine tooltips, the chain overlay, the codex, celebrations, Finch's shop, GMCM options, controller and split-screen, the quarter-day hand-action budget |
 | [17 Multiplayer, Saves & Compatibility](17-multiplayer-saves-and-compatibility.md) | every piece of state and who owns it, multiplayer sync, Satchel storage, the save schema and migration, uninstall, map touchpoints, the test matrix |
 | [18 Laboratory & Familiars](18-laboratory-and-familiars.md) | the three Lab tiers, costs and bonuses, nested floorplans with hearths and dark alcoves, the space check, the four Familiars and their bonding |

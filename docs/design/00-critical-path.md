@@ -75,7 +75,7 @@ State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authorit
 | **13** | **Apparatus Catalog** | v0.6b, ready | nothing |
 | **14** | **Unlock Map & Workshop Bundles** | v0.4, ready | nothing |
 | **15** | **Products & Outside Uses** | v0.7, ready | nothing |
-| **16** | **UX & Interface** | not started | codex, Satchel, Experiment Table, tooltips, celebrations, GMCM options, controller support, chaining visual aids (doc 13 §7) |
+| **16** | **UX & Interface** | v0.1 (PR #17 merged; defaults D15–D19 confirmed) | nothing |
 | **17** | **Multiplayer, Saves & Compatibility** | v0.1d, ready | nothing |
 | **18** | **Laboratory & Familiars** | v0.2, ready | nothing |
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |
@@ -88,7 +88,7 @@ State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authorit
 
 Each phase only starts once the decisions it depends on are made. Inside a phase, docs can be written in parallel.
 
-**Progress (2026-10-18):** Phases 0–3 are done. In Phase 4, doc 17 is drafted and doc 16 is in progress; then the gate. No code before the gate (Charles).
+**Progress (2026-10-18):** Phases 0–3 are done. In Phase 4, doc 16 is merged and doc 17 is in review; then the gate. No code before the gate (Charles).
 
 ```
 Phase 0  Scope lock ─────────────► decisions S1–S5
