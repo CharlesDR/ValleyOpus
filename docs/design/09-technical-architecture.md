@@ -1,6 +1,6 @@
 # 09 · Technical Architecture
 
-Status: **DRAFT v1.0** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (one framework default in §10, D21, awaits his answer; no other `[blocks-arch]` item is open)
+Status: **DRAFT v1.0** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (both framework choices in §10 are decided; no `[blocks-arch]` item is open)
 Depends on: 00, 01, 03, 03a, 03b, 04, 05, 07, 11, 12, 13, 14, 15, 16, 17, 18 · Feeds: execution planning, every build, 19, 20, 21
 
 ## Purpose
@@ -216,7 +216,7 @@ Every optional integration is looked up once at launch, version-checked, and iso
 | Choice | Default or decision | Alternative | Why the default |
 |---|---|---|---|
 | **Bundle menu** (doc 14, doc 16 §10) | **our own bundle board** (chosen by Charles, 2026-10-19, D20) | Unlockable Bundles | the board needs sealed doors, Element silhouettes with hints, the divination panel and host-confirmed deposits, and bundle progress belongs in our envelope with the rest of farm state. UB would save the slot UI but bring its own state, sync and layout, plus a dependency. |
-| **Familiar sprites** (doc 18) | **our own light renderer**: a non-colliding sprite that wanders between favoured machines in its Lab or the workshop | Custom Companions | four sprites in known rooms is little code; greeting, gifts and bonding are our own handlers in either case, so the framework would add a dependency for the drawing alone. |
+| **Familiar sprites** (doc 18) | **our own light renderer** (chosen by Charles, 2026-10-19, D21): a non-colliding sprite that wanders between favoured machines in its Lab or the workshop | Custom Companions | four sprites in known rooms is little code; greeting, gifts and bonding are our own handlers in either case, so the framework would add a dependency for the drawing alone. |
 | Ring effects (doc 15) | our own equip and unequip hooks (§13) | a ring framework | only a couple of rings in 1.0 |
 | Extra Machine Configs | not used | — | the resolver covers every case doc 13 lists |
 
@@ -317,12 +317,11 @@ Every number lives in data the sweep can rewrite (doc 00, "what deliberately wai
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
-- `[blocks-arch]` **Familiar sprites:** our own light renderer *(default)* or Custom Companions (§10). *Owner: Charles.*
 - `[blocks-content]` **Inventory sort keys:** settled by spike S11 before the slice fixes IDs (§11). *Owner: the first build.*
 - `[2.0]` Arcane logistics as a second `IItemRoute`; content-pack professions; Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
-- **v1.0 (2026-10-19):** rewritten as the architecture plan at the gate: the engine and adapter split with one module per owning doc, the repository layout (a game-free engine so CI can test it), the data pipeline (our registries as CP-filled assets, a validator, a compiler that adds computed fields to authored vanilla rows), the staging, neighbour, routing, farm-state and UI designs, the runtime event table, performance budgets, integrations, the framework choices (our own bundle board, chosen by Charles as D20; our own Familiar renderer as the D21 default), the risk register as first-build spikes with fallbacks, and the Harmony patch list. Integration targets and Charles's ID rules carried over.
+- **v1.0 (2026-10-19):** rewritten as the architecture plan at the gate: the engine and adapter split with one module per owning doc, the repository layout (a game-free engine so CI can test it), the data pipeline (our registries as CP-filled assets, a validator, a compiler that adds computed fields to authored vanilla rows), the staging, neighbour, routing, farm-state and UI designs, the runtime event table, performance budgets, integrations, the framework choices (our own bundle board, chosen by Charles as D20; our own Familiar renderer as D21, both chosen by Charles), the risk register as first-build spikes with fallbacks, and the Harmony patch list. Integration targets and Charles's ID rules carried over.
 - **v0.6c (2026-10-19):** pre-gate cleanup sweep: testing from the first commit (doc 11 §6) and the deferred in-game co-op, split-screen and controller tests (doc 17 §8b).
 - **v0.6b (2026-10-19):** Satchel storage, multiplayer sync, saves and the test matrix follow doc 17.
 - **v0.6 (2026-10-18):** machines, Automate and Lookup Anything follow doc 13 §6; Familiar state follows doc 18; NPC count follows doc 08a; Charles's item ID and sort-key rules.

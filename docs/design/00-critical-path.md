@@ -68,7 +68,7 @@ State as of the 2026-10-19 pre-gate cleanup sweep. Each doc's own status line is
 | 06 | Economy & Balance | v0.6 | policy is done; numbers come from the sweep (execution) |
 | 07 | Discovery & Codex | v0.9, ready | nothing |
 | 08 / 08a | Narrative & Cast | v0.6 / approved | only the hooks architecture needs (triggers, flags, locations); scripts come later |
-| 09 | Technical Architecture | v1.0, the architecture plan (in review) | Charles's review and defaults D20–D21 (doc 10) |
+| 09 | Technical Architecture | v1.0, the architecture plan (in review) | Charles's review (D20 and D21 decided) |
 | 10 | Roadmap & Open Questions | v0.10c | nothing; it collects every open item |
 | **11** | **First Playable Slice** | v0.2a, ready (PR #14 merged) | nothing |
 | **12** | **Recipe & Process Model** | v0.4, ready | nothing |
