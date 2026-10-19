@@ -20,6 +20,7 @@ Everything below was already decided elsewhere; this doc gathers it and adds no 
 - **Inventory sort order**: base Primes first, then substances by tier, then endgame Elements, alphabetical within groups (Charles, 2026-10-18; doc 03b rule 5). Every list in our own menus uses the same order.
 - **Quarter-day time share** without busywork (Charles, doc 02): this doc sets the budget and the levers that meet it (§17).
 - **No late-install fast start** (Charles, 2026-10-18): GMCM offers no option to skip ahead; every save, however late it installs the mod, plays from the soft start (doc 14 §9).
+- **Quality uses vanilla words and stars** (Charles, 2026-10-18): screens say "base quality" and show the silver, gold and iridium star icons, never the Latin stage names (§2).
 - **This doc's defaults, confirmed** (Charles, 2026-10-18): level 2's extra Satchel tab adds capacity, a second page of type slots (§4); staged items can be taken back from the tray until the recipe completes (§5); recipe-memory icons draw only with the overlay by default (§5, §15); the codex keeps every seen hint on a Notes page (§7); the overlay and codex keys start unbound, since the Satchel covers both (§15).
 - **i18n from the first build** (S4): no player-facing string is hard-coded or baked into a sprite.
 - **Reagent Satchel** behaviour (doc 03b, Charles 2026-10-13 and 2026-10-18): tooltip contents, chest-style grid with tabs, auto-collect of reagents only, the picker filtered to a machine's valid inputs.
@@ -77,6 +78,7 @@ The slice's first ten minutes (doc 11) touch, in order: the cutscene (clock froz
 - **Element icons and colours.** Every Element has one icon and one colour (`Primes.Color` for Primes); every list, grid, profile bar and overlay tint uses them. The icon carries the Element's rune, so identity never rests on colour alone (placeholder art per the art-sources notes; commissioned art per doc 21).
 - **Kind marks.** ⚙︎ engineered, ✦ arcane, both marks for blended machines; shown after every apparatus name in tooltips and the codex, matching doc 13's `FeedbackStyle`.
 - **Silhouettes.** An unknown item, recipe or unlock is its icon filled flat in a dark tint, with "?" for its name. A silhouette may carry one hint line when a hint channel has revealed it (`hint:` set).
+- **Quality is shown the vanilla way** (Charles, 2026-10-18): in game, quality is always "base quality" and the vanilla silver, gold and iridium star icons, on items, in tooltips, the codex, recipe rows and bonus lines ("chance of a higher quality"). The design docs' stage names (Nigredo, Albedo, Citrinitas, Rubedo = quality 0, 1, 2, 4; doc 12 R1) are internal terms only and never label quality on screen.
 - **Status icons** (small, top-right of a machine sprite, never more than one at a time, in this priority): locked "something new inside" sparkle → ready bubble (vanilla) → staged glow (altars) → waiting icon (a gated recipe waiting idle for its day, weather or moon; doc 12) → no-fuel icon → nothing. The sparkle and the ready bubble look clearly different, since one means "collect by hand to discover".
 - **The one-line reason.** Refusals, waits and failures use one i18n line drawn from a small fixed set (missing apparatus, missing neighbour state, wrong day, wrong weather, wrong moon, no fuel, output locked, hand-made only, not discovered yet), so the wording is consistent everywhere.
 
@@ -86,7 +88,7 @@ The slice's first ten minutes (doc 11) touch, in order: the cutscene (clock froz
 **Before Combine**, the result panel already tells the player what the press will do, so nothing is wasted by accident:
 | Slots hold | Result panel shows | Combine |
 |---|---|---|
-| a known recipe (`recipe:` set) | its output icon and name, "Known" | makes it at Nigredo (doc 07) |
+| a known recipe (`recipe:` set) | its output icon and name, "Known" | makes it at base quality (doc 07) |
 | a signature already tried here (`tried:` set) | "Tried before: residue" with the residue icon | allowed, but asks once ("You tried this. Try again?") |
 | anything else | a question-mark vessel | plays the attempt |
 
@@ -124,7 +126,7 @@ The panel never reveals an unknown recipe before Combine; it only reflects what 
 3. **Recipe memory:** the remembered output's icon and name, with the pin mark when pinned; "Not set: load a recipe by hand once" on a fresh machine (doc 13 §6a; the D4 default).
 4. **Neighbour state:** "Heated by: Athanor (West)" · "Cold" · "Powered by: Boiler (North), 4h left".
 5. **Links** (doc 13 §7): "Takes from: Calcinator (West), chest (South) · Sends to: Process Vat (East)". A broken link reads in red with its reason: "Sends to: Retort (East): can't use Calx".
-6. **Room bonus:** "Laboratory I: 10% faster, 5% chance of a better stage" (doc 18), and a Familiar's boost when it applies.
+6. **Room bonus:** "Laboratory I: 10% faster, 5% chance of a higher quality" (doc 18), and a Familiar's boost when it applies.
 7. For power sources: what they emit, charges or time left, and which machines they feed, numbered in their fixed N, E, S, W order (doc 13 §5).
 
 **Tray view** (Action, empty-handed, on a loading machine): a small panel showing the staged items and the recipes they are heading toward as silhouettes or icons, with a **take-back** button per item until the recipe completes. Taking back returns items to the Satchel or inventory. This undoes a mis-load without a removal command (Charles, 2026-10-18).
@@ -185,7 +187,7 @@ Link states use shape as well as colour: solid arrow (working), dashed (idle), �
 
 **Codex flourish** for milestones: the codex opens on the right page and plays a short page-turn with a sound; one press skips it.
 
-**Cauda Pavonis**: an iridescent shimmer on the machine and the item icon the first time an item passes Nigredo → Albedo.
+**Cauda Pavonis**: an iridescent shimmer on the machine and the item icon the first time an item is raised from base quality to silver (the design docs' Nigredo → Albedo).
 
 **Clock freeze, precisely.** In single player the clock already stops while a menu is open, so menu-borne celebrations (the Table, the codex flourish) freeze it for free. World-borne ones (the hold-up, a restoration scene) pause the clock for their duration; to verify that the vanilla hold-up path does so. With farmhands connected, nothing pauses the shared clock: the hold-up plays as a non-blocking overlay and world animations stay under about one second (doc 07; the multiplayer test is doc 17's).
 
@@ -329,6 +331,6 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
-- **v0.1 (2026-10-18), Charles's review:** a codex entry's Used in list shows a "???" row for each undiscovered recipe that uses the item, and undiscovered routes use the same "???" mark; controller and split-screen groundwork from the first build, with in-game tests deferred while Charles can't test.
+- **v0.1 (2026-10-18), Charles's review:** quality shows on screen as "base quality" and the vanilla stars, never the Latin stage names; a codex entry's Used in list shows a "???" row for each undiscovered recipe that uses the item, and undiscovered routes use the same "???" mark; controller and split-screen groundwork from the first build, with in-game tests deferred while Charles can't test.
 - **v0.1 (2026-10-18), Charles's answers:** no late-install fast start (the GMCM row and open question are removed); defaults D15–D19 confirmed.
 - **v0.1 (2026-10-18):** first draft: principles, the interaction model, the screen inventory with slice flags, the Experiment Table menu with its before-Combine result panel, the Satchel tooltip, grid and picker, the machine tooltip order and tray view, the chain overlay in two levels with the placement preview, the codex pages, entries, Notes page and search, celebrations and clock freeze, Finch's shop hiding the curiosity hint, the bundle board and divination panel, the Lens, altar prompts, GMCM options, controller and split-screen rules, and the quarter-day hand-action budget with its levers.
