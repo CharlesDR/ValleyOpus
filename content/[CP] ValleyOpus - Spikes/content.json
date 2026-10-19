@@ -493,7 +493,7 @@
       ]
     },
     {
-      "LogName": "S13 warp with SVE: SVE's tree line covers 52,7, so use the open strip behind the CC roof",
+      "LogName": "S13 warp with SVE: SVE's tree line covers 52,7, so use the open strip behind the CC roof (52,9 has a bush)",
       "Action": "EditMap",
       "Target": "Maps/Town",
       "When": {
@@ -502,7 +502,7 @@
       "MapTiles": [
         {
           "Position": {
-            "X": 52,
+            "X": 53,
             "Y": 9
           },
           "Layer": "Back",

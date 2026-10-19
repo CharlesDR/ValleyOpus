@@ -174,8 +174,8 @@ internal sealed class WarpSpike : ISpike
 
     public WarpSpike(IModHelper helper) => this.helper = helper;
 
-    // The spike pack's EditMap tile: SVE's tree line covers 52,7, so with SVE it's 52,9 behind the CC roof.
-    private Point tile => placed ?? (this.helper.ModRegistry.IsLoaded("FlashShifter.SVECode") ? new Point(52, 9) : new Point(52, 7));
+    // The spike pack's EditMap tile: SVE's tree line covers 52,7, so with SVE it's 53,9 behind the CC roof (52,9 has a bush).
+    private Point tile => placed ?? (this.helper.ModRegistry.IsLoaded("FlashShifter.SVECode") ? new Point(53, 9) : new Point(52, 7));
 
     public string Id => "S13";
 
