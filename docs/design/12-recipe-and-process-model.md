@@ -167,7 +167,7 @@ Placeholder counts for 1.0 (rows, not final names):
 No new items are created by this doc; every row's output already exists in doc 03a or 03b.
 
 ## Tech hooks
-- **Resolver in C#.** One recipe resolver serves the Table, every apparatus, chaining, Automate input acceptance, the codex and Lookup Anything. Approved (Charles, 2026-10-16; details in doc 13): apparatus are `Data/Machines` entries with a C# `OutputMethod` that calls the resolver, so Automate's native machine support still loads and collects, and our Automate factory only adds the discovery lock, hand-made-only refusal and ritual staging (doc 09).
+- **Resolver in C#.** One recipe resolver serves the Table, every apparatus, chaining, Automate input acceptance, the codex and Lookup Anything. Approved (Charles, 2026-10-16; details in doc 13): apparatus are `Data/Machines` entries with a C# `OutputMethod` that calls the resolver, and one Automate factory claims every apparatus (doc 13 §6.3, superseding the earlier plan to rely on Automate's native support), so the discovery lock, hand-made-only refusal and ritual staging live in one class (doc 09 §9).
 - **Custom GSQs** registered in C# (`VALLEYOPUS_DISCOVERED`, moon phase, planetary hour, darkness, ley node, Lab tier) so conditions also work inside plain `Data/Machines` rules and other packs' data.
 - **Crafting** recipes compile into `Data/CraftingRecipes`; vanilla-machine rules are appended to `Data/Machines`, never replacing.
 - **Validation at load:** unresolved references, ambiguous matches, missing Tier 1 cells, equivalent-exchange clamps and hand-made-only recipes on automatable-only apparatus are reported in the SMAPI log; a console command dumps the report.

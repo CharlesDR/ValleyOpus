@@ -1,6 +1,6 @@
 # 00 · Design Critical Path to Architecture
 
-Status: **DRAFT v0.5c** (2026-10-19). v0.5c: pre-gate cleanup sweep: Phase 4 is done and the doc inventory shows current versions. v0.5b: doc 17 drafted; the Satchel storage note points to it. v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
+Status: **DRAFT v0.5d** (2026-10-19). v0.5d: the architecture gate is under way (doc 09 v1.0 drafted). v0.5c: pre-gate cleanup sweep: Phase 4 is done and the doc inventory shows current versions. v0.5b: doc 17 drafted; the Satchel storage note points to it. v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
 
 ## The governing rule
 Architecture needs the **shape** of every system, not its **content**. Shape means what kinds of things exist, the rules connecting them, and which of them need C# rather than Content Patcher data. Content means names, numbers, dialogue, art and exact recipes. Content can be filled in during execution as long as it is data-driven, so it never blocks architecture. Rework comes from changing shape late, so the path front-loads shape decisions and pushes content behind the gate.
@@ -68,7 +68,7 @@ State as of the 2026-10-19 pre-gate cleanup sweep. Each doc's own status line is
 | 06 | Economy & Balance | v0.6 | policy is done; numbers come from the sweep (execution) |
 | 07 | Discovery & Codex | v0.9, ready | nothing |
 | 08 / 08a | Narrative & Cast | v0.6 / approved | only the hooks architecture needs (triggers, flags, locations); scripts come later |
-| 09 | Technical Architecture | v0.6c, a sketch | rewritten as the architecture plan at the gate |
+| 09 | Technical Architecture | v1.0, the architecture plan (in review) | Charles's review (D20 and D21 decided) |
 | 10 | Roadmap & Open Questions | v0.10c | nothing; it collects every open item |
 | **11** | **First Playable Slice** | v0.2a, ready (PR #14 merged) | nothing |
 | **12** | **Recipe & Process Model** | v0.4, ready | nothing |
@@ -88,7 +88,7 @@ State as of the 2026-10-19 pre-gate cleanup sweep. Each doc's own status line is
 
 Each phase only starts once the decisions it depends on are made. Inside a phase, docs can be written in parallel.
 
-**Progress (2026-10-19):** Phases 0–4 are done (docs 16 and 17 merged as PRs #17 and #16); next is the architecture gate. No code before the gate (Charles).
+**Progress (2026-10-19):** Phases 0–4 are done (docs 16 and 17 merged as PRs #17 and #16); the architecture gate is under way: doc 09 v1.0 is the architecture plan, in review. Execution planning follows once Charles approves it. No code before the gate (Charles).
 
 ```
 Phase 0  Scope lock ─────────────► decisions S1–S5

@@ -194,7 +194,7 @@ Recipes keep `ApparatusKinds` and `ApparatusIds` as doc 12 defines; an apparatus
 - Slice (S1): all six of Experiment Table, Athanor, Alembic, Retort, Hermetic Vessel and Calcinator (doc 11 §1).
 
 ## Tech hooks
-- **`Data/Machines`:** one rule per apparatus with `OutputMethod`; `AdditionalConsumedItems` for the Calcinator's fuel; `ReadyTimeModifiers` left empty (the resolver sets minutes); `DayUpdate` for the Ley Tap. Appended vanilla rules use our `VALLEYOPUS_DISCOVERED` GSQ.
+- **`Data/Machines`:** one rule per apparatus with `OutputMethod`; `AdditionalConsumedItems` for the Calcinator's fuel; `ReadyTimeModifiers` empty in our rows but never blocked, so other mods' machine-speed edits apply on top of the resolver's minutes (doc 09 §1a, spike S19); `DayUpdate` for the Ley Tap. Appended vanilla rules use our `VALLEYOPUS_DISCOVERED` GSQ.
 - **C#:** the staging layer and drop-in prefix; the resolver index; power-state ticking; the Automate factory and machine wrapper for every apparatus; the Circle Sigil arrangement check (rug under the altar with the centre tile matching); custom GSQs from doc 12.
 - **Risks to verify (doc 09):** that calling the vanilla output path from our staging layer behaves with `probe`; that Automate never routes our machines to its generic handler once our factory claims them; Furniture rugs under a BigCraftable (placement order); hover-tooltip cost for power links in large Labs.
 - **1.7:** nothing here depends on the crafting or context-tag changes beyond doc 12's notes.

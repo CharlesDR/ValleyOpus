@@ -169,7 +169,7 @@ The numbers include the control premium, since the buff depends on the weekday. 
 - **Where to sell.** The shipping bin buys everything, and every shop that buys an item pays its **shipping price**, as in vanilla (Charles, 2026-10-17). Shops are places to sell, never price levers:
   - **Finch** buys Primes and substances and sells rare reagents, a valve for bottlenecks.
   - **Agnes** buys the planetary metals and certifies Electrum and Orichalcum. The metals' prices are benchmarked between vanilla bars (placeholders: Stannum near Copper-to-Iron, Plumbum near Iron, Argentum between Iron and Gold).
-- **Dr. Sorenson's contracts.** Players are cash-motivated, so a bulk contract must offer **a higher unit price than shipping**, or a significant non-monetary reward: a story step, an unlock or a unique item. A contract never pays less than the bin. Contracts accept automated output (doc 10 #2) and count toward doc 06's caps.
+- **Dr. Sorenson's contracts.** Players are cash-motivated, so a bulk contract must offer **a higher unit price than shipping**, or a significant non-monetary reward: a story step, an unlock or a unique item. A contract never pays less than the bin. Contracts accept automated output (doc 10 #2) and count toward doc 06's caps. They are vanilla **special orders** (`Data/SpecialOrders`) with Sorenson as the requester and **their own order type**, posted on **Sorenson's own board in the Cistern** (not the town board), so special-order mods and the vanilla quest UI handle them (doc 09 §1a, Charles's vanilla-first rule).
 - **Residue:** Caput Mortuum sells for a token price (placeholder 2g), the lowest of any mod item. Its value is its uses: fertilizer, Smaltum, ballast in apparatus recipes, hint divination (doc 07) and, late, Prima Materia. It **refuses decomposition** (approved): it is what decomposition leaves, and decomposing it would loop.
 
 ### 7 · Gifts and quest items
@@ -251,7 +251,7 @@ All assets are public Content Patcher data under `CharlesDR.ValleyOpus/…`, wit
 | `Data/Trinkets` / ring data | CP data | one row per trinket; `TrinketEffectClass` = our passive-effect class; effect IDs in `CustomFields` |
 | `Data/CraftingRecipes` | CP data (compiled from doc 12 `Craft` recipes) | alternate recipes for vanilla Bombs, Mega Bombs and the Rain Totem; trinkets, rings, décor |
 | `Data/Machines` appends | CP data | Furnace rules with Bitumen as fuel |
-| Contracts | CP data | `Id`, `ItemId` or tag, `Quality`, `Count`, `Price`, `UnlockFlag`, story key (doc 08 owns the arc) |
+| Contracts | CP data (`Data/SpecialOrders` entries) | `Id`, `ItemId` or tag, `Quality`, `Count`, `Price` (the reward money), `UnlockFlag` (a mail-flag reward), story key (doc 08 owns the arc) |
 | Effect handler registry | C# | handler ID → class; public API for C# mods |
 | Player effect state | C# state, none saved | derived each tick from the player's vanilla buffs |
 

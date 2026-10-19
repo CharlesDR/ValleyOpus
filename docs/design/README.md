@@ -18,7 +18,7 @@ Each subject has one owning doc; other docs summarize and link to it. Where an o
 | [07 Discovery & Codex](07-discovery-and-codex.md) | experimentation, celebrations, hints, shared codex |
 | [08 Narrative & NPCs](08-narrative-and-npcs.md) | the derelict workshop, story arc, Wizard and Witch guidelines |
 | [08a Cast](08a-cast.md) | the approved cast, with names and genders |
-| [09 Technical Architecture](09-technical-architecture.md) | packaging, IDs, dependencies, key systems |
+| [09 Technical Architecture](09-technical-architecture.md) | the architecture plan: projects and packs, engine and adapter modules, the data pipeline, state and sync, runtime events, integrations, framework choices, the first-build spikes and Harmony patches |
 | [10 Roadmap & Open Questions](10-roadmap-and-open-questions.md) | 1.0 vs 2.0, Charles's action items, **every open question across the docs**, upcoming tasks |
 | [11 First Playable Slice](11-first-playable-slice.md) | Spring Y1 end to end: the finish line, the first evening, what is in and out, the rows per asset, the technical risks the first build must surface |
 | [12 Recipe & Process Model](12-recipe-and-process-model.md) | the keystone: Primes, substances, recipes, conditions, quality, residue, discovery keys, pack format |
