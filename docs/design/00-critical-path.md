@@ -75,7 +75,7 @@ State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authorit
 | **13** | **Apparatus Catalog** | v0.6, ready | nothing (the fresh-machine default waits on playtesting) |
 | **14** | **Unlock Map & Workshop Bundles** | v0.4, ready | nothing |
 | **15** | **Products & Outside Uses** | v0.7, ready | nothing |
-| **16** | **UX & Interface** | v0.1 in review | Charles's review; defaults D10–D14 and the late-install fast start (doc 10) |
+| **16** | **UX & Interface** | v0.1 in review | Charles's review; defaults D15–D19 and the late-install fast start (doc 10) |
 | **17** | **Multiplayer, Saves & Compatibility** | not started | ownership of every piece of state, save migration, uninstall behaviour, SVE and Automate test matrix |
 | **18** | **Laboratory & Familiars** | v0.2, ready | nothing |
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |

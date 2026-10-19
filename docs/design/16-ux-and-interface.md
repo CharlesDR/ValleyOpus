@@ -324,7 +324,7 @@ The UI adds no save data and no CP asset of its own; it reads the assets of docs
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
 - `[blocks-content]` **Late-install fast start** (from doc 14): whether GMCM offers an optional fast start that restores the Furnace Room for a save that installs the mod late. *Owner: Charles.*
-- `[blocks-content]` **Defaults set here, for Charles to confirm:** level 2's extra Satchel tab adds capacity (a second page of type slots), not a fourth category (§4); the tray view lets the player take back staged items until the recipe completes (§5); recipe-memory icons draw only with the overlay by default (§5, §15); the codex keeps every seen hint on a Notes page (§7); both keybinds start unbound so the Satchel covers controller and keyboard alike (§15). *Owner: Charles.*
+- `[blocks-content]` **Defaults set here, for Charles to confirm** (D15–D19 in doc 10): level 2's extra Satchel tab adds capacity (a second page of type slots), not a fourth category (§4); the tray view lets the player take back staged items until the recipe completes (§5); recipe-memory icons draw only with the overlay by default (§5, §15); the codex keeps every seen hint on a Notes page (§7); both keybinds start unbound so the Satchel covers controller and keyboard alike (§15). *Owner: Charles.*
 - `[blocks-content]` **Art and sound** for icons, overlay shapes and the anticipation beat. *Owner: doc 21.*
 - `[2.0]` Lookup Anything recipe rules (doc 13 §6.6).
 
