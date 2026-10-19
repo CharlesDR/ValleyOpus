@@ -1,13 +1,13 @@
 # 12 · Recipe & Process Model
 
-Status: **DRAFT v0.4** (2026-10-18) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
+Status: **DRAFT v0.4a** (2026-10-19) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
 Depends on: 01, 03, 03a, 03b, 04, 07 · Feeds: 03/03a (data shape, apparatus column), 05, 06, 07, 09, 13, 14, 15, 17
 
 ## Purpose
 One model for everything that turns items into other items: decomposition into Primes, combination at the Experiment Table, apparatus and ritual recipes, quality stages, conditions, residue, and the discovery state that gates automation. Every other system reads or writes it, so this doc fixes its **shape**; names, numbers and exact recipes stay content. It serves pillar 1 (mechanical and arcane routes are two kinds of recipe over the same data), pillar 2 (everything decomposes by context tag), pillar 4 (discovery is keyed per recipe, and automation only runs discovered ones), and the extensibility promise in doc 01 (content packs add Primes, substances and recipes as rows, never code).
 
 ## Decisions locked
-- **R1 · Quality is vanilla quality** (Charles, 2026-10-13). Nigredo, Albedo, Citrinitas and Rubedo are quality 0, 1, 2 and 4. No parallel quality system.
+- **R1 · Quality is vanilla quality** (Charles, 2026-10-13). Nigredo, Albedo, Citrinitas and Rubedo are quality 0, 1, 2 and 4. No parallel quality system. The stage names are internal design terms: in game, quality is shown as "base quality" and the vanilla silver, gold and iridium stars (Charles, 2026-10-18; doc 16 §2).
 - **R2 · Input count is data** (Charles, 2026-10-13). The Experiment Table holds two inputs, then three after a workshop unlock; a recipe's inputs are a list of any length, so four or more can be added later without rework.
 - **R3 · Recipes are fixed for every farm**, except the per-farm secret recipe (Charles, 2026-10-13).
 - **R4 · Primes are carried items**, kept in the Reagent Satchel (Charles, 2026-10-13).
@@ -97,7 +97,7 @@ Vanilla quality has no stage 3, so `Advance` steps over it (gold → iridium is 
 **Primes carry no quality** (Charles, 2026-10-16). An item's quality raises its decomposition yield instead. Quality enters at the substance stage through apparatus, conditions and rituals, which keeps the Satchel to one stack per Prime and makes the arcane route the way to high stages.
 
 ### 6 · Processes (multi-stage work)
-The Great Work is a chain of ordinary recipes, not a special system: a **stage-advance recipe** takes item X at stage *s* and returns X at stage *s+1* (Mode `Advance`). Lapis Philosophorum is Prima Materia advanced through all four stages, then a final hand-made-only ritual whose input spec requires Rubedo. **Process states** (Cauda Pavonis, and the colour stage names) are Process-state substances: codex entries shown in the machine and fired as discovery events (e.g. "first nigredo → albedo advance"), never items.
+The Great Work is a chain of ordinary recipes, not a special system: a **stage-advance recipe** takes item X at stage *s* and returns X at stage *s+1* (Mode `Advance`). Lapis Philosophorum is Prima Materia advanced through all four stages, then a final hand-made-only ritual whose input spec requires Rubedo. **Process states** (Cauda Pavonis, and the colour stage names) are Process-state substances: codex entries shown in the machine and fired as discovery events (e.g. "first nigredo → albedo advance"), never items. Player-facing text for a stage advance names qualities the vanilla way ("raised to gold quality"), per R1.
 
 ### 7 · Twin routes and dark twins
 - **Twin routes:** recipes can share a `TwinGroup` ID. The codex shows a group's mechanical and arcane members side by side, and the sweep compares them. Usually the members share an output and differ in cost, conditions and quality cap; a twin route always shares its output. A group may instead mark a **counterpart pair**: different outputs from different inputs shown side by side, like Electrum (⚙︎) and Rebis (✦A) (Charles, 2026-10-18).
@@ -184,6 +184,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Four-plus Table inputs need no model change. A Potion Craft–style brew map would add a new operation with its own resolver, plugged in beside this one.
 
 ## Change log
+- **v0.4a (2026-10-19):** pre-gate cleanup sweep: R1 and §6 note that the stage names are internal; player-facing quality uses vanilla words and stars (doc 16 §2).
 - **v0.4 (2026-10-18), Charles's answers:** ValleyOpus items decompose at a loss; a re-roll replaces the discovered secret; Electrum and Rebis are a counterpart pair, and twin routes always share their output.
 - **v0.4 (2026-10-18):** cleanup sweep: settled open questions removed (doc 07 already adopted the "releases a locked output" wording); darkness outside a Lab added as an open question from doc 18; the Satchel-storage conflict tagged for doc 17; the Cooling Coil example replaced (doc 13 cut it).
 - **v0.3 (2026-10-17):** the environment rule vs "residue instead of failure" is settled: an automated machine waits idle on days its gate isn't met (Charles). Caput Mortuum refuses decomposition (doc 15).

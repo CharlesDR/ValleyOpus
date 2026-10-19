@@ -1,6 +1,6 @@
 # 09 · Technical Architecture
 
-Status: **DRAFT v0.6b** (2026-10-18). v0.6b: Satchel storage, multiplayer sync, saves and the test matrix follow doc 17. This doc stays a sketch until the architecture gate, when it is rewritten as the architecture plan; where it and docs 12–18 differ, those docs win. v0.6: cleanup sweep: machines, Automate and Lookup Anything follow doc 13 §6; Familiar state follows doc 18; NPC count follows doc 08a; Charles's item ID and sort-key rules added. v0.5: integration and compatibility targets chosen from Charles's export of the 80 most-downloaded mods. v0.4: content-pack extensibility in 1.0, three more 1.0 tie-in mods, villager integration, the hand-made-only flag and compatibility-safe world changes (Charles's guiding answers, doc 01). v0.3: requirements from the Part 4 decisions. Platform facts: [research](../research/comparators-and-concepts.md).
+Status: **DRAFT v0.6c** (2026-10-19). v0.6c: pre-gate cleanup sweep: testing from the first commit (doc 11 §6) and the deferred in-game co-op, split-screen and controller tests (doc 17 §8b). v0.6b: Satchel storage, multiplayer sync, saves and the test matrix follow doc 17. This doc stays a sketch until the architecture gate, when it is rewritten as the architecture plan; where it and docs 12–18 differ, those docs win. v0.6: cleanup sweep: machines, Automate and Lookup Anything follow doc 13 §6; Familiar state follows doc 18; NPC count follows doc 08a; Charles's item ID and sort-key rules added. v0.5: integration and compatibility targets chosen from Charles's export of the 80 most-downloaded mods. v0.4: content-pack extensibility in 1.0, three more 1.0 tie-in mods, villager integration, the hand-made-only flag and compatibility-safe world changes (Charles's guiding answers, doc 01). v0.3: requirements from the Part 4 decisions. Platform facts: [research](../research/comparators-and-concepts.md).
 
 ## Targets
 - Stardew Valley **1.6.15** (latest), SMAPI 4.x. Recipes and tag data are kept isolated so the **1.7** migration (data-model recipes, `Data/ContextTags`) is cheap.
@@ -48,7 +48,7 @@ Unique ID: **`CharlesDR.ValleyOpus`**. All item and machine IDs are prefixed `Ch
 - **Recipes (R2):** input count is data (2, 3, later 4+), never a fixed shape.
 - **Buff effects (P2):** custom effects are an extensible registry, so new effects are data plus a small handler.
 - **Directional chaining (S2):** our own transfer logic between adjacent ValleyOpus machines (West in, East out, South chest second). It runs without Automate; with Automate, our integration takes priority over Automate's group logic. It sits behind a general item-route interface, so 2.0 arcane logistics can replace or extend it.
-- **Controller and split-screen (U1):** all custom UI (codex, Satchel grid, Experiment Table, picker) must support gamepads and per-screen state.
+- **Controller and split-screen (U1):** all custom UI (codex, Satchel grid, Experiment Table, picker) must support gamepads and per-screen state. Every build lays this groundwork, and the online co-op sync, and code review checks it; in-game tests of all three are deferred until Charles can run them (doc 17 §8b).
 - **GMCM (U3):** hints, celebrations and economy knobs.
 
 ## Integration and compatibility targets (2026-10-14)
@@ -93,6 +93,7 @@ Other modders can add **Primes, substances, apparatus and recipes** through Cont
 - We ship a short **content-pack guide** and an example pack. The format is versioned, so later changes don't break packs.
 
 ## Engineering practices
+- **Testing from the first commit** (Charles, 2026-10-18; doc 11 §6 owns the details): the engine's pure logic is written without game types where practical, so it runs in a plain C# test project on every push; logging under one `[ValleyOpus]` prefix with a verbose mode; at most four test configurations per build, SVE among them from the first build; every test build ships `TESTING.md`. The rotation and the deferred in-game co-op, split-screen and controller runs are doc 17 §8b's.
 - Tests for the decomposition math, economy caps (including the all-six-professions fixture), and adjacency resolution.
 - A balance-sweep script that reads the data files and outputs GPTD/VAR and source-diversity reports (doc 06).
 - The design docs live in this repo under `docs/design/` and `docs/research/` (since 2026-10-13); the repo is their source of truth.

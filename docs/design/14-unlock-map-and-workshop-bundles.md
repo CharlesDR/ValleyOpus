@@ -1,6 +1,6 @@
 # 14 · Unlock Map & Workshop Bundles
 
-Status: **DRAFT v0.4** (2026-10-18) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
+Status: **DRAFT v0.4a** (2026-10-19) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03a, 05, 07, 08, 08a, 12, 13, 15 · Feeds: 05, 06, 09, 11, 16, 17, 18, 19, 20
 
 ## Purpose
@@ -109,7 +109,7 @@ Three bundles per room, four in the Great Work Chamber, CC-style: each slot is a
 - **Critical-path rule** (Charles, 2026-10-17): every slot must be makeable with what is unlocked **when its room opens**, never with something the room itself (or a later room) unlocks. Checked against §2 and §4, the v0.3 list broke this twice, now fixed: the Sanctum asked for Electrum, which needs Argentum from the Quarry Crucible (a bridge-gated specialist), and the Undercroft asked for Mors and Venenum, the dark twins the Witch teaches only once the Undercroft is restored. A bundle may ask for something whose source is a base-game gate only through an "N of M" choice with a vanilla fallback (Metals of the Week). The sweep re-runs this check whenever bundles or unlocks change (balance hooks).
 - **Never a single source.** A slot names a tag or "any of" wherever possible, so one bad harvest or one undiscovered route can't stall a room.
 - **Metals of the Week** depends on the Quarry bridge (Quarry Crucible). It gives a "2 of 3" choice with a vanilla fallback slot *(approved)*, so a player who hasn't repaired the bridge can still finish the Crystal Vault.
-- **The final room** asks for the four colour stages themselves, a rehearsal of the Great Work: the Rubedo bundle is the first time most players push a product to iridium.
+- **The final room** asks for the four colour stages themselves, a rehearsal of the Great Work: the Rubedo bundle is the first time most players push a product to iridium. The four bundle titles keep the stage names as lore names (Charles, 2026-10-19: they name stages of the Work, not a quality); their slot text shows quality the vanilla way, "base quality" and the silver, gold and iridium stars (doc 16 §2).
 - **Stretch, not grind.** Counts stay in the range a diligent player reaches in about a week of the season's normal play (placeholders for the sweep). A slot that needs more than that is a design bug, not a challenge.
 
 ### 4 · NPC arrivals and their unlocks
@@ -148,7 +148,7 @@ Adopted and owned by **doc 05 §3**: levels give capacity and tool upgrades (Sat
 
 ### 7 · Aether is the main pacing valve
 Every bright substance, every dark twin and most of Tier 2's arcane side need **Aether**. Its sources open in a fixed order of effort, which paces the arcane mid-game without a gate on any recipe:
-1. **Spring:** rare vanilla sources only (Prismatic Shard, Solar and Void Essence, legendary fish), enough to discover a few Aether pairs at the Table, not to run them.
+1. **Spring:** rare vanilla sources only (Prismatic Shard, Solar and Void Essence, legendary fish), enough to discover a few Aether pairs at the Table, not to run them. Yield follows source rarity: the essences give a trace, Prismatic Shards and legendary fish the bulk (doc 03).
 2. **Summer–Fall:** the Ley Tap (Hesper, 2 hearts) on ordinary nodes gives elemental Primes; the **Sanctum** reveals the first Aether-bearing node, which turns Aether into a daily trickle.
 3. **Winter onward:** the Observatory reveals the remaining valley nodes; Ginger Island adds richer ones.
 The sweep checks that the Aether a diligent player can collect by each season covers what that season's bundles and featured products ask for (balance hooks).
@@ -212,6 +212,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
 
 ## Change log
+- **v0.4a (2026-10-19):** pre-gate cleanup sweep: the Great Work Chamber keeps stage names as bundle titles only (Charles, 2026-10-19); Spring Aether yield follows source rarity (doc 03).
 - **v0.4a (2026-10-18), Charles's answer:** no late-install fast start, not even as a GMCM option; the open question is closed.
 - **v0.4 (2026-10-18):** cleanup sweep: "(proposal)" dropped from §2 and §3 (Charles approved them in v0.2); §6's skill table now points to doc 05 §3, which owns it; the Familiar row follows doc 18 §4; doc 07's hint channels now carry their unlock sources; settled open questions removed.
 - **v0.3 (2026-10-17):** follows doc 15 v0.6 (PR #11): gated automated recipes wait idle; shops pay the shipping price, so NPCs open places to sell, not prices; Sorenson's contracts may reward an optional unlock (new `Contract` source); "Element" used for the umbrella term. Charles approved the contract-reward rule; "curio" defined; bundles checked against the critical path (Electrum and the dark twins replaced); bundles rebuilt on Charles's stretch rule (a tools, a progress and a gathering bundle per room, against the player's likely state), and the Great Work Chamber gains a Rubedo bundle (25 in all).

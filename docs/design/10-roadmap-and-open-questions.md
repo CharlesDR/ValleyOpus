@@ -1,6 +1,6 @@
 # 10 · Roadmap & Open Questions
 
-Status: **DRAFT v0.10b** (2026-10-19). v0.10b: Charles confirmed every remaining default (D4, D11–D14). v0.10: doc 17 settles Satchel storage (Charles chose one bag per player) and adds defaults D11–D14. v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
+Status: **DRAFT v0.10c** (2026-10-19). v0.10c: pre-gate cleanup sweep (stale review states, quality terms, test deferral, the mine-drop item from the to-do list). v0.10b: Charles confirmed every remaining default (D4, D11–D14). v0.10: doc 17 settles Satchel storage (Charles chose one bag per player) and adds defaults D11–D14. v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
 
 ## Version scope
 | | 1.0 | 2.0 |
@@ -56,7 +56,7 @@ All 18 answered and applied in v0.7.
 All Part 4 decisions (doc 00) and the earlier pending items were answered by 2026-10-13: cast names (the apprentice is Lark), the Reagent Satchel (doc 03b), the arcane automation model (doc 04), the ritual mini-game in 2.0, the Gloam Lantern collecting Shades (doc 04), and the defaults (mod ID, 36-cell grid, dark twins, perks-only-add, residue → Prima Materia).
 
 ## First playable slice (S1)
-Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel. Specced in doc 11 (v0.2, in review as PR #14): six apparatus, a five-quest starter chain, four test configurations (chaining-only first, SVE from the first build), unit tests, logging and a testing guide.
+Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel. Specced in doc 11 (v0.2, merged as PR #14): six apparatus, a five-quest starter chain, four test configurations (chaining-only first, SVE from the first build), unit tests, logging and a testing guide.
 
 ## Open questions
 The one list of everything still open, across all docs (collected in the 2026-10-18 cleanup sweep). Each doc's own Open questions section keeps its items with a tag and owner; when an item is settled, it is written into its owning doc and removed from both lists.
@@ -69,11 +69,12 @@ Every default once listed here is confirmed and written into its owning doc. **C
 - `[blocks-content]` **Inventory sort keys:** verify what vanilla Organize and the common sort mods key on before tags, categories and IDs are assigned (doc 03b rule 5, doc 09). *Owner: the data layer.*
 - `[blocks-content]` **Effect count:** the 2–3 cap stays suspended; doc 15 §3a's catalogue is the 1.0 list for now. *Owner: Charles (doc 15).*
 
-### For the Phase 4 docs (16 UX, 17 Multiplayer, Saves & Compat)
-- **Doc 16:** drafted (v0.1, in review). Charles confirmed its defaults D15–D19 and decided no late-install fast start (2026-10-18); only art and sound remain (doc 21). Verify at the gate (doc 09): the vanilla hold-up pausing the clock, controller snapping in the codex's triangular grid, the smallest split-screen viewport, Unlockable Bundles' menu fitting the board's sealed doors and divination panel, and overlay frame time in a full T3 Lab.
-- **Doc 17:** drafted (v0.1). Satchel storage (D10) and its other defaults (D11–D14) are confirmed; its test items are carried into each build's test plan (doc 17 §8c). New touchpoints (Familiar meeting places, ley-node sites, hidden-area entrances, Hesper's spot) join its register when chosen.
+### Gate checks from the Phase 4 docs (16 UX, 17 Multiplayer, Saves & Compat)
+- **Doc 16:** merged (PR #17). Charles confirmed its defaults D15–D19 and decided no late-install fast start (2026-10-18); only art and sound remain (doc 21). Verify at the gate (doc 09): the vanilla hold-up pausing the clock, controller snapping in the codex's triangular grid, the smallest split-screen viewport, Unlockable Bundles' menu fitting the board's sealed doors and divination panel, and overlay frame time in a full T3 Lab.
+- **Doc 17:** merged (PR #16). Satchel storage (D10) and its other defaults (D11–D14) are confirmed; its test items are carried into each build's test plan (doc 17 §8c). New touchpoints (Familiar meeting places, ley-node sites, hidden-area entrances, Hesper's spot) join its register when chosen.
 
 ### Content pass (rows, docs 19 and 20)
+- All player-facing text (scripts, hints, toasts, bundle slots, stage-advance lines) names quality the vanilla way: "base quality" and the silver, gold and iridium stars, never the stage names (doc 16 §2).
 - The six profession signature recipes and the odd-level conveniences (doc 05).
 - Effect and infusion carriers, Giant's Catalyst and Divining Rod rows, gift tastes for the three gift products (doc 15).
 - Capstone effects (doc 19, from doc 15).
@@ -94,6 +95,7 @@ Every default once listed here is confirmed and written into its owning doc. **C
 - Capstones, once progression is coherent (doc 19).
 - Skill display name (working name: Alchemy).
 - Lark's family (Jodi's or Pam's) and Hesper's outdoor spot.
+- Mine-drop restraint may relax if the Sympathetic Band and Lodestone Cairn (ideas backlog) are approved for mid-game (docs 01, 03b rule 1).
 
 ### 2.0
 Collected in the version-scope table above and tagged `[2.0]` in each doc: arcane logistics, forging, the brew map, the ritual mini-game, prestige perks, Lookup Anything recipe rules, flower-fed trickles, tie-in Familiars and more Lab specializations, custom-effect bombs.
@@ -104,6 +106,7 @@ Collected in the version-scope table above and tagged `[2.0]` in each doc: arcan
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
 
 ## Change log
+- **v0.10c (2026-10-19):** pre-gate cleanup sweep: docs 11, 16 and 17 shown as merged; the Phase 4 list becomes gate checks; Charles kept the stage names as the Great Work Chamber bundle titles (doc 14 §3); the mine-drop item moved here and to doc 03b from the to-do list.
 - **v0.10b (2026-10-19):** Charles approved all remaining defaults: D4 and doc 17's D11–D14; the defaults table is retired.
 - **v0.10 (2026-10-18):** doc 17 drafted: Satchel storage moves from the design questions to D10, which Charles confirmed on 2026-10-19 (one bag per player); D11–D14 added (host economy settings, version mismatch, newer saves, test rotation); the doc 17 Phase 4 list is replaced by a pointer.
 - **v0.9a (2026-10-18):** doc 16 drafted: its gate checks replace the Phase 4 to-do line; Charles confirmed its defaults D15–D19 and decided no late-install fast start, so that design question is closed.
