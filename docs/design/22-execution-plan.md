@@ -1,6 +1,6 @@
 # 22 · Execution Plan
 
-Status: **DRAFT v0.2** (2026-10-19) · Readiness: plan for build 1, awaiting Charles's review (D23 and D24 decided)
+Status: **DRAFT v0.2a** (2026-10-19) · Readiness: plan for build 1, awaiting Charles's review (D23 and D24 decided)
 Depends on: 00, 09, 10, 11, 17 · Feeds: every build batch, `TESTING.md`, the to-do list and ideas backlog
 
 ## Purpose
@@ -74,7 +74,7 @@ Three batches (Charles, 2026-10-19, **D24**). Every batch also carries: the doc 
 
 *The line:*
 - All six apparatus: the Experiment Table, Athanor, Alembic, Retort, Hermetic Vessel and Calcinator; kindling and *Heated*/*Cold*; the flower Bonus; the darkness GSQ with the test fixture pack (doc 11 §3, §4); recipe memory, pin and locked outputs; quality.
-- `Routes`: directional chaining behind `IItemRoute` and the minimal chain overlay; the Automate factory (`Integrations`), switched off in configuration 1.
+- `Routes`: directional chaining behind `IItemRoute` and the minimal chain overlay; Automate needs no code (D25); it is simply absent in configuration 1.
 - `Skill`: the SpaceCore skill, every XP source, levels 1–4, banking past 4.
 - `Effects`: Sal Volatile and Vigor energy, Undine's Gift (the one custom buff handler), Caput Mortuum and Terra Viva fertilizer, Smaltum dye, derived prices.
 - Performance: the resolver timing line in the log and a developer command that places 50 apparatus under Automate (doc 09 §8).
@@ -97,7 +97,7 @@ Every spike gets a **desk check** first (public docs and the open-source code of
 | | **S16** categories and their professions; dye tag names | wiki item and category data | B1, with S11 (they decide the same fields) | categories chosen by the result; tags corrected in data |
 | | **S1** staging calls the output path; `OutputMethod` returns our match | the `Data/Machines` docs | B1: one placeholder apparatus | set the held object and minutes ourselves |
 | | **S19** vanilla `ReadyTimeModifiers` on top of our minutes | the `Data/Machines` docs | B1, same apparatus, with a test modifier | apply the rule's modifiers ourselves |
-| | **S2** Automate never uses its generic handler on claimed machines; locked outputs refused | Automate's source | B1 in config 3 | mark our rules so the generic handler skips them |
+| | **S2** Automate and our machines: **decided as D25** (its generic handler runs them); in game, its loads reach the staging layer and locked outputs never reach its chests | Automate's source | B1 in config 3 | move locked outputs out at `OutputMethod` time; chaining-only multi-input lines |
 | **B** · blocks world, saves and storage | **S3** missing building dropped cleanly; Error Items become machines on reinstall | SMAPI and wiki notes on missing data | B1: a placeholder building, removed and restored; re-checked in B3 on the real Lab | "prepare for removal" also removes emptied Labs |
 | | **S12** global inventories sync per player; hidden from chest mods | SMAPI multiplayer docs; Chests Anywhere's and Convenient Inventory's source | B1 (solo part); co-op part deferred (doc 17 §8b) | guard the key through those mods' APIs or config |
 | | **S13** the Town warp with and without SVE | SVE's Town map edits, CC-opening event ID, Quarry bridge and bus flags (doc 10 upcoming tasks) | B1 in configs 1 and 2; re-checked in B3 | a second entrance on the workshop's own map edge |
@@ -165,5 +165,6 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 None open. D23 and D24 are decided (Decisions locked).
 
 ## Change log
+- **v0.2a (2026-10-19):** S2 settled as D25 (Automate's generic handler runs our machines).
 - **v0.2 (2026-10-19):** Charles decided D23 (a Remote Control session on his PC compiles each test build) and D24 (three batches: foundation and spikes, the bench and the line, the workshop); §3 and the spike table follow.
 - **v0.1 (2026-10-19):** first draft after the architecture gate: five batches to build 1 (foundation, spike build, the bench, the line, the workshop), who does what, the spike order in three waves with desk checks first, the rules for pulling to-do and backlog items into a batch, and a sketch of builds 2–5. D23 and D24 await Charles.
