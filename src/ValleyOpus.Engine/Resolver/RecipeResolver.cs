@@ -41,6 +41,24 @@ public enum StageRefusal
     NotAutomatable,
     NoRecipeMemory,
     WaitingForConditions,
+
+    /// <summary>The machine is running or holds an output.</summary>
+    Busy,
+
+    /// <summary>Pinned to another recipe; unpin in the picker first (doc 13 §6a).</summary>
+    Pinned,
+
+    /// <summary>The fuel slot is empty (the Calcinator burns Coal).</summary>
+    NoFuel,
+
+    /// <summary>The fuel slot is full.</summary>
+    FuelFull,
+
+    /// <summary>The process state is already set (an Athanor is kindled once).</summary>
+    AlreadyDone,
+
+    /// <summary>The item can't be decomposed and starts no recipe here.</summary>
+    NotDecomposable,
 }
 
 public sealed record StageDecision(StageRefusal Refusal, IReadOnlyList<string> FailedConditions)

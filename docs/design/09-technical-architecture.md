@@ -1,6 +1,6 @@
 # 09 · Technical Architecture
 
-Status: **DRAFT v1.0a** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (every gate decision is made; no `[blocks-arch]` item is open)
+Status: **DRAFT v1.1** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (every gate decision is made; no `[blocks-arch]` item is open)
 Depends on: 00, 01, 03, 03a, 03b, 04, 05, 07, 11, 12, 13, 14, 15, 16, 17, 18 · Feeds: execution planning, every build, 19, 20, 21
 
 ## Purpose
@@ -156,7 +156,7 @@ Dependencies run one way: `UI` → adapter services → `Engine`. No engine type
 
 When a registry is invalidated, the compiler invalidates exactly the vanilla assets it writes. The validator warns when an Item-class substance has no authored `Data/Objects` row.
 
-**d. Pack rules that keep data testable.** Base-pack registry rows use only the `{{ModId}}` and `{{i18n:…}}` tokens; anything conditional (`HasMod`, config) goes in an integration pack. The test project reads our packs' `content.json` with a small reader that resolves just those two tokens, so CI validates the same rows the game loads.
+**d. Pack rules that keep data testable.** Base-pack registry rows use only the `{{ModId}}` and `{{i18n:…}}` tokens; anything conditional (`HasMod`, config) goes in an integration pack. The test project reads our packs' `content.json` with a small reader that resolves just those two tokens, so CI validates the same rows the game loads. In our own base CP pack, `{{ModId}}` resolves to the content pack's ID (`CharlesDR.ValleyOpus.CP`), not the C# mod's, so base-pack rows write the `CharlesDR.ValleyOpus_` prefix literally; third-party packs use their own `{{ModId}}_` prefix (doc 12).
 
 **e. Strings.** Content strings (item names, registry text fields such as `NameKey`, dialogue) are translated by Content Patcher's `{{i18n:…}}` token in each pack's own `i18n/` folder, so every pack translates its own rows; the registry field then holds the resolved text. UI strings (menus, the fixed reason lines of doc 16 §2) live in the C# mod's `i18n/`. No player-facing string is hard-coded.
 
@@ -166,7 +166,7 @@ When a registry is invalidated, the compiler invalidates exactly the vanilla ass
 TryStage ─► engine: does item extend the tray toward a recipe runnable here, now?
             (index lookup by item ID and tags → neighbour state → discovered? → Required conditions)
    no  ─► refuse with one reason line (doc 16 §2)
-   yes ─► move the item into the tray (modData)
+   yes ─► move the item into the tray (the machine's tray global inventory)
           tray exact match? ─► call the vanilla output path with the last item as trigger
                                └► our OutputMethod asks the engine for the match, returns the output,
                                   sets minutes from the recipe and perks, writes recipe ID, snapshot,
@@ -193,7 +193,7 @@ Directional chaining is its 1.0 implementation: output East first, then the Sout
 
 **g. Rituals and arrangements.** Altars are resolver apparatus with `Trigger: Hand`. The trigger checks Required conditions on a fresh snapshot, says why it can't run if it can't, and otherwise plays the batch animation. The Circle Sigil check reads the rug under the altar and the catalyst tiles of its `Arrangements` row; a matched arrangement changes the centre's apparatus kind for that run only.
 
-**h. World.** The workshop is a CP location whose rooms change through map patches keyed on our unlock flags, entered by a warp on a minimal Town tile patch (doc 17 §7a). Labs are `Data/Buildings` entries with nested interiors; their tier is read from `CustomFields` and their Familiar from the building's `modData` mirror. Ley nodes are `LeyNodes` rows read by the Ley Tap's `DayUpdate` rule. The Gloam Lantern listens for monster kills near its carrier and fills its own `modData`.
+**h. World.** The workshop is a CP location whose rooms change through map patches keyed on our unlock flags, entered by a warp on a minimal Town tile patch at Town tile 53,9, behind the Community Center (spike S13 passed, vanilla and SVE; Charles's rule: behind the CC or a side stairwell, never its front door; doc 17 §7a). Labs are `Data/Buildings` entries with nested interiors; their tier is read from `CustomFields` and their Familiar from the building's `modData` mirror. Ley nodes are `LeyNodes` rows read by the Ley Tap's `DayUpdate` rule. The Gloam Lantern listens for monster kills near its carrier and fills its own `modData`.
 
 **i. UI.** Menus subclass the vanilla menu base with clickable components and neighbour IDs, so the game's own snapping drives the controller (doc 16 §16). All runtime UI state is `PerScreen<T>`, never static. The chain overlay and link tooltips read one **per-location link graph**, rebuilt only on placement, removal and location change, never per frame.
 
@@ -201,6 +201,8 @@ Directional chaining is its 1.0 implementation: output East first, then the Sout
 Doc 17 owns the rules; this is how they are built.
 - **The state register is the checklist.** Every row of doc 17 §1 maps to exactly one owner module above; a system that adds state adds its row there first.
 - **The envelope** `CharlesDR.ValleyOpus/Farm` is read on the host at save load and written on `Saving`, with the previous version kept as `Backup_v<N>`. Migrations are engine functions over plain JSON, unit-tested on fixtures from the previous build. A save from a newer build switches the mod to **read-only mode** (doc 17 §5d): every `FarmState` write is refused at one gate.
+- **Global inventories** hold item state with full fidelity (flavour, quality, `modData`): a per-machine tray `CharlesDR.ValleyOpus_Tray_<guid>` (guid in the machine's `modData` `CharlesDR.ValleyOpus/Tray`), a per-player Satchel `CharlesDR.ValleyOpus_Satchel_<multiplayerId>`, and `CharlesDR.ValleyOpus_LockedOutputs`. One-time XP keys live in each farmer's own `modData` `CharlesDR.ValleyOpus/XpKeys`, so they travel with the farmhand (doc 17 §1).
+- **Labs are stripped on every save:** on `Saving` the host serializes every ValleyOpus building into the envelope's `StrippedBuildings` (with `StrippedAtDay`) and removes it from the farm, then restores it on `Saved` and on load, so the saved farm never holds a building the game can't load (doc 17 §6; Charles, option C).
 - **Object `modData`** uses the `CharlesDR.ValleyOpus/` prefix and a per-object schema entry; one accessor class reads and writes it, migrating lazily, plus the one-time sweep at the first day start after an upgrade.
 - **Messages** are small records in the engine (so the merge logic is tested), sent by `Net` through SMAPI's multiplayer API and filtered to our mod ID. Bursts of `tried:` keys are batched per tick (doc 17 risks).
 - **Who runs what in multiplayer:** the host runs farm state, chaining, power ticks, Automate and migrations; every client runs its own player's hand actions, menus, buffs, Satchel and mail-flag mirroring.
@@ -249,9 +251,19 @@ Every optional integration is looked up once at launch, version-checked, and iso
 | Extra Machine Configs | not used | — | the resolver covers every case doc 13 lists |
 
 ### 11 · IDs, sort keys and naming
-- Every item, recipe, unlock, Prime and row ID is a **stable name** (`CharlesDR.ValleyOpus_<Name>`) that never changes and carries no order; renames go through `IdAliases` only as a last resort (doc 17 §5e).
+- Every item, recipe, unlock, Prime and row ID is a **stable name** (`CharlesDR.ValleyOpus_<LatinPascal>`, e.g. `CharlesDR.ValleyOpus_FlammaViva`) that never changes and carries no order; IDs are permanent from build `alpha.2`. Renames go through `IdAliases` only as a last resort (doc 17 §5e).
 - **Ordering numbers live separately and are spaced at every level** (Charles, 2026-10-18): for example groups by 1000, tiers by 100, items by 10, so a new item fits anywhere without reassigning anything.
-- **Inventory sort order** (doc 03b rule 5, doc 11): Primes first, then substances by tier, then endgame Elements, alphabetical within groups. What vanilla Organize and the common sort mods actually key on (category, display name, internal name or ID) is spike S11 below. Its result picks which field carries the spaced sort key before the slice fixes any ID. It may also settle doc 15's Artisan category question.
+- **Inventory sort order** (doc 03b rule 5, doc 11): Primes first, then substances by tier, then endgame Elements, alphabetical within groups. **Spike S11 settled the key:** vanilla Organize and the sort mods sort by the item's internal `Name`, so each item's internal Name is `CharlesDR.ValleyOpus_<sortkey>_<Latin>` with spaced numeric sort keys:
+
+| Group | Sort-key block |
+|---|---|
+| Primes | 1000s |
+| Tier 1 substances | 2100s |
+| Tier 2 substances | 2200s |
+| Caput Mortuum | 2500 |
+| Endgame Elements | 9000s |
+
+- Display names come from i18n, so the internal Name is never shown. Consumable and fertilizer products sit in other vanilla categories (Artisan −26, Fertilizer −19), so they sort with those categories, not with reagents.
 - `modData` keys, mail flags, global-inventory keys and message types all use the `CharlesDR.ValleyOpus` prefix (doc 17).
 
 ### 12 · Testing, logging and tooling
@@ -276,7 +288,7 @@ The gate can't run the game, so every platform question below becomes a spike in
 |---|---|---|---|
 | S1 | Our staging layer calling the vanilla output path with `probe`, and `OutputMethod` returning the resolver's match | 11, 13 | set the held object and minutes ourselves; vanilla still draws and collects |
 | S2 | **Decided by desk check and Charles (D25):** Automate's generic handler runs our machines (its default factory claims every `Data/Machines` object first, and no option skips one). In game: its loads reach `TryStage`, multi-input trays fill across passes, and locked outputs never reach its chests | 11, 13 | a held-out output Automate still takes: move it out earlier (at `OutputMethod` time); trays that never fill: chaining-only lines for multi-input recipes and a note in the guide |
-| S3 | A building with missing data dropped cleanly on load (S3); Error Items of our BigCraftables turning back into machines on reinstall | 09, 17 | "prepare for removal" also removes emptied Labs, and the release notes say to run it |
+| S3 | A building with missing data dropped cleanly on load (S3); Error Items of our BigCraftables turning back into machines on reinstall | 09, 17 | **Failed in B1; replaced in B2** (Charles, option C): Labs are stripped into save data on every save and restored after (§6, doc 17 §6). The original fallback ("prepare for removal also removes emptied Labs") is dropped |
 | S4 | A Lab upgrade with a different indoor map keeping every placed object | 18 | nested floorplans keep coordinates; else move objects across in code at upgrade |
 | S5 | The vanilla hold-up pausing the clock in single player | 07, 16 | a single-player-only postfix on the time-pass check |
 | S6 | Controller snapping in the codex's triangular grid | 16 | explicit neighbour IDs per cell instead of auto-snapping |
@@ -284,12 +296,12 @@ The gate can't run the game, so every platform question below becomes a spike in
 | S8 | The bundle board fitting our needs (decided by §10) | 14, 16 | n/a once §10 is answered |
 | S9 | Overlay and tooltip frame time in a full T3 Lab | 13, 16, 18 | lower the particle cap; draw arrows only for the hovered chain |
 | S10 | Rugs (Furniture) under a BigCraftable, in either placement order | 13 | the Sigil becomes a floor-placed object the altar sits beside |
-| S11 | What vanilla Organize and the common sort mods key on | 03b, 11 | a spaced prefix in the display name's sort, or a custom category per group |
+| S11 | What vanilla Organize and the common sort mods key on | 03b, 11 | **Passed in B1:** they key on internal `Name`; sort keys go there (§11) |
 | S12 | Global inventories per player syncing to farmhands, and staying out of chest mods' lists | 17 | guard the key from those mods through their APIs or config |
-| S13 | The Town warp with and without SVE | 11, 17 | a second entrance tile on the workshop's own map edge |
+| S13 | The Town warp with and without SVE | 11, 17 | **Passed in B1** at Town tile 53,9 behind the CC, vanilla and SVE (§5h) |
 | S14 | SpaceCore registration, level-up, banking XP past level 4; SpaceCore XP and 1.6 Mastery; Walk of Life seeing SpaceCore professions | 05, 11 | our own cap on displayed levels; the documented default (no Mastery XP) |
 | S15 | A custom buff handler on the vanilla `Data/Buffs` path; the fertilizer queries for our IDs; other fertilizer mods patching the same methods | 15 | per-tick buff checks; patch priority and a compatibility note |
-| S16 | Category numbers and the professions they trigger (Artisan, Blacksmith for bars); dye context-tag names | 15 | categories chosen by the result; tags corrected in data |
+| S16 | Category numbers and the professions they trigger (Artisan, Blacksmith for bars); dye context-tag names | 15 | **Partly passed in B1:** Artisan and Gemologist apply by category; Blacksmith does not (vanilla keys it to specific bar IDs). Charles chose option A (2026-10-19): patch 9 (doc 15) |
 | S17 | Robin's menu ordering with SVE's extra buildings | 18 | accept the order; mention it in the guide |
 | S18 | Hover cost of power links and the Lab mark in large Labs | 13, 18 | computed on hovered-tile change only (already the plan) |
 | S20 | The vanilla special-orders board menu showing only our `OrderType` when opened from our tile action | 09 §1a, 15 | a small board menu of our own over the same vanilla special-order data |
@@ -303,7 +315,8 @@ The gate can't run the game, so every platform question below becomes a spike in
 5. the Satchel guard: our Satchel can't be trashed or shipped while its bag holds anything, and reagents go to the bag even when the main inventory is full (doc 17 §4);
 6. S5's fallback, only if the spike needs it;
 7. a prefix and postfix on vanilla's machine auto-load (`Object.AttemptAutoLoad`), for our machines only: marks the load as automated (Automate and hoppers; D25);
-8. a postfix on vanilla's machine timer (`Object.minutesElapsed`), for our machines only: a locked output that just finished moves into the locked-output store before any automation can collect it (D25).
+8. a postfix on vanilla's machine timer (`Object.minutesElapsed`), for our machines only: a locked output that just finished moves into the locked-output store before any automation can collect it (D25);
+9. a postfix on the sell-price path that applies the Blacksmith ×1.5 to items tagged `valleyopus_metal_bar` (Charles, 2026-10-19, option A after S16; doc 15). Build 1 ships no metal bars.
 A new patch is added to this list before it is written.
 
 ### 15 · Integration and compatibility targets
@@ -349,10 +362,10 @@ Every number lives in data the sweep can rewrite (doc 00, "what deliberately wai
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
-- `[blocks-content]` **Inventory sort keys:** settled by spike S11 before the slice fixes IDs (§11). *Owner: the first build.*
 - `[2.0]` Arcane logistics as a second `IItemRoute`; content-pack professions; Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
+- **v1.1 (2026-10-19):** B2 docs update: B1 spike results (S3 replaced by stripping Labs on every save, S11 sort keys in internal `Name`, S13 warp at Town 53,9, S16 Blacksmith patch 9, Charles's option A); `{{ModId}}` in the base pack; trays, Satchels and locked outputs as global inventories; XP keys in the farmer's `modData`.
 - **v1.0a (2026-10-19):** Charles chose option B for spike S2 (D25): Automate's generic handler runs our machines; the Automate factory is dropped; Harmony patches 7 and 8 added; §5a, §5d, §9 and the S2 row follow.
 - **v1.0a (2026-10-19):** Charles's vanilla-first rule (§1a) with an audit of every area; Sorenson's contracts become vanilla special orders; machine timing keeps vanilla `ReadyTimeModifiers` (spike S19); D22: Charles kept Familiars on their own bond points.
 - **v1.0 (2026-10-19):** rewritten as the architecture plan at the gate: the engine and adapter split with one module per owning doc, the repository layout (a game-free engine so CI can test it), the data pipeline (our registries as CP-filled assets, a validator, a compiler that adds computed fields to authored vanilla rows), the staging, neighbour, routing, farm-state and UI designs, the runtime event table, performance budgets, integrations, the framework choices (our own bundle board, chosen by Charles as D20; our own Familiar renderer as D21, both chosen by Charles), the risk register as first-build spikes with fallbacks, and the Harmony patch list. Integration targets and Charles's ID rules carried over.

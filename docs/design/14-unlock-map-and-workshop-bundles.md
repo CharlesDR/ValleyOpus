@@ -1,6 +1,6 @@
 # 14 · Unlock Map & Workshop Bundles
 
-Status: **DRAFT v0.4a** (2026-10-19) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
+Status: **DRAFT v0.5** (2026-10-19) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03a, 05, 07, 08, 08a, 12, 13, 15 · Feeds: 05, 06, 09, 11, 16, 17, 18, 19, 20
 
 ## Purpose
@@ -168,7 +168,7 @@ A typical player covers the same map more slowly, finishing around Year 4 (doc 0
 - **Multiplayer:** unlocks are **farm-wide**, stored with the shared farm codex in host save data and mirrored to every player as mail flags for Content Patcher conditions; a farmhand who joins later receives them on connect. Crafting recipes from unlocks are granted to every player, including late joiners. Bundles are shared, like the CC's.
 - **Joja route:** nothing in this doc reads a CC-only flag; the workshop and its bundles work the same; Sorenson's arc carries more weight (doc 08).
 - **Late install** (the mod added to an existing save): the soft start fires on the next eligible Town entry, however late; base-game gates already met apply at once. Nothing is skipped automatically, and there is no optional GMCM fast start either (Charles, 2026-10-18; doc 16).
-- **SVE and tie-ins:** our gates read vanilla milestone flags, not CC bundle contents, so SVE's remixed bundles don't matter. SVE's Town map behind the CC must leave room for the workshop warp (doc 17). Tie-in mods add ley nodes and hints, never rooms, in 1.0.
+- **SVE and tie-ins:** our gates read vanilla milestone flags, not CC bundle contents, so SVE's remixed bundles don't matter. The workshop entrance warp is at Town tile **53,9**, behind the CC; spike S13 passed there for both vanilla and SVE (doc 17 §7a). Charles's rule: the entrance is behind the CC or a side stairwell, never the CC's front door. Tie-in mods add ley nodes and hints, never rooms, in 1.0.
 - **Festivals:** a restoration scene or NPC arrival due on a festival day moves to the next day, like the soft start.
 - **Removed packs:** an unlock row from a removed pack is kept but hidden, as discovery keys are (doc 12).
 - **Uninstall (S3):** unlock state is mod save data and is simply ignored; learned crafting recipes for missing items are dropped by vanilla (doc 17 test item).
@@ -212,6 +212,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
 
 ## Change log
+- **v0.5 (2026-10-19):** B2 docs update: workshop entrance warp at Town 53,9 behind the CC (spike S13 passed, vanilla and SVE); never the CC's front door (Charles).
 - **v0.4a (2026-10-19):** pre-gate cleanup sweep: the Great Work Chamber keeps stage names as bundle titles only (Charles, 2026-10-19); Spring Aether yield follows source rarity (doc 03).
 - **v0.4a (2026-10-18), Charles's answer:** no late-install fast start, not even as a GMCM option; the open question is closed.
 - **v0.4 (2026-10-18):** cleanup sweep: "(proposal)" dropped from §2 and §3 (Charles approved them in v0.2); §6's skill table now points to doc 05 §3, which owns it; the Familiar row follows doc 18 §4; doc 07's hint channels now carry their unlock sources; settled open questions removed.

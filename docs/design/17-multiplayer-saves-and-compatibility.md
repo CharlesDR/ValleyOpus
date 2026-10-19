@@ -1,6 +1,6 @@
 # 17 · Multiplayer, Saves & Compatibility
 
-Status: **DRAFT v0.1e** (2026-10-19) · Readiness: ready for architecture
+Status: **DRAFT v0.2** (2026-10-19) · Readiness: ready for architecture
 Depends on: 03b, 05, 07, 09, 11, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 11 (the slice's test plan), 16 (what the menus must respect), 20
 
 ## Purpose
@@ -8,7 +8,7 @@ ValleyOpus adds a lot of state to a farm: a shared codex, unlocks, machine trays
 
 ## Decisions locked
 - **Multiplayer:** one shared codex per farm; all discoveries are shared (Charles, 2026-10-13). Controller and split-screen are required for 1.0 (U1).
-- **Safe to uninstall** (S3, Charles, 2026-10-13): the save loads and plays without the mod and mod content is lost; Labs simply disappear; the workshop entrance does nothing; a "prepare for removal" command exists.
+- **Safe to uninstall** (S3, Charles, 2026-10-13): the save loads and plays without the mod and mod content is lost; Labs simply disappear; the workshop entrance does nothing; a "prepare for removal" command exists. Labs are stripped out of the farm on every save so removal can't crash a save (§6; Charles, 2026-10-19, option C).
 - **Slice saves carry forward** with a schema version from day one (Charles, 2026-10-18, doc 11).
 - **Item IDs** are stable strings that never change and carry no order; ordering lives in separately spaced sort keys (Charles, 2026-10-18, doc 09).
 - **Whose perks apply:** hand loads use the loader's perks; chain and Automate loads use the machine's owner, the player who placed it (Charles, 2026-10-18, doc 05 §6).
@@ -39,10 +39,12 @@ Every piece of ValleyOpus state, in one table. *Host save data* means SMAPI's `W
 | Unlock mail flags `CharlesDR.ValleyOpus_Unlock_<Id>` | 14 | each farmer's `mailReceived` | each client, for its own player, from the synced unlock state | vanilla | harmless strings |
 | Crafting recipes granted by unlocks | 14 | each farmer's `craftingRecipes` | each client, for its own player, on connect and day start | vanilla | recipes for missing items are ignored (test item, §8) |
 | Skill XP, levels, professions | 05 | SpaceCore's per-farmer data | the acting player's client | SpaceCore | ignored by SpaceCore (test item) |
-| One-time XP keys | 05 | host save data, per player | host, on the acting player's request | not needed on other screens | ignored |
+| One-time XP keys | 05 | the farmer's own `modData` `CharlesDR.ValleyOpus/XpKeys`, so they travel with the farmhand | host, on the acting player's request | vanilla (farmer sync) | ignored |
 | Familiar state (`Met`, `BondedLab`, `BondPoints`, `GreetedToday`) | 18 | host save data, mirrored in the Lab's `modData` | host | Familiar messages; the Lab mirror syncs with the building | ignored; Labs gone |
-| Machine state: tray, recipe ID, condition snapshot, locked flag, stage, power state, kindled flag, `RecipeMemory`, `Pinned`, **`Owner`** | 12, 13 | the object's `modData` | the client acting on it (§3d) | vanilla location sync | inert BigCraftable or Error Item; tray items lost unless gathered (§6) |
-| Staged altar inputs | 04, 13 | the altar's `modData` tray | as machine state | vanilla | lost unless gathered |
+| Machine state: recipe ID, condition snapshot, locked flag, stage, power state, kindled flag, `RecipeMemory`, `Pinned`, **`Owner`**, tray guid `CharlesDR.ValleyOpus/Tray` | 12, 13 | the object's `modData` | the client acting on it (§3d) | vanilla location sync | inert BigCraftable or Error Item |
+| Staging tray contents | 12, 13 | a per-machine global inventory `CharlesDR.ValleyOpus_Tray_<guid>` (full item fidelity: flavour, quality, `modData`) | the client acting on the machine, under the inventory's mutex | vanilla team sync | items stay in the save, unreachable; return on reinstall; gathered by §6 |
+| Locked outputs taken from machines | 13 §6 | the global inventory `CharlesDR.ValleyOpus_LockedOutputs`, so they never reach Automate's chests | host | vanilla team sync | items stay in the save, unreachable |
+| Staged altar inputs | 04, 13 | the altar's tray global inventory, as other apparatus | as machine state | vanilla team sync | unreachable unless gathered |
 | Gloam Lantern fill | 04 | the lantern item's `modData` | its carrier's client | vanilla (item in an inventory or chest) | inert |
 | Animal infusion | 15 §7a | the animal's `modData` | the client using the item | vanilla | inert; produce returns to vanilla |
 | Buffs and custom effects | 15 | vanilla buffs on each farmer | each client | vanilla | unknown buff IDs dropped (test item) |
@@ -51,7 +53,7 @@ Every piece of ValleyOpus state, in one table. *Host save data* means SMAPI's `W
 | Radicula, placed helpers | 15 | the object's `modData` | the acting client | vanilla | inert |
 | **Satchel contents** | 03b | a 1.6 **global inventory per player** (§4) | the owning player's client, under the inventory's mutex | vanilla team sync | items stay in the save, unreachable; return on reinstall |
 | Satchel capacity upgrades | 03b | the same per-player record in host save data | host | Satchel messages | ignored |
-| Labs | 18 | vanilla `Data/Buildings` entries on the farm | anyone, as with Sheds | vanilla | the building and its contents disappear (test item) |
+| Labs | 18 | vanilla `Data/Buildings` entries on the farm; on each save, stripped into the envelope's `StrippedBuildings` and restored after saving and on load (§6) | anyone, as with Sheds | vanilla | absent from the saved farm, so no crash or Error building; contents return to chests on reinstall (§6) |
 | The workshop | 08, 14 | a Content Patcher location | nobody places items there (§2f) | vanilla | location gone; its entrance does nothing |
 | Schema version, migration markers, backups | 17 §5 | host save data envelope | host | not synced | ignored |
 | Slice report counters | 11 | host save data | host | not synced | ignored |
@@ -133,14 +135,18 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 **The command** `valleyopus_prepare_removal` (and a GMCM button) runs on the host only, after a confirmation, and logs every step. It never deletes anything; it moves items into **labelled chests** placed beside the farmhouse (or the player's position if those tiles are taken).
 1. **Satchels:** every player's bag, offline farmhands' included, into one chest per player.
 2. **Staging trays and staged altars:** their items into a chest beside each machine.
-3. **Labs:** offers to empty each Lab into chests outside it (doc 18). Labs then disappear with the mod, whatever is left inside.
+3. **Labs:** offers to empty each Lab into chests outside it (doc 18). The Lab itself is already absent from the saved farm (below).
 4. **Worn trinkets and rings:** each online player's, into their own inventory (offline farmhands' are listed in the log, since their slots can't be changed while they're away).
 5. **Our fertilizer:** offers to clear it from tiles, only if the test in §8 shows an unknown fertilizer ID misbehaves.
 6. **A report** in the log and on screen: what was moved where, and what stays (machines become Error Items, Furniture becomes Error Items, codex and unlock data are ignored).
 
-**Without the command**, removal is still safe, only lossier: tray contents, Lab contents and worn items are lost or become Error Items; Satchel contents stay in the save, unreachable.
+**Labs are stripped on every save** (Charles, 2026-10-19, option C). Before each save the host takes every ValleyOpus building (Labs) off the farm and serializes it, contents included, into the envelope's `StrippedBuildings` with `StrippedAtDay`; it restores them right after saving and on load. The saved farm never holds a building the game can't load, so removing the mod can't crash a save or leave an Error building. This replaces spike S3's original fallback ("prepare for removal also removes emptied Labs").
 
-**Reinstalling** restores: the codex, unlocks, Familiars and XP keys (host save data), Satchel bags, machine `modData`, and any Error Items vanilla kept. Labs that disappeared don't come back. *(To verify: whether 1.6 keeps Error Items of a missing BigCraftable as the original ID, so they turn back into machines.)*
+**Without the command**, removal is still safe, only lossier: worn items become Error Items; tray, Satchel and locked-output contents stay in the save, unreachable.
+
+**Reinstalled after playing without the mod:** if the save was played (saved) without ValleyOpus, `StrippedAtDay` is older than the save, so the Lab stays gone, but everything that was inside it (machines, chests and their contents, items) is put into labelled chests beside the farmhouse.
+
+**Reinstalling** restores: the codex, unlocks and Familiars (host save data), XP keys (farmer `modData`), Satchel bags, tray contents, machine `modData`, and any Error Items vanilla kept. Labs come back as they were if the save wasn't played without the mod; otherwise their contents come back in chests (above). *(To verify: whether 1.6 keeps Error Items of a missing BigCraftable as the original ID, so they turn back into machines.)*
 
 **Every release** repeats the remove-and-reload check (doc 00, S3 cons) on a save with a Lab, a staged altar, a full Satchel and fertilizer down.
 
@@ -149,7 +155,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 
 | Touchpoint | Map | Owning doc | Check |
 |---|---|---|---|
-| Workshop entrance behind the Community Center | Town | 08, 14 | SVE's Town edits (slice test 2); RSV and East Scarp Town edits, if any |
+| Workshop entrance behind the Community Center: warp at Town tile **53,9** (spike S13 passed, vanilla and SVE). Rule (Charles): behind the CC or a side stairwell, never the CC's front door | Town | 08, 14 | SVE's Town edits (slice test 2, passed in B1); RSV and East Scarp Town edits, if any |
 | Undine's meeting spot at the forest pond | Forest | 18 | SVE's Forest edits |
 | Other Familiars' meeting places | to come | 18, 20 | when chosen |
 | Ley-node sites (6–10) | various | 04, 14 | each site when placed; tie-in nodes go in their own mod's areas |
@@ -201,10 +207,12 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 ## Data shape
 | Record | Kind | Fields |
 |---|---|---|
-| Farm envelope `CharlesDR.ValleyOpus/Farm` | C# state, host save data | `SchemaVersion`, `ModVersion`, `ObjectsMigratedTo`, sections: `Codex` (doc 07), `Unlocks` (doc 14), `Familiars` (doc 18), `Players` {player ID → `XpKeys`, `SatchelCapacity`}, `SliceStats` (doc 11) |
+| Farm envelope `CharlesDR.ValleyOpus/Farm` | C# state, host save data | `SchemaVersion`, `ModVersion`, `ObjectsMigratedTo`, sections: `Codex` (doc 07), `Unlocks` (doc 14), `Familiars` (doc 18), `Players` {player ID → `SatchelCapacity`}, `SliceStats` (doc 11), `StrippedBuildings` (serialized Labs, §6), `StrippedAtDay` |
 | Backup `CharlesDR.ValleyOpus/Backup_v<N>` | C# state, host save data | the previous envelope, kept until the next successful save |
-| Object records | C# state, `modData` | `CharlesDR.ValleyOpus/Schema` plus each owning doc's keys; apparatus add `CharlesDR.ValleyOpus/Owner` |
+| Object records | C# state, `modData` | `CharlesDR.ValleyOpus/Schema` plus each owning doc's keys; apparatus add `CharlesDR.ValleyOpus/Owner` and `CharlesDR.ValleyOpus/Tray` (the tray guid); farmers carry `CharlesDR.ValleyOpus/XpKeys` |
 | Satchel bags | vanilla global inventory | `CharlesDR.ValleyOpus_Satchel_<UniqueMultiplayerID>` |
+| Staging trays | vanilla global inventory | `CharlesDR.ValleyOpus_Tray_<guid>`, one per apparatus |
+| Locked outputs | vanilla global inventory | `CharlesDR.ValleyOpus_LockedOutputs` |
 | `IdAliases` | CP data | `OldId`, `NewId`, `Kind` (Item / Recipe / Unlock / Prime / pack-defined), `Since` (schema version); expected to stay empty |
 | Sync messages | C# | `CodexRequest`, `CodexDelta`, `CodexSnapshot`; the same three for Unlocks, Familiars and Satchel capacity; `LockRequest`, `LockGrant`, `LockRelease`; `ConfigSync`; `VersionHello`; each carries `SchemaVersion` |
 | Touchpoint register | design table (§7a) | not shipped |
@@ -217,7 +225,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 ## Tech hooks
 - **SMAPI:** `Helper.Data.ReadSaveData`/`WriteSaveData` (host only), `Helper.Multiplayer.SendMessage` and `ModMessageReceived`, `PeerConnected` (the version handshake), `GetConnectedPlayer(id).GetMod` (peer mod info), `PerScreen<T>` for split-screen, `Saving`/`SaveLoaded`/`DayStarted` for migration and mirroring.
 - **Vanilla 1.6:** `modData` on objects, buildings, animals and items; `FarmerTeam` global inventories and their mutexes for the Satchel; `mailReceived` and `craftingRecipes` per farmer; the shared clock (`Game1.shouldTimePass`, never forced for others).
-- **Automate:** runs on the host; our factory (doc 13 §6) only ever runs there.
+- **Automate:** runs on the host. Its generic machine handler runs our machines through `Data/Machines`, so ValleyOpus ships no Automate integration code (Charles, D25); a patched `AttemptAutoLoad` marks loads as automated so our staging layer still sees every one, and locked outputs move to `CharlesDR.ValleyOpus_LockedOutputs` (doc 13 §6).
 - **SpaceCore:** per-farmer skill data and its own sync.
 - **Unit tests:** every migration step, the envelope round trip, the snapshot/delta merge, and the alias sweep run in the plain C# test project (doc 11 §6).
 - **Risks:** global-inventory behaviour with farmhands and chest mods; the building-removal test; Error Item round trips on reinstall; the hand-load and chain race; message volume when many `tried:` keys arrive at once (batch them per tick).
@@ -233,6 +241,7 @@ None `[blocks-arch]`; every default is confirmed (doc 10). Test items above are 
 - `[2.0]` Integration packs beyond the four tie-ins join the pool as configurations of their own.
 
 ## Change log
+- **v0.2 (2026-10-19):** B2 docs update: Labs stripped into save data on every save and restored after (Charles, option C), replacing S3's fallback, with Lab contents returned in chests on a reinstall after play without the mod; workshop warp at Town 53,9 (S13); trays and locked outputs as global inventories; XP keys in the farmer's `modData`; Automate per D25.
 - **v0.1e (2026-10-19):** Charles widened the deferral to online co-op: co-op, split-screen and controller get groundwork checked by code review every build; configuration 4's in-game runs are deferred; carry-forward uses a solo save.
 - **v0.1d (2026-10-19):** Charles confirmed D11–D14; they move to Decisions locked.
 - **v0.1c (2026-10-19):** controller and split-screen get groundwork checked by code review in every build; their in-game tests are deferred (Charles, provisional); configuration 4 tests online co-op.

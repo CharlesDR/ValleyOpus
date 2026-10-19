@@ -1,6 +1,6 @@
 # 15 · Products & Outside Uses
 
-Status: **DRAFT v0.7** (2026-10-18) · Readiness: ready for architecture (Charles approved every default he owns on 2026-10-17; no `[blocks-arch]` item is open)
+Status: **DRAFT v0.8** (2026-10-19) · Readiness: ready for architecture (Charles approved every default he owns on 2026-10-17; no `[blocks-arch]` item is open)
 Depends on: 01, 03, 03a, 03b, 05, 06, 07, 12, 13 · Feeds: 03a, 03b, 05, 06, 14, 16, 17, 19, 20
 
 ## Purpose
@@ -165,7 +165,8 @@ The numbers include the control premium, since the buff depends on the weekday. 
 - **Benchmarks** (Charles, 2026-10-17): the same pattern as consumables: vanilla machines and goods for early and mid game, and the top end set by what's possible with vanilla plus SVE.
 - **Markup bands** (placeholders, tuned in the sweep): Tier 1 about ×1.2, Tier 2 about ×1.4, Tier 3 and capstones not priced for profit. **The arcane line earns through quality, not markup:** both lines share a band, and arcane apparatus reach higher quality, which vanilla's quality price multipliers (×1.25, ×1.5, ×2) turn into money. That keeps pillar 1 (mechanical is bulk, arcane is quality) visible in the price.
 - **Chains are measured end to end.** Markups compound along a chain, so value-add is measured from the raw vanilla inputs that were decomposed to the final product, never per step. A short chain is the early game; mid-game par comes from quality, Lab bonuses, perks and speed (gold per tile-day), not from higher markups; the 150% ceiling is checked with every perk and Lab bonus stacked (doc 05's all-six test). For orientation (vanilla formulas, verified in the sweep): a Keg makes about ×3 the fruit price, a Preserves Jar about ×2 + 50, a Dehydrator about ×1.5 per fruit.
-- **Category** (approved): sellable compounds, consumables, gifts and dyes use the vanilla **Artisan Goods** category, so the Artisan profession applies to them exactly as it does to wine and jelly. That keeps the comparison with kegs fair, and doc 06's caps already count it. Primes, intermediates and residue use a category no vanilla profession boosts. Metals use the metal-bar category like Copper or Gold Bars (to verify which professions that triggers, doc 09).
+- **Category** (approved): sellable compounds, consumables, gifts and dyes use the vanilla **Artisan Goods** category, so the Artisan profession applies to them exactly as it does to wine and jelly. That keeps the comparison with kegs fair, and doc 06's caps already count it. Primes, intermediates and residue use a category no vanilla profession boosts. Metals use the metal-bar category like Copper or Gold Bars and carry the tag `valleyopus_metal_bar`.
+- **Professions on our items** (spike S16, B1): in game the Artisan and Gemologist bonuses apply to our items by category, but the **Blacksmith bonus does not**: vanilla keys it to specific bar item IDs. Build 1 ships no metal bars, so nothing is lost yet. **Decided (Charles, 2026-10-19, option A):** a small Harmony postfix applies the Blacksmith ×1.5 to items tagged `valleyopus_metal_bar` (doc 09 §14, patch 9). Options considered: A, the postfix on the tag (chosen); B, no bonus; C, fold the premium into the base price.
 - **Where to sell.** The shipping bin buys everything, and every shop that buys an item pays its **shipping price**, as in vanilla (Charles, 2026-10-17). Shops are places to sell, never price levers:
   - **Finch** buys Primes and substances and sells rare reagents, a valve for bottlenecks.
   - **Agnes** buys the planetary metals and certifies Electrum and Orichalcum. The metals' prices are benchmarked between vanilla bars (placeholders: Stannum near Copper-to-Iron, Plumbum near Iron, Argentum between Iron and Gold).
@@ -286,7 +287,7 @@ New items this doc adds to the census: 3 gifts, 2–3 décor Furniture pieces, a
 - **Apply and field-treatment actions:** one use-action handler for non-edible products.
 - **Trinkets:** one `TrinketEffect` subclass for all our trinkets. **Rings:** Harmony on equip and unequip, or a framework if doc 09 picks one.
 - **Dyes:** color and dye-strength context tags (exact tag names to verify against 1.6).
-- **Category numbers** and the professions they trigger (Artisan, Blacksmith for bars): verify in doc 09.
+- **Category numbers** and the professions they trigger: verified by spike S16 (Artisan and Gemologist by category); the Blacksmith bonus comes from a Harmony postfix keyed on `valleyopus_metal_bar` (§6, doc 09 patch 9).
 - **Prices:** derived prices are computed in C# at load and written into the generated `Data/Objects` rows, so every shop, the shipping bin and Lookup Anything read a plain vanilla price.
 - **1.7:** `Data/ContextTags` may let crafting recipes take tags, which would let the Glass Rose become a crafting recipe; nothing here depends on it.
 
@@ -303,6 +304,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Forging uses of Orichalcum, Electrum and Magma; custom-effect bombs; brew-map potions; Phlogiston in arcane logistics.
 
 ## Change log
+- **v0.8 (2026-10-19):** B2 docs update: spike S16 showed the Blacksmith bonus doesn't reach our bars by category; Charles chose option A, a Harmony postfix on the `valleyopus_metal_bar` tag.
 - **v0.7 (2026-10-18), Charles's answers:** Satchel auto-collect of reagents only is confirmed.
 - **v0.7 (2026-10-18):** cleanup sweep: the "Prime and famous-substance bonuses wait for picks" question is closed, since Charles approved them with the catalogue (v0.5) and they are in §3a; Satchel auto-collect is listed with the defaults awaiting Charles.
 - **v0.6 (2026-10-17):** Charles's review: every default he owns approved; "Element" as the umbrella term; selling pays the shipping price everywhere, so per-vendor pricing is gone and Sorenson's contracts must pay more than shipping or give a non-monetary reward; price benchmarks follow the consumables pattern; more drinks than foods, with every food carrying a custom effect; the cost rule for alternate vanilla recipes; Tailwind loses its grass part and its strong tier adds horse speed (approved); Rebis Amulet's strong window moves to noon–3pm and dusk; Ouroboros wording; the infusion table fixed; the environment rule's wrong-day behaviour is waiting idle.

@@ -1,6 +1,6 @@
 # 22 · Execution Plan
 
-Status: **DRAFT v0.2a** (2026-10-19) · Readiness: plan for build 1, awaiting Charles's review (D23 and D24 decided)
+Status: **DRAFT v0.3** (2026-10-19) · Readiness: plan for build 1, awaiting Charles's review (D23 and D24 decided)
 Depends on: 00, 09, 10, 11, 17 · Feeds: every build batch, `TESTING.md`, the to-do list and ideas backlog
 
 ## Purpose
@@ -66,6 +66,7 @@ Three batches (Charles, 2026-10-19, **D24**). Every batch also carries: the doc 
 - **Exit:** every wave A spike has a result, so B2 can fix IDs and build the machine path. A failed spike takes its doc 09 fallback; if the fallback changes a rule, a docs PR lands before B2 is proposed.
 
 **B2 · The bench and the line** (`alpha.2`; **saves carry forward from here**, schema version 1)
+- **Log:** B2 started 2026-10-19 on Charles's yes. B1's results: every wave A and B spike passed except S3 (fixed in B2: Labs are stripped into save data on every save and restored after, doc 17 §6) and S16's Blacksmith bonus (a Harmony postfix on `valleyopus_metal_bar`, Charles's option A, doc 15 §6).
 *The bench:*
 - **IDs and sort keys fixed** per S11's result (doc 09 §11), together with categories per S16. From this build on, every ID is permanent.
 - The base CP pack with every slice registry row of doc 11 (8 Primes, 46 objects, 41 resolver recipes, 6 apparatus rows, conditions, tag weights and category defaults for Spring's items, Aether weights by source rarity) and their authored `Data/Objects` and `Data/BigCraftables` rows; the data compiler (doc 09 §4c); the data test fails CI on any validator finding.
@@ -98,7 +99,7 @@ Every spike gets a **desk check** first (public docs and the open-source code of
 | | **S1** staging calls the output path; `OutputMethod` returns our match | the `Data/Machines` docs | B1: one placeholder apparatus | set the held object and minutes ourselves |
 | | **S19** vanilla `ReadyTimeModifiers` on top of our minutes | the `Data/Machines` docs | B1, same apparatus, with a test modifier | apply the rule's modifiers ourselves |
 | | **S2** Automate and our machines: **decided as D25** (its generic handler runs them); in game, its loads reach the staging layer and locked outputs never reach its chests | Automate's source | B1 in config 3 | move locked outputs out at `OutputMethod` time; chaining-only multi-input lines |
-| **B** · blocks world, saves and storage | **S3** missing building dropped cleanly; Error Items become machines on reinstall | SMAPI and wiki notes on missing data | B1: a placeholder building, removed and restored; re-checked in B3 on the real Lab | "prepare for removal" also removes emptied Labs |
+| **B** · blocks world, saves and storage | **S3** missing building dropped cleanly; Error Items become machines on reinstall | SMAPI and wiki notes on missing data | B1: a placeholder building, removed and restored; re-checked in B3 on the real Lab | failed in B1; replaced by stripping Labs into save data on every save (doc 17 §6) |
 | | **S12** global inventories sync per player; hidden from chest mods | SMAPI multiplayer docs; Chests Anywhere's and Convenient Inventory's source | B1 (solo part); co-op part deferred (doc 17 §8b) | guard the key through those mods' APIs or config |
 | | **S13** the Town warp with and without SVE | SVE's Town map edits, CC-opening event ID, Quarry bridge and bus flags (doc 10 upcoming tasks) | B1 in configs 1 and 2; re-checked in B3 | a second entrance on the workshop's own map edge |
 | | **S17** Robin's menu order with SVE | SVE's building list | B1 in config 2 | accept the order; note it in the guide |
@@ -165,6 +166,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 None open. D23 and D24 are decided (Decisions locked).
 
 ## Change log
+- **v0.3 (2026-10-19):** B2 docs update: B2 started on Charles's yes; B1's spike results logged (all wave A/B passed except S3 and S16's Blacksmith bonus).
 - **v0.2a (2026-10-19):** S2 settled as D25 (Automate's generic handler runs our machines).
 - **v0.2 (2026-10-19):** Charles decided D23 (a Remote Control session on his PC compiles each test build) and D24 (three batches: foundation and spikes, the bench and the line, the workshop); §3 and the spike table follow.
 - **v0.1 (2026-10-19):** first draft after the architecture gate: five batches to build 1 (foundation, spike build, the bench, the line, the workshop), who does what, the spike order in three waves with desk checks first, the rules for pulling to-do and backlog items into a batch, and a sketch of builds 2–5. D23 and D24 await Charles.
