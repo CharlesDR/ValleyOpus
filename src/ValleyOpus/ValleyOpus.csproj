@@ -21,5 +21,7 @@
   <!-- SpaceCore is a required dependency; its skill API is a base class, so we reference its DLL (never copied). -->
   <ItemGroup>
     <Reference Include="SpaceCore" HintPath="$(GameModsPath)\SpaceCore\SpaceCore.dll" Private="false" />
+    <!-- GameContent reads registry rows as JObject; SMAPI ships Newtonsoft.Json but ModBuildConfig doesn't reference it. -->
+    <Reference Include="Newtonsoft.Json" HintPath="$(GamePath)\smapi-internal\Newtonsoft.Json.dll" Private="false" />
   </ItemGroup>
 </Project>
