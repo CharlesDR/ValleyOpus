@@ -1,6 +1,6 @@
 # 13 · Apparatus Catalog
 
-Status: **DRAFT v0.6** (2026-10-18) · Readiness: ready for architecture (Charles confirmed the power, Electrum/Rebis and Ectoplasm defaults on 2026-10-18; no `[blocks-arch]` item is left open)
+Status: **DRAFT v0.6b** (2026-10-19) · Readiness: ready for architecture (Charles confirmed the power, Electrum/Rebis and Ectoplasm defaults on 2026-10-18; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03, 03a, 04, 12 · Feeds: 05, 06, 07, 09, 14, 15, 16, 17, 18
 
 ## Purpose
@@ -144,7 +144,7 @@ Vapor, Fulgur and Flamma Viva are **Power class** (doc 03b): never items. Three 
 "Best" is never decided by the mod, so a line can make exactly the output the player wants even when a more advanced recipe is unlocked (Charles, 2026-10-16). Recipe memory is an **input filter**: it says which multiset Automate pulls from a mixed chest. Once inputs are loaded, the recipe is fixed by inputs plus neighbour state (§1a), so memory never chooses between recipes.
 - **Recipe memory:** every apparatus remembers the **last recipe loaded by hand** (or picked in the Satchel picker). Automate and chaining only ever load that recipe. A machine set to Calx stays on Calx even if its chests could also feed Vitrum.
 - **Pinning:** the picker has a pin toggle. A pinned machine never changes recipe, even when the player hand-loads something else by accident; hand-loading a different recipe asks first.
-- **A fresh machine** with no memory takes nothing from automation until it's set once by hand, so a new line never starts on a surprise recipe. *(Default, kept for now: Charles wants to playtest how it feels, 2026-10-18; the alternative is "first satisfiable in codex order".)*
+- **A fresh machine** with no memory takes nothing from automation until it's set once by hand, so a new line never starts on a surprise recipe. *(Confirmed by Charles, 2026-10-19; he may revisit it after playtesting. The alternative was "first satisfiable in codex order".)*
 - **Visible:** the remembered recipe's output shows as a small icon on the machine and in its hover tooltip, with a pin mark when pinned.
 - Stored in `modData` (`RecipeMemory`, `Pinned`), so it syncs in multiplayer and is inert without the mod.
 
@@ -210,6 +210,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` A flower-fed **trickle** (a Prime from a planted bed, no input) would be a world tap placed in a garden; arcane logistics replaces chaining through the item-route interface; blended late-game machines are designed with the capstones.
 
 ## Change log
+- **v0.6b (2026-10-19):** Charles confirmed the fresh-machine default (§6a).
 - **v0.6a (2026-10-18):** the chaining visual aids are specced in doc 16; only their art stays open (doc 21).
 - **v0.6 (2026-10-18), Charles's answers:** the power-inputs rule, Electrum and Rebis as a counterpart pair, and Ectoplasm hand-made only are confirmed; the fresh-machine default stays until playtesting.
 - **v0.6 (2026-10-18):** cleanup sweep: unlock columns marked as doc 14's approved sources; §9 points to doc 18 §2c's re-check; settled open questions removed and the four remaining defaults grouped for Charles; doc 04's tables and doc 09's Automate plan now point here.

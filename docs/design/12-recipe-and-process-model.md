@@ -181,7 +181,6 @@ Doc 06 metrics read straight from this data: GPTD and value per tile and per ing
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` **Table unlock scope, balance revisit:** Charles approved "only that recipe" on condition it's revisited in the balance pass if codex completion feels too obnoxious (options in doc 07). *Owner: doc 06 balance pass.*
 - `[blocks-content]` **Where darkness holds outside a Lab** (raised by doc 18, 2026-10-18): darkness is the Required condition of every putrefaction recipe (§4, doc 13 §3), and doc 18 only guarantees a Lab's dark alcove tiles. Night outdoors, caves and unlit rooms need a definition. *Owner: doc 12.*
-- `[blocks-arch]` **Satchel storage:** doc 00 (S3) and doc 09 say Satchel contents live in a 1.6 global inventory keyed by the satchel's ID, for uninstall safety; doc 03b says the item's `modData`. *Owner: doc 17.*
 - `[2.0]` Four-plus Table inputs need no model change. A Potion Craft–style brew map would add a new operation with its own resolver, plugged in beside this one.
 
 ## Change log

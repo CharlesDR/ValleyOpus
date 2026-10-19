@@ -1,6 +1,6 @@
 # 09 · Technical Architecture
 
-Status: **DRAFT v0.6** (2026-10-18). This doc stays a sketch until the architecture gate, when it is rewritten as the architecture plan; where it and docs 12–18 differ, those docs win. v0.6: cleanup sweep: machines, Automate and Lookup Anything follow doc 13 §6; Familiar state follows doc 18; NPC count follows doc 08a; Charles's item ID and sort-key rules added. v0.5: integration and compatibility targets chosen from Charles's export of the 80 most-downloaded mods. v0.4: content-pack extensibility in 1.0, three more 1.0 tie-in mods, villager integration, the hand-made-only flag and compatibility-safe world changes (Charles's guiding answers, doc 01). v0.3: requirements from the Part 4 decisions. Platform facts: [research](../research/comparators-and-concepts.md).
+Status: **DRAFT v0.6b** (2026-10-18). v0.6b: Satchel storage, multiplayer sync, saves and the test matrix follow doc 17. This doc stays a sketch until the architecture gate, when it is rewritten as the architecture plan; where it and docs 12–18 differ, those docs win. v0.6: cleanup sweep: machines, Automate and Lookup Anything follow doc 13 §6; Familiar state follows doc 18; NPC count follows doc 08a; Charles's item ID and sort-key rules added. v0.5: integration and compatibility targets chosen from Charles's export of the 80 most-downloaded mods. v0.4: content-pack extensibility in 1.0, three more 1.0 tie-in mods, villager integration, the hand-made-only flag and compatibility-safe world changes (Charles's guiding answers, doc 01). v0.3: requirements from the Part 4 decisions. Platform facts: [research](../research/comparators-and-concepts.md).
 
 ## Targets
 - Stardew Valley **1.6.15** (latest), SMAPI 4.x. Recipes and tag data are kept isolated so the **1.7** migration (data-model recipes, `Data/ContextTags`) is cheap.
@@ -41,7 +41,7 @@ Unique ID: **`CharlesDR.ValleyOpus`**. All item and machine IDs are prefixed `Ch
 - **Hidden alchemy areas:** new small locations reached by a warp added on a minimal tile patch, chosen where the 1.0 tie-in mods don't edit.
 
 ## Requirements from the Part 4 decisions (doc 00, 2026-10-13)
-- **Uninstall safety (S3, confirmed):** vanilla object types only, no custom item subclasses; state lives in `modData` and mod save data; Satchel contents in a global inventory (doc 03b says the item's `modData`; doc 17 settles it, see doc 10); a "prepare for removal" command.
+- **Uninstall safety (S3, confirmed):** vanilla object types only, no custom item subclasses; state lives in `modData` and mod save data; Satchel contents in a 1.6 global inventory per player (doc 17 §4); a "prepare for removal" command.
   - **Labs without the mod (Charles, 2026-10-13):** they simply **disappear**. Labs are ordinary `Data/Buildings` entries with no save-time swap, so their footprint and interior are free design choices. Anything inside a Lab is lost; "prepare for removal" offers to empty Labs into a chest first. **Test early:** confirm 1.6 drops a building with missing data cleanly on load (no crash, no stuck tiles).
   - **Workshop without the mod:** the entrance comes from our Content Patcher patch to the Town map, so it disappears with the mod and the spot does nothing. Items left inside the workshop are lost.
 - **i18n (S4):** every player-facing string goes through `i18n/` from the first build.
@@ -70,7 +70,7 @@ Chosen from Charles's export of the 80 most-downloaded Stardew mods on Nexus (20
 | **Lookup Anything** | it shows our machines' processing state with no extra work (doc 13 §6); in 1.0 the codex is the recipe browser, and display-only rules listing our recipes are `[2.0]` (Charles, 2026-10-16) |
 | **Better Crafting** | let its crafting menu draw ingredients from the Reagent Satchel, and make sure hand-made-only recipes appear correctly |
 
-**Compatibility to test (1.0):** no integration code planned, but each goes in the doc 17 test matrix.
+**Compatibility to test (1.0):** no integration code planned, but each is in the doc 17 test matrix (§8).
 | Mod | Risk |
 |---|---|
 | **Romanceable Rasmodia** | replaces the Wizard with a female version. The Wizard teaches the bright substances and enforces the ban (doc 08), so our Wizard content must work with this NPC: no hard-coded pronouns or appearance in our lines |

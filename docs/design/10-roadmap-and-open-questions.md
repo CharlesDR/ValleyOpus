@@ -1,6 +1,6 @@
 # 10 · Roadmap & Open Questions
 
-Status: **DRAFT v0.9** (2026-10-18). v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
+Status: **DRAFT v0.10b** (2026-10-19). v0.10b: Charles confirmed every remaining default (D4, D11–D14). v0.10: doc 17 settles Satchel storage (Charles chose one bag per player) and adds defaults D11–D14. v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
 
 ## Version scope
 | | 1.0 | 2.0 |
@@ -61,21 +61,17 @@ Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition
 ## Open questions
 The one list of everything still open, across all docs (collected in the 2026-10-18 cleanup sweep). Each doc's own Open questions section keeps its items with a tag and owner; when an item is settled, it is written into its owning doc and removed from both lists.
 
-### Awaiting Charles: defaults already applied in the docs
-Each is written into the docs as the default; confirming it just removes the *(default)* mark. **Confirmed by Charles on 2026-10-18:** D1 power is never a recipe input (Perpetuum Mobile is an altar ritual beside a Boiler), D2 Electrum and Rebis are a counterpart pair, D3 Ectoplasm is hand-made only, D7 a re-roll replaces the discovered secret, D8 ValleyOpus items decompose at a loss, D9 the Satchel auto-collects reagents only, D5 exact Table matching with a "something here is feeling crowded" line for a valid subset, D6 Table outputs at Nigredo; and doc 16's D15–D19: the Satchel's level 2 tab adds a page of capacity, staged items can be taken back from a tray, recipe-memory icons show with the overlay, the codex keeps a Notes page of seen hints, and the overlay and codex keys start unbound.
-| # | Default | Where |
-|---|---|---|
-| D4 | **A fresh machine takes nothing from automation** until set once by hand (the alternative: first satisfiable in codex order). *Kept for now; Charles will playtest how it feels.* | doc 13 §6a |
+### Defaults: all confirmed
+Every default once listed here is confirmed and written into its owning doc. **Confirmed by Charles on 2026-10-18:** D1 power is never a recipe input (Perpetuum Mobile is an altar ritual beside a Boiler), D2 Electrum and Rebis are a counterpart pair, D3 Ectoplasm is hand-made only, D7 a re-roll replaces the discovered secret, D8 ValleyOpus items decompose at a loss, D9 the Satchel auto-collects reagents only, D5 exact Table matching with a "something here is feeling crowded" line for a valid subset, D6 Table outputs at Nigredo. **Confirmed on 2026-10-19:** D10 Satchel contents live in one global inventory per player (doc 17 §4); D4 a fresh machine takes nothing from automation until set once by hand (doc 13 §6a; Charles may still revisit it after playtesting); D11 the host's economy settings rule in multiplayer (doc 17 §3c); D12 the version-mismatch rule (doc 17 §3e); D13 a save from a newer build loads read-only (doc 17 §5d); D14 the test rotation (doc 17 §8b), with online co-op, split-screen and controller built and code-reviewed every build and their in-game tests deferred until Charles can run them. Doc 16's D15–D19 (confirmed 2026-10-18): the Satchel's level 2 tab adds a page of capacity, staged items can be taken back from a tray, recipe-memory icons show with the overlay, the codex keeps a Notes page of seen hints, and the overlay and codex keys start unbound.
 
 ### Design questions still open
-- `[blocks-arch]` **Satchel storage:** a 1.6 global inventory keyed by the satchel (docs 00, 09: uninstall safety) or the item's `modData` (doc 03b). *Owner: doc 17.*
 - `[blocks-content]` **Where darkness holds outside a Lab** (night outdoors, caves, unlit rooms), since darkness is Required for every putrefaction recipe. *Owner: doc 12.*
 - `[blocks-content]` **Inventory sort keys:** verify what vanilla Organize and the common sort mods key on before tags, categories and IDs are assigned (doc 03b rule 5, doc 09). *Owner: the data layer.*
 - `[blocks-content]` **Effect count:** the 2–3 cap stays suspended; doc 15 §3a's catalogue is the 1.0 list for now. *Owner: Charles (doc 15).*
 
 ### For the Phase 4 docs (16 UX, 17 Multiplayer, Saves & Compat)
 - **Doc 16:** drafted (v0.1, in review). Charles confirmed its defaults D15–D19 and decided no late-install fast start (2026-10-18); only art and sound remain (doc 21). Verify at the gate (doc 09): the vanilla hold-up pausing the clock, controller snapping in the codex's triangular grid, the smallest split-screen viewport, Unlockable Bundles' menu fitting the board's sealed doors and divination panel, and overlay frame time in a full T3 Lab.
-- **Doc 17:** the save schema version and migration, before the slice is built (doc 11, carry-forward saves); Satchel storage (above); clock freeze in multiplayer (doc 07); locked outputs and third-party extractors (doc 13 §6); 1.6 dropping a missing building cleanly (doc 09); the tie-in test matrix (doc 00).
+- **Doc 17:** drafted (v0.1). Satchel storage (D10) and its other defaults (D11–D14) are confirmed; its test items are carried into each build's test plan (doc 17 §8c). New touchpoints (Familiar meeting places, ley-node sites, hidden-area entrances, Hesper's spot) join its register when chosen.
 
 ### Content pass (rows, docs 19 and 20)
 - The six profession signature recipes and the odd-level conveniences (doc 05).
@@ -108,6 +104,8 @@ Collected in the version-scope table above and tagged `[2.0]` in each doc: arcan
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
 
 ## Change log
+- **v0.10b (2026-10-19):** Charles approved all remaining defaults: D4 and doc 17's D11–D14; the defaults table is retired.
+- **v0.10 (2026-10-18):** doc 17 drafted: Satchel storage moves from the design questions to D10, which Charles confirmed on 2026-10-19 (one bag per player); D11–D14 added (host economy settings, version mismatch, newer saves, test rotation); the doc 17 Phase 4 list is replaced by a pointer.
 - **v0.9a (2026-10-18):** doc 16 drafted: its gate checks replace the Phase 4 to-do line; Charles confirmed its defaults D15–D19 and decided no late-install fast start, so that design question is closed.
 - **v0.9 (2026-10-18):** cleanup sweep: an Open questions hub collects every open item across the docs (defaults awaiting Charles, design questions, Phase 4, content and balance passes, deferred passes, 2.0); the earlier-decisions list is collapsed; the full-review action item and the Nexus ranking task are marked done; the cast count follows doc 08a (11).
 - **v0.8b (2026-10-14):** material names swept to Latin first, English gloss second (Charles's choice); the rule is in doc 03a.
