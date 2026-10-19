@@ -214,7 +214,7 @@ The slice is where doc 09's architecture plan is first proven. The risks it must
 9. **Custom buff handler** (Undine's Gift) on the vanilla `Data/Buffs` path, and the **fertilizer queries** for our item IDs (doc 15).
 10. **Controller support** in every custom menu and per-screen state in split-screen: built and code-reviewed in the slice, tested in game later (doc 17 §8b).
 
-Framework choices at the gate (doc 09 §10): the bundle menu (our own board by default, or Unlockable Bundles; D20 in doc 10) and the Familiar renderer (not in the slice). The Satchel's storage is a global inventory per player (doc 17 §4, Charles, 2026-10-19). The platform risks above are the first build's spikes, each with a fallback (doc 09 §14).
+Framework choices at the gate (doc 09 §10): the bundle menu (our own board, chosen by Charles on 2026-10-19; D20 in doc 10) and the Familiar renderer (not in the slice). The Satchel's storage is a global inventory per player (doc 17 §4, Charles, 2026-10-19). The platform risks above are the first build's spikes, each with a fallback (doc 09 §14).
 
 **1.7:** nothing in the slice depends on 1.7.
 

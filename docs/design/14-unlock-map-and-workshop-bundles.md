@@ -195,7 +195,7 @@ All assets are public Content Patcher data under `CharlesDR.ValleyOpus/…`, wit
 
 ## Tech hooks
 - **Flags and conditions:** our `VALLEYOPUS_UNLOCKED <Id>` GSQ, plus the mirrored mail flags, so plain CP data (Robin's `Data/Buildings` `BuildCondition`, shop entries, `Data/Characters` `UnlockConditions`, events, dialogue) can test an unlock without C#.
-- **Bundles:** Unlockable Bundles or our own bundle menu; doc 09 picks at the gate (already listed there). The `WorkshopBundles` shape works with either.
+- **Bundles:** our own bundle menu, not Unlockable Bundles (Charles, 2026-10-19; doc 09 §10). Its progress lives in host save data with the rest of farm state.
 - **Crafting recipes** are per player in vanilla: a C# day-start and on-connect pass grants every unlocked recipe to every player.
 - **Base-game gates:** vanilla mail flags and world state for the CC and Joja milestones (to verify, doc 10), wrapped in one GSQ per gate so routes never leak into data.
 - **The workshop map:** the rooms are areas of one map that change on restoration (CP map patches keyed on our flags), like the CC's rooms.
