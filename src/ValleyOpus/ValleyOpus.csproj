@@ -22,14 +22,4 @@
   <ItemGroup>
     <Reference Include="SpaceCore" HintPath="$(GameModsPath)\SpaceCore\SpaceCore.dll" Private="false" />
   </ItemGroup>
-
-  <!-- Automate is optional: its factory API needs Automate.dll, so the integration only compiles when it's installed. -->
-  <ItemGroup Condition="Exists('$(GameModsPath)\Automate\Automate.dll')">
-    <Reference Include="Automate" HintPath="$(GameModsPath)\Automate\Automate.dll" Private="false" />
-  </ItemGroup>
-  <Target Name="ValleyOpusDetectAutomate" BeforeTargets="CoreCompile" Condition="Exists('$(GameModsPath)\Automate\Automate.dll')">
-    <PropertyGroup>
-      <DefineConstants>$(DefineConstants);AUTOMATE</DefineConstants>
-    </PropertyGroup>
-  </Target>
 </Project>

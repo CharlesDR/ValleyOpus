@@ -15,7 +15,6 @@ public sealed class ModEntry : Mod
 {
     private SmapiLog log = null!;
     private GameContent content = null!;
-    private AutomateSpike automate = null!;
 
     public override void Entry(IModHelper helper)
     {
@@ -24,12 +23,12 @@ public sealed class ModEntry : Mod
 
         var harmony = new Harmony(this.ModManifest.UniqueID);
         MachineSpike.Patch(harmony, this.Monitor);
+        AutomateSpike.Patch(harmony, this.Monitor);
         SkillSpike.Register();
 
-        this.automate = new AutomateSpike(helper, harmony, this.Monitor);
         _ = new SpikeRunner(helper, this.Monitor, new ISpike[]
         {
-            new MachineSpike(), this.automate, new BuildingSpike(), new HoldUpSpike(helper), new SortSpike(),
+            new MachineSpike(), new AutomateSpike(helper), new BuildingSpike(), new HoldUpSpike(helper), new SortSpike(),
             new SatchelSpike(), new WarpSpike(helper), new SkillSpike(helper), new CategorySpike(), new RobinMenuSpike(helper),
         });
 
@@ -46,7 +45,8 @@ public sealed class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         this.Monitor.Log($"ValleyOpus {this.ModManifest.Version}: test build with spike commands. Type 'valleyopus_spike list'.", LogLevel.Info);
-        this.automate.Register();
+        if (this.Helper.ModRegistry.IsLoaded("Pathoschild.Automate"))
+            this.Monitor.Log("Automate is installed: it runs ValleyOpus machines through its own handler (no integration code needed).", LogLevel.Trace);
         SkillSpike.CreateIcons();
     }
 

@@ -27,8 +27,8 @@ internal sealed class MachineSpike : ISpike
 
     private static IMonitor? monitor;
 
-    /// <summary>Counts calls to the staging prefix from Automate, for spike S2.</summary>
-    public static int AutomateDropIns { get; private set; }
+    /// <summary>Counts items staged through vanilla's auto-load (Automate or a hopper), for spike S2.</summary>
+    public static int AutomatedDropIns { get; private set; }
 
     public string Id => "S1";
 
@@ -145,10 +145,8 @@ internal sealed class MachineSpike : ISpike
 
         try
         {
-            if (!probe && Environment.StackTrace.Contains("Pathoschild.Stardew.Automate"))
-                AutomateDropIns++;
-
-            if (__instance.heldObject.Value != null || dropInItem is null)
+            // a held-out locked output waits for hand collection (S2, D25)
+            if (__instance.heldObject.Value != null || dropInItem is null || AutomateSpike.HasHeldOutput(__instance))
             {
                 __result = false;
                 return false;
@@ -165,6 +163,8 @@ internal sealed class MachineSpike : ISpike
             {
                 if (!probe)
                 {
+                    if (AutomateSpike.AutoLoading)
+                        AutomatedDropIns++;
                     tray.Add(dropInItem.QualifiedItemId);
                     SetTray(__instance, tray);
                     SObject.ConsumeInventoryItem(who, dropInItem, 1);
@@ -184,7 +184,11 @@ internal sealed class MachineSpike : ISpike
 
             bool placed = __instance.PlaceInMachine(data, dropInItem, probe, who);
             if (placed && !probe)
+            {
+                if (AutomateSpike.AutoLoading)
+                    AutomatedDropIns++;
                 SetTray(__instance, new List<string>());
+            }
             __result = placed;
             return false;
         }

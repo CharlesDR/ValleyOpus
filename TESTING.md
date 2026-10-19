@@ -107,7 +107,7 @@ Each script lists where to stand and what to type. Run them in this order; the w
 - **S11 · Sort keys** (configs 1 and 2). Anywhere: `valleyopus_spike S11`. Note which scheme says PASS (or "exact reverse"). Then face an empty tile and `valleyopus_spike S11 chest`, open the chest, press vanilla's Organize button and every installed sort mod's button, and note whether each kept the order in the LOOK line. Then switch the game's language to French (title screen → options), load, run `valleyopus_spike S11` again and note which scheme passes now.
 - **S16 · Categories and dye** (config 1). Anywhere: `valleyopus_spike S16`. Then take a "Spike Dye (blue)" (`debug item CharlesDR.ValleyOpus_Spike_S16_Dye` gives one) to Emily's dye pots and note whether it counts as blue.
 - **S1 · Staging and output, S19 · speed modifiers** (configs 1 and 3). Stand on the farm with an open area in front of you: `valleyopus_spike S1`. It places two Spike Apparatus and runs both checks. Then do the by-hand check from the LOOK line with real Wood and Stone (`debug item 388 5`, `debug item 390 5`).
-- **S2 · Automate** (config 3 only). Place a Spike Apparatus (`debug item (BC)CharlesDR.ValleyOpus_Spike_Apparatus`) with a chest right next to it holding Wood and Stone. Wait one in-game hour, then `valleyopus_spike S2`. The desk check expects FAIL (see the spike table). Then `valleyopus_spike S2 patch`, type `automate reset`, wait another hour by the machine and chest, and run `valleyopus_spike S2` again. Last: face the apparatus, `valleyopus_spike S2 lock`, and watch whether Automate empties it when it's ready (it shouldn't).
+- **S2 · Automate** (config 3 only). Place a Spike Apparatus (`debug item (BC)CharlesDR.ValleyOpus_Spike_Apparatus`) with a chest right next to it holding a few Wood and Stone. Wait two in-game hours (Automate puts in one item per pass, so a two-item recipe takes two passes), then type `valleyopus_spike S2`. You want **PASS**, and the chest should have lost exactly one Wood and one Stone per Coal. Then face the apparatus, type `valleyopus_spike S2 lock`, and let it make another Coal: when it's done, the machine should look empty, no Coal should appear in the chest, and clicking the machine yourself should hand you the Coal.
 
 **Wave B (blocks world, saves and storage)**
 
@@ -131,7 +131,7 @@ Desk results come from reading public sources before the build (doc 22 §4). In-
 | S16 categories, professions, dye tags | alpha.1 | Expected: Artisan ×1.4 on category −26, Gemologist ×1.3 on gems and minerals; Blacksmith on category −15 to be confirmed; dye reads `color_*` tags. | | |
 | S1 staging → output path; `OutputMethod` | alpha.1 | Likely PASS. The `OutputMethod` signature (machine, input, probe, output data, player, out minutes) matches the published machine docs. | | |
 | S19 `ReadyTimeModifiers` over our minutes | alpha.1 | Unknown: the docs don't say whether the modifiers apply when `OutputMethod` overrides the minutes. | | |
-| S2 Automate claims our machines | alpha.1 | **Expected FAIL.** Automate's source asks its own default factory first, and it claims every object with a `Data/Machines` entry; a claimed machine never reaches a mod's factory ("if Automate already has an automatable for an entity, it won't call your factory"). Automate documents no option to skip a machine. Its generic handler loads through the vanilla drop-in path, so our staging prefix still sees every item, but it would collect locked outputs. Candidate fallbacks are put to Charles before alpha.2. | | |
+| S2 Automate runs our machines | alpha.1 | **Decided (D25, Charles chose option B).** Automate's own default factory claims every object with a `Data/Machines` entry before any mod's factory is asked, so we let its generic handler run our machines. It loads through vanilla's auto-load, one item per pass, into our staging tray. Locked outputs move to a hidden store the moment they finish. The in-game run checks both. | | |
 | S3 missing building; Error Items | alpha.1 | Expected: the building is dropped on a save made without the mod; BigCraftables keep their item ID and work again when the data returns. | | |
 | S12 global inventory per player | alpha.1 | Expected PASS (1.6 global inventories are saved with the team). Chest mods: to be seen. Co-op part deferred. | | |
 | S13 Town warp with and without SVE | alpha.1 | Can't be settled from public sources (SVE's Town map isn't readable here). The spike checks the tile and can list open tiles. | | |
@@ -144,7 +144,7 @@ Desk results come from reading public sources before the build (doc 22 §4). In-
 
 ## 7 · Low-confidence areas
 What to keep an eye on in this build:
-- Anything Automate does with a Spike Apparatus (configuration 3): does it ever take an output after `S2 lock`?
+- Anything Automate does with a Spike Apparatus (configuration 3): does a Coal ever reach the chest after `S2 lock`, or does the machine ever stay stuck after you collect by hand?
 - Loading the farm with the mod removed (S3): any crash or red error.
 - The warp tile behind the Community Center with SVE (S13).
 - First compile on your PC: if the build fails, the Remote Control session fixes the code and tells Claude what changed.
