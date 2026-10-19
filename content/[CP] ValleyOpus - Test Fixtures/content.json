@@ -1,0 +1,1475 @@
+{
+  "Format": "2.4.0",
+  "Changes": [
+    {
+      "Action": "EditData",
+      "Target": "Data/Objects",
+      "Entries": {
+        "{{ModId}}_Ignis": {
+          "Name": "{{ModId}}_Ignis",
+          "DisplayName": "{{i18n:item.Ignis}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 5,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_Aqua": {
+          "Name": "{{ModId}}_Aqua",
+          "DisplayName": "{{i18n:item.Aqua}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 5,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_Terra": {
+          "Name": "{{ModId}}_Terra",
+          "DisplayName": "{{i18n:item.Terra}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 5,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_Aether": {
+          "Name": "{{ModId}}_Aether",
+          "DisplayName": "{{i18n:item.Aether}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 5,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_Lumen": {
+          "Name": "{{ModId}}_Lumen",
+          "DisplayName": "{{i18n:item.Lumen}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 5,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_IgnisIgnis": {
+          "Name": "{{ModId}}_IgnisIgnis",
+          "DisplayName": "{{i18n:item.IgnisIgnis}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_IgnisTerra": {
+          "Name": "{{ModId}}_IgnisTerra",
+          "DisplayName": "{{i18n:item.IgnisTerra}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_IgnisAether": {
+          "Name": "{{ModId}}_IgnisAether",
+          "DisplayName": "{{i18n:item.IgnisAether}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_IgnisLumen": {
+          "Name": "{{ModId}}_IgnisLumen",
+          "DisplayName": "{{i18n:item.IgnisLumen}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_AquaAqua": {
+          "Name": "{{ModId}}_AquaAqua",
+          "DisplayName": "{{i18n:item.AquaAqua}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_AquaTerra": {
+          "Name": "{{ModId}}_AquaTerra",
+          "DisplayName": "{{i18n:item.AquaTerra}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_AquaAether": {
+          "Name": "{{ModId}}_AquaAether",
+          "DisplayName": "{{i18n:item.AquaAether}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_AquaLumen": {
+          "Name": "{{ModId}}_AquaLumen",
+          "DisplayName": "{{i18n:item.AquaLumen}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_TerraTerra": {
+          "Name": "{{ModId}}_TerraTerra",
+          "DisplayName": "{{i18n:item.TerraTerra}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_TerraAether": {
+          "Name": "{{ModId}}_TerraAether",
+          "DisplayName": "{{i18n:item.TerraAether}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_TerraLumen": {
+          "Name": "{{ModId}}_TerraLumen",
+          "DisplayName": "{{i18n:item.TerraLumen}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_AetherAether": {
+          "Name": "{{ModId}}_AetherAether",
+          "DisplayName": "{{i18n:item.AetherAether}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_AetherLumen": {
+          "Name": "{{ModId}}_AetherLumen",
+          "DisplayName": "{{i18n:item.AetherLumen}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_Mud": {
+          "Name": "{{ModId}}_Mud",
+          "DisplayName": "{{i18n:item.Mud}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": [
+            "fx_wet"
+          ]
+        },
+        "{{ModId}}_Brine": {
+          "Name": "{{ModId}}_Brine",
+          "DisplayName": "{{i18n:item.Brine}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": [
+            "fx_wet"
+          ]
+        },
+        "{{ModId}}_Shade": {
+          "Name": "{{ModId}}_Shade",
+          "DisplayName": "{{i18n:item.Shade}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_Triple": {
+          "Name": "{{ModId}}_Triple",
+          "DisplayName": "{{i18n:item.Triple}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_Steam": {
+          "Name": "{{ModId}}_Steam",
+          "DisplayName": "{{i18n:item.Steam}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_Spirit": {
+          "Name": "{{ModId}}_Spirit",
+          "DisplayName": "{{i18n:item.Spirit}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_SecretA": {
+          "Name": "{{ModId}}_SecretA",
+          "DisplayName": "{{i18n:item.SecretA}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_SecretB": {
+          "Name": "{{ModId}}_SecretB",
+          "DisplayName": "{{i18n:item.SecretB}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_SecretC": {
+          "Name": "{{ModId}}_SecretC",
+          "DisplayName": "{{i18n:item.SecretC}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_StormGlass": {
+          "Name": "{{ModId}}_StormGlass",
+          "DisplayName": "{{i18n:item.StormGlass}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 20,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_CaputMortuum": {
+          "Name": "{{ModId}}_CaputMortuum",
+          "DisplayName": "{{i18n:item.CaputMortuum}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 1,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": []
+        },
+        "{{ModId}}_Ember": {
+          "Name": "{{ModId}}_Ember",
+          "DisplayName": "{{i18n:item.Ember}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -2,
+          "Price": 50,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": [
+            "fx_hot"
+          ]
+        },
+        "{{ModId}}_Puddle": {
+          "Name": "{{ModId}}_Puddle",
+          "DisplayName": "{{i18n:item.Puddle}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -2,
+          "Price": 30,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": [
+            "fx_wet"
+          ]
+        },
+        "{{ModId}}_Glitter": {
+          "Name": "{{ModId}}_Glitter",
+          "DisplayName": "{{i18n:item.Glitter}}",
+          "Description": "{{i18n:item.fixture}}",
+          "Type": "Basic",
+          "Category": -2,
+          "Price": 400,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": [
+            "fx_glitter",
+            "fx_aether_source"
+          ]
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/Primes",
+      "Entries": {
+        "{{ModId}}_Ignis": {
+          "ItemId": "(O){{ModId}}_Ignis",
+          "Group": "Element",
+          "SortOrder": 10,
+          "NameKey": "{{i18n:item.Ignis}}"
+        },
+        "{{ModId}}_Aqua": {
+          "ItemId": "(O){{ModId}}_Aqua",
+          "Group": "Element",
+          "SortOrder": 20,
+          "NameKey": "{{i18n:item.Aqua}}"
+        },
+        "{{ModId}}_Terra": {
+          "ItemId": "(O){{ModId}}_Terra",
+          "Group": "Element",
+          "SortOrder": 30,
+          "NameKey": "{{i18n:item.Terra}}"
+        },
+        "{{ModId}}_Aether": {
+          "ItemId": "(O){{ModId}}_Aether",
+          "Group": "Rare",
+          "SortOrder": 80,
+          "NameKey": "{{i18n:item.Aether}}"
+        },
+        "{{ModId}}_Lumen": {
+          "ItemId": "(O){{ModId}}_Lumen",
+          "Group": "Lumen",
+          "SortOrder": 90,
+          "NameKey": "{{i18n:item.Lumen}}"
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/Operations",
+      "Entries": {
+        "{{ModId}}_Combination": {
+          "NameKey": "Combination"
+        },
+        "{{ModId}}_Calcination": {
+          "NameKey": "Calcination"
+        },
+        "{{ModId}}_Dissolution": {
+          "NameKey": "Dissolution"
+        },
+        "{{ModId}}_Distillation": {
+          "NameKey": "Distillation"
+        },
+        "{{ModId}}_Fermentation": {
+          "NameKey": "Fermentation"
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/Conditions",
+      "Entries": {
+        "{{ModId}}_Dark": {
+          "Kind": "Gsq",
+          "Query": "CharlesDR.ValleyOpus_DARKNESS",
+          "PlayerControlled": true
+        },
+        "{{ModId}}_Storm": {
+          "Kind": "Gsq",
+          "Query": "WEATHER Here Storm"
+        },
+        "{{ModId}}_Flowers": {
+          "Kind": "Adjacency",
+          "Adjacency": {
+            "Tag": "flower_item",
+            "Directions": "All",
+            "Range": 2
+          }
+        },
+        "{{ModId}}_Monday": {
+          "Kind": "Gsq",
+          "Query": "DAY_OF_WEEK Monday"
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/Apparatus",
+      "Entries": {
+        "{{ModId}}_Table": {
+          "Kind": "Table",
+          "NeighbourStates": [
+            {
+              "Id": "Table",
+              "Test": {}
+            }
+          ],
+          "Operations": [
+            {
+              "Operation": "{{ModId}}_Combination",
+              "States": [
+                "Table"
+              ]
+            }
+          ],
+          "TrayCapacity": 2,
+          "Trigger": "Hand",
+          "Automation": "None",
+          "Chaining": false
+        },
+        "{{ModId}}_Retort": {
+          "Kind": "Engineered",
+          "NeighbourStates": [
+            {
+              "Id": "Cold",
+              "Test": {
+                "Heat": false
+              }
+            },
+            {
+              "Id": "Heated",
+              "Test": {
+                "Heat": true
+              }
+            }
+          ],
+          "Operations": [
+            {
+              "Operation": "{{ModId}}_Combination",
+              "States": [
+                "Cold",
+                "Heated"
+              ]
+            },
+            {
+              "Operation": "{{ModId}}_Fermentation",
+              "States": [
+                "Cold"
+              ]
+            }
+          ],
+          "TrayCapacity": 3
+        },
+        "{{ModId}}_Alembic": {
+          "Kind": "MinorArcane",
+          "NeighbourStates": [
+            {
+              "Id": "Cold",
+              "Test": {
+                "Heat": false
+              }
+            },
+            {
+              "Id": "Heated",
+              "Test": {
+                "Heat": true
+              }
+            }
+          ],
+          "Operations": [
+            {
+              "Operation": "{{ModId}}_Dissolution",
+              "States": [
+                "Cold"
+              ]
+            },
+            {
+              "Operation": "{{ModId}}_Distillation",
+              "States": [
+                "Heated"
+              ]
+            }
+          ],
+          "TrayCapacity": 2
+        },
+        "{{ModId}}_Athanor": {
+          "Kind": "Engineered",
+          "NeighbourStates": [
+            {
+              "Id": "Idle",
+              "Test": {
+                "None": true
+              }
+            }
+          ],
+          "Operations": [
+            {
+              "Operation": "{{ModId}}_Calcination",
+              "States": [
+                "Idle"
+              ]
+            }
+          ],
+          "Decompose": {
+            "YieldMultiplier": 1.0,
+            "ResidueRate": {
+              "Count": 1,
+              "Chance": 0.5
+            },
+            "Concentration": 2,
+            "Minutes": 60
+          },
+          "TrayCapacity": 1
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/Substances",
+      "Entries": {
+        "{{ModId}}_IgnisIgnis": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_IgnisIgnis"
+        },
+        "{{ModId}}_IgnisAqua": {
+          "Class": "Power",
+          "Tier": 1
+        },
+        "{{ModId}}_IgnisTerra": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_IgnisTerra"
+        },
+        "{{ModId}}_IgnisAether": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_IgnisAether"
+        },
+        "{{ModId}}_IgnisLumen": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_IgnisLumen"
+        },
+        "{{ModId}}_AquaAqua": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_AquaAqua"
+        },
+        "{{ModId}}_AquaTerra": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_AquaTerra"
+        },
+        "{{ModId}}_AquaAether": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_AquaAether"
+        },
+        "{{ModId}}_AquaLumen": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_AquaLumen"
+        },
+        "{{ModId}}_TerraTerra": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_TerraTerra"
+        },
+        "{{ModId}}_TerraAether": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_TerraAether"
+        },
+        "{{ModId}}_TerraLumen": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_TerraLumen"
+        },
+        "{{ModId}}_AetherAether": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_AetherAether"
+        },
+        "{{ModId}}_AetherLumen": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_AetherLumen"
+        },
+        "{{ModId}}_Mud": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_Mud"
+        },
+        "{{ModId}}_Brine": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_Brine"
+        },
+        "{{ModId}}_Shade": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_Shade"
+        },
+        "{{ModId}}_Triple": {
+          "Class": "Item",
+          "Tier": 2,
+          "ItemId": "(O){{ModId}}_Triple"
+        },
+        "{{ModId}}_Steam": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_Steam"
+        },
+        "{{ModId}}_Spirit": {
+          "Class": "Item",
+          "Tier": 1,
+          "ItemId": "(O){{ModId}}_Spirit"
+        },
+        "{{ModId}}_SecretA": {
+          "Class": "Item",
+          "Tier": 2,
+          "ItemId": "(O){{ModId}}_SecretA"
+        },
+        "{{ModId}}_SecretB": {
+          "Class": "Item",
+          "Tier": 2,
+          "ItemId": "(O){{ModId}}_SecretB"
+        },
+        "{{ModId}}_SecretC": {
+          "Class": "Item",
+          "Tier": 2,
+          "ItemId": "(O){{ModId}}_SecretC"
+        },
+        "{{ModId}}_StormGlass": {
+          "Class": "Item",
+          "Tier": 2,
+          "ItemId": "(O){{ModId}}_StormGlass"
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/SecretPools",
+      "Entries": {
+        "{{ModId}}_Pool": {
+          "PickCount": 1
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/Recipes",
+      "Entries": {
+        "{{ModId}}_IgnisIgnis": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Ignis",
+              "Count": 2
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_IgnisIgnis"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_IgnisAqua": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Ignis"
+            },
+            {
+              "Item": "{{ModId}}_Aqua"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_IgnisAqua"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_IgnisTerra": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Ignis"
+            },
+            {
+              "Item": "{{ModId}}_Terra"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_IgnisTerra"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_IgnisAether": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Ignis"
+            },
+            {
+              "Item": "{{ModId}}_Aether"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_IgnisAether"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_IgnisLumen": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Ignis"
+            },
+            {
+              "Item": "{{ModId}}_Lumen"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_IgnisLumen"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_AquaAqua": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Aqua",
+              "Count": 2
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_AquaAqua"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_AquaTerra": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Aqua"
+            },
+            {
+              "Item": "{{ModId}}_Terra"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_AquaTerra"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_AquaAether": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Aqua"
+            },
+            {
+              "Item": "{{ModId}}_Aether"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_AquaAether"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_AquaLumen": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Aqua"
+            },
+            {
+              "Item": "{{ModId}}_Lumen"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_AquaLumen"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_TerraTerra": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Terra",
+              "Count": 2
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_TerraTerra"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_TerraAether": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Terra"
+            },
+            {
+              "Item": "{{ModId}}_Aether"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_TerraAether"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_TerraLumen": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Terra"
+            },
+            {
+              "Item": "{{ModId}}_Lumen"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_TerraLumen"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_AetherAether": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Aether",
+              "Count": 2
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_AetherAether"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_AetherLumen": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Aether"
+            },
+            {
+              "Item": "{{ModId}}_Lumen"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table",
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Table",
+            "Cold",
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_AetherLumen"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          },
+          "Minutes": 60
+        },
+        "{{ModId}}_Mud": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Terra"
+            },
+            {
+              "Item": "{{ModId}}_AquaAqua"
+            }
+          ],
+          "Operation": "{{ModId}}_Dissolution",
+          "ApparatusKinds": [
+            "MinorArcane"
+          ],
+          "NeighbourStates": [
+            "Cold"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_Mud"
+          },
+          "Minutes": 120
+        },
+        "{{ModId}}_Spirit": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Terra"
+            },
+            {
+              "Item": "{{ModId}}_AquaAqua"
+            }
+          ],
+          "Operation": "{{ModId}}_Distillation",
+          "ApparatusKinds": [
+            "MinorArcane"
+          ],
+          "NeighbourStates": [
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_Spirit"
+          },
+          "Minutes": 120,
+          "Conditions": [
+            {
+              "ConditionId": "{{ModId}}_Flowers",
+              "Use": "Bonus",
+              "Effect": {
+                "QualitySteps": 1
+              }
+            }
+          ]
+        },
+        "{{ModId}}_Shade": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_TerraTerra"
+            },
+            {
+              "Item": "{{ModId}}_Mud"
+            }
+          ],
+          "Operation": "{{ModId}}_Fermentation",
+          "ApparatusKinds": [
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Cold"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_Shade"
+          },
+          "Minutes": 600,
+          "Conditions": [
+            {
+              "ConditionId": "{{ModId}}_Dark",
+              "Use": "Required"
+            }
+          ]
+        },
+        "{{ModId}}_Triple": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Ignis"
+            },
+            {
+              "Item": "{{ModId}}_Aqua"
+            },
+            {
+              "Item": "{{ModId}}_Terra"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table"
+          ],
+          "NeighbourStates": [
+            "Table"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_Triple"
+          },
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          }
+        },
+        "{{ModId}}_StormGlass": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_IgnisTerra"
+            },
+            {
+              "Item": "{{ModId}}_AquaTerra"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_StormGlass"
+          },
+          "Minutes": 240,
+          "Conditions": [
+            {
+              "ConditionId": "{{ModId}}_Storm",
+              "Use": "Required"
+            }
+          ]
+        },
+        "{{ModId}}_SecretA": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_IgnisIgnis"
+            },
+            {
+              "Item": "{{ModId}}_AquaAqua"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table"
+          ],
+          "NeighbourStates": [
+            "Table"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_SecretA"
+          },
+          "SecretPool": "{{ModId}}_Pool",
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          }
+        },
+        "{{ModId}}_SecretB": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_IgnisIgnis"
+            },
+            {
+              "Item": "{{ModId}}_TerraTerra"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table"
+          ],
+          "NeighbourStates": [
+            "Table"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_SecretB"
+          },
+          "SecretPool": "{{ModId}}_Pool",
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          }
+        },
+        "{{ModId}}_SecretC": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_AquaAqua"
+            },
+            {
+              "Item": "{{ModId}}_TerraTerra"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Table"
+          ],
+          "NeighbourStates": [
+            "Table"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_SecretC"
+          },
+          "SecretPool": "{{ModId}}_Pool",
+          "Quality": {
+            "Mode": "Fixed",
+            "Steps": 0
+          }
+        },
+        "{{ModId}}_ZCollide": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Terra"
+            },
+            {
+              "Item": "{{ModId}}_Ignis"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Heated"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_Steam"
+          }
+        },
+        "{{ModId}}_WetEarth": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Terra"
+            },
+            {
+              "Item": "{{ModId}}_Mud"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Cold"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_Brine"
+          }
+        },
+        "{{ModId}}_ZTagCollide": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_Terra"
+            },
+            {
+              "Tag": "fx_wet"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Cold"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_Steam"
+          }
+        },
+        "{{ModId}}_ZStormVariant": {
+          "Inputs": [
+            {
+              "Item": "{{ModId}}_IgnisIgnis"
+            },
+            {
+              "Item": "{{ModId}}_Ember"
+            }
+          ],
+          "Operation": "{{ModId}}_Combination",
+          "ApparatusKinds": [
+            "Engineered"
+          ],
+          "NeighbourStates": [
+            "Cold"
+          ],
+          "Output": {
+            "Id": "{{ModId}}_Steam"
+          },
+          "Conditions": [
+            {
+              "ConditionId": "{{ModId}}_Storm",
+              "Use": "Variant"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/Decomposition/TagWeights",
+      "Entries": {
+        "fx_hot": {
+          "Weights": {
+            "{{ModId}}_Ignis": 3,
+            "{{ModId}}_Terra": 1
+          }
+        },
+        "fx_wet": {
+          "Weights": {
+            "{{ModId}}_Aqua": 2
+          }
+        },
+        "fx_aether_source": {
+          "Weights": {
+            "{{ModId}}_Aether": 15,
+            "{{ModId}}_Lumen": 1
+          },
+          "AetherSource": true
+        },
+        "fx_glitter": {
+          "Weights": {
+            "{{ModId}}_Aether": 4,
+            "{{ModId}}_Terra": 1
+          }
+        },
+        "-2": {
+          "Weights": {
+            "{{ModId}}_Terra": 1
+          }
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/Decomposition/CategoryDefaults",
+      "Entries": {
+        "-16": {
+          "Weights": {
+            "{{ModId}}_Terra": 1
+          }
+        },
+        "Default": {
+          "Weights": {
+            "{{ModId}}_Terra": 2,
+            "{{ModId}}_Aqua": 1
+          }
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/Decomposition/Overrides",
+      "Entries": {
+        "(O){{ModId}}_CaputMortuum": {
+          "Refuse": true
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "CharlesDR.ValleyOpus/Decomposition/Settings",
+      "Entries": {
+        "Default": {
+          "K": 1.0,
+          "E": 0.5,
+          "QualityBonus": 0.1,
+          "Threshold": 0.1,
+          "ExchangeRatio": 0.8,
+          "DefaultResidue": {
+            "Count": 1,
+            "Chance": 0.25
+          },
+          "ResidueItem": "(O){{ModId}}_CaputMortuum"
+        }
+      }
+    }
+  ]
+}

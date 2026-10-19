@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Console tools over the engine (doc 09 §12): the validator report now; the balance sweep, item census and slice-report reader in later batches. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ValleyOpus.Engine\ValleyOpus.Engine.csproj" />
+  </ItemGroup>
+</Project>

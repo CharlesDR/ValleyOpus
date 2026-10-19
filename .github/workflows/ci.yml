@@ -1,0 +1,29 @@
+# Builds and tests the game-free projects and validates every content pack on every push (doc 09 §2, doc 11 §6).
+# The SMAPI mod itself can't build here: the game's assemblies can't be redistributed (D23: it is compiled on Charles's PC).
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build the engine, tests and tools
+        run: |
+          dotnet build src/ValleyOpus.Engine -c Release
+          dotnet build src/ValleyOpus.Tests -c Release
+          dotnet build src/ValleyOpus.Tools -c Release
+
+      - name: Unit and data tests
+        run: dotnet test src/ValleyOpus.Tests -c Release --no-build --logger "console;verbosity=normal"
+
+      - name: Validate the shipped packs
+        run: dotnet run --project src/ValleyOpus.Tools -c Release --no-build -- validate "content/[CP] ValleyOpus"

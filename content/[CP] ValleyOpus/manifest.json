@@ -1,0 +1,15 @@
+{
+  "Name": "[CP] ValleyOpus",
+  "Author": "CharlesDR",
+  "Version": "0.1.0-alpha.1",
+  "Description": "ValleyOpus's base content: every registry row and authored item. Requires the ValleyOpus mod.",
+  "UniqueID": "CharlesDR.ValleyOpus.CP",
+  "UpdateKeys": [],
+  "ContentPackFor": {
+    "UniqueID": "Pathoschild.ContentPatcher",
+    "MinimumVersion": "2.4.0"
+  },
+  "Dependencies": [
+    { "UniqueID": "CharlesDR.ValleyOpus" }
+  ]
+}

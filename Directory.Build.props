@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- SMAPI 4 runs on .NET 6; building it with a newer SDK is fine. -->
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <Version>0.1.0-alpha.1</Version>
+    <Authors>CharlesDR</Authors>
+  </PropertyGroup>
+</Project>
