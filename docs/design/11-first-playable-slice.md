@@ -214,7 +214,7 @@ The slice is where doc 09's architecture plan is first proven. The risks it must
 9. **Custom buff handler** (Undine's Gift) on the vanilla `Data/Buffs` path, and the **fertilizer queries** for our item IDs (doc 15).
 10. **Controller support** in every custom menu and per-screen state in split-screen.
 
-Framework choices still open at the gate (doc 09): the bundle menu (Unlockable Bundles or our own), the Satchel's storage (global inventory or item `modData`; doc 17 settles it). The slice uses whatever the gate picks; it is the first build after the gate, not before it.
+Framework choices still open at the gate (doc 09): the bundle menu (Unlockable Bundles or our own), and the Satchel's storage, which doc 17 §4 sets as a global inventory per player (default awaiting Charles). The slice uses whatever the gate picks; it is the first build after the gate, not before it.
 
 **1.7:** nothing in the slice depends on 1.7.
 

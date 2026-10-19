@@ -1,6 +1,6 @@
 # 00 · Design Critical Path to Architecture
 
-Status: **DRAFT v0.5** (2026-10-18). v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
+Status: **DRAFT v0.5b** (2026-10-18). v0.5b: doc 17 drafted; the Satchel storage note points to it. v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
 
 ## The governing rule
 Architecture needs the **shape** of every system, not its **content**. Shape means what kinds of things exist, the rules connecting them, and which of them need C# rather than Content Patcher data. Content means names, numbers, dialogue, art and exact recipes. Content can be filled in during execution as long as it is data-driven, so it never blocks architecture. Rework comes from changing shape late, so the path front-loads shape decisions and pushes content behind the gate.
@@ -70,13 +70,13 @@ State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authorit
 | 08 / 08a | Narrative & Cast | v0.4 / approved | only the hooks architecture needs (triggers, flags, locations); scripts come later |
 | 09 | Technical Architecture | v0.6, a sketch | rewritten as the architecture plan at the gate |
 | 10 | Roadmap & Open Questions | v0.9 | nothing; it collects every open item |
-| **11** | **First Playable Slice** | v0.1 in review (PR #14) | Charles's review |
+| **11** | **First Playable Slice** | v0.2 (PR #14 merged) | Charles's review |
 | **12** | **Recipe & Process Model** | v0.4, ready | nothing |
 | **13** | **Apparatus Catalog** | v0.6, ready | nothing (the fresh-machine default waits on playtesting) |
 | **14** | **Unlock Map & Workshop Bundles** | v0.4, ready | nothing |
 | **15** | **Products & Outside Uses** | v0.7, ready | nothing |
 | **16** | **UX & Interface** | not started | codex, Satchel, Experiment Table, tooltips, celebrations, GMCM options, controller support, chaining visual aids (doc 13 §7) |
-| **17** | **Multiplayer, Saves & Compatibility** | not started | ownership of every piece of state, save migration, uninstall behaviour, SVE and Automate test matrix |
+| **17** | **Multiplayer, Saves & Compatibility** | v0.1, ready (defaults D10–D14 await Charles) | nothing |
 | **18** | **Laboratory & Familiars** | v0.2, ready | nothing |
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |
 | 20 | Content Script *(after gate)* | — | events, mail, dialogue, schedules |
@@ -88,7 +88,7 @@ State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authorit
 
 Each phase only starts once the decisions it depends on are made. Inside a phase, docs can be written in parallel.
 
-**Progress (2026-10-18):** Phases 0–3 are done except doc 11, which is in review (PR #14). Phase 4 (docs 16 and 17) is next, then the gate. No code before the gate (Charles).
+**Progress (2026-10-18):** Phases 0–3 are done. In Phase 4, doc 17 is drafted and doc 16 is in progress; then the gate. No code before the gate (Charles).
 
 ```
 Phase 0  Scope lock ─────────────► decisions S1–S5
@@ -163,7 +163,7 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 
 **Cons**
 - No custom C# item or object subclasses. Behaviour that would naturally live in a subclass (the Satchel, staged altars, the Ritual Circle) has to sit in C# handlers keyed off `modData`. That is somewhat more code and more care.
-- The **Satchel's contents** must live outside the item, for example in a 1.6 global inventory keyed by the satchel's ID. Without the mod, those contents are orphaned, so an uninstall needs a helper that empties satchels into a chest first. *(Doc 03b v0.8 says the item's `modData` instead; doc 17 settles it, see doc 10.)*
+- The **Satchel's contents** must live outside the item, for example in a 1.6 global inventory keyed by the satchel's ID. Without the mod, those contents are orphaned, so an uninstall needs a helper that empties satchels into a chest first. *(Settled by doc 17 §4: a global inventory keyed by the owning player, so contents are never orphaned and survive an uninstall intact; default awaiting Charles.)*
 - **Custom buildings and locations** (the Laboratory, the workshop under the CC) need testing to confirm how 1.6 handles them once their data is gone. Mitigation is part of the same uninstall helper. *(Superseded for Labs by the S3 answer above: they simply disappear, with no conversion to Sheds.)*
 - Some rich features get harder: anything that stores complex state on a placed object has to serialize into `modData` strings.
 - Ongoing test cost: every release adds a "remove the mod and load the save" check.
