@@ -68,7 +68,7 @@ Every default once listed here is confirmed and written into its owning doc. **C
 - **D20 · Bundle menu: confirmed** (Charles, 2026-10-19): our own bundle board, not Unlockable Bundles (doc 09 §10).
 - **D21 · Familiar sprites: confirmed** (Charles, 2026-10-19): our own light renderer, not Custom Companions (doc 09 §10).
 
-- `[blocks-arch]` **D22 · Familiar bonds on vanilla friendship** (doc 09 §1a, Charles's vanilla-first rule): make the Familiars vanilla non-villager NPCs so friendship mods affect them, or keep doc 18's own bond points. *Owner: Charles.*
+- **D22 · Familiar bonds: confirmed** (Charles, 2026-10-19): they keep doc 18's own bond points rather than vanilla friendship (doc 09 §1a).
 
 ### Design questions still open
 - `[blocks-content]` **Where darkness holds outside a Lab** (night outdoors, caves, unlit rooms), since darkness is Required for every putrefaction recipe. *Owner: doc 12.*
@@ -112,7 +112,7 @@ Collected in the version-scope table above and tagged `[2.0]` in each doc: arcan
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
 
 ## Change log
-- **v0.10e (2026-10-19):** Charles's vanilla-first rule (doc 09 §1a); D22 raised.
+- **v0.10e (2026-10-19):** Charles's vanilla-first rule (doc 09 §1a); D22 settled: Familiars keep their own bond points.
 - **v0.10d (2026-10-19):** architecture gate: D20 (bundle menu, confirmed by Charles: our own board) and D21 (Familiar sprites, confirmed: our own renderer) added; doc 16's gate checks and the sort-key question became doc 09 spikes.
 - **v0.10c (2026-10-19):** pre-gate cleanup sweep: docs 11, 16 and 17 shown as merged; the Phase 4 list becomes gate checks; Charles kept the stage names as the Great Work Chamber bundle titles (doc 14 §3); the mine-drop item moved here and to doc 03b from the to-do list.
 - **v0.10b (2026-10-19):** Charles approved all remaining defaults: D4 and doc 17's D11–D14; the defaults table is retired.

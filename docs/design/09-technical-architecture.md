@@ -1,6 +1,6 @@
 # 09 · Technical Architecture
 
-Status: **DRAFT v1.0** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (one decision, D22 in §1a, awaits Charles)
+Status: **DRAFT v1.0** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (every gate decision is made; no `[blocks-arch]` item is open)
 Depends on: 00, 01, 03, 03a, 03b, 04, 05, 07, 11, 12, 13, 14, 15, 16, 17, 18 · Feeds: execution planning, every build, 19, 20, 21
 
 ## Purpose
@@ -49,7 +49,7 @@ Three rules hold everywhere:
 | Area | What we use | Status |
 |---|---|---|
 | Villager friendship, gifts, heart events | vanilla `Data/Characters`, `Data/NPCGiftTastes`, events with friendship preconditions | vanilla (docs 08, 08a, 20) |
-| Familiar bonds and hearts | own bond points today (doc 18 §4) | **D22, to Charles:** move them onto vanilla friendship |
+| Familiar bonds and hearts | own bond points (doc 18 §4) | own (Charles, 2026-10-19, D22): Familiars are spirits, not villagers, and their hearts give no power |
 | Skill, XP, professions, level-up | SpaceCore | framework |
 | Machines, timers, ready bubble, collection | `Data/Machines` with `OutputMethod` | vanilla; our minutes are the base, and vanilla `ReadyTimeModifiers` (ours empty, other mods' kept) apply on top (spike S19) |
 | Crafting recipes and learning | `Data/CraftingRecipes`, each farmer's `craftingRecipes` | vanilla |
@@ -346,12 +346,11 @@ Every number lives in data the sweep can rewrite (doc 00, "what deliberately wai
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
-- `[blocks-arch]` **D22 · Familiar bonds on vanilla friendship** (§1a): make the four Familiars vanilla non-villager NPCs so greeting, gifts and hearts use vanilla friendship, or keep doc 18's own bond points. *Owner: Charles.*
 - `[blocks-content]` **Inventory sort keys:** settled by spike S11 before the slice fixes IDs (§11). *Owner: the first build.*
 - `[2.0]` Arcane logistics as a second `IItemRoute`; content-pack professions; Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
-- **v1.0a (2026-10-19):** Charles's vanilla-first rule (§1a) with an audit of every area; Sorenson's contracts become vanilla special orders; machine timing keeps vanilla `ReadyTimeModifiers` (spike S19); D22 (Familiar bonds on vanilla friendship) raised.
+- **v1.0a (2026-10-19):** Charles's vanilla-first rule (§1a) with an audit of every area; Sorenson's contracts become vanilla special orders; machine timing keeps vanilla `ReadyTimeModifiers` (spike S19); D22: Charles kept Familiars on their own bond points.
 - **v1.0 (2026-10-19):** rewritten as the architecture plan at the gate: the engine and adapter split with one module per owning doc, the repository layout (a game-free engine so CI can test it), the data pipeline (our registries as CP-filled assets, a validator, a compiler that adds computed fields to authored vanilla rows), the staging, neighbour, routing, farm-state and UI designs, the runtime event table, performance budgets, integrations, the framework choices (our own bundle board, chosen by Charles as D20; our own Familiar renderer as D21, both chosen by Charles), the risk register as first-build spikes with fallbacks, and the Harmony patch list. Integration targets and Charles's ID rules carried over.
 - **v0.6c (2026-10-19):** pre-gate cleanup sweep: testing from the first commit (doc 11 §6) and the deferred in-game co-op, split-screen and controller tests (doc 17 §8b).
 - **v0.6b (2026-10-19):** Satchel storage, multiplayer sync, saves and the test matrix follow doc 17.
