@@ -20,6 +20,7 @@ Everything below was already decided elsewhere; this doc gathers it and adds no 
 - **Inventory sort order**: base Primes first, then substances by tier, then endgame Elements, alphabetical within groups (Charles, 2026-10-18; doc 03b rule 5). Every list in our own menus uses the same order.
 - **Quarter-day time share** without busywork (Charles, doc 02): this doc sets the budget and the levers that meet it (§17).
 - **No late-install fast start** (Charles, 2026-10-18): GMCM offers no option to skip ahead; every save, however late it installs the mod, plays from the soft start (doc 14 §9).
+- **This doc's defaults, confirmed** (Charles, 2026-10-18): level 2's extra Satchel tab adds capacity, a second page of type slots (§4); staged items can be taken back from the tray until the recipe completes (§5); recipe-memory icons draw only with the overlay by default (§5, §15); the codex keeps every seen hint on a Notes page (§7); the overlay and codex keys start unbound, since the Satchel covers both (§15).
 - **i18n from the first build** (S4): no player-facing string is hard-coded or baked into a sprite.
 - **Reagent Satchel** behaviour (doc 03b, Charles 2026-10-13 and 2026-10-18): tooltip contents, chest-style grid with tabs, auto-collect of reagents only, the picker filtered to a machine's valid inputs.
 
@@ -104,7 +105,7 @@ The panel never reveals an unknown recipe before Combine; it only reflects what 
 **Tooltip** (hovering the Satchel in the toolbar or inventory): a compact grid of the contents with counts, in the sort order of doc 03b rule 5, capped at three rows with "+12 more" when longer. The icon shows a fill state and a count badge (types held / capacity).
 
 **Grid** (Action or Use tool while holding it): a chest-style menu with doc 03b's three category tabs (**Essences**, **Substances**, **Products**) along the top, the player inventory below, a **codex button** and a **full-overlay toggle** in the corner (§6). Items move by click or drag exactly as in a chest; shift-click (or the controller's Y) moves a whole stack. Capacity counts **item types** across all tabs (≈24 at the start). A full Satchel shows its badge in red and the "+3 Ignis" notice says "Satchel full: to your inventory" instead.
-- **Level 2's extra tab** (doc 05) is read as **more capacity**, not a fourth category: it adds a second page of type slots to the grid (placeholder +12 types). *(Default; doc 10.)*
+- **Level 2's extra tab** (doc 05) is read as **more capacity**, not a fourth category: it adds a second page of type slots to the grid (placeholder +12 types) (Charles, 2026-10-18).
 - **Tobin's capacity upgrades** (later builds) add slots the same way.
 
 **Picker** (Action on an apparatus while holding the Satchel): a small panel anchored beside the machine.
@@ -126,11 +127,11 @@ The panel never reveals an unknown recipe before Combine; it only reflects what 
 6. **Room bonus:** "Laboratory I: 10% faster, 5% chance of a better stage" (doc 18), and a Familiar's boost when it applies.
 7. For power sources: what they emit, charges or time left, and which machines they feed, numbered in their fixed N, E, S, W order (doc 13 §5).
 
-**Tray view** (Action, empty-handed, on a loading machine): a small panel showing the staged items and the recipes they are heading toward as silhouettes or icons, with a **take-back** button per item until the recipe completes. Taking back returns items to the Satchel or inventory. This undoes a mis-load without a removal command. *(Default; doc 10.)*
+**Tray view** (Action, empty-handed, on a loading machine): a small panel showing the staged items and the recipes they are heading toward as silhouettes or icons, with a **take-back** button per item until the recipe completes. Taking back returns items to the Satchel or inventory. This undoes a mis-load without a removal command (Charles, 2026-10-18).
 
 **In-world indicators.**
 - The **status icon** (§2) above the sprite.
-- The **recipe-memory icon**: a small output icon on the machine's front, with a pin dot when pinned. GMCM chooses when it is drawn: always, only with the overlay (default), or never. *(The default keeps a large Lab from looking cluttered; doc 10.)*
+- The **recipe-memory icon**: a small output icon on the machine's front, with a pin dot when pinned. GMCM chooses when it is drawn: always, only with the overlay (default), or never. The default keeps a large Lab from looking cluttered (Charles, 2026-10-18).
 - **Sprites show direction**: an intake on the West face and a spout on the East face of every ValleyOpus machine, in both art styles and in placeholder art (doc 13 §7, doc 11).
 - **Feedback styles** when a cycle completes: arcane glow and shimmer, engineered clunk and steam puff, blended machines both (doc 07).
 
@@ -171,7 +172,7 @@ Link states use shape as well as colour: solid arrow (working), dashed (idle), �
 - **Lore:** lines unlocked at 1, 10 and 50 crafted, with a progress pip toward the next (doc 07); hand-made-only entries say "hand-made crafts" beside the count.
 - **Discovered by** a player and day, in multiplayer (doc 07).
 
-**Notes page.** Every hint the farm has seen (`hint:` keys), grouped by channel (Oriel, Tobin, Hesper's almanac, Finch's curiosities, Lark, the Curator, divination, dreams, readables), each linked to its target's silhouette. Hints are never lost to a closed dialogue box. *(Default; doc 10.)*
+**Notes page.** Every hint the farm has seen (`hint:` keys), grouped by channel (Oriel, Tobin, Hesper's almanac, Finch's curiosities, Lark, the Curator, divination, dreams, readables), each linked to its target's silhouette. Hints are never lost to a closed dialogue box (Charles, 2026-10-18).
 
 **Finding things.** A search box (vanilla text box; the on-screen keyboard on a controller) matches names in the current language. Filters: by Prime, by apparatus kind, "I can make this now" (discovered recipes whose inputs are in the Satchel and inventory), and "not yet automated" (discovered items with no discovered automatable route). Results list in doc 03b rule 5's order.
 
@@ -323,10 +324,9 @@ The UI adds no save data and no CP asset of its own; it reads the assets of docs
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
-- `[blocks-content]` **Defaults set here, for Charles to confirm** (D15–D19 in doc 10): level 2's extra Satchel tab adds capacity (a second page of type slots), not a fourth category (§4); the tray view lets the player take back staged items until the recipe completes (§5); recipe-memory icons draw only with the overlay by default (§5, §15); the codex keeps every seen hint on a Notes page (§7); both keybinds start unbound so the Satchel covers controller and keyboard alike (§15). *Owner: Charles.*
 - `[blocks-content]` **Art and sound** for icons, overlay shapes and the anticipation beat. *Owner: doc 21.*
 - `[2.0]` Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
-- **v0.1 (2026-10-18), Charles's answer:** no late-install fast start; the GMCM row and open question are removed.
+- **v0.1 (2026-10-18), Charles's answers:** no late-install fast start (the GMCM row and open question are removed); defaults D15–D19 confirmed.
 - **v0.1 (2026-10-18):** first draft: principles, the interaction model, the screen inventory with slice flags, the Experiment Table menu with its before-Combine result panel, the Satchel tooltip, grid and picker, the machine tooltip order and tray view, the chain overlay in two levels with the placement preview, the codex pages, entries, Notes page and search, celebrations and clock freeze, Finch's shop hiding the curiosity hint, the bundle board and divination panel, the Lens, altar prompts, GMCM options, controller and split-screen rules, and the quarter-day hand-action budget with its levers.
