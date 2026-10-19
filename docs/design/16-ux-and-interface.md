@@ -19,6 +19,7 @@ Everything below was already decided elsewhere; this doc gathers it and adds no 
 - **Finch's curiosity hint never shows in his shop tooltip**, only once the item is owned (Charles, 2026-10-17; doc 07 layer 4). This doc enforces it (§9).
 - **Inventory sort order**: base Primes first, then substances by tier, then endgame Elements, alphabetical within groups (Charles, 2026-10-18; doc 03b rule 5). Every list in our own menus uses the same order.
 - **Quarter-day time share** without busywork (Charles, doc 02): this doc sets the budget and the levers that meet it (§17).
+- **No late-install fast start** (Charles, 2026-10-18): GMCM offers no option to skip ahead; every save, however late it installs the mod, plays from the soft start (doc 14 §9).
 - **i18n from the first build** (S4): no player-facing string is hard-coded or baked into a sprite.
 - **Reagent Satchel** behaviour (doc 03b, Charles 2026-10-13 and 2026-10-18): tooltip contents, chest-style grid with tabs, auto-collect of reagents only, the picker filtered to a machine's valid inputs.
 
@@ -242,7 +243,6 @@ Grouped as the GMCM page shows them. **Per player** options are saved locally; *
 | Accessibility | Reduced motion (no shimmer, shake or particles; still images instead) | off | player | ✓ |
 | Economy | `Decomposition/Settings` knobs: `k`, `e`, `QualityBonus`, `Threshold`, `ExchangeRatio`, default residue (doc 12) | the data's values | farm | ✓ |
 | | Later knobs from the sweep (prices, yields; doc 06) | the data's values | farm | — |
-| Start | **Late-install fast start** *(open; doc 10)* | — | farm | — |
 | Debug | Verbose logging (doc 11 §6) | off | player | ✓ |
 
 ### 16 · Controller and split-screen
@@ -323,10 +323,10 @@ The UI adds no save data and no CP asset of its own; it reads the assets of docs
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
-- `[blocks-content]` **Late-install fast start** (from doc 14): whether GMCM offers an optional fast start that restores the Furnace Room for a save that installs the mod late. *Owner: Charles.*
 - `[blocks-content]` **Defaults set here, for Charles to confirm** (D15–D19 in doc 10): level 2's extra Satchel tab adds capacity (a second page of type slots), not a fourth category (§4); the tray view lets the player take back staged items until the recipe completes (§5); recipe-memory icons draw only with the overlay by default (§5, §15); the codex keeps every seen hint on a Notes page (§7); both keybinds start unbound so the Satchel covers controller and keyboard alike (§15). *Owner: Charles.*
 - `[blocks-content]` **Art and sound** for icons, overlay shapes and the anticipation beat. *Owner: doc 21.*
 - `[2.0]` Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
+- **v0.1 (2026-10-18), Charles's answer:** no late-install fast start; the GMCM row and open question are removed.
 - **v0.1 (2026-10-18):** first draft: principles, the interaction model, the screen inventory with slice flags, the Experiment Table menu with its before-Combine result panel, the Satchel tooltip, grid and picker, the machine tooltip order and tray view, the chain overlay in two levels with the placement preview, the codex pages, entries, Notes page and search, celebrations and clock freeze, Finch's shop hiding the curiosity hint, the bundle board and divination panel, the Lens, altar prompts, GMCM options, controller and split-screen rules, and the quarter-day hand-action budget with its levers.
