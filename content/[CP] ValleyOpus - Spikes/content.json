@@ -1,0 +1,493 @@
+{
+  "Format": "2.4.0",
+  "Changes": [
+    {
+      "Action": "EditData",
+      "Target": "Data/Objects",
+      "Entries": {
+        "CharlesDR.ValleyOpus_Spike_S11cat_60": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11cat_F",
+          "DisplayName": "{{i18n:s11.cat.0}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -1100,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 60,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11id_10": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11id_F",
+          "DisplayName": "{{i18n:s11.id.0}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 60,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11name_60": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11name_A",
+          "DisplayName": "{{i18n:s11.name.0}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 60,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11disp_60": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11disp_F",
+          "DisplayName": "{{i18n:s11.disp.0}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 60,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11cat_50": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11cat_E",
+          "DisplayName": "{{i18n:s11.cat.1}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -1100,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 61,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11id_20": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11id_E",
+          "DisplayName": "{{i18n:s11.id.1}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 61,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11name_50": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11name_B",
+          "DisplayName": "{{i18n:s11.name.1}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 61,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11disp_50": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11disp_E",
+          "DisplayName": "{{i18n:s11.disp.1}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 61,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11cat_40": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11cat_D",
+          "DisplayName": "{{i18n:s11.cat.2}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -1200,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 62,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11id_30": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11id_D",
+          "DisplayName": "{{i18n:s11.id.2}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 62,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11name_40": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11name_C",
+          "DisplayName": "{{i18n:s11.name.2}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 62,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11disp_40": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11disp_D",
+          "DisplayName": "{{i18n:s11.disp.2}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 62,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11cat_30": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11cat_C",
+          "DisplayName": "{{i18n:s11.cat.3}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -1200,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 63,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11id_40": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11id_C",
+          "DisplayName": "{{i18n:s11.id.3}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 63,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11name_30": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11name_D",
+          "DisplayName": "{{i18n:s11.name.3}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 63,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11disp_30": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11disp_C",
+          "DisplayName": "{{i18n:s11.disp.3}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 63,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11cat_20": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11cat_B",
+          "DisplayName": "{{i18n:s11.cat.4}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -1300,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 64,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11id_50": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11id_B",
+          "DisplayName": "{{i18n:s11.id.4}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 64,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11name_20": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11name_E",
+          "DisplayName": "{{i18n:s11.name.4}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 64,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11disp_20": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11disp_B",
+          "DisplayName": "{{i18n:s11.disp.4}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 64,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11cat_10": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11cat_A",
+          "DisplayName": "{{i18n:s11.cat.5}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -1400,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 65,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11id_60": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11id_A",
+          "DisplayName": "{{i18n:s11.id.5}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 65,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11name_10": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11name_F",
+          "DisplayName": "{{i18n:s11.name.5}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 65,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S11disp_10": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S11disp_A",
+          "DisplayName": "{{i18n:s11.disp.5}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 65,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S16_Artisan": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S16_Artisan",
+          "DisplayName": "{{i18n:s16.S16_Artisan}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -26,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 334,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S16_Bar": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S16_Bar",
+          "DisplayName": "{{i18n:s16.S16_Bar}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -15,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 334,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S16_Gem": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S16_Gem",
+          "DisplayName": "{{i18n:s16.S16_Gem}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -2,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 334,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S16_Mineral": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S16_Mineral",
+          "DisplayName": "{{i18n:s16.S16_Mineral}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -12,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 334,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S16_Basic": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S16_Basic",
+          "DisplayName": "{{i18n:s16.S16_Basic}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 334,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S16_Monster": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S16_Monster",
+          "DisplayName": "{{i18n:s16.S16_Monster}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -28,
+          "Price": 100,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 334,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_S16_Dye": {
+          "Name": "CharlesDR.ValleyOpus_Spike_S16_Dye",
+          "DisplayName": "{{i18n:s16.dye}}",
+          "Description": "{{i18n:spike.description}}",
+          "Type": "Basic",
+          "Category": -16,
+          "Price": 50,
+          "Texture": "Maps/springobjects",
+          "SpriteIndex": 80,
+          "ContextTags": [
+            "color_blue",
+            "dye_strong"
+          ]
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/BigCraftables",
+      "Entries": {
+        "CharlesDR.ValleyOpus_Spike_Apparatus": {
+          "Name": "CharlesDR.ValleyOpus_Spike_Apparatus",
+          "DisplayName": "{{i18n:bc.Apparatus}}",
+          "Description": "{{i18n:spike.description}}",
+          "Price": 1,
+          "Fragility": 0,
+          "CanBePlacedOutdoors": true,
+          "CanBePlacedIndoors": true,
+          "IsLamp": false,
+          "Texture": "TileSheets/Craftables",
+          "SpriteIndex": 13,
+          "ContextTags": []
+        },
+        "CharlesDR.ValleyOpus_Spike_ApparatusFast": {
+          "Name": "CharlesDR.ValleyOpus_Spike_ApparatusFast",
+          "DisplayName": "{{i18n:bc.ApparatusFast}}",
+          "Description": "{{i18n:spike.description}}",
+          "Price": 1,
+          "Fragility": 0,
+          "CanBePlacedOutdoors": true,
+          "CanBePlacedIndoors": true,
+          "IsLamp": false,
+          "Texture": "TileSheets/Craftables",
+          "SpriteIndex": 13,
+          "ContextTags": []
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/Machines",
+      "Entries": {
+        "(BC)CharlesDR.ValleyOpus_Spike_Apparatus": {
+          "OutputRules": [
+            {
+              "Id": "Resolver",
+              "Triggers": [
+                {
+                  "Id": "Placed",
+                  "Trigger": "ItemPlacedInMachine"
+                }
+              ],
+              "OutputItem": [
+                {
+                  "Id": "Resolver",
+                  "OutputMethod": "ValleyOpus.Spikes.MachineSpike, ValleyOpus: OutputMethod"
+                }
+              ],
+              "MinutesUntilReady": 10
+            }
+          ]
+        },
+        "(BC)CharlesDR.ValleyOpus_Spike_ApparatusFast": {
+          "OutputRules": [
+            {
+              "Id": "Resolver",
+              "Triggers": [
+                {
+                  "Id": "Placed",
+                  "Trigger": "ItemPlacedInMachine"
+                }
+              ],
+              "OutputItem": [
+                {
+                  "Id": "Resolver",
+                  "OutputMethod": "ValleyOpus.Spikes.MachineSpike, ValleyOpus: OutputMethod"
+                }
+              ],
+              "MinutesUntilReady": 10
+            }
+          ],
+          "ReadyTimeModifiers": [
+            {
+              "Id": "SpikeHalf",
+              "Modification": "Multiply",
+              "Amount": 0.5
+            }
+          ]
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/Buildings",
+      "Entries": {
+        "CharlesDR.ValleyOpus_Spike_Lab": {
+          "Name": "{{i18n:building.lab}}",
+          "Description": "{{i18n:spike.description}}",
+          "Texture": "Buildings/Shed",
+          "Size": {
+            "X": 7,
+            "Y": 3
+          },
+          "Builder": "Robin",
+          "BuildCost": 10,
+          "BuildMaterials": [],
+          "BuildDays": 0,
+          "HumanDoor": {
+            "X": 3,
+            "Y": 2
+          },
+          "IndoorMap": "Shed",
+          "IndoorMapType": "StardewValley.Shed"
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/Locations",
+      "Entries": {
+        "CharlesDR.ValleyOpus_Spike_Workshop": {
+          "DisplayName": "{{i18n:location.workshop}}",
+          "CreateOnLoad": {
+            "MapPath": "Maps/Shed"
+          }
+        }
+      }
+    },
+    {
+      "Action": "EditMap",
+      "Target": "Maps/Town",
+      "MapTiles": [
+        {
+          "Position": {
+            "X": 52,
+            "Y": 7
+          },
+          "Layer": "Back",
+          "SetProperties": {
+            "TouchAction": "MagicWarp CharlesDR.ValleyOpus_Spike_Workshop 6 9"
+          }
+        }
+      ]
+    }
+  ]
+}
