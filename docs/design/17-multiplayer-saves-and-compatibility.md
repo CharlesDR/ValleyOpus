@@ -1,6 +1,6 @@
 # 17 · Multiplayer, Saves & Compatibility
 
-Status: **DRAFT v0.1d** (2026-10-19) · Readiness: ready for architecture
+Status: **DRAFT v0.1e** (2026-10-19) · Readiness: ready for architecture
 Depends on: 03b, 05, 07, 09, 11, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 11 (the slice's test plan), 16 (what the menus must respect), 20
 
 ## Purpose
@@ -127,7 +127,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 
 **f. Content packs.** Pack rows carry the pack's `FormatVersion` (doc 09); our loader upgrades older formats in memory and never writes pack files. Keys from a removed pack are kept but hidden (doc 12), so reinstalling it restores them.
 
-**g. The slice.** Schema version 1 is the slice's envelope. Build 2 must load a played slice save from test configuration 4 (doc 11 §6); the migration fixtures come from that save.
+**g. The slice.** Schema version 1 is the slice's envelope. Build 2 must load a played slice save from one of the build's solo configurations (doc 11 §6); the migration fixtures come from that save.
 
 ### 6 · Uninstall and "prepare for removal"
 **The command** `valleyopus_prepare_removal` (and a GMCM button) runs on the host only, after a confirmation, and logs every step. It never deletes anything; it moves items into **labelled chests** placed beside the farmhouse (or the player's position if those tiles are taken).
@@ -172,7 +172,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 | 1 | ValleyOpus only | solo, new save, CC | the core loop with **chaining only**; remove and reload |
 | 2 | + SVE | solo, new save, CC | Town warp, SVE items decomposing, event collisions, SVE-aware schedules |
 | 3 | + Automate | solo, late install, Joja | our factory, locked outputs, polling cost, late-install soft start |
-| 4 | + SVE + Automate | online co-op (split-screen and controller in game once Charles can test them, §8b) | codex sync, late joiners, use locks, clock freeze with farmhands, carry-forward of the previous build's save; per-screen menus and controller play later |
+| 4 | + SVE + Automate | online co-op and split-screen with a controller (**in-game runs deferred**, §8b) | codex sync, late joiners, use locks, clock freeze with farmhands, per-screen menus, controller play |
 | 5 | + SVE + Ridgeside Village + East Scarp + Alecto the Witch | solo | the four tie-ins together: map touchpoints, the Witch switching to Alecto, tie-in nodes and lines |
 | 6 | + the utility stack: Chests Anywhere, Convenient Inventory, Better Crafting, Lookup Anything, UI Info Suite 2, Experience Bars, Wear More Rings, Walk of Life | solo | Satchel and global-inventory handling, quick-stack, crafting from the Satchel, HUD display, ring stacking, profession resets |
 | 7 | + the dialogue and NPC stack: Canon-Friendly Dialogue Expansion, Miss Coriel's Unique Courtship Responses, Romanceable Rasmodia | solo | dialogue keys, Wizard content |
@@ -180,8 +180,8 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 
 **b. Rotation.** *(Charles, 2026-10-19, D14.)*
 - **Every build** includes an SVE configuration (2, 4 or 5) and repeats the remove-and-reload check in one of its configurations.
-- **Every build after the slice** includes configuration 4, so online co-op and save carry-forward are tested each time.
-- **Controller and split-screen** *(provisional, Charles, 2026-10-19: he can't test them for a while)*: every build lays the groundwork (gamepad navigation in every custom menu, `PerScreen<T>` state, per-screen toasts and overlays, §2i), and code review checks it on every build, with unit tests where the logic allows. **In-game controller and split-screen test cases are deferred** for the first few builds and added to configuration 4 once Charles can run them. They stay 1.0 requirements (U1).
+- **Every build after the slice** loads a played save from the previous build (the remove-and-reload save or any solo configuration's), so save carry-forward is tested each time.
+- **Online co-op, split-screen and controller** (Charles, 2026-10-19: he can't test them for a while): every build lays the groundwork (host authority and the sync protocol §2–3, gamepad navigation in every custom menu, `PerScreen<T>` state, per-screen toasts and overlays §2i), and code review checks it on every build, with unit tests where the logic allows (snapshot/delta merge, lock handling, the version handshake). **In-game runs of configuration 4 are deferred** for the first few builds and start once Charles can run them. All three stay 1.0 requirements (U1, doc 01).
 - A configuration whose area the build changed is picked first; one untouched for three builds is picked next.
 - **A release candidate** (1.0 beta and each update after it) covers all eight across its last two builds.
 
@@ -211,7 +211,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 
 ## Content inventory
 - One save envelope, one backup, about 14 message types, one console command and its GMCM button.
-- Migration fixtures: one saved envelope and one set of object records per shipped schema version, taken from the previous build's configuration 4 save.
+- Migration fixtures: one saved envelope and one set of object records per shipped schema version, taken from the previous build's played save (§8b).
 - The eight test configurations and the standing test items above, carried into each build's `TESTING.md` (doc 11 §6).
 
 ## Tech hooks
@@ -233,6 +233,7 @@ None `[blocks-arch]`; every default is confirmed (doc 10). Test items above are 
 - `[2.0]` Integration packs beyond the four tie-ins join the pool as configurations of their own.
 
 ## Change log
+- **v0.1e (2026-10-19):** Charles widened the deferral to online co-op: co-op, split-screen and controller get groundwork checked by code review every build; configuration 4's in-game runs are deferred; carry-forward uses a solo save.
 - **v0.1d (2026-10-19):** Charles confirmed D11–D14; they move to Decisions locked.
 - **v0.1c (2026-10-19):** controller and split-screen get groundwork checked by code review in every build; their in-game tests are deferred (Charles, provisional); configuration 4 tests online co-op.
 - **v0.1b (2026-10-19):** Charles chose one Satchel bag per player (§4); it moves from default D10 to Decisions locked.

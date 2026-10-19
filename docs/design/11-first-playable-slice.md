@@ -153,7 +153,7 @@ No slice recipe needs darkness: putrefaction makes only the dark twins, which ar
 | 1 | slice only | solo, new save | CC | the core loop, **chaining only** (no Automate), the finish line, then remove the mod and reload (uninstall) |
 | 2 | slice + **SVE** | solo, new save | CC | maps (Town warp), SVE items decomposing, event collisions; runs from the first build alongside test 1 |
 | 3 | slice + **Automate** | solo, late install on an existing Spring save | Joja | Automate claiming our machines, locked outputs, polling cost, late-install soft start, the Joja route |
-| 4 | slice + SVE + Automate | two-player online co-op | CC | codex sync, farmhand discoveries, clock freeze with farmhands, carry-forward into the next build. *Controller and split-screen:* groundwork in the build, checked by code review; in-game tests deferred until Charles can run them (provisional, Charles, 2026-10-19; doc 17 §8b) |
+| 4 | slice + SVE + Automate | two-player online co-op, plus a split-screen session with a controller | CC | codex sync, farmhand discoveries, clock freeze with farmhands, per-screen menus. **Deferred** (Charles, 2026-10-19): the slice builds and code-reviews the groundwork; in-game runs start once Charles can run them (doc 17 §8b). Carry-forward into the next build uses a solo save |
 
 **Unit tests and CI.** The engine's pure logic is written without game types where practical, so it runs in a plain C# test project: decomposition (profiles, √price yield, largest-remainder split, the exchange clamp, Aether weights), recipe matching and the uniqueness validator, neighbour states, quality modes and clamps, discovery keys and `tried:` signatures, and save-schema migration. The tests run on every push (GitHub Actions) and on the slice's data files, so a bad content row fails before anyone plays it. Doc 09's architecture plan must keep these pieces separable.
 
@@ -206,8 +206,8 @@ The slice is where doc 09's architecture plan is first proven. The risks it must
 1. **The staging layer calling the vanilla output path** with `probe`, and `OutputMethod` returning the resolver's match (doc 13 §6.1–2).
 2. **Automate never routing our machines to its generic handler** once our factory claims them; locked outputs refused (doc 13 §6.3).
 3. **Resolver caching under polling:** a target of 50 apparatus under Automate in one location with no visible frame-time cost (placeholder; the slice report logs resolver time per day).
-4. **Codex sync** host → farmhands, including late joiners.
-5. **Clock freeze** in single player, and its non-blocking form with farmhands (doc 07).
+4. **Codex sync** host → farmhands, including late joiners: built and code-reviewed in the slice, tested in game later (doc 17 §8b).
+5. **Clock freeze** in single player, and its non-blocking form with farmhands (doc 07); the farmhand form is tested in game later (doc 17 §8b).
 6. **A building with missing data** removed cleanly on load (S3).
 7. **The Town warp** with and without SVE.
 8. **SpaceCore skill** registration, level-up screen, and banking XP past level 4.
