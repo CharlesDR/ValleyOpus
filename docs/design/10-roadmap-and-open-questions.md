@@ -67,7 +67,6 @@ Every default once listed here is confirmed and written into its owning doc. **C
 ### Design questions still open
 - `[blocks-content]` **Where darkness holds outside a Lab** (night outdoors, caves, unlit rooms), since darkness is Required for every putrefaction recipe. *Owner: doc 12.*
 - `[blocks-content]` **Inventory sort keys:** verify what vanilla Organize and the common sort mods key on before tags, categories and IDs are assigned (doc 03b rule 5, doc 09). *Owner: the data layer.*
-- `[blocks-content]` **Great Work Chamber bundle titles** (default, awaiting Charles): the four bundles keep the stage names (Nigredo, Albedo, Citrinitas, Rubedo) as lore titles, while their slot text shows quality the vanilla way (doc 16 §2). *Owner: doc 14 §3.*
 - `[blocks-content]` **Effect count:** the 2–3 cap stays suspended; doc 15 §3a's catalogue is the 1.0 list for now. *Owner: Charles (doc 15).*
 
 ### Gate checks from the Phase 4 docs (16 UX, 17 Multiplayer, Saves & Compat)
@@ -107,7 +106,7 @@ Collected in the version-scope table above and tagged `[2.0]` in each doc: arcan
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
 
 ## Change log
-- **v0.10c (2026-10-19):** pre-gate cleanup sweep: docs 11, 16 and 17 shown as merged; the Phase 4 list becomes gate checks; the Great Work Chamber bundle-title default added; the mine-drop item moved here and to doc 03b from the to-do list.
+- **v0.10c (2026-10-19):** pre-gate cleanup sweep: docs 11, 16 and 17 shown as merged; the Phase 4 list becomes gate checks; Charles kept the stage names as the Great Work Chamber bundle titles (doc 14 §3); the mine-drop item moved here and to doc 03b from the to-do list.
 - **v0.10b (2026-10-19):** Charles approved all remaining defaults: D4 and doc 17's D11–D14; the defaults table is retired.
 - **v0.10 (2026-10-18):** doc 17 drafted: Satchel storage moves from the design questions to D10, which Charles confirmed on 2026-10-19 (one bag per player); D11–D14 added (host economy settings, version mismatch, newer saves, test rotation); the doc 17 Phase 4 list is replaced by a pointer.
 - **v0.9a (2026-10-18):** doc 16 drafted: its gate checks replace the Phase 4 to-do line; Charles confirmed its defaults D15–D19 and decided no late-install fast start, so that design question is closed.
