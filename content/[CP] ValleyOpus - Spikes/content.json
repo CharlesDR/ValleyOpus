@@ -474,31 +474,9 @@
       }
     },
     {
+      "LogName": "S13 warp behind the CC: 53,9 is open with and without SVE (52,7 is blocked in both, and SVE puts a bush on 52,9)",
       "Action": "EditMap",
       "Target": "Maps/Town",
-      "When": {
-        "HasMod |contains=FlashShifter.SVECode": false
-      },
-      "MapTiles": [
-        {
-          "Position": {
-            "X": 52,
-            "Y": 7
-          },
-          "Layer": "Back",
-          "SetProperties": {
-            "TouchAction": "MagicWarp CharlesDR.ValleyOpus_Spike_Workshop 6 9"
-          }
-        }
-      ]
-    },
-    {
-      "LogName": "S13 warp with SVE: SVE's tree line covers 52,7, so use the open strip behind the CC roof (52,9 has a bush)",
-      "Action": "EditMap",
-      "Target": "Maps/Town",
-      "When": {
-        "HasMod |contains=FlashShifter.SVECode": true
-      },
       "MapTiles": [
         {
           "Position": {
