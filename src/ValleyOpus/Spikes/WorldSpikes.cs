@@ -168,11 +168,14 @@ internal sealed class WarpSpike : ISpike
 {
     public const string WorkshopId = "CharlesDR.ValleyOpus_Spike_Workshop";
     private const string Warp = "MagicWarp " + WorkshopId + " 6 9";
-    private static Point tile = new(52, 7); // the spike pack's EditMap tile
+    private static Point? placed; // set by 'place' for this session
 
     private readonly IModHelper helper;
 
     public WarpSpike(IModHelper helper) => this.helper = helper;
+
+    // The spike pack's EditMap tile: SVE's tree line covers 52,7, so with SVE it's 52,9 behind the CC roof.
+    private Point tile => placed ?? (this.helper.ModRegistry.IsLoaded("FlashShifter.SVECode") ? new Point(52, 9) : new Point(52, 7));
 
     public string Id => "S13";
 
@@ -197,7 +200,7 @@ internal sealed class WarpSpike : ISpike
                 return;
 
             case "place" when args.Length >= 3 && int.TryParse(args[1], out int x2) && int.TryParse(args[2], out int y2):
-                tile = new Point(x2, y2);
+                placed = new Point(x2, y2);
                 town.setTileProperty(x2, y2, "Back", "TouchAction", Warp);
                 log.Look($"put the warp on Town {x2},{y2} for this session; walk onto it");
                 return;

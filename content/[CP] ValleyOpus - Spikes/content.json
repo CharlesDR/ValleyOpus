@@ -476,11 +476,34 @@
     {
       "Action": "EditMap",
       "Target": "Maps/Town",
+      "When": {
+        "HasMod |contains=FlashShifter.SVECode": false
+      },
       "MapTiles": [
         {
           "Position": {
             "X": 52,
             "Y": 7
+          },
+          "Layer": "Back",
+          "SetProperties": {
+            "TouchAction": "MagicWarp CharlesDR.ValleyOpus_Spike_Workshop 6 9"
+          }
+        }
+      ]
+    },
+    {
+      "LogName": "S13 warp with SVE: SVE's tree line covers 52,7, so use the open strip behind the CC roof",
+      "Action": "EditMap",
+      "Target": "Maps/Town",
+      "When": {
+        "HasMod |contains=FlashShifter.SVECode": true
+      },
+      "MapTiles": [
+        {
+          "Position": {
+            "X": 52,
+            "Y": 9
           },
           "Layer": "Back",
           "SetProperties": {
