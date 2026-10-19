@@ -59,7 +59,7 @@ Three rules hold everywhere:
 | Rings and trinkets | vanilla ring and `Data/Trinkets` slots | vanilla |
 | Shops | `Data/Shops` | vanilla |
 | Starter quests and story quests | vanilla quest log (`Data/Quests`) | vanilla (doc 11) |
-| **Sorenson's contracts** | vanilla **special orders** (`Data/SpecialOrders`), with money or a mail-flag unlock as the reward | vanilla (changed here; doc 15 §6) |
+| **Sorenson's contracts** | vanilla **special orders** (`Data/SpecialOrders`) with our own `OrderType`, on Sorenson's own board in the Cistern (vanilla's board menu, opened by a tile action we register for that type; spike S20), with money or a mail-flag unlock as the reward | vanilla (changed here; doc 15 §6) |
 | Unlock flags | mail flags plus our GSQ | vanilla |
 | Mail, events, dialogue, schedules, maps | Content Patcher data | framework |
 | Celebrations | the vanilla hold-up and HUD messages | vanilla |
@@ -292,6 +292,7 @@ The gate can't run the game, so every platform question below becomes a spike in
 | S16 | Category numbers and the professions they trigger (Artisan, Blacksmith for bars); dye context-tag names | 15 | categories chosen by the result; tags corrected in data |
 | S17 | Robin's menu ordering with SVE's extra buildings | 18 | accept the order; mention it in the guide |
 | S18 | Hover cost of power links and the Lab mark in large Labs | 13, 18 | computed on hovered-tile change only (already the plan) |
+| S20 | The vanilla special-orders board menu showing only our `OrderType` when opened from our tile action | 09 §1a, 15 | a small board menu of our own over the same vanilla special-order data |
 | S19 | Vanilla `ReadyTimeModifiers` (other mods' machine-speed edits) applying on top of our `OutputMethod` minutes | 09 §1a | apply the rule's modifiers ourselves after setting minutes |
 
 **Harmony patches** (the compatibility surface). Each is registered in one place with an ID and a guard that logs and disables the patch on error, and each is checked against the configuration-6 and 8 mods (doc 17 §8a):
