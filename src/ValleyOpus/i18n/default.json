@@ -1,1 +1,67 @@
-{}
+{
+  // The SMAPI mod's own strings (doc 11 §6: every player-facing string is i18n from the first build).
+  // Item, apparatus and condition names live in the base content pack's i18n; Power substances and condition
+  // names the mod shows itself are repeated here.
+
+  "skill.name": "Alchemy",
+  "skill.level2": "Your Reagent Satchel holds 12 more kinds of reagent.",
+  "skill.level4": "Your Assayer's Lens can assay a whole chest at once.",
+  "skill.hover": "Alchemy level {{level}}",
+
+  "notice.version-mismatch": "The host runs ValleyOpus {{host}}. Your discoveries won't be shared until your versions match.",
+  "notice.shared-discovery": "{{name}} discovered {{count}} new recipe(s).",
+  "toast.merged": "{{count}} new discoveries: {{list}}",
+
+  "discovery.new": "Discovered: {{name}}!",
+  "discovery.effect": "Discovered an effect: {{name}}",
+  "machine.await-seal": "Add another item, or click the apparatus with an empty hand to break this one down.",
+  "machine.kindled": "The Athanor is kindled, and will stay lit.",
+  "table.power-reveal": "A puff of {{name}}! It can't be bottled, but now you know it.",
+  "table.tried": "Nothing came of it. Noted in your codex.",
+
+  "reason.None": "",
+  "reason.TrayFull": "The tray is full.",
+  "reason.NoNeighbourState": "Nothing here suits this apparatus.",
+  "reason.NoRecipe": "Nothing this apparatus knows starts with that here.",
+  "reason.HandMadeOnly": "That can only be made by hand.",
+  "reason.NotDiscovered": "That recipe hasn't been discovered yet.",
+  "reason.NotAutomatable": "This apparatus can't be loaded that way.",
+  "reason.NoRecipeMemory": "Load a recipe by hand once first.",
+  "reason.WaitingForConditions": "Waiting for:",
+  "reason.Busy": "It's busy.",
+  "reason.Pinned": "Pinned to another recipe. Unpin it in the picker first.",
+  "reason.NoFuel": "It needs Coal.",
+  "reason.FuelFull": "The fuel box is full.",
+  "reason.AlreadyDone": "It's already kindled.",
+  "reason.NotDecomposable": "That can't be broken down, and starts nothing here.",
+
+  "tooltip.locked-ready": "Ready: something new! Collect it by hand.",
+  "tooltip.ready": "Ready.",
+  "tooltip.working": "Making {{name}}: {{minutes}} min left.",
+  "tooltip.memory-unset": "Not set: load a recipe by hand once",
+  "tooltip.memory-decompose": "Breaking things down",
+  "tooltip.memory": "Remembers: {{memory}}",
+  "tooltip.pinned": "(pinned)",
+  "tooltip.tray": "Tray: {{items}}",
+  "tooltip.state": "Now: {{state}}",
+  "tooltip.kindled": "Kindled: heats two neighbours.",
+  "tooltip.not-kindled": "Not kindled. Feed it Ignis and Ignis.",
+  "tooltip.fuel": "Coal: {{have}}/{{max}}",
+
+  "state.Cold": "cold (dissolves)",
+  "state.Heated": "heated (distills)",
+  "state.Open": "ready",
+  "state.Table": "ready",
+
+  "condition.Flowers": "Flowers nearby",
+
+  "assay.prime": "A Prime: it can't be broken down further.",
+  "assay.refused": "It refuses to come apart.",
+  "assay.nothing": "Nothing you can draw out of it.",
+  "assay.chest-locked": "Your Lens can assay a whole chest at Alchemy level 4.",
+  "assay.empty": "The chest is empty.",
+
+  "substance.FlammaViva": "Flamma Viva",
+  "substance.Vapor": "Vapor",
+  "substance.Fulgur": "Fulgur"
+}

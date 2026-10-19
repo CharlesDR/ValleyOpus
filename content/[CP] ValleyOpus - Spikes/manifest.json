@@ -1,8 +1,8 @@
 {
   "Name": "[CP] ValleyOpus - Spikes",
   "Author": "CharlesDR",
-  "Version": "0.1.0-alpha.1",
-  "Description": "Placeholder items, machines, a building and a warp for the alpha.1 spike tests. Test builds only; never shipped to players.",
+  "Version": "0.1.0-alpha.2",
+  "Description": "A placeholder Lab building for the alpha.2 spike test S3. Test builds only; never shipped to players.",
   "UniqueID": "CharlesDR.ValleyOpus.Spikes",
   "UpdateKeys": [],
   "ContentPackFor": {
@@ -10,6 +10,8 @@
     "MinimumVersion": "2.4.0"
   },
   "Dependencies": [
-    { "UniqueID": "CharlesDR.ValleyOpus" }
+    {
+      "UniqueID": "CharlesDR.ValleyOpus"
+    }
   ]
 }
