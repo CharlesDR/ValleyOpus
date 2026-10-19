@@ -2,7 +2,7 @@
 
 An alchemy and automation expansion for Stardew Valley. These are **drafts** (started 2026-10-13, last swept 2026-10-19); each doc's status line gives its version and readiness. This repo is their source of truth. **Every open question is collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).**
 
-Each subject has one owning doc; other docs summarize and link to it. Where an older summary and the owning doc differ, the owning doc wins. Doc numbers 19, 20 and 21 are reserved on the path in doc 00.
+Each subject has one owning doc; other docs summarize and link to it. Where an older summary and the owning doc differ, the owning doc wins. Doc numbers 19, 20 and 21 are reserved on the path in doc 00; doc 22 is the execution plan.
 
 | Doc | Topic |
 |---|---|
@@ -28,3 +28,4 @@ Each subject has one owning doc; other docs summarize and link to it. Where an o
 | [16 UX & Interface](16-ux-and-interface.md) | every screen and indicator: the interaction model, Experiment Table, Satchel and picker, machine tooltips, the chain overlay, the codex, celebrations, Finch's shop, GMCM options, controller and split-screen, the quarter-day hand-action budget |
 | [17 Multiplayer, Saves & Compatibility](17-multiplayer-saves-and-compatibility.md) | every piece of state and who owns it, multiplayer sync, Satchel storage, the save schema and migration, uninstall, map touchpoints, the test matrix |
 | [18 Laboratory & Familiars](18-laboratory-and-familiars.md) | the three Lab tiers, costs and bonuses, nested floorplans with hearths and dark alcoves, the space check, the four Familiars and their bonding |
+| [22 Execution Plan](22-execution-plan.md) | after the gate: the build batches to build 1, who does what, the spike order with fallbacks, how to-do and backlog items join a batch |
