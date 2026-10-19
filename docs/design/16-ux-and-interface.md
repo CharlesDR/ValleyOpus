@@ -197,6 +197,7 @@ Link states use shape as well as colour: solid arrow (working), dashed (idle), �
 Finch's shop is the vanilla shop menu, so buying feels like any travelling merchant.
 - A curiosity's item **Description** is a generic line ("A curiosity from the road. Its secret is for its owner."). The **hint text** is a separate i18n key, never in the item data.
 - Our tooltip code appends the hint text only when the item is **owned**: in the player's inventory, the Satchel, a chest, or as its codex Notes entry. A shop's for-sale list is never "owned", so neither vanilla's shop tooltip nor a mod that reads the item's description (Lookup Anything on the shop stock) can show it.
+- **Never a hint for something already known** (Charles, 2026-10-18): Finch stocks a curiosity only if its hint's target is still undiscovered (no `recipe:` key for a recipe target, no `item:` key for an item target). If the farm discovers the target while the curiosity is still on sale, it leaves his stock and an undiscovered one takes its place, so he never sells a hint that points at something the player already knows.
 - Buying one sets its `hint:` key, so it joins the Notes page at once and is never sold as new again by divination.
 
 ### 10 · The bundle board (doc 14)
@@ -331,6 +332,6 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
-- **v0.1 (2026-10-18), Charles's review:** quality shows on screen as "base quality" and the vanilla stars, never the Latin stage names; a codex entry's Used in list shows a "???" row for each undiscovered recipe that uses the item, and undiscovered routes use the same "???" mark; controller and split-screen groundwork from the first build, with in-game tests deferred while Charles can't test.
+- **v0.1 (2026-10-18), Charles's review:** Finch never sells a curiosity whose hint points at something already discovered; quality shows on screen as "base quality" and the vanilla stars, never the Latin stage names; a codex entry's Used in list shows a "???" row for each undiscovered recipe that uses the item, and undiscovered routes use the same "???" mark; controller and split-screen groundwork from the first build, with in-game tests deferred while Charles can't test.
 - **v0.1 (2026-10-18), Charles's answers:** no late-install fast start (the GMCM row and open question are removed); defaults D15–D19 confirmed.
 - **v0.1 (2026-10-18):** first draft: principles, the interaction model, the screen inventory with slice flags, the Experiment Table menu with its before-Combine result panel, the Satchel tooltip, grid and picker, the machine tooltip order and tray view, the chain overlay in two levels with the placement preview, the codex pages, entries, Notes page and search, celebrations and clock freeze, Finch's shop hiding the curiosity hint, the bundle board and divination panel, the Lens, altar prompts, GMCM options, controller and split-screen rules, and the quarter-day hand-action budget with its levers.
