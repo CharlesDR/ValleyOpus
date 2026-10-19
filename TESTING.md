@@ -120,7 +120,7 @@ Known fails, fixed in alpha.2: **S3** (removing the mod with a Lab) and the **S1
 ### Configuration 2 · configuration 1 + SVE (farm `VO-2`)
 Your first run had SVE installed, so S17 (Lab last, 22 of 22) and S11 are **done**. Still to do:
 - [ ] **S13 · Warp behind the CC, with SVE.** The build now moves the warp to 52,9 when SVE is installed (a tile behind the CC that SVE leaves empty). In Town: `valleyopus_spike S13` should say PASS for 52,9; walk onto it and you should land in the shed-like room.
-- [ ] **S11 · Chest sort with sort mods** (only if you have any installed): `valleyopus_spike S11 chest`, open the chest, press each sort mod's button, and note whether each kept the order in the LOOK line.
+- [x] **S11 · Chest sort, with SVE.** PASS (Charles, by eye after Organize on the chest, full mod list). The main `S11` command wasn't rerun here, and the sort mods' buttons weren't checked one by one.
 
 ### Configuration 3 · configuration 1 + Automate (farm `VO-3`)
 Still to do:
@@ -138,7 +138,7 @@ Desk results come from reading public sources before the build (doc 22 §4). In-
 
 | Spike | Build | Desk result | In-game result | Fallback taken |
 |---|---|---|---|---|
-| S11 sort keys | alpha.1 | Can't be settled from public sources (the game's sort code isn't published). The spike tries all four candidate fields at once. | **PASS** on the full mod list and again on a clean configuration 1 (2026-10-19): the internal name is the key; item ID and display name sort in reverse; category doesn't sort. The chest order after vanilla Organize also passed. Still to check: the French rerun and the sort mods' buttons. | none; the spaced sort key goes in the internal name (doc 09 §11, B2 docs PR) |
+| S11 sort keys | alpha.1 | Can't be settled from public sources (the game's sort code isn't published). The spike tries all four candidate fields at once. | **PASS** on the full mod list and again on a clean configuration 1 (2026-10-19): the internal name is the key; item ID and display name sort in reverse; category doesn't sort. The chest order after vanilla Organize also passed. The chest order also passed by eye in configuration 2 (SVE, full mod list). Still to check: the French rerun and each sort mod's button. | none; the spaced sort key goes in the internal name (doc 09 §11, B2 docs PR) |
 | S16 categories, professions, dye tags | alpha.1 | Expected: Artisan ×1.4 on category −26, Gemologist ×1.3 on gems and minerals; Blacksmith on category −15 to be confirmed; dye reads `color_*` tags. | **PASS except Blacksmith** (2026-10-19, Charles's full mod list with SVE, not a clean configuration): Artisan and Gemologist apply; Blacksmith gives ×1.0 on our Resource items (expected ×1.5), so it seems to apply only to specific vanilla bars. Dye not yet checked by eye. | metal-type items need another route to Blacksmith (design item, to-do list) |
 | S1 staging → output path; `OutputMethod` | alpha.1 | Likely PASS. The `OutputMethod` signature (machine, input, probe, output data, player, out minutes) matches the published machine docs. | **PASS** (2026-10-19, Charles's full mod list with SVE, not a clean configuration). | none |
 | S19 `ReadyTimeModifiers` over our minutes | alpha.1 | Unknown: the docs don't say whether the modifiers apply when `OutputMethod` overrides the minutes. | **PASS** (2026-10-19, Charles's full mod list with SVE, not a clean configuration) (runs inside S1). | none |
