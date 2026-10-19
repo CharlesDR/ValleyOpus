@@ -1,0 +1,15 @@
+{
+  "Name": "[CP] ValleyOpus - Test Fixtures",
+  "Author": "CharlesDR",
+  "Version": "0.1.0-alpha.1",
+  "Description": "Test content for ValleyOpus: fixture rows that exercise rules no shipped row uses, including deliberate errors the validator must catch. Never shipped to players.",
+  "UniqueID": "CharlesDR.ValleyOpus.TestFixtures",
+  "UpdateKeys": [],
+  "ContentPackFor": {
+    "UniqueID": "Pathoschild.ContentPatcher",
+    "MinimumVersion": "2.4.0"
+  },
+  "Dependencies": [
+    { "UniqueID": "CharlesDR.ValleyOpus" }
+  ]
+}

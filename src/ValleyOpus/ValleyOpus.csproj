@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The SMAPI mod: the game adapter (doc 09 §3). It references the game's assemblies, so it can't build in CI;
+    it builds on a machine with the game installed (D23). Pathoschild.Stardew.ModBuildConfig finds the game,
+    references it, deploys the mod into the game's Mods folder on build, and bundles ValleyOpus.Engine.dll.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>ValleyOpus</AssemblyName>
+    <RootNamespace>ValleyOpus</RootNamespace>
+    <EnableHarmony>true</EnableHarmony>
+    <EnableModZip>false</EnableModZip>
+    <ModFolderName>ValleyOpus</ModFolderName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.3.2" />
+    <ProjectReference Include="..\ValleyOpus.Engine\ValleyOpus.Engine.csproj" />
+  </ItemGroup>
+
+  <!-- SpaceCore is a required dependency; its skill API is a base class, so we reference its DLL (never copied). -->
+  <ItemGroup>
+    <Reference Include="SpaceCore" HintPath="$(GameModsPath)\SpaceCore\SpaceCore.dll" Private="false" />
+    <!-- GameContent reads registry rows as JObject; SMAPI ships Newtonsoft.Json but ModBuildConfig doesn't reference it. -->
+    <Reference Include="Newtonsoft.Json" HintPath="$(GamePath)\smapi-internal\Newtonsoft.Json.dll" Private="false" />
+  </ItemGroup>
+</Project>

@@ -1,6 +1,6 @@
 # 09 · Technical Architecture
 
-Status: **DRAFT v1.0** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (every gate decision is made; no `[blocks-arch]` item is open)
+Status: **DRAFT v1.0a** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (every gate decision is made; no `[blocks-arch]` item is open)
 Depends on: 00, 01, 03, 03a, 03b, 04, 05, 07, 11, 12, 13, 14, 15, 16, 17, 18 · Feeds: execution planning, every build, 19, 20, 21
 
 ## Purpose
@@ -14,7 +14,7 @@ Carried from earlier versions of this doc and from the owning docs; nothing here
 - **Required dependencies:** SMAPI, Content Patcher, SpaceCore. **Optional:** Automate (first-class, never required), GMCM, Better Crafting, the four 1.0 tie-ins. **Avoid:** Producer Framework Mod, Json Assets (1.6 makes them unnecessary).
 - **Safe to uninstall** (S3): vanilla object types only, no custom item or object subclasses; state in `modData`, host save data and per-player global inventories; a "prepare for removal" command (doc 17 §6).
 - **One C# resolver** behind every apparatus's `Data/Machines` `OutputMethod`, fed by a staging tray (Charles, 2026-10-16; doc 13 §6).
-- **One Automate factory** claims every ValleyOpus apparatus (doc 13 §6.3).
+- **Automate runs our machines through its own generic `Data/Machines` handler** (Charles, 2026-10-19, D25, after spike S2's desk check): no Automate factory and no patch on Automate. Every rule we need is enforced in our staging layer and in vanilla methods (doc 13 §6.3).
 - **Directional chaining is ours**, runs without Automate, and sits behind an item-route interface that 2.0 arcane logistics can replace or extend (S2).
 - **i18n from the first build** (S4); **controller and split-screen** required for 1.0, with groundwork and code review every build and in-game tests deferred until Charles can run them (U1; doc 17 §8b).
 - **Testing from the first commit:** pure engine logic in a plain C# test project on every push, one `[ValleyOpus]` log prefix, at most four test configurations per build with SVE among them, `TESTING.md` in every test build (Charles, 2026-10-18; doc 11 §6).
@@ -90,7 +90,7 @@ ValleyOpus/
 
 | Component | Kind | Contents |
 |---|---|---|
-| **ValleyOpus** | SMAPI C# mod | engine, adapter, menus and overlay, SpaceCore skill, sync, save envelope, Automate factory, GMCM page, custom GSQs, Harmony patches (§13), console commands, UI strings in `i18n/` |
+| **ValleyOpus** | SMAPI C# mod | engine, adapter, menus and overlay, SpaceCore skill, sync, save envelope, locked-output store, GMCM page, custom GSQs, Harmony patches (§13), console commands, UI strings in `i18n/` |
 | **[CP] ValleyOpus** | Content Patcher pack | registry rows (docs 03, 05, 07, 12–15, 18), authored vanilla rows (`Data/Objects`, `Data/BigCraftables`, `Data/Buildings`, `Data/Furniture`, `Data/Trinkets`, shops, mail, events, NPCs, schedules, dialogue, gift tastes), maps, sprites, content strings in `i18n/` |
 | **Integration packs** | CP, `HasMod`-gated | tag weights and overrides for the tie-in's items, gift tastes, dialogue, small events, ley nodes in the tie-in's own areas (doc 17 §7a) |
 
@@ -135,7 +135,7 @@ ValleyOpus/
 | `World` | the workshop location and Town warp, Labs, Familiar sprites and interactions, ley nodes, hidden areas, the Gloam Lantern | 08, 14, 18 |
 | `Skill` | the SpaceCore skill, professions, level unlocks | 05 |
 | `UI` | every custom menu, tooltip, overlay and HUD notice of doc 16, with `PerScreen<T>` state | 16 |
-| `Integrations` | Automate, GMCM, Better Crafting; each optional and isolated | §9 |
+| `Integrations` | GMCM, Better Crafting; each optional and isolated (Automate needs no code, §9) | §9 |
 | `Diagnostics` | logging, verbose mode, console commands, the slice report | 11 §4, §6 |
 
 Dependencies run one way: `UI` → adapter services → `Engine`. No engine type references the adapter, and no UI code writes state except through a service.
@@ -161,7 +161,7 @@ When a registry is invalidated, the compiler invalidates exactly the vanilla ass
 **e. Strings.** Content strings (item names, registry text fields such as `NameKey`, dialogue) are translated by Content Patcher's `{{i18n:…}}` token in each pack's own `i18n/` folder, so every pack translates its own rows; the registry field then holds the resolved text. UI strings (menus, the fixed reason lines of doc 16 §2) live in the C# mod's `i18n/`. No player-facing string is hard-coded.
 
 ### 5 · Subsystems
-**a. The resolver and the staging layer** (doc 13 §6). All four loaders (hand drop-in, the Satchel picker, chaining, Automate) call one method, `TryStage(machine, item, who, source)`:
+**a. The resolver and the staging layer** (doc 13 §6). All four loaders (hand drop-in, the Satchel picker, chaining, Automate) call one method, `TryStage(machine, item, who, source)`. Hand loads and Automate reach it through the drop-in prefix (Harmony patch 1); Automate and vanilla hoppers load through vanilla's auto-load method, which patch 7 marks so `source` is *automated* (D25):
 ```
 TryStage ─► engine: does item extend the tray toward a recipe runnable here, now?
             (index lookup by item ID and tags → neighbour state → discovered? → Required conditions)
@@ -185,7 +185,7 @@ IItemRoute
   Accept(machine, item) → TryStage(...)
   Plan(location)  → ordered transfers for this pass
 ```
-Directional chaining is its 1.0 implementation: output East first, then the South chest; input West first, then the South chest (doc 04). It runs **on the host only** (doc 17 §2c), on a once-a-second pass over a queue of dirty machines (a finished output, a tray change, a placement), with a per-pass budget so a large farm spreads its work. When Automate is installed, our factory (§9) gives our route priority before Automate's group logic, and both go through `TryStage`. 2.0 arcane logistics is a second `IItemRoute`, not a rewrite.
+Directional chaining is its 1.0 implementation: output East first, then the South chest; input West first, then the South chest (doc 04). It runs **on the host only** (doc 17 §2c), on a once-a-second pass over a queue of dirty machines (a finished output, a tray change, a placement), with a per-pass budget so a large farm spreads its work. When Automate is installed it is a third loader on the same machines through vanilla's auto-load path (D25), and both go through `TryStage`. Chaining no longer has guaranteed priority over Automate on a machine both can reach: whichever pass runs first moves the item (an S2 in-game check). 2.0 arcane logistics is a second `IItemRoute`, not a rewrite.
 
 **e. Farm state.** Codex, unlocks, bundle progress, Familiars and per-player records live in one host-owned envelope (doc 17 §5). Each is a service with a local mirror: the host writes and broadcasts; farmhands send requests and read their mirror, so no menu waits on the network. Unlock state is mirrored into mail flags and crafting recipes for every player on connect and at day start (doc 14). Bundle deposits wait for the host's confirmation (doc 17 §3b).
 
@@ -232,7 +232,7 @@ Placeholders until the slice measures them (doc 11 §4's report logs resolver ti
 |---|---|---|
 | **SpaceCore** (required) | `Skills.RegisterSkill`; per-farmer skill data and its sync | SMAPI won't load us; the manifest names the minimum version |
 | **Content Patcher** (required) | our packs and every content pack | same |
-| **Automate** | `IAutomateAPI.AddFactory` with one factory for every ValleyOpus apparatus; its machine wrapper's `SetInput` calls `TryStage` for the recipe memory's multiset, `GetOutput` refuses locked outputs, `GetState` reports *processing* for staged altars (doc 13 §6.3). Isolated in its own folder and only touched after the mod registry reports Automate | chaining and hand work cover everything (doc 04) |
+| **Automate** | no code (Charles, 2026-10-19, D25): its generic `Data/Machines` handler runs our apparatus. It loads through vanilla's auto-load, one item per pass, so `TryStage` enforces discovery, recipe memory, waiting idle and hand-made-only refusal; locked outputs leave the machine slot the moment they finish (patch 8), so Automate never sees them; staged-but-untriggered altars read as *empty* to Automate and refuse its loads (doc 13 §6.3) | chaining and hand work cover everything (doc 04) |
 | **GMCM** | API: per-player options, host economy knobs, the "prepare for removal" button (doc 16 §15) | config file only |
 | **Better Crafting** | its public API: the Satchel as an extra ingredient source; hand-made-only recipes listed normally | vanilla crafting menu |
 | **Lookup Anything** | nothing: it reads our machines as `Data/Machines` machines (doc 13 §6.6) | n/a |
@@ -275,7 +275,7 @@ The gate can't run the game, so every platform question below becomes a spike in
 | # | Risk or question | Raised by | Fallback if the spike fails |
 |---|---|---|---|
 | S1 | Our staging layer calling the vanilla output path with `probe`, and `OutputMethod` returning the resolver's match | 11, 13 | set the held object and minutes ourselves; vanilla still draws and collects |
-| S2 | Automate never routing our machines to its generic handler once our factory claims them; locked outputs refused | 11, 13 | mark our `Data/Machines` rules so Automate's generic handler skips them, per its documented options |
+| S2 | **Decided by desk check and Charles (D25):** Automate's generic handler runs our machines (its default factory claims every `Data/Machines` object first, and no option skips one). In game: its loads reach `TryStage`, multi-input trays fill across passes, and locked outputs never reach its chests | 11, 13 | a held-out output Automate still takes: move it out earlier (at `OutputMethod` time); trays that never fill: chaining-only lines for multi-input recipes and a note in the guide |
 | S3 | A building with missing data dropped cleanly on load (S3); Error Items of our BigCraftables turning back into machines on reinstall | 09, 17 | "prepare for removal" also removes emptied Labs, and the release notes say to run it |
 | S4 | A Lab upgrade with a different indoor map keeping every placed object | 18 | nested floorplans keep coordinates; else move objects across in code at upgrade |
 | S5 | The vanilla hold-up pausing the clock in single player | 07, 16 | a single-player-only postfix on the time-pass check |
@@ -301,7 +301,9 @@ The gate can't run the game, so every platform question below becomes a spike in
 3. a postfix on the item tooltip path for profile and hint lines (doc 16);
 4. ring equip and unequip hooks for our rings (doc 15);
 5. the Satchel guard: our Satchel can't be trashed or shipped while its bag holds anything, and reagents go to the bag even when the main inventory is full (doc 17 §4);
-6. S5's fallback, only if the spike needs it.
+6. S5's fallback, only if the spike needs it;
+7. a prefix and postfix on vanilla's machine auto-load (`Object.AttemptAutoLoad`), for our machines only: marks the load as automated (Automate and hoppers; D25);
+8. a postfix on vanilla's machine timer (`Object.minutesElapsed`), for our machines only: a locked output that just finished moves into the locked-output store before any automation can collect it (D25).
 A new patch is added to this list before it is written.
 
 ### 15 · Integration and compatibility targets
@@ -339,7 +341,7 @@ Clarification for every owning doc: registry fields named `…Key` (such as `Nam
 None. Rows belong to the owning docs; the slice's are listed in doc 11.
 
 ## Tech hooks
-This whole doc. In short: `Data/Machines` with `OutputMethod`, custom GSQs, `Data/Buildings` with `CustomFields`, global inventories, `modData`, SMAPI save data, multiplayer messages and `PerScreen<T>`, SpaceCore skills, the Automate factory API, the GMCM API, and the Harmony patches listed in §14.
+This whole doc. In short: `Data/Machines` with `OutputMethod`, custom GSQs, `Data/Buildings` with `CustomFields`, global inventories, `modData`, SMAPI save data, multiplayer messages and `PerScreen<T>`, SpaceCore skills, the GMCM API, and the Harmony patches listed in §14.
 **1.7:** `Data/ContextTags` and data-model crafting recipes touch only `Catalog` (tag reading) and the data compiler's crafting step; our registries, the engine and the save envelope don't change. Any 1.7 change to saved state ships as a normal migration step (doc 17).
 
 ## Balance hooks
@@ -351,6 +353,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Arcane logistics as a second `IItemRoute`; content-pack professions; Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
+- **v1.0a (2026-10-19):** Charles chose option B for spike S2 (D25): Automate's generic handler runs our machines; the Automate factory is dropped; Harmony patches 7 and 8 added; §5a, §5d, §9 and the S2 row follow.
 - **v1.0a (2026-10-19):** Charles's vanilla-first rule (§1a) with an audit of every area; Sorenson's contracts become vanilla special orders; machine timing keeps vanilla `ReadyTimeModifiers` (spike S19); D22: Charles kept Familiars on their own bond points.
 - **v1.0 (2026-10-19):** rewritten as the architecture plan at the gate: the engine and adapter split with one module per owning doc, the repository layout (a game-free engine so CI can test it), the data pipeline (our registries as CP-filled assets, a validator, a compiler that adds computed fields to authored vanilla rows), the staging, neighbour, routing, farm-state and UI designs, the runtime event table, performance budgets, integrations, the framework choices (our own bundle board, chosen by Charles as D20; our own Familiar renderer as D21, both chosen by Charles), the risk register as first-build spikes with fallbacks, and the Harmony patch list. Integration targets and Charles's ID rules carried over.
 - **v0.6c (2026-10-19):** pre-gate cleanup sweep: testing from the first commit (doc 11 §6) and the deferred in-game co-op, split-screen and controller tests (doc 17 §8b).

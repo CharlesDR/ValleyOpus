@@ -1,0 +1,15 @@
+{
+  "Name": "[CP] ValleyOpus - Spikes",
+  "Author": "CharlesDR",
+  "Version": "0.1.0-alpha.1",
+  "Description": "Placeholder items, machines, a building and a warp for the alpha.1 spike tests. Test builds only; never shipped to players.",
+  "UniqueID": "CharlesDR.ValleyOpus.Spikes",
+  "UpdateKeys": [],
+  "ContentPackFor": {
+    "UniqueID": "Pathoschild.ContentPatcher",
+    "MinimumVersion": "2.4.0"
+  },
+  "Dependencies": [
+    { "UniqueID": "CharlesDR.ValleyOpus" }
+  ]
+}
