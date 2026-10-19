@@ -1,6 +1,6 @@
 # 09 · Technical Architecture
 
-Status: **DRAFT v1.0** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (both framework choices in §10 are decided; no `[blocks-arch]` item is open)
+Status: **DRAFT v1.0** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (one decision, D22 in §1a, awaits Charles)
 Depends on: 00, 01, 03, 03a, 03b, 04, 05, 07, 11, 12, 13, 14, 15, 16, 17, 18 · Feeds: execution planning, every build, 19, 20, 21
 
 ## Purpose
@@ -19,6 +19,7 @@ Carried from earlier versions of this doc and from the owning docs; nothing here
 - **i18n from the first build** (S4); **controller and split-screen** required for 1.0, with groundwork and code review every build and in-game tests deferred until Charles can run them (U1; doc 17 §8b).
 - **Testing from the first commit:** pure engine logic in a plain C# test project on every push, one `[ValleyOpus]` log prefix, at most four test configurations per build with SVE among them, `TESTING.md` in every test build (Charles, 2026-10-18; doc 11 §6).
 - **Satchel contents** in a 1.6 global inventory per player (Charles, 2026-10-19; doc 17 §4).
+- **Vanilla first, then widely used frameworks** (Charles, 2026-10-19): where the base game or a widely used framework (such as SpaceCore) already has a system, we use it instead of building our own, so other mods that change that system also change our content (§1a).
 
 ## Player-facing spec
 None of its own. Players meet this architecture only through what docs 07, 13, 16 and 17 already specify: machines that behave like vanilla machines, co-op that just works, saves that survive updates and removal, and other mods left intact.
@@ -41,6 +42,33 @@ Three rules hold everywhere:
 1. **The engine decides, the adapter acts.** Every rule of docs 03, 05, 07, 12, 13 and 17 that can be stated without game types lives in the engine, so it runs in the test project. The adapter only reads the game into plain records, calls the engine, and writes the answer back.
 2. **One entry point per question.** "Can this item go in here?", "what does this tray make?", "is this discovered?", "what is this perk's total?" each have exactly one implementation, used by hand loading, the Satchel picker, chaining, Automate, the codex and tooltips alike (doc 12 §12).
 3. **Vanilla shapes at rest.** Everything saved is a vanilla object, a `modData` string, a vanilla global inventory or our host save envelope. Nothing we save needs our code to deserialize except the envelope, which is plain JSON.
+
+### 1a · Vanilla first, then widely used frameworks (Charles, 2026-10-19)
+**Rule.** Before any subsystem builds its own mechanism, it uses, in this order: (1) a base-game system or data asset, (2) a widely used framework we already depend on (SpaceCore, Content Patcher), (3) a widely used optional framework, and only then (4) our own code. The goal is compatibility: a mod that changes friendship gains, gift tastes, machine speed, prices, buffs, quests or skill XP should change ours too. Our own code is allowed only where nothing standard fits, and the reason is recorded in the table below. A new subsystem adds its row here first.
+
+| Area | What we use | Status |
+|---|---|---|
+| Villager friendship, gifts, heart events | vanilla `Data/Characters`, `Data/NPCGiftTastes`, events with friendship preconditions | vanilla (docs 08, 08a, 20) |
+| Familiar bonds and hearts | own bond points today (doc 18 §4) | **D22, to Charles:** move them onto vanilla friendship |
+| Skill, XP, professions, level-up | SpaceCore | framework |
+| Machines, timers, ready bubble, collection | `Data/Machines` with `OutputMethod` | vanilla; our minutes are the base, and vanilla `ReadyTimeModifiers` (ours empty, other mods' kept) apply on top (spike S19) |
+| Crafting recipes and learning | `Data/CraftingRecipes`, each farmer's `craftingRecipes` | vanilla |
+| Buffs and effects | `Data/Buffs`, the `Buffs` field on objects | vanilla; custom handlers only for effects vanilla lacks |
+| Prices and profession bonuses | vanilla prices and categories (Artisan for sellables) | vanilla, so price and profession mods apply |
+| Fertilizer | vanilla `HoeDirt` fertilizer, with postfixes only for our IDs | vanilla |
+| Rings and trinkets | vanilla ring and `Data/Trinkets` slots | vanilla |
+| Shops | `Data/Shops` | vanilla |
+| Starter quests and story quests | vanilla quest log (`Data/Quests`) | vanilla (doc 11) |
+| **Sorenson's contracts** | vanilla **special orders** (`Data/SpecialOrders`), with money or a mail-flag unlock as the reward | vanilla (changed here; doc 15 §6) |
+| Unlock flags | mail flags plus our GSQ | vanilla |
+| Mail, events, dialogue, schedules, maps | Content Patcher data | framework |
+| Celebrations | the vanilla hold-up and HUD messages | vanilla |
+| Satchel storage | 1.6 global inventories | vanilla |
+| Labs | `Data/Buildings` | vanilla |
+| Config | GMCM | optional framework |
+| Workshop bundle board | our own (D20) | own: vanilla bundles can't add rooms, and the board needs sealed doors, silhouettes and divination; Unlockable Bundles is the alternative (§10) |
+| Codex, hints, discovery | our own | own: no base-game equivalent |
+| Recipe resolver, adjacency, chaining, rituals, ley nodes, Shades | our own | own: these are the mod's new mechanics |
 
 ### 2 · Repository and packaging
 ```
@@ -264,6 +292,7 @@ The gate can't run the game, so every platform question below becomes a spike in
 | S16 | Category numbers and the professions they trigger (Artisan, Blacksmith for bars); dye context-tag names | 15 | categories chosen by the result; tags corrected in data |
 | S17 | Robin's menu ordering with SVE's extra buildings | 18 | accept the order; mention it in the guide |
 | S18 | Hover cost of power links and the Lab mark in large Labs | 13, 18 | computed on hovered-tile change only (already the plan) |
+| S19 | Vanilla `ReadyTimeModifiers` (other mods' machine-speed edits) applying on top of our `OutputMethod` minutes | 09 §1a | apply the rule's modifiers ourselves after setting minutes |
 
 **Harmony patches** (the compatibility surface). Each is registered in one place with an ID and a guard that logs and disables the patch on error, and each is checked against the configuration-6 and 8 mods (doc 17 §8a):
 1. a prefix on object drop-in, for our machines only (the staging layer);
@@ -317,10 +346,12 @@ Every number lives in data the sweep can rewrite (doc 00, "what deliberately wai
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
+- `[blocks-arch]` **D22 · Familiar bonds on vanilla friendship** (§1a): make the four Familiars vanilla non-villager NPCs so greeting, gifts and hearts use vanilla friendship, or keep doc 18's own bond points. *Owner: Charles.*
 - `[blocks-content]` **Inventory sort keys:** settled by spike S11 before the slice fixes IDs (§11). *Owner: the first build.*
 - `[2.0]` Arcane logistics as a second `IItemRoute`; content-pack professions; Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
+- **v1.0a (2026-10-19):** Charles's vanilla-first rule (§1a) with an audit of every area; Sorenson's contracts become vanilla special orders; machine timing keeps vanilla `ReadyTimeModifiers` (spike S19); D22 (Familiar bonds on vanilla friendship) raised.
 - **v1.0 (2026-10-19):** rewritten as the architecture plan at the gate: the engine and adapter split with one module per owning doc, the repository layout (a game-free engine so CI can test it), the data pipeline (our registries as CP-filled assets, a validator, a compiler that adds computed fields to authored vanilla rows), the staging, neighbour, routing, farm-state and UI designs, the runtime event table, performance budgets, integrations, the framework choices (our own bundle board, chosen by Charles as D20; our own Familiar renderer as D21, both chosen by Charles), the risk register as first-build spikes with fallbacks, and the Harmony patch list. Integration targets and Charles's ID rules carried over.
 - **v0.6c (2026-10-19):** pre-gate cleanup sweep: testing from the first commit (doc 11 §6) and the deferred in-game co-op, split-screen and controller tests (doc 17 §8b).
 - **v0.6b (2026-10-19):** Satchel storage, multiplayer sync, saves and the test matrix follow doc 17.
