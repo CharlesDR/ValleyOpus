@@ -82,7 +82,7 @@ State as of the 2026-10-19 pre-gate cleanup sweep. Each doc's own status line is
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |
 | 20 | Content Script *(after gate)* | — | events, mail, dialogue, schedules |
 | 21 | Art & Audio List *(after gate)* | — | sprites, animations, sounds; placeholders until commissioned |
-| 22 | Execution Plan *(after gate)* | v0.1, in review | the batches to build 1, spike order, how to-do and backlog items join a batch; D23 and D24 await Charles |
+| 22 | Execution Plan *(after gate)* | v0.1, in review | the batches to build 1, spike order, how to-do and backlog items join a batch; D23 and D24 decided |
 
 ---
 
@@ -90,7 +90,7 @@ State as of the 2026-10-19 pre-gate cleanup sweep. Each doc's own status line is
 
 Each phase only starts once the decisions it depends on are made. Inside a phase, docs can be written in parallel.
 
-**Progress (2026-10-19):** Phases 0–4 are done and the architecture gate is passed (doc 09 v1.0 merged as PR #19). Execution planning is [doc 22](22-execution-plan.md): five build batches to build 1, the first playable slice, each released by Charles's yes under the build gate.
+**Progress (2026-10-19):** Phases 0–4 are done and the architecture gate is passed (doc 09 v1.0 merged as PR #19). Execution planning is [doc 22](22-execution-plan.md): three build batches to build 1, the first playable slice, each released by Charles's yes under the build gate.
 
 ```
 Phase 0  Scope lock ─────────────► decisions S1–S5

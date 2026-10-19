@@ -1,6 +1,6 @@
 # 10 · Roadmap & Open Questions
 
-Status: **DRAFT v0.10f** (2026-10-19). v0.10f: execution planning (doc 22) adds D23 and D24 for Charles. v0.10d: the architecture gate (doc 09 v1.0) adds two framework defaults for Charles and turns the gate checks into first-build spikes. v0.10c: pre-gate cleanup sweep (stale review states, quality terms, test deferral, the mine-drop item from the to-do list). v0.10b: Charles confirmed every remaining default (D4, D11–D14). v0.10: doc 17 settles Satchel storage (Charles chose one bag per player) and adds defaults D11–D14. v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
+Status: **DRAFT v0.10f** (2026-10-19). v0.10f: execution planning (doc 22); Charles decided D23 and D24. v0.10d: the architecture gate (doc 09 v1.0) adds two framework defaults for Charles and turns the gate checks into first-build spikes. v0.10c: pre-gate cleanup sweep (stale review states, quality terms, test deferral, the mine-drop item from the to-do list). v0.10b: Charles confirmed every remaining default (D4, D11–D14). v0.10: doc 17 settles Satchel storage (Charles chose one bag per player) and adds defaults D11–D14. v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
 
 ## Version scope
 | | 1.0 | 2.0 |
@@ -70,9 +70,9 @@ Every default once listed here is confirmed and written into its owning doc. **C
 
 - **D22 · Familiar bonds: confirmed** (Charles, 2026-10-19): they keep doc 18's own bond points rather than vanilla friendship (doc 09 §1a).
 
-### Execution plan defaults (doc 22), awaiting Charles
-- `[blocks-build]` **D23 · How the SMAPI mod gets compiled:** default, a Remote Control session on Charles's computer builds and zips each test build, since the cloud can't compile against the game (doc 22 §2).
-- `[blocks-build]` **D24 · Batches before build 1:** default, five (foundation, spike build, the bench, the line, the workshop); alternative, three bigger ones (doc 22 §3).
+### Execution plan decisions (doc 22)
+- **D23 · Compiling: confirmed** (Charles, 2026-10-19): a Remote Control session on Charles's computer compiles and zips each test build, since the cloud can't compile against the game (doc 22 §2).
+- **D24 · Batches: confirmed** (Charles, 2026-10-19): three batches to build 1: foundation and spikes, the bench and the line, the workshop (doc 22 §3).
 
 ### Design questions still open
 - `[blocks-content]` **Where darkness holds outside a Lab** (night outdoors, caves, unlit rooms), since darkness is Required for every putrefaction recipe. *Owner: doc 12.*
@@ -111,13 +111,13 @@ Every default once listed here is confirmed and written into its owning doc. **C
 Collected in the version-scope table above and tagged `[2.0]` in each doc: arcane logistics, forging, the brew map, the ritual mini-game, prestige perks, Lookup Anything recipe rules, flower-fed trickles, tie-in Familiars and more Lab specializations, custom-effect bombs.
 
 ## Upcoming tasks
-- Execution: the five batches to build 1 in [doc 22](22-execution-plan.md), each released by Charles's yes. The verification tasks below are desk checks in batch 1 (doc 22 §4).
+- Execution: the three batches to build 1 in [doc 22](22-execution-plan.md), each released by Charles's yes. The verification tasks below are desk checks in batch 1 (doc 22 §4).
 - Balance sweep tooling (doc 06), including the item census (doc 03b).
 - Lore check: read the vanilla and SVE wiki entries for every villager with a planned alchemy angle (doc 08), and the Alecto the Witch, Ridgeside Village and East Scarp pages for tie-in spots and map edits to avoid.
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
 
 ## Change log
-- **v0.10f (2026-10-19):** doc 22 (Execution Plan): D23 and D24 added; upcoming tasks point to its batches.
+- **v0.10f (2026-10-19):** doc 22 (Execution Plan): D23 (compile on Charles's PC by Remote Control) and D24 (three batches) decided by Charles; upcoming tasks point to its batches.
 - **v0.10e (2026-10-19):** Charles's vanilla-first rule (doc 09 §1a); D22 settled: Familiars keep their own bond points.
 - **v0.10d (2026-10-19):** architecture gate: D20 (bundle menu, confirmed by Charles: our own board) and D21 (Familiar sprites, confirmed: our own renderer) added; doc 16's gate checks and the sort-key question became doc 09 spikes.
 - **v0.10c (2026-10-19):** pre-gate cleanup sweep: docs 11, 16 and 17 shown as merged; the Phase 4 list becomes gate checks; Charles kept the stage names as the Great Work Chamber bundle titles (doc 14 §3); the mine-drop item moved here and to doc 03b from the to-do list.

@@ -1,6 +1,6 @@
 # 22 · Execution Plan
 
-Status: **DRAFT v0.1** (2026-10-19) · Readiness: plan for build 1, awaiting Charles's review (two defaults, D23 and D24, await his card)
+Status: **DRAFT v0.2** (2026-10-19) · Readiness: plan for build 1, awaiting Charles's review (D23 and D24 decided)
 Depends on: 00, 09, 10, 11, 17 · Feeds: every build batch, `TESTING.md`, the to-do list and ideas backlog
 
 ## Purpose
@@ -14,6 +14,8 @@ The architecture gate is passed (doc 09 v1.0). This doc turns doc 09's plan and 
 - **Testing rules** (Charles, 2026-10-18; doc 11 §6): unit tests and logging from the first commit; at most four test configurations per build; configuration 1 runs chaining only, with no Automate; SVE installed is a test configuration from the first test build; every test build ships `TESTING.md`.
 - **Co-op, split-screen and controller** (Charles, 2026-10-19; doc 17 §8b): groundwork built and code-reviewed in every batch; in-game runs deferred until Charles can run them; still 1.0 requirements.
 - **Slice saves carry forward** (Charles, 2026-10-18): from the first build with fixed IDs, every save migrates into the next build (doc 17 §5).
+- **D23 · Compiling** (Charles, 2026-10-19): a Remote Control session on Charles's computer compiles and zips each test build.
+- **D24 · Three batches to build 1** (Charles, 2026-10-19): foundation and spikes, the bench and the line, the workshop (§3).
 - **Spikes run before the code that depends on them**, and S11 (sort keys) runs before any item ID is fixed (doc 09 §11, §14).
 
 ## Player-facing spec
@@ -22,7 +24,7 @@ None. Players meet the result as builds; testers meet it through each build's `T
 ## Rules & systems
 
 ### 1 · Terms
-- **Batch:** one unit of work Charles releases with one yes. It ends in one PR (two when review size calls for it, for example engine and content) and, from batch 2 on, in one **test build**.
+- **Batch:** one unit of work Charles releases with one yes. It ends in one PR (two when review size calls for it, for example engine and content) and, in one **test build**.
 - **Test build:** a zip Charles installs and plays from `TESTING.md`. Named `0.1.0-alpha.N`; build 1 itself ships as `0.1.0`. Each test build is a git tag on `main`.
 - **Milestone:** the state a batch reaches, stated as what Charles can do in game at the end of it.
 - **Build 1** is the first playable slice of doc 11: Spring Y1 end to end, walked through its finish line.
@@ -32,79 +34,78 @@ None. Players meet the result as builds; testers meet it through each build's `T
 |---|---|---|
 | Propose a batch (scope, test configs, spikes, to-do and backlog items pulled) | posts it to the coordinator, who puts it on a card | says yes, trims or defers |
 | Engine, tests, tools, content packs, CI | writes them; CI green before review | reviews the PR |
-| The SMAPI mod project | writes it; it can't compile in the cloud (no game assemblies) | compiles and packages it on his computer (**D23**, below) |
+| The SMAPI mod project | writes it; it can't compile in the cloud (no game assemblies) | a Remote Control session on his computer compiles and packages it (**D23**, below) |
 | Spikes | desk-checks every spike it can from public sources first (SMAPI, Automate, SpaceCore and the wiki; §4) | runs the in-game half from `TESTING.md` and shares the SMAPI log |
 | Playtest findings | diagnoses and answers; adds items to `todo.md` | plays, reports |
 | Design changes found in play | a docs PR first, then the build | approves the docs PR |
 
-**D23 · How the SMAPI mod gets compiled** *(default, awaiting Charles)*: a Remote Control session on Charles's computer, in his checkout, runs `dotnet build` against his game install and writes the test-build zip, so he never builds by hand. Alternatives: Charles builds from a short checklist in `TESTING.md`; or reference stubs of the game API in the repo (rejected: fragile, and a licensing risk). Until D23 is answered, batch 1 is unaffected because it needs no game build.
+**D23 · How the SMAPI mod gets compiled** (Charles, 2026-10-19): a Remote Control session on Charles's computer, in his checkout, runs `dotnet build` against his game install and writes the test-build zip, so he never builds by hand. Alternatives: Charles builds from a short checklist in `TESTING.md`; or reference stubs of the game API in the repo (rejected: fragile, and a licensing risk).
 
-The cloud environment also needs the .NET SDK so engine tests run before each push; batch 1 adds that to the environment's setup script (a setting Charles changes, with the steps in the PR).
+The cloud environment also needs the .NET SDK so engine tests run before each push; batch B1 adds that to the environment's setup script (a setting Charles changes, with the steps in the PR).
 
 ### 3 · Milestones and batches to build 1
-Five batches, each small enough to playtest in a session or two (**D24**, below). Every batch also carries: the doc 09 §12 code-review checklist (controller neighbour IDs, `PerScreen<T>` state, host-only farm-state writes, every Harmony patch on the doc 09 §14 list), i18n for every new string, `[ValleyOpus]` logging, and updated `TESTING.md`.
+Three batches (Charles, 2026-10-19, **D24**). Every batch also carries: the doc 09 §12 code-review checklist (controller neighbour IDs, `PerScreen<T>` state, host-only farm-state writes, every Harmony patch on the doc 09 §14 list), i18n for every new string, `[ValleyOpus]` logging, and updated `TESTING.md`. A batch may land as two PRs when review size calls for it; one yes covers both.
 
 | Batch | Milestone (what Charles can do at the end) | Test build | Test configs (doc 11 §6) | Spikes |
 |---|---|---|---|---|
-| **B1 · Foundation** | review a green CI run: the engine decomposes, matches recipes and validates fixture data in tests | none | none | desk checks only (§4) |
-| **B2 · Spike build** | install a tiny mod and run each spike from `TESTING.md`; nothing playable | `alpha.1` | 1, 2, 3 | wave A and wave B (§4) |
-| **B3 · The bench** | decompose items in the Athanor, fill the Satchel, try pairs at the Experiment Table, see the codex fill; items come from developer commands | `alpha.2` | 1, 2 | S5, S14 in game if not closed in B2 |
-| **B4 · The line** | kindle an Athanor, run all six apparatus, chain a line, run it under Automate, use the slice's products, level the skill to 4 | `alpha.3` | 1, 2, 3 | S9 partial (50 apparatus under Automate), S15 |
-| **B5 · The workshop = build 1** | play Spring Y1 from the cutscene to the finish line, then remove the mod and reload | `0.1.0` | 1, 2, 3 (4 deferred) | S3 and S13 re-checked on real content |
+| **B1 · Foundation and spikes** | review a green CI run where the engine decomposes, matches recipes and validates fixture data; then install a tiny mod and run each spike from `TESTING.md` (nothing playable yet) | `alpha.1` | 1, 2, 3 | desk checks, then waves A and B in game (§4) |
+| **B2 · The bench and the line** | decompose in the Athanor, fill the Satchel, try pairs at the Table, watch the codex fill, kindle an Athanor, run all six apparatus, chain a line, run it under Automate, use the slice's products, level the skill to 4; items come from developer commands | `alpha.2` | 1, 2, 3 | S15; S9 partial (50 apparatus under Automate); S5 and S14 if B1 left them open |
+| **B3 · The workshop = build 1** | play Spring Y1 from the cutscene to the finish line, then remove the mod and reload | `0.1.0` | 1, 2, 3 (4 deferred) | S3 and S13 re-checked on real content |
 
-**B1 · Foundation** (no game code runs)
-- Repository layout of doc 09 §2: the solution, `ValleyOpus.Engine`, `ValleyOpus.Tests`, `ValleyOpus.Tools`, an empty SMAPI project with its manifest (`CharlesDR.ValleyOpus`, SMAPI, Content Patcher and SpaceCore as dependencies), `content/` folders, `TESTING.md` skeleton.
+**B1 · Foundation and spikes** (`alpha.1`; saves are throwaway)
+*Foundation (no game code runs; usually the first PR):*
+- Repository layout of doc 09 §2: the solution, `ValleyOpus.Engine`, `ValleyOpus.Tests`, `ValleyOpus.Tools`, the SMAPI project with its manifest (`CharlesDR.ValleyOpus`, SMAPI, Content Patcher and SpaceCore as dependencies), `content/` folders, `TESTING.md` skeleton.
 - GitHub Actions: build the three game-free projects, run the tests, validate every shipped JSON file on every push.
 - Engine first pass with tests over **fixture IDs only** (no real ID is fixed before S11): `Model`, `Registry` (with `FormatVersion` upgrades), `Validation` (the uniqueness rule with tag overlap, `NeighbourStates` checks), `Decomposition` (profile, √price units, largest-remainder split, exchange clamp, residue), `Resolver` (index, "does this item extend the tray?", exact match), `Conditions`, `Quality`, `Random` (the stable hash), `Codex` keys and `tried:` signatures, `State` (the envelope with a schema version, the migration runner, round-trip tests).
 - The content-pack reader that resolves `{{ModId}}` and `{{i18n:…}}`, so CI reads packs exactly as the game will (doc 09 §4d).
 - The desk checks of §4, written into `TESTING.md`'s spike table as "desk result".
 
-**B2 · Spike build** (`alpha.1`; saves are throwaway)
+*Spike build (the second PR, compiled on Charles's PC per D23):*
 - A minimal SMAPI mod and a spike content pack with placeholder items, one console command per spike (`valleyopus_spike <id>`) that sets the case up and logs `PASS`, `FAIL` or `LOOK` (when only Charles's eyes can judge), and a step-by-step script per spike in `TESTING.md`.
 - Spikes from waves A and B (§4). Each result goes into the spike table (doc 09 data shape: spike ID, build, result, fallback taken).
-- **Exit:** every wave A spike has a result, so B3 can fix IDs and build the machine path. A failed spike takes its doc 09 fallback; if the fallback changes a rule, a docs PR lands before B3 is proposed.
+- **Exit:** every wave A spike has a result, so B2 can fix IDs and build the machine path. A failed spike takes its doc 09 fallback; if the fallback changes a rule, a docs PR lands before B2 is proposed.
 
-**B3 · The bench** (`alpha.2`; **saves carry forward from here**, schema version 1)
+**B2 · The bench and the line** (`alpha.2`; **saves carry forward from here**, schema version 1)
+*The bench:*
 - **IDs and sort keys fixed** per S11's result (doc 09 §11), together with categories per S16. From this build on, every ID is permanent.
 - The base CP pack with every slice registry row of doc 11 (8 Primes, 46 objects, 41 resolver recipes, 6 apparatus rows, conditions, tag weights and category defaults for Spring's items, Aether weights by source rarity) and their authored `Data/Objects` and `Data/BigCraftables` rows; the data compiler (doc 09 §4c); the data test fails CI on any validator finding.
-- Adapter: `Content`, `Catalog`, `Machines` (the staging layer and `OutputMethod`) for the Athanor and the Experiment Table, `Satchel` (global inventory, auto-collect, picker, the guard patch), the Lens, `Codex` pages (Primes, Tier 1, Tier 2, Apparatus, Unlocks) with silhouettes and `tried` marks, celebrations with clock freeze, `FarmState` and `Saves` with the envelope, `Net` messages for codex sync, `Diagnostics` (inspect, verbose, developer commands).
+- Adapter: `Content`, `Catalog`, `Machines` (the staging layer and `OutputMethod`), `Satchel` (global inventory, auto-collect, picker, the guard patch), the Lens, `Codex` pages (Primes, Tier 1, Tier 2, Apparatus, Unlocks) with silhouettes and `tried` marks, celebrations with clock freeze, `FarmState` and `Saves` with the envelope, `Net` messages for codex sync, `Diagnostics` (inspect, verbose, developer commands).
 - Placeholder art per the art notes: the recoloured vial with its rune for Element icons, base-game or open-license sprites for apparatus and tools (doc 11 Content inventory).
 
-**B4 · The line** (`alpha.3`)
-- The Alembic, Retort, Hermetic Vessel and Calcinator; kindling and *Heated*/*Cold*; the flower Bonus; the darkness GSQ with the test fixture pack (doc 11 §3, §4); recipe memory, pin and locked outputs; quality.
+*The line:*
+- All six apparatus: the Experiment Table, Athanor, Alembic, Retort, Hermetic Vessel and Calcinator; kindling and *Heated*/*Cold*; the flower Bonus; the darkness GSQ with the test fixture pack (doc 11 §3, §4); recipe memory, pin and locked outputs; quality.
 - `Routes`: directional chaining behind `IItemRoute` and the minimal chain overlay; the Automate factory (`Integrations`), switched off in configuration 1.
 - `Skill`: the SpaceCore skill, every XP source, levels 1–4, banking past 4.
 - `Effects`: Sal Volatile and Vigor energy, Undine's Gift (the one custom buff handler), Caput Mortuum and Terra Viva fertilizer, Smaltum dye, derived prices.
 - Performance: the resolver timing line in the log and a developer command that places 50 apparatus under Automate (doc 09 §8).
-- **Migration check:** an `alpha.2` save loads in `alpha.3`.
 
-**B5 · The workshop** (`0.1.0`, build 1)
+**B3 · The workshop** (`0.1.0`, build 1)
 - `World`: the Town warp behind the CC (vanilla and SVE), the workshop map with the Entrance Hall and the Furnace Room in both states, Laboratory T1 at Robin's with hearth, alcove and the Lab Bonus.
 - The bundle board (our own, D20) with all seven rooms laid out, the Furnace Room's three bundles, `Unlocks` with mail flags and recipe grants.
 - Oriel, Tobin and the Curator, workshop-bound; the soft-start cutscene, the Furnace Room scene, Tobin's arrival, the Lab blueprint mail, the five-quest starter chain, the Cyprian journal pages and the slice hints. **Draft scripts** are written for this batch (doc 11's open question; doc 20 replaces them later).
 - GMCM page, the slice report CSV, "prepare for removal", the full `TESTING.md` (setup per configuration, log locations, commands, low-confidence areas, bug template).
-- **Done when:** the doc 11 finish line is walked on configurations 1, 2 and 3 (CC route on 1 and 2, Joja late install on 3); the uninstall test passes on configuration 1; an `alpha.3` save carries into `0.1.0`; CI is green and the validator reports zero findings; the spike table has every build-1 spike filled.
+- **Done when:** the doc 11 finish line is walked on configurations 1, 2 and 3 (CC route on 1 and 2, Joja late install on 3); the uninstall test passes on configuration 1; an `alpha.2` save carries into `0.1.0` (the first migration check); CI is green and the validator reports zero findings; the spike table has every build-1 spike filled.
 
-**D24 · How many batches before build 1** *(default, awaiting Charles)*: the five above. Alternative: three (B1 with B2, B3 with B4, then B5): fewer yeses and fewer test sessions, but each test build is bigger and a failed spike reaches more code.
+**D24 · How many batches before build 1** (Charles, 2026-10-19): three, as above. The five-batch alternative (foundation, spikes, bench, line and workshop each on their own) gave smaller test builds but more yeses and test sessions.
 
 ### 4 · Spike order and fallbacks
 Every spike gets a **desk check** first (public docs and the open-source code of SMAPI, Content Patcher, Automate and SpaceCore), which often settles it or narrows what Charles has to look at. The **in-game check** then runs in the earliest test build that can hold it. Fallbacks are doc 09 §14's; none forces a redesign.
 
 | Wave | Spike | Desk check (B1) | In game | If it fails |
 |---|---|---|---|---|
-| **A** · blocks IDs and the machine path | **S11** sort keys | the open-source sort mods' code (what they compare) | B2: placeholder items in each candidate scheme, sorted by vanilla Organize and the sort mods in the test configs; checked in English and one other language | a spaced prefix in the display name's sort, or a custom category per group |
-| | **S16** categories and their professions; dye tag names | wiki item and category data | B2, with S11 (they decide the same fields) | categories chosen by the result; tags corrected in data |
-| | **S1** staging calls the output path; `OutputMethod` returns our match | the `Data/Machines` docs | B2: one placeholder apparatus | set the held object and minutes ourselves |
-| | **S19** vanilla `ReadyTimeModifiers` on top of our minutes | the `Data/Machines` docs | B2, same apparatus, with a test modifier | apply the rule's modifiers ourselves |
-| | **S2** Automate never uses its generic handler on claimed machines; locked outputs refused | Automate's source | B2 in config 3 | mark our rules so the generic handler skips them |
-| **B** · blocks world, saves and storage | **S3** missing building dropped cleanly; Error Items become machines on reinstall | SMAPI and wiki notes on missing data | B2: a placeholder building, removed and restored; re-checked in B5 on the real Lab | "prepare for removal" also removes emptied Labs |
-| | **S12** global inventories sync per player; hidden from chest mods | SMAPI multiplayer docs; Chests Anywhere's and Convenient Inventory's source | B2 (solo part); co-op part deferred (doc 17 §8b) | guard the key through those mods' APIs or config |
-| | **S13** the Town warp with and without SVE | SVE's Town map edits, CC-opening event ID, Quarry bridge and bus flags (doc 10 upcoming tasks) | B2 in configs 1 and 2; re-checked in B5 | a second entrance on the workshop's own map edge |
-| | **S17** Robin's menu order with SVE | SVE's building list | B2 in config 2 | accept the order; note it in the guide |
-| | **S5** the hold-up pauses the clock in single player | wiki | B2 | a single-player-only postfix (Harmony patch 6) |
-| | **S14** SpaceCore registration, level-up, banking past L4, Mastery, Walk of Life | SpaceCore's source | B2 | our own cap on displayed levels |
-| | **S15** custom buff handler on `Data/Buffs`; fertilizer queries; other fertilizer mods | wiki; popular fertilizer mods' patches | B4 with real products | per-tick buff checks; patch priority and a note |
-| **C** · measured on real content | **S9** overlay and tooltip frame time | — | B4 (50 apparatus); a full T3 Lab waits for that build | lower the particle cap; arrows for the hovered chain only |
+| **A** · blocks IDs and the machine path | **S11** sort keys | the open-source sort mods' code (what they compare) | B1: placeholder items in each candidate scheme, sorted by vanilla Organize and the sort mods in the test configs; checked in English and one other language | a spaced prefix in the display name's sort, or a custom category per group |
+| | **S16** categories and their professions; dye tag names | wiki item and category data | B1, with S11 (they decide the same fields) | categories chosen by the result; tags corrected in data |
+| | **S1** staging calls the output path; `OutputMethod` returns our match | the `Data/Machines` docs | B1: one placeholder apparatus | set the held object and minutes ourselves |
+| | **S19** vanilla `ReadyTimeModifiers` on top of our minutes | the `Data/Machines` docs | B1, same apparatus, with a test modifier | apply the rule's modifiers ourselves |
+| | **S2** Automate never uses its generic handler on claimed machines; locked outputs refused | Automate's source | B1 in config 3 | mark our rules so the generic handler skips them |
+| **B** · blocks world, saves and storage | **S3** missing building dropped cleanly; Error Items become machines on reinstall | SMAPI and wiki notes on missing data | B1: a placeholder building, removed and restored; re-checked in B3 on the real Lab | "prepare for removal" also removes emptied Labs |
+| | **S12** global inventories sync per player; hidden from chest mods | SMAPI multiplayer docs; Chests Anywhere's and Convenient Inventory's source | B1 (solo part); co-op part deferred (doc 17 §8b) | guard the key through those mods' APIs or config |
+| | **S13** the Town warp with and without SVE | SVE's Town map edits, CC-opening event ID, Quarry bridge and bus flags (doc 10 upcoming tasks) | B1 in configs 1 and 2; re-checked in B3 | a second entrance on the workshop's own map edge |
+| | **S17** Robin's menu order with SVE | SVE's building list | B1 in config 2 | accept the order; note it in the guide |
+| | **S5** the hold-up pauses the clock in single player | wiki | B1 | a single-player-only postfix (Harmony patch 6) |
+| | **S14** SpaceCore registration, level-up, banking past L4, Mastery, Walk of Life | SpaceCore's source | B1 | our own cap on displayed levels |
+| | **S15** custom buff handler on `Data/Buffs`; fertilizer queries; other fertilizer mods | wiki; popular fertilizer mods' patches | B2 with real products | per-tick buff checks; patch priority and a note |
+| **C** · measured on real content | **S9** overlay and tooltip frame time | — | B2 (50 apparatus); a full T3 Lab waits for that build | lower the particle cap; arrows for the hovered chain only |
 | | **S6, S7** codex snapping, smallest split-screen viewport | layout reviewed in code | deferred with the controller and split-screen runs (doc 17 §8b) | explicit neighbour IDs; a compact layout |
 | **After build 1** | **S20** special-orders board (Sorenson, Cistern) | vanilla special-orders code paths in the wiki | the Cistern build | our own small board over the same data |
 | | **S4** Lab upgrade keeps placed objects (T2) | — | the build with Lab T2 | move objects across at upgrade |
@@ -157,12 +158,12 @@ None of its own; each batch's rows are doc 11's.
 Doc 09 throughout. New here only: the `valleyopus_spike <id>` console command in the spike build, and the .NET SDK in the cloud environment's setup script.
 
 ## Balance hooks
-The slice report (doc 11 §4) starts writing data in B3 and is complete in B5; the sweep's tooling grows from B1's engine (doc 09 §12).
+The slice report (doc 11 §4) starts writing data in B2 and is complete in B3; the sweep's tooling grows from B1's engine (doc 09 §12).
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
-- `[blocks-build]` **D23 · How the SMAPI mod gets compiled.** Default: a Remote Control session on Charles's computer builds and zips each test build. *Owner: Charles.*
-- `[blocks-build]` **D24 · Batches before build 1.** Default: five (B1–B5). *Owner: Charles.*
+None open. D23 and D24 are decided (Decisions locked).
 
 ## Change log
+- **v0.2 (2026-10-19):** Charles decided D23 (a Remote Control session on his PC compiles each test build) and D24 (three batches: foundation and spikes, the bench and the line, the workshop); §3 and the spike table follow.
 - **v0.1 (2026-10-19):** first draft after the architecture gate: five batches to build 1 (foundation, spike build, the bench, the line, the workshop), who does what, the spike order in three waves with desk checks first, the rules for pulling to-do and backlog items into a batch, and a sketch of builds 2–5. D23 and D24 await Charles.
