@@ -166,9 +166,9 @@ Link states use shape as well as colour: solid arrow (working), dashed (idle), �
 **An entry** (selecting any cell or item):
 - Icon, name, class (Item, Power, Process state) and flavour text.
 - **Prime profile** bars, once assayed.
-- **Routes:** every discovered recipe that makes it, twin routes side by side (⚙︎ / ✦), each with inputs, apparatus kinds, neighbour state, and Required and Bonus conditions. Undiscovered routes of a discovered item show as "?" rows, the codex convention from doc 04, so the player knows another way exists without learning what it is.
+- **Routes:** every discovered recipe that makes it, twin routes side by side (⚙︎ / ✦), each with inputs, apparatus kinds, neighbour state, and Required and Bonus conditions. Undiscovered routes of a discovered item show as "???" rows (doc 04's "?" convention, written the same way as **Used in** below), so the player knows another way exists without learning what it is.
 - **Uses** line (doc 15): "Drink: Speed +1, 4 min" · "Dye: strong blue" · "Sold at Agnes's".
-- **Used in:** discovered recipes that take it as an input.
+- **Used in:** discovered recipes that take it as an input, plus one row marked **"???"** for each undiscovered recipe it is used in, so the entry shows how much is left to learn about it (Charles, 2026-10-18). A "???" row shows nothing else: not the other inputs, the output or the apparatus.
 - **Lore:** lines unlocked at 1, 10 and 50 crafted, with a progress pip toward the next (doc 07); hand-made-only entries say "hand-made crafts" beside the count.
 - **Discovered by** a player and day, in multiplayer (doc 07).
 
@@ -329,6 +329,6 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
-- **v0.1 (2026-10-18), Charles's review:** controller and split-screen groundwork from the first build, with in-game tests deferred while Charles can't test.
+- **v0.1 (2026-10-18), Charles's review:** a codex entry's Used in list shows a "???" row for each undiscovered recipe that uses the item, and undiscovered routes use the same "???" mark; controller and split-screen groundwork from the first build, with in-game tests deferred while Charles can't test.
 - **v0.1 (2026-10-18), Charles's answers:** no late-install fast start (the GMCM row and open question are removed); defaults D15–D19 confirmed.
 - **v0.1 (2026-10-18):** first draft: principles, the interaction model, the screen inventory with slice flags, the Experiment Table menu with its before-Combine result panel, the Satchel tooltip, grid and picker, the machine tooltip order and tray view, the chain overlay in two levels with the placement preview, the codex pages, entries, Notes page and search, celebrations and clock freeze, Finch's shop hiding the curiosity hint, the bundle board and divination panel, the Lens, altar prompts, GMCM options, controller and split-screen rules, and the quarter-day hand-action budget with its levers.
