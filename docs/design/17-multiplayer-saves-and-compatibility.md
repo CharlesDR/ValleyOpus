@@ -1,6 +1,6 @@
 # 17 · Multiplayer, Saves & Compatibility
 
-Status: **DRAFT v0.1** (2026-10-18) · Readiness: ready for architecture (its defaults await Charles, doc 10)
+Status: **DRAFT v0.1b** (2026-10-19) · Readiness: ready for architecture (defaults D11–D14 await Charles, doc 10)
 Depends on: 03b, 05, 07, 09, 11, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 11 (the slice's test plan), 16 (what the menus must respect), 20
 
 ## Purpose
@@ -14,9 +14,10 @@ ValleyOpus adds a lot of state to a farm: a shared codex, unlocks, machine trays
 - **Whose perks apply:** hand loads use the loader's perks; chain and Automate loads use the machine's owner, the player who placed it (Charles, 2026-10-18, doc 05 §6).
 - **Hourglass of Mercury** does nothing with farmhands connected, since the clock is shared (doc 15).
 - **1.0 tie-ins:** SVE, Alecto the Witch, Ridgeside Village and East Scarp (U2, widened). **SVE installed is a test configuration from the very first build** (Charles, 2026-10-18, doc 11 §6).
+- **Satchel storage: one bag per player**, a 1.6 global inventory keyed by the owning player (Charles, 2026-10-19; §4).
 - **Testing:** at most four test configurations per build; test 1 is chaining only, without Automate (Charles, 2026-10-18).
 
-Defaults set by this doc, awaiting Charles (listed in doc 10 as D10–D14): Satchel storage (§4), host-owned economy settings (§3c), the mod-mismatch rule (§3e), the newer-save rule (§5d) and the matrix rotation (§8b).
+Defaults set by this doc, awaiting Charles (listed in doc 10 as D11–D14): host-owned economy settings (§3c), the mod-mismatch rule (§3e), the newer-save rule (§5d) and the matrix rotation (§8b).
 
 ## Player-facing spec
 Most of this doc is invisible when it works. What players notice:
@@ -97,8 +98,8 @@ All messages go through SMAPI's multiplayer API, filtered to our mod ID, and car
 - **Farmhand without ValleyOpus:** the host's chat shows a one-line notice that this player sees mod items as Error Items and can't use them; nothing else changes. Both players' saves stay safe, because a farmhand's client never writes host save data.
 - **Different schema version:** both players get the notice, and the host ignores that farmhand's requests (no discoveries, bundles or unlocks recorded from them) until versions match. Their hand actions still work on objects, as vanilla allows.
 
-### 4 · Satchel storage (settles doc 10's `[blocks-arch]` question)
-Each player's Satchel contents live in a **1.6 global inventory keyed by the owning player**: `CharlesDR.ValleyOpus_Satchel_<UniqueMultiplayerID>`. *(Default D10; the alternatives are below.)*
+### 4 · Satchel storage (decided by Charles, 2026-10-19)
+Each player's Satchel contents live in a **1.6 global inventory keyed by the owning player**: `CharlesDR.ValleyOpus_Satchel_<UniqueMultiplayerID>`. Charles chose this over the alternatives below.
 - **Why a global inventory, not the item's `modData`:** vanilla saves the real items (stack, quality, their own `modData`) with no custom serializer, syncs them team-wide, and offers a mutex for safe access. `modData` holds only strings, so every item would need our own serializer, and a bug in it loses the whole bag.
 - **Why keyed by player, not by satchel item:** the contents can't be orphaned. If a Satchel is trashed, lost or replaced through doc 11's replacement recipe, the next Satchel the same player holds opens the same contents. A second Satchel in one inventory opens the same bag, so duplicates hold nothing extra. Satchels can't be trashed or shipped while their bag holds anything.
 - **Uninstall:** the global inventory stays in the save as vanilla data. Without the mod its items are unreachable but intact, and **reinstalling restores them**. "Prepare for removal" moves every bag, offline farmhands' included, into chests first (§6).
@@ -107,7 +108,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 
 | Option | Pros | Cons |
 |---|---|---|
-| **Global inventory per player** (default) | vanilla serialization and sync; never orphaned; survives uninstall intact | one bag per player, so a second Satchel adds nothing; needs the trash and ship guard |
+| **Global inventory per player** (chosen) | vanilla serialization and sync; never orphaned; survives uninstall intact | one bag per player, so a second Satchel adds nothing; needs the trash and ship guard |
 | Global inventory per satchel item | each Satchel is its own bag | trashing one orphans its contents; needs a recovery path |
 | The item's `modData` (doc 03b's earlier text) | contents travel with the item, including into chests | our own serializer; contents vanish on uninstall; a large string synced on every inventory change |
 
@@ -226,10 +227,11 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 None directly. Two settings touch balance: the host's economy values rule in multiplayer (§3c), so doc 06's targets hold for everyone; and owner perks on automated loads stay on when the owner is offline (§2e), so the late-game cap is measured with perks always on.
 
 ## Open questions
-None `[blocks-arch]`. Defaults D10–D14 await Charles (doc 10). Test items above are verified in the builds, not here.
+None `[blocks-arch]`. Defaults D11–D14 await Charles (doc 10). Test items above are verified in the builds, not here.
 - `[blocks-content]` **Familiar meeting places, ley-node sites, hidden-area entrances and Hesper's spot** join the touchpoint register when they're chosen. *Owner: docs 04, 08, 18, 20.*
 - `[blocks-content]` **Which fertilizer mod and which machine-harvesting mod** stand in for their kind in configuration 8; picked from the Nexus ranking when the configuration is first used. *Owner: the test plan.*
 - `[2.0]` Integration packs beyond the four tie-ins join the pool as configurations of their own.
 
 ## Change log
+- **v0.1b (2026-10-19):** Charles chose one Satchel bag per player (§4); it moves from default D10 to Decisions locked.
 - **v0.1 (2026-10-18):** first draft: the state register, multiplayer rules, sync protocol, Satchel storage (global inventory per player, default), save envelope and migration, uninstall command, compatibility rules with the touchpoint register, and the eight-configuration test pool with its rotation.

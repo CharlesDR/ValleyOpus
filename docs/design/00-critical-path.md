@@ -76,7 +76,7 @@ State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authorit
 | **14** | **Unlock Map & Workshop Bundles** | v0.4, ready | nothing |
 | **15** | **Products & Outside Uses** | v0.7, ready | nothing |
 | **16** | **UX & Interface** | not started | codex, Satchel, Experiment Table, tooltips, celebrations, GMCM options, controller support, chaining visual aids (doc 13 §7) |
-| **17** | **Multiplayer, Saves & Compatibility** | v0.1, ready (defaults D10–D14 await Charles) | nothing |
+| **17** | **Multiplayer, Saves & Compatibility** | v0.1b, ready (defaults D11–D14 await Charles) | nothing |
 | **18** | **Laboratory & Familiars** | v0.2, ready | nothing |
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |
 | 20 | Content Script *(after gate)* | — | events, mail, dialogue, schedules |
@@ -163,7 +163,7 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 
 **Cons**
 - No custom C# item or object subclasses. Behaviour that would naturally live in a subclass (the Satchel, staged altars, the Ritual Circle) has to sit in C# handlers keyed off `modData`. That is somewhat more code and more care.
-- The **Satchel's contents** must live outside the item, for example in a 1.6 global inventory keyed by the satchel's ID. Without the mod, those contents are orphaned, so an uninstall needs a helper that empties satchels into a chest first. *(Settled by doc 17 §4: a global inventory keyed by the owning player, so contents are never orphaned and survive an uninstall intact; default awaiting Charles.)*
+- The **Satchel's contents** must live outside the item, for example in a 1.6 global inventory keyed by the satchel's ID. Without the mod, those contents are orphaned, so an uninstall needs a helper that empties satchels into a chest first. *(Settled by doc 17 §4: a global inventory keyed by the owning player, so contents are never orphaned and survive an uninstall intact; Charles chose it on 2026-10-19.)*
 - **Custom buildings and locations** (the Laboratory, the workshop under the CC) need testing to confirm how 1.6 handles them once their data is gone. Mitigation is part of the same uninstall helper. *(Superseded for Labs by the S3 answer above: they simply disappear, with no conversion to Sheds.)*
 - Some rich features get harder: anything that stores complex state on a placed object has to serialize into `modData` strings.
 - Ongoing test cost: every release adds a "remove the mod and load the save" check.

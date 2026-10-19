@@ -30,7 +30,7 @@ Inspired by Minecraft's bundle (hover to see contents), with a proper menu.
 - **Taking items out:** drag from the grid into the inventory or a chest. Clicking a machine while holding the satchel opens a **picker filtered to that machine's valid inputs**.
 - **Capacity:** a limited number of item types (≈24 to start), upgradeable through Tobin. It's a progression sink, not infinite storage.
 - **Not inside it:** shipping, gifting and selling all require taking the item out first, which keeps vanilla flows untouched.
-- **Multiplayer:** each player has their own satchel. Its contents live in a 1.6 global inventory keyed by the owning player, so a lost or replaced satchel never orphans them and they survive an uninstall intact (doc 17 §4, default awaiting Charles).
+- **Multiplayer:** each player has their own satchel. Its contents live in a 1.6 global inventory keyed by the owning player, so a lost or replaced satchel never orphans them and they survive an uninstall intact (doc 17 §4; Charles, 2026-10-19).
 - **Automate:** never reads the satchel; chest-fed lines are unaffected.
 - **Compatibility to test:** Chests Anywhere, Lookup Anything, Convenient Inventory-style mods, and controller UI.
 
