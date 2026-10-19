@@ -72,11 +72,11 @@ State as of the 2026-10-18 cleanup sweep. Each doc's own status line is authorit
 | 10 | Roadmap & Open Questions | v0.9 | nothing; it collects every open item |
 | **11** | **First Playable Slice** | v0.2 (PR #14 merged) | Charles's review |
 | **12** | **Recipe & Process Model** | v0.4, ready | nothing |
-| **13** | **Apparatus Catalog** | v0.6, ready | nothing (the fresh-machine default waits on playtesting) |
+| **13** | **Apparatus Catalog** | v0.6b, ready | nothing |
 | **14** | **Unlock Map & Workshop Bundles** | v0.4, ready | nothing |
 | **15** | **Products & Outside Uses** | v0.7, ready | nothing |
 | **16** | **UX & Interface** | not started | codex, Satchel, Experiment Table, tooltips, celebrations, GMCM options, controller support, chaining visual aids (doc 13 §7) |
-| **17** | **Multiplayer, Saves & Compatibility** | v0.1b, ready (defaults D11–D14 await Charles) | nothing |
+| **17** | **Multiplayer, Saves & Compatibility** | v0.1d, ready | nothing |
 | **18** | **Laboratory & Familiars** | v0.2, ready | nothing |
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |
 | 20 | Content Script *(after gate)* | — | events, mail, dialogue, schedules |

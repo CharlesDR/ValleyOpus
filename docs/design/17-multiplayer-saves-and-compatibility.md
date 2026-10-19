@@ -1,6 +1,6 @@
 # 17 · Multiplayer, Saves & Compatibility
 
-Status: **DRAFT v0.1c** (2026-10-19) · Readiness: ready for architecture (defaults D11–D14 await Charles, doc 10)
+Status: **DRAFT v0.1d** (2026-10-19) · Readiness: ready for architecture
 Depends on: 03b, 05, 07, 09, 11, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 11 (the slice's test plan), 16 (what the menus must respect), 20
 
 ## Purpose
@@ -16,8 +16,7 @@ ValleyOpus adds a lot of state to a farm: a shared codex, unlocks, machine trays
 - **1.0 tie-ins:** SVE, Alecto the Witch, Ridgeside Village and East Scarp (U2, widened). **SVE installed is a test configuration from the very first build** (Charles, 2026-10-18, doc 11 §6).
 - **Satchel storage: one bag per player**, a 1.6 global inventory keyed by the owning player (Charles, 2026-10-19; §4).
 - **Testing:** at most four test configurations per build; test 1 is chaining only, without Automate (Charles, 2026-10-18).
-
-Defaults set by this doc, awaiting Charles (listed in doc 10 as D11–D14): host-owned economy settings (§3c), the mod-mismatch rule (§3e), the newer-save rule (§5d) and the matrix rotation (§8b).
+- **Host economy settings, version mismatch, newer saves and test rotation** (§3c, §3e, §5d, §8b): proposed here, confirmed by Charles on 2026-10-19 (doc 10 D11–D14).
 
 ## Player-facing spec
 Most of this doc is invisible when it works. What players notice:
@@ -89,11 +88,11 @@ All messages go through SMAPI's multiplayer API, filtered to our mod ID, and car
 
 **b. Unlocks, bundles, Familiars, Satchel capacity.** The same request → delta → snapshot pattern, one message type per subject. Bundle slots accept a deposit only once the host confirms it, so two players can't fill the same slot twice.
 
-**c. Economy settings.** Prices, yields and the caps behind doc 06's balance targets must be identical for everyone, so **the host's economy values rule** while farmhands are connected (sent in a `ConfigSync` message on connect and when the host changes them). A farmhand's own economy values are kept but unused until they host. Personal preferences stay local. *(Default D11.)*
+**c. Economy settings.** Prices, yields and the caps behind doc 06's balance targets must be identical for everyone, so **the host's economy values rule** while farmhands are connected (sent in a `ConfigSync` message on connect and when the host changes them). A farmhand's own economy values are kept but unused until they host. Personal preferences stay local. *(Charles, 2026-10-19, D11.)*
 
 **d. Use locks.** `LockRequest`, `LockGrant`, `LockRelease`, keyed by location and tile; a lock dies with its holder's connection.
 
-**e. Version handshake.** On connect, the farmhand's client sends its mod version and schema version. *(Default D12.)*
+**e. Version handshake.** On connect, the farmhand's client sends its mod version and schema version. *(Charles, 2026-10-19, D12.)*
 - **Same schema version:** everything works; a different patch version is only logged.
 - **Farmhand without ValleyOpus:** the host's chat shows a one-line notice that this player sees mod items as Error Items and can't use them; nothing else changes. Both players' saves stay safe, because a farmhand's client never writes host save data.
 - **Different schema version:** both players get the notice, and the host ignores that farmhand's requests (no discoveries, bundles or unlocks recorded from them) until versions match. Their hand actions still work on objects, as vanilla allows.
@@ -122,7 +121,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 
 **c. What forces a schema bump:** renaming or removing a field, changing a key's meaning, or changing how a record is keyed. Adding an optional field with a default doesn't.
 
-**d. A save from a newer build** than the installed mod knows (a downgrade): the mod loads in **read-only mode**: it reads what it understands, never writes host save data or migrates objects, and shows one HUD line saying this save was made with a newer ValleyOpus. *(Default D13.)* The player is never left with a half-migrated save.
+**d. A save from a newer build** than the installed mod knows (a downgrade): the mod loads in **read-only mode**: it reads what it understands, never writes host save data or migrates objects, and shows one HUD line saying this save was made with a newer ValleyOpus. *(Charles, 2026-10-19, D13.)* The player is never left with a half-migrated save.
 
 **e. IDs never change.** Items, recipes, unlocks, Primes and every other row keep their string IDs for good (doc 09). If a rename is ever unavoidable, an `IdAliases` asset maps the old ID to the new one; the one-time sweep in §5b rewrites items in inventories, chests and machines, and the codex keys. Aliases are a last resort, not a tool for tidying names.
 
@@ -179,7 +178,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 | 7 | + the dialogue and NPC stack: Canon-Friendly Dialogue Expansion, Miss Coriel's Unique Courtship Responses, Romanceable Rasmodia | solo | dialogue keys, Wizard content |
 | 8 | + legacy and resource mods: Producer Framework Mod, Json Assets, Item Extensions, Skull Cavern Elevator, a popular fertilizer mod, a machine-harvesting mod | solo | decomposition of their items, fertilizer patches, third-party extractors and locked outputs |
 
-**b. Rotation.** *(Default D14.)*
+**b. Rotation.** *(Charles, 2026-10-19, D14.)*
 - **Every build** includes an SVE configuration (2, 4 or 5) and repeats the remove-and-reload check in one of its configurations.
 - **Every build after the slice** includes configuration 4, so online co-op and save carry-forward are tested each time.
 - **Controller and split-screen** *(provisional, Charles, 2026-10-19: he can't test them for a while)*: every build lays the groundwork (gamepad navigation in every custom menu, `PerScreen<T>` state, per-screen toasts and overlays, §2i), and code review checks it on every build, with unit tests where the logic allows. **In-game controller and split-screen test cases are deferred** for the first few builds and added to configuration 4 once Charles can run them. They stay 1.0 requirements (U1).
@@ -228,12 +227,13 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 None directly. Two settings touch balance: the host's economy values rule in multiplayer (§3c), so doc 06's targets hold for everyone; and owner perks on automated loads stay on when the owner is offline (§2e), so the late-game cap is measured with perks always on.
 
 ## Open questions
-None `[blocks-arch]`. Defaults D11–D14 await Charles (doc 10). Test items above are verified in the builds, not here.
+None `[blocks-arch]`; every default is confirmed (doc 10). Test items above are verified in the builds, not here.
 - `[blocks-content]` **Familiar meeting places, ley-node sites, hidden-area entrances and Hesper's spot** join the touchpoint register when they're chosen. *Owner: docs 04, 08, 18, 20.*
 - `[blocks-content]` **Which fertilizer mod and which machine-harvesting mod** stand in for their kind in configuration 8; picked from the Nexus ranking when the configuration is first used. *Owner: the test plan.*
 - `[2.0]` Integration packs beyond the four tie-ins join the pool as configurations of their own.
 
 ## Change log
+- **v0.1d (2026-10-19):** Charles confirmed D11–D14; they move to Decisions locked.
 - **v0.1c (2026-10-19):** controller and split-screen get groundwork checked by code review in every build; their in-game tests are deferred (Charles, provisional); configuration 4 tests online co-op.
 - **v0.1b (2026-10-19):** Charles chose one Satchel bag per player (§4); it moves from default D10 to Decisions locked.
 - **v0.1 (2026-10-18):** first draft: the state register, multiplayer rules, sync protocol, Satchel storage (global inventory per player, default), save envelope and migration, uninstall command, compatibility rules with the touchpoint register, and the eight-configuration test pool with its rotation.
