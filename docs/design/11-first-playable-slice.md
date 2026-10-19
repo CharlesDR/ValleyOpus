@@ -153,7 +153,7 @@ No slice recipe needs darkness: putrefaction makes only the dark twins, which ar
 | 1 | slice only | solo, new save | CC | the core loop, **chaining only** (no Automate), the finish line, then remove the mod and reload (uninstall) |
 | 2 | slice + **SVE** | solo, new save | CC | maps (Town warp), SVE items decomposing, event collisions; runs from the first build alongside test 1 |
 | 3 | slice + **Automate** | solo, late install on an existing Spring save | Joja | Automate claiming our machines, locked outputs, polling cost, late-install soft start, the Joja route |
-| 4 | slice + SVE + Automate | two-player co-op, plus a split-screen session with a controller | CC | codex sync, farmhand discoveries, clock freeze with farmhands, per-screen menus, carry-forward into the next build |
+| 4 | slice + SVE + Automate | two-player online co-op | CC | codex sync, farmhand discoveries, clock freeze with farmhands, carry-forward into the next build. *Controller and split-screen:* groundwork in the build, checked by code review; in-game tests deferred until Charles can run them (provisional, Charles, 2026-10-19; doc 17 §8b) |
 
 **Unit tests and CI.** The engine's pure logic is written without game types where practical, so it runs in a plain C# test project: decomposition (profiles, √price yield, largest-remainder split, the exchange clamp, Aether weights), recipe matching and the uniqueness validator, neighbour states, quality modes and clamps, discovery keys and `tried:` signatures, and save-schema migration. The tests run on every push (GitHub Actions) and on the slice's data files, so a bad content row fails before anyone plays it. Doc 09's architecture plan must keep these pieces separable.
 
@@ -212,7 +212,7 @@ The slice is where doc 09's architecture plan is first proven. The risks it must
 7. **The Town warp** with and without SVE.
 8. **SpaceCore skill** registration, level-up screen, and banking XP past level 4.
 9. **Custom buff handler** (Undine's Gift) on the vanilla `Data/Buffs` path, and the **fertilizer queries** for our item IDs (doc 15).
-10. **Controller support** in every custom menu and per-screen state in split-screen.
+10. **Controller support** in every custom menu and per-screen state in split-screen: built and code-reviewed in the slice, tested in game later (doc 17 §8b).
 
 Framework choices still open at the gate (doc 09): the bundle menu (Unlockable Bundles or our own), and the Satchel's storage, which doc 17 §4 sets as a global inventory per player (Charles, 2026-10-19). The slice uses whatever the gate picks; it is the first build after the gate, not before it.
 

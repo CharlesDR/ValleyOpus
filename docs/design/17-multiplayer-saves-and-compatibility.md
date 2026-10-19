@@ -1,6 +1,6 @@
 # 17 · Multiplayer, Saves & Compatibility
 
-Status: **DRAFT v0.1b** (2026-10-19) · Readiness: ready for architecture (defaults D11–D14 await Charles, doc 10)
+Status: **DRAFT v0.1c** (2026-10-19) · Readiness: ready for architecture (defaults D11–D14 await Charles, doc 10)
 Depends on: 03b, 05, 07, 09, 11, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 11 (the slice's test plan), 16 (what the menus must respect), 20
 
 ## Purpose
@@ -173,7 +173,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 | 1 | ValleyOpus only | solo, new save, CC | the core loop with **chaining only**; remove and reload |
 | 2 | + SVE | solo, new save, CC | Town warp, SVE items decomposing, event collisions, SVE-aware schedules |
 | 3 | + Automate | solo, late install, Joja | our factory, locked outputs, polling cost, late-install soft start |
-| 4 | + SVE + Automate | co-op and split-screen with a controller | codex sync, late joiners, use locks, clock freeze with farmhands, per-screen menus, carry-forward of the previous build's save |
+| 4 | + SVE + Automate | online co-op (split-screen and controller in game once Charles can test them, §8b) | codex sync, late joiners, use locks, clock freeze with farmhands, carry-forward of the previous build's save; per-screen menus and controller play later |
 | 5 | + SVE + Ridgeside Village + East Scarp + Alecto the Witch | solo | the four tie-ins together: map touchpoints, the Witch switching to Alecto, tie-in nodes and lines |
 | 6 | + the utility stack: Chests Anywhere, Convenient Inventory, Better Crafting, Lookup Anything, UI Info Suite 2, Experience Bars, Wear More Rings, Walk of Life | solo | Satchel and global-inventory handling, quick-stack, crafting from the Satchel, HUD display, ring stacking, profession resets |
 | 7 | + the dialogue and NPC stack: Canon-Friendly Dialogue Expansion, Miss Coriel's Unique Courtship Responses, Romanceable Rasmodia | solo | dialogue keys, Wizard content |
@@ -181,7 +181,8 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 
 **b. Rotation.** *(Default D14.)*
 - **Every build** includes an SVE configuration (2, 4 or 5) and repeats the remove-and-reload check in one of its configurations.
-- **Every build after the slice** includes configuration 4, so multiplayer and save carry-forward are tested each time.
+- **Every build after the slice** includes configuration 4, so online co-op and save carry-forward are tested each time.
+- **Controller and split-screen** *(provisional, Charles, 2026-10-19: he can't test them for a while)*: every build lays the groundwork (gamepad navigation in every custom menu, `PerScreen<T>` state, per-screen toasts and overlays, §2i), and code review checks it on every build, with unit tests where the logic allows. **In-game controller and split-screen test cases are deferred** for the first few builds and added to configuration 4 once Charles can run them. They stay 1.0 requirements (U1).
 - A configuration whose area the build changed is picked first; one untouched for three builds is picked next.
 - **A release candidate** (1.0 beta and each update after it) covers all eight across its last two builds.
 
@@ -233,5 +234,6 @@ None `[blocks-arch]`. Defaults D11–D14 await Charles (doc 10). Test items abov
 - `[2.0]` Integration packs beyond the four tie-ins join the pool as configurations of their own.
 
 ## Change log
+- **v0.1c (2026-10-19):** controller and split-screen get groundwork checked by code review in every build; their in-game tests are deferred (Charles, provisional); configuration 4 tests online co-op.
 - **v0.1b (2026-10-19):** Charles chose one Satchel bag per player (§4); it moves from default D10 to Decisions locked.
 - **v0.1 (2026-10-18):** first draft: the state register, multiplayer rules, sync protocol, Satchel storage (global inventory per player, default), save envelope and migration, uninstall command, compatibility rules with the touchpoint register, and the eight-configuration test pool with its rotation.

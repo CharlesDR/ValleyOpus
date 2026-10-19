@@ -69,7 +69,7 @@ Each is written into the docs as the default; confirming it just removes the *(d
 | D11 | **The host's economy settings rule** while farmhands are connected; personal preferences stay local. | doc 17 §3c |
 | D12 | **Version mismatch:** a farmhand without the mod or on another schema version gets a notice, and the host ignores their codex, bundle and unlock requests until versions match. | doc 17 §3e |
 | D13 | **A save from a newer build** loads read-only (no writes, no migration) with a HUD notice. | doc 17 §5d |
-| D14 | **Test rotation:** every build includes an SVE configuration and the remove-and-reload check; every build after the slice includes co-op and split-screen; a release candidate covers all eight configurations across its last two builds. | doc 17 §8b |
+| D14 | **Test rotation:** every build includes an SVE configuration and the remove-and-reload check; every build after the slice includes co-op and split-screen; a release candidate covers all eight configurations across its last two builds. *Controller and split-screen: groundwork every build, checked by code review; in-game tests deferred (Charles, provisional, 2026-10-19).* | doc 17 §8b |
 
 ### Design questions still open
 - `[blocks-content]` **Where darkness holds outside a Lab** (night outdoors, caves, unlit rooms), since darkness is Required for every putrefaction recipe. *Owner: doc 12.*
