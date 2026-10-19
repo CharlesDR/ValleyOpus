@@ -66,16 +66,21 @@ Each is written into the docs as the default; confirming it just removes the *(d
 | # | Default | Where |
 |---|---|---|
 | D4 | **A fresh machine takes nothing from automation** until set once by hand (the alternative: first satisfiable in codex order). *Kept for now; Charles will playtest how it feels.* | doc 13 §6a |
+| D10 | **Level 2's extra Satchel tab adds capacity** (a second page of type slots, placeholder +12), not a fourth category. | doc 16 §4 |
+| D11 | **Take-back from the tray:** staged items can be taken back from a machine until its recipe completes. | doc 16 §5 |
+| D12 | **Recipe-memory icons draw only with the chain overlay** by default (GMCM: always / with the overlay / never). | doc 16 §5, §15 |
+| D13 | **The codex keeps every seen hint** on a Notes page, grouped by channel. | doc 16 §7 |
+| D14 | **The overlay and codex keys start unbound**; the Satchel (hold for the light overlay, its grid for the codex and full overlay) covers keyboard and controller alike. | doc 16 §15 |
 
 ### Design questions still open
 - `[blocks-arch]` **Satchel storage:** a 1.6 global inventory keyed by the satchel (docs 00, 09: uninstall safety) or the item's `modData` (doc 03b). *Owner: doc 17.*
 - `[blocks-content]` **Where darkness holds outside a Lab** (night outdoors, caves, unlit rooms), since darkness is Required for every putrefaction recipe. *Owner: doc 12.*
 - `[blocks-content]` **Inventory sort keys:** verify what vanilla Organize and the common sort mods key on before tags, categories and IDs are assigned (doc 03b rule 5, doc 09). *Owner: the data layer.*
-- `[blocks-content]` **Late-install fast start** as an optional GMCM setting. *Owner: Charles / doc 16 (doc 14).*
+- `[blocks-content]` **Late-install fast start** as an optional GMCM setting (its GMCM row is reserved in doc 16 §15). *Owner: Charles (docs 14, 16).*
 - `[blocks-content]` **Effect count:** the 2–3 cap stays suspended; doc 15 §3a's catalogue is the 1.0 list for now. *Owner: Charles (doc 15).*
 
 ### For the Phase 4 docs (16 UX, 17 Multiplayer, Saves & Compat)
-- **Doc 16:** the slice's menus first (Table, Satchel grid and picker, codex, bundle board, minimal chain overlay; doc 11); chaining visual aids and the recipe-memory icon (doc 13 §6a, §7); Finch's curiosity hint hidden in his shop tooltip (doc 07); the quarter-day hand-action budget (doc 02); the Satchel UI (doc 03b); codex, toasts and flourishes (doc 07).
+- **Doc 16:** drafted (v0.1, in review). Its own open items are the late-install fast start and defaults D10–D14 above, plus art and sound for doc 21. Verify at the gate (doc 09): the vanilla hold-up pausing the clock, controller snapping in the codex's triangular grid, the smallest split-screen viewport, Unlockable Bundles' menu fitting the board's sealed doors and divination panel, and overlay frame time in a full T3 Lab.
 - **Doc 17:** the save schema version and migration, before the slice is built (doc 11, carry-forward saves); Satchel storage (above); clock freeze in multiplayer (doc 07); locked outputs and third-party extractors (doc 13 §6); 1.6 dropping a missing building cleanly (doc 09); the tie-in test matrix (doc 00).
 
 ### Content pass (rows, docs 19 and 20)
@@ -109,6 +114,7 @@ Collected in the version-scope table above and tagged `[2.0]` in each doc: arcan
 - Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
 
 ## Change log
+- **v0.9a (2026-10-18):** doc 16 drafted: its defaults D10–D14 join the table for Charles, and its gate checks replace the Phase 4 to-do line.
 - **v0.9 (2026-10-18):** cleanup sweep: an Open questions hub collects every open item across the docs (defaults awaiting Charles, design questions, Phase 4, content and balance passes, deferred passes, 2.0); the earlier-decisions list is collapsed; the full-review action item and the Nexus ranking task are marked done; the cast count follows doc 08a (11).
 - **v0.8b (2026-10-14):** material names swept to Latin first, English gloss second (Charles's choice); the rule is in doc 03a.
 - **v0.8 (2026-10-14):** Charles's full review: the item budget is loosened to adventure-area drops only (doc 03b), internal consistency becomes a core principle (doc 01), and integration and compatibility targets are chosen from his top-80 export (doc 09). 

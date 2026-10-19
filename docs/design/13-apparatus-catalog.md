@@ -205,11 +205,12 @@ Doc 06 metrics per apparatus: GPTD per tile including its share of power and che
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` **Fresh machine and automation** (§6a): a machine takes nothing from automation until set once by hand *(default, kept for now)*. Charles wants to playtest how it feels before locking it (2026-10-18). *Owner: Charles, after playtesting.*
-- `[blocks-content]` **Chaining visual aids** (§7) and the recipe-memory icon (§6a): exact art and controls. *Owner: doc 16.*
+- `[blocks-content]` **Chaining visual aids** (§7) and the recipe-memory icon (§6a): controls and behaviour are specced in doc 16 §5–§6; the art is doc 21's. *Owner: doc 21.*
 - `[2.0]` Display-only `Data/Machines` rules that mirror our recipes, so Lookup Anything can list them (Charles, 2026-10-16).
 - `[2.0]` A flower-fed **trickle** (a Prime from a planted bed, no input) would be a world tap placed in a garden; arcane logistics replaces chaining through the item-route interface; blended late-game machines are designed with the capstones.
 
 ## Change log
+- **v0.6a (2026-10-18):** the chaining visual aids are specced in doc 16; only their art stays open (doc 21).
 - **v0.6 (2026-10-18), Charles's answers:** the power-inputs rule, Electrum and Rebis as a counterpart pair, and Ectoplasm hand-made only are confirmed; the fresh-machine default stays until playtesting.
 - **v0.6 (2026-10-18):** cleanup sweep: unlock columns marked as doc 14's approved sources; §9 points to doc 18 §2c's re-check; settled open questions removed and the four remaining defaults grouped for Charles; doc 04's tables and doc 09's Automate plan now point here.
 - **v0.5 (2026-10-17):** the unlock column follows doc 14 (Charles approved): Oriel gives one Athanor at the intro, rooms supply the rest.
