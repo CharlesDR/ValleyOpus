@@ -9,7 +9,9 @@ public sealed record ItemInfo(string QualifiedId, int Price, int Category, IRead
     public static ItemInfo Create(string id, int price, int category, params string[] tags)
         => new(Ids.QualifyItem(id), price, category, new HashSet<string>(tags, StringComparer.OrdinalIgnoreCase));
 
-    public bool HasTag(string tag) => this.Tags.Contains(tag);
+    /// <summary>Whether the item has the tag; a spec of several space-separated tags needs all of them.</summary>
+    public bool HasTag(string tag)
+        => tag.IndexOf(' ') < 0 ? this.Tags.Contains(tag) : tag.Split(' ', StringSplitOptions.RemoveEmptyEntries).All(this.Tags.Contains);
 }
 
 /// <summary>One item instance in a tray or a load: the item, its vanilla quality (0, 1, 2 or 4) and a count.</summary>

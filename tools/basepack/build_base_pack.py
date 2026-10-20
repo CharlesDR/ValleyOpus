@@ -320,7 +320,7 @@ def build(art_root):
             {"ConditionId": P + "Shades", "Use": "Bonus", "Effect": {"QualitySteps": 1}})
         registries["Recipes"][P + local]["TwinGroup"] = P + source
     for n, (local, display, inputs, op, marks, rune, gloss) in enumerate(F.TIER3):
-        add_substance(local, display, inputs, op, "Item", marks + "H", rune, gloss, 3, SORT_T3 + n, requires="Unlock_GreatWork")
+        add_substance(local, display, inputs, op, "Item", marks + "H", rune, gloss, 3, SORT_T3 + n, requires="GreatWork")
         registries["Recipes"][P + local]["Discovery"] = {"TableAttemptable": False, "HintKeys": ["hint.recipe." + local]}
 
     # Stage advances: the input comes back one quality step higher (doc 12 §5).

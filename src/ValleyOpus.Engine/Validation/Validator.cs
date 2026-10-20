@@ -30,6 +30,7 @@ public static class Validator
         CheckSettings(registry);
         CheckProducts(registry, options);
         CheckSkillAndCodex(registry);
+        CheckWorld(registry, options);
 
         return registry.Findings.Skip(before).ToList();
     }
@@ -182,12 +183,16 @@ public static class Validator
                 return $"Variant on '{condition.Id}', which the player doesn't control: automated output never switches with the environment (doc 13 §1a)";
         }
 
+        if (recipe.Output.Id == RecipeOutput.SameAsInput)
+            return recipe.Quality.Mode == QualityMode.Advance ? null : "a SameAsInput output needs the Advance quality mode";
         string? outputItem = registry.ResolveItemId(recipe.Output.Id);
         if (!registry.Substances.Contains(recipe.Output.Id) && !registry.Primes.Contains(recipe.Output.Id) && (outputItem is null || !KnownItem(options, outputItem)))
             return $"output '{recipe.Output.Id}' doesn't resolve";
 
         if (recipe.SecretPool != null && !registry.SecretPools.Contains(recipe.SecretPool))
             return $"unknown secret pool '{recipe.SecretPool}'";
+        if (recipe.RequiresUnlock != null && registry.Unlocks.Count > 0 && !registry.Unlocks.Contains(recipe.RequiresUnlock))
+            return $"unknown unlock '{recipe.RequiresUnlock}'";
 
         return null;
     }
@@ -299,6 +304,61 @@ public static class Validator
             if (kind is not ("FirstOfTier" or "TierComplete" or "RowComplete" or "Process"))
                 registry.Disable(registry.Milestones, row.Id, $"unknown trigger '{row.Trigger}'");
         }
+    }
+
+    /// <summary>Unlocks, rooms, bundles, ley nodes, hints, contracts and Familiars point at rows that exist (doc 14, doc 07).</summary>
+    private static void CheckWorld(ContentRegistry registry, ValidationOptions options)
+    {
+        foreach (UnlockRow row in registry.Unlocks.All.ToList())
+        {
+            string? missing = row.Requires.FirstOrDefault(r => r.StartsWith(Ids.RowPrefix, StringComparison.Ordinal) && !registry.Unlocks.Contains(r));
+            if (missing != null)
+                registry.Warn(RegistryNames.Unlocks, row.Id, $"requires unknown unlock '{missing}'; it can never fire");
+            if (row.Source.Type == UnlockSources.WorkshopRoom && !registry.Rooms.Contains(Ids.RowPrefix + row.Source.Ref))
+                registry.Warn(RegistryNames.Unlocks, row.Id, $"source room '{row.Source.Ref}' is unknown");
+            foreach (UnlockGrant grant in row.Grants.Where(g => g.Type == GrantTypes.Item))
+                if (!KnownItem(options, grant.Ref) && !grant.Ref.Contains(Ids.RowPrefix, StringComparison.Ordinal))
+                    registry.Warn(RegistryNames.Unlocks, row.Id, $"grants unknown item '{grant.Ref}'");
+        }
+
+        foreach (WorkshopRoomRow room in registry.Rooms.All.ToList())
+        {
+            string? bundle = room.Bundles.FirstOrDefault(b => !registry.Bundles.Contains(b));
+            if (bundle != null)
+                registry.Disable(registry.Rooms, room.Id, $"unknown bundle '{bundle}'");
+            string? opener = (room.Opens.AllOf ?? new()).Concat(room.Opens.AnyOf ?? new()).FirstOrDefault(r => !registry.Rooms.Contains(r));
+            if (opener != null)
+                registry.Disable(registry.Rooms, room.Id, $"opens after unknown room '{opener}'");
+        }
+
+        foreach (WorkshopBundleRow bundle in registry.Bundles.All.ToList())
+        {
+            if (!registry.Rooms.Contains(bundle.Room))
+                registry.Disable(registry.Bundles, bundle.Id, $"unknown room '{bundle.Room}'");
+            else if (bundle.Slots.Count == 0)
+                registry.Disable(registry.Bundles, bundle.Id, "no slots");
+            foreach (IngredientSpec slot in bundle.Slots.Where(s => s.Item != null))
+            {
+                string? item = registry.ResolveItemId(slot.Item!);
+                if (item is null || (!registry.Substances.Contains(slot.Item!) && !KnownItem(options, item) && !item.Contains(Ids.RowPrefix, StringComparison.Ordinal)))
+                    registry.Warn(RegistryNames.WorkshopBundles, bundle.Id, $"slot item '{slot.Item}' is unknown");
+            }
+        }
+
+        foreach (LeyNodeRow node in registry.LeyNodes.All.ToList())
+        {
+            string? prime = node.Profile.Keys.FirstOrDefault(p => !registry.Primes.Contains(p));
+            if (prime != null)
+                registry.Disable(registry.LeyNodes, node.Id, $"unknown Prime '{prime}'");
+        }
+
+        foreach (HintRow hint in registry.Hints.All.ToList())
+            if (!registry.Recipes.Contains(hint.Target) && !registry.Substances.Contains(hint.Target) && !registry.Conditions.Contains(hint.Target))
+                registry.Disable(registry.Hints, hint.Id, $"unknown target '{hint.Target}'");
+
+        foreach (FamiliarRow familiar in registry.Familiars.All.ToList())
+            if (familiar.BondRecipe != null && !registry.Recipes.Contains(familiar.BondRecipe))
+                registry.Warn(RegistryNames.Familiars, familiar.Id, $"bond recipe '{familiar.BondRecipe}' is unknown");
     }
 
     private static void CheckSettings(ContentRegistry registry)

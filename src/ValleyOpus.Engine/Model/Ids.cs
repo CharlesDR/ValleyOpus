@@ -50,12 +50,21 @@ public static class RegistryNames
     public const string CodexPages = "Codex/Pages";
     public const string CodexLore = "Codex/Lore";
     public const string Milestones = "Milestones";
+    public const string Unlocks = "Unlocks";
+    public const string WorkshopRooms = "WorkshopRooms";
+    public const string WorkshopBundles = "WorkshopBundles";
+    public const string LeyNodes = "LeyNodes";
+    public const string Hints = "Hints";
+    public const string Contracts = "Contracts";
+    public const string Familiars = "Familiars";
+    public const string Professions = "Professions";
 
     public static readonly IReadOnlyList<string> All = new[]
     {
         Primes, Substances, Recipes, Conditions, Operations, Apparatus, SecretPools,
         TagWeights, CategoryDefaults, Overrides, Settings,
-        Products, Effects, XpSources, CodexPages, CodexLore, Milestones
+        Products, Effects, XpSources, CodexPages, CodexLore, Milestones,
+        Unlocks, WorkshopRooms, WorkshopBundles, LeyNodes, Hints, Contracts, Familiars, Professions
     };
 
     /// <summary>The full asset name, e.g. <c>CharlesDR.ValleyOpus/Recipes</c>.</summary>

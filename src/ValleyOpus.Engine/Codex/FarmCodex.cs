@@ -29,6 +29,10 @@ public sealed class CodexData
 public sealed class FarmCodex : IRecipeAvailability
 {
     private readonly HashSet<string> disabledSecrets = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, string> requiresUnlock = new(StringComparer.Ordinal);
+
+    /// <summary>Whether the farm holds an unlock; null treats every unlock as held (tests, tools).</summary>
+    public Func<string, bool>? IsUnlocked { get; set; }
 
     public FarmCodex(CodexData? data = null) => this.Data = data ?? new CodexData();
 
@@ -60,7 +64,10 @@ public sealed class FarmCodex : IRecipeAvailability
 
     public bool IsDiscovered(string recipeId) => this.Has(CodexKeys.Recipe(recipeId));
 
-    public bool IsDisabledOnFarm(string recipeId) => this.disabledSecrets.Contains(recipeId);
+    /// <summary>An unpicked secret candidate, or a recipe whose story unlock the farm doesn't hold yet (doc 14 §1).</summary>
+    public bool IsDisabledOnFarm(string recipeId)
+        => this.disabledSecrets.Contains(recipeId)
+            || (this.requiresUnlock.TryGetValue(recipeId, out string? unlock) && this.IsUnlocked != null && !this.IsUnlocked(unlock));
 
     /// <summary>
     /// Picks each pool's secret recipes for this farm if not picked yet, and disables the unpicked candidates.
@@ -69,6 +76,9 @@ public sealed class FarmCodex : IRecipeAvailability
     public void ApplySecretPicks(ContentRegistry registry, string gameId)
     {
         this.disabledSecrets.Clear();
+        this.requiresUnlock.Clear();
+        foreach (RecipeRow recipe in registry.Recipes.All.Where(r => !string.IsNullOrEmpty(r.RequiresUnlock)))
+            this.requiresUnlock[recipe.Id] = recipe.RequiresUnlock!;
         foreach (SecretPoolRow pool in registry.SecretPools.All)
         {
             List<string> candidates = Candidates(registry, pool.Id);

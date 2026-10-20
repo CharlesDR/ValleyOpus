@@ -25,6 +25,14 @@ public sealed class ContentRegistry
     public RowSet<CodexPageRow> CodexPages { get; } = new(RegistryNames.CodexPages);
     public RowSet<LoreRow> Lore { get; } = new(RegistryNames.CodexLore);
     public RowSet<MilestoneRow> Milestones { get; } = new(RegistryNames.Milestones);
+    public RowSet<UnlockRow> Unlocks { get; } = new(RegistryNames.Unlocks);
+    public RowSet<WorkshopRoomRow> Rooms { get; } = new(RegistryNames.WorkshopRooms);
+    public RowSet<WorkshopBundleRow> Bundles { get; } = new(RegistryNames.WorkshopBundles);
+    public RowSet<LeyNodeRow> LeyNodes { get; } = new(RegistryNames.LeyNodes);
+    public RowSet<HintRow> Hints { get; } = new(RegistryNames.Hints);
+    public RowSet<ContractRow> Contracts { get; } = new(RegistryNames.Contracts);
+    public RowSet<FamiliarRow> Familiars { get; } = new(RegistryNames.Familiars);
+    public RowSet<ProfessionRow> Professions { get; } = new(RegistryNames.Professions);
     public DecompositionSettingsRow Settings { get; internal set; } = new() { Id = "Default" };
 
     /// <summary>Loader and validator findings so far.</summary>

@@ -3579,7 +3579,7 @@
               "hint.recipe.PrimaMateria"
             ]
           },
-          "RequiresUnlock": "CharlesDR.ValleyOpus_Unlock_GreatWork"
+          "RequiresUnlock": "CharlesDR.ValleyOpus_GreatWork"
         },
         "CharlesDR.ValleyOpus_Alkahest": {
           "Inputs": [
@@ -3612,7 +3612,7 @@
               "hint.recipe.Alkahest"
             ]
           },
-          "RequiresUnlock": "CharlesDR.ValleyOpus_Unlock_GreatWork"
+          "RequiresUnlock": "CharlesDR.ValleyOpus_GreatWork"
         },
         "CharlesDR.ValleyOpus_Azoth": {
           "Inputs": [
@@ -3645,7 +3645,7 @@
               "hint.recipe.Azoth"
             ]
           },
-          "RequiresUnlock": "CharlesDR.ValleyOpus_Unlock_GreatWork"
+          "RequiresUnlock": "CharlesDR.ValleyOpus_GreatWork"
         },
         "CharlesDR.ValleyOpus_LapisPhilosophorum": {
           "Inputs": [
@@ -3684,7 +3684,7 @@
               "hint.recipe.LapisPhilosophorum"
             ]
           },
-          "RequiresUnlock": "CharlesDR.ValleyOpus_Unlock_GreatWork"
+          "RequiresUnlock": "CharlesDR.ValleyOpus_GreatWork"
         },
         "CharlesDR.ValleyOpus_AdvancePelican": {
           "Inputs": [

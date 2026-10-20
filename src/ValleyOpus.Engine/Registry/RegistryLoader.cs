@@ -61,6 +61,14 @@ public static class RegistryLoader
         Read(raw, formats, RegistryNames.CodexPages, registry.CodexPages, findings);
         Read(raw, formats, RegistryNames.CodexLore, registry.Lore, findings);
         Read(raw, formats, RegistryNames.Milestones, registry.Milestones, findings);
+        Read(raw, formats, RegistryNames.Unlocks, registry.Unlocks, findings);
+        Read(raw, formats, RegistryNames.WorkshopRooms, registry.Rooms, findings);
+        Read(raw, formats, RegistryNames.WorkshopBundles, registry.Bundles, findings);
+        Read(raw, formats, RegistryNames.LeyNodes, registry.LeyNodes, findings);
+        Read(raw, formats, RegistryNames.Hints, registry.Hints, findings);
+        Read(raw, formats, RegistryNames.Contracts, registry.Contracts, findings);
+        Read(raw, formats, RegistryNames.Familiars, registry.Familiars, findings);
+        Read(raw, formats, RegistryNames.Professions, registry.Professions, findings);
 
         var settings = new RowSet<DecompositionSettingsRow>(RegistryNames.Settings);
         Read(raw, formats, RegistryNames.Settings, settings, findings);

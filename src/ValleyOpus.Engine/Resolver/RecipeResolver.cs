@@ -24,6 +24,15 @@ public interface IRecipeAvailability
 /// <param name="Capacity">The tray capacity if it differs from the row (the Table's third slot, doc 12 R2).</param>
 public sealed record MachineContext(ApparatusRow Apparatus, ConditionSnapshot Snapshot, LoadSource Source, string? RecipeMemory = null, int? Capacity = null)
 {
+    /// <summary>The combined speed of the Lab, perks and indirect boosters: a time multiplier (0.75 = 25% faster).</summary>
+    public double SpeedMultiplier { get; init; } = 1;
+
+    /// <summary>Quality steps from the Lab, Familiar and perks, rolled once at load (doc 18 §1).</summary>
+    public int ExtraQualitySteps { get; init; }
+
+    /// <summary>Stages a perk raises the apparatus cap by (Engineer, doc 05).</summary>
+    public int CapRaise { get; init; }
+
     public bool Automated => this.Source is LoadSource.Chaining or LoadSource.Automate;
     public string? State => this.Snapshot.NeighbourState;
     public int TrayCapacity => this.Capacity ?? this.Apparatus.TrayCapacity;
