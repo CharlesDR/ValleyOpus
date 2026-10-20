@@ -156,6 +156,7 @@ internal sealed class WorldService
     {
         try
         {
+            this.startingDay = true;
             if (Context.IsMainPlayer)
             {
                 this.Evaluate(morning: true);
@@ -168,9 +169,16 @@ internal sealed class WorldService
         {
             this.log.Error($"The morning world update failed: {ex}");
         }
+        finally
+        {
+            this.startingDay = false;
+        }
     }
 
     private int ticks;
+
+    /// <summary>True while the morning update runs: letters claimed then arrive today; later ones wait for tomorrow.</summary>
+    private bool startingDay;
 
     private void OnOneSecond(object? sender, OneSecondUpdateTickedEventArgs e)
     {
@@ -352,8 +360,14 @@ internal sealed class WorldService
                             items.Add(item);
                         break;
                     case GrantTypes.Mail:
-                        if (!who.mailReceived.Contains(grant.Ref) && !who.mailbox.Contains(grant.Ref))
-                            who.mailbox.Add(grant.Ref);
+                        // Mail only comes overnight, as in vanilla (SOS Pass B): a mid-day unlock's letter waits for tomorrow.
+                        if (!who.mailReceived.Contains(grant.Ref) && !who.mailbox.Contains(grant.Ref) && !who.mailForTomorrow.Contains(grant.Ref))
+                        {
+                            if (this.startingDay)
+                                who.mailbox.Add(grant.Ref);
+                            else
+                                who.mailForTomorrow.Add(grant.Ref);
+                        }
                         break;
                 }
             }

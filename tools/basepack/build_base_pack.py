@@ -18,7 +18,8 @@ P = D.P
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PACK = os.path.join(ROOT, "content", "[CP] ValleyOpus")
 TEXTURE = "Mods/CharlesDR.ValleyOpus/Objects"
-FURNITURE_TEXTURE = "Mods/CharlesDR.ValleyOpus/Furniture"
+# Data/Furniture is slash-delimited, so the texture path uses backslashes (SOS Pass B: "Failed loading texture Mods").
+FURNITURE_TEXTURE = "Mods\\CharlesDR.ValleyOpus\\Furniture"
 D_REAGENT = "valleyopus_reagent"
 
 SORT_DARK, SORT_T3, SORT_WORN, SORT_NEW, SORT_CURIO = 2150, 9000, 3000, 3100, 3200

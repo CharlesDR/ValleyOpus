@@ -1923,10 +1923,10 @@
       "Action": "EditData",
       "Target": "Data/Furniture",
       "Entries": {
-        "CharlesDR.ValleyOpus_CircleSigil": "CharlesDR.ValleyOpus_CircleSigil/rug/5 5/5 5/1/500/-1/{{i18n:furniture.CircleSigil.name}}/0/Mods/CharlesDR.ValleyOpus/Furniture/true/valleyopus_furniture",
-        "CharlesDR.ValleyOpus_GlazedUrn": "CharlesDR.ValleyOpus_GlazedUrn/decor/1 2/1 1/1/500/-1/{{i18n:furniture.GlazedUrn.name}}/5/Mods/CharlesDR.ValleyOpus/Furniture/true/valleyopus_furniture",
-        "CharlesDR.ValleyOpus_GlazedPlanter": "CharlesDR.ValleyOpus_GlazedPlanter/decor/1 1/1 1/1/500/-1/{{i18n:furniture.GlazedPlanter.name}}/6/Mods/CharlesDR.ValleyOpus/Furniture/true/valleyopus_furniture",
-        "CharlesDR.ValleyOpus_GlazedTileRug": "CharlesDR.ValleyOpus_GlazedTileRug/rug/3 2/3 2/1/500/-1/{{i18n:furniture.GlazedTileRug.name}}/7/Mods/CharlesDR.ValleyOpus/Furniture/true/valleyopus_furniture"
+        "CharlesDR.ValleyOpus_CircleSigil": "CharlesDR.ValleyOpus_CircleSigil/rug/5 5/5 5/1/500/-1/{{i18n:furniture.CircleSigil.name}}/0/Mods\\CharlesDR.ValleyOpus\\Furniture/true/valleyopus_furniture",
+        "CharlesDR.ValleyOpus_GlazedUrn": "CharlesDR.ValleyOpus_GlazedUrn/decor/1 2/1 1/1/500/-1/{{i18n:furniture.GlazedUrn.name}}/5/Mods\\CharlesDR.ValleyOpus\\Furniture/true/valleyopus_furniture",
+        "CharlesDR.ValleyOpus_GlazedPlanter": "CharlesDR.ValleyOpus_GlazedPlanter/decor/1 1/1 1/1/500/-1/{{i18n:furniture.GlazedPlanter.name}}/6/Mods\\CharlesDR.ValleyOpus\\Furniture/true/valleyopus_furniture",
+        "CharlesDR.ValleyOpus_GlazedTileRug": "CharlesDR.ValleyOpus_GlazedTileRug/rug/3 2/3 2/1/500/-1/{{i18n:furniture.GlazedTileRug.name}}/7/Mods\\CharlesDR.ValleyOpus\\Furniture/true/valleyopus_furniture"
       }
     }
   ]
