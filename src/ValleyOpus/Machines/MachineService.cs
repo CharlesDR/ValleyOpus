@@ -104,7 +104,17 @@ internal sealed class MachineService
         => items.Where(i => i != null).Select(i => new ItemStack(GameContent.ToInfo(i), i.Quality, i.Stack)).ToList();
 
     public MachineContext Context(SObject machine, ApparatusRow apparatus, MachineData state, LoadSource source, Farmer? who)
-        => new(apparatus, Neighbours.Read(machine, apparatus, who), source, state.RecipeMemory, apparatus.Kind == ApparatusKinds.Table ? ModServices.Farm.Codex.Data.TableCapacity : null);
+    {
+        // Perks follow the loading player by hand, the machine's owner under automation (doc 05 §6).
+        Farmer? perksOf = source is LoadSource.Hand or LoadSource.Picker ? who : Game1.getFarmerMaybeOffline(state.Owner) ?? who;
+        Bonuses.Result bonus = Bonuses.For(machine, apparatus, perksOf);
+        return new MachineContext(apparatus, Neighbours.Read(machine, apparatus, who), source, state.RecipeMemory, apparatus.Kind == ApparatusKinds.Table ? ModServices.Farm.Codex.Data.TableCapacity : null)
+        {
+            SpeedMultiplier = bonus.SpeedMultiplier,
+            ExtraQualitySteps = bonus.ExtraQualitySteps,
+            CapRaise = bonus.CapRaise,
+        };
+    }
 
     /// <summary>Whether the machine holds a finished locked output in the store.</summary>
     public static bool HasHeldOutput(SObject machine) => machine.modData.ContainsKey(HeldOutputKey);
@@ -274,22 +284,50 @@ internal sealed class MachineService
             state.Owner = who.UniqueMultiplayerID;
         }
         if (ModServices.Content.ApparatusOf(machine)?.Fuel is { } fuel)
-            state.Fuel = Math.Max(0, state.Fuel - fuel.PerRun);
+        {
+            Farmer? owner = Game1.getFarmerMaybeOffline(state.Owner) ?? (manual ? who : null);
+            state.Fuel = Math.Max(0, state.Fuel - Bonuses.FuelCost(machine, fuel.PerRun, owner, fed: !manual));
+        }
         Save(machine, state);
+        Power.Spend(machine, run.RecipeId);
+        this.SpendCatalysts(machine, run.RecipeId, who);
         this.Trace(machine, $"started {run.RecipeId}: {run.OutputItemId} x{run.Count} q{run.Quality} in {run.Minutes} min{(run.Locked ? ", locked" : "")}{(run.Extras.Count > 0 ? ", extras " + MachineData.FormatExtras(run.Extras) : "")}");
     }
 
-    /// <summary>A run that makes no item: kindling an Athanor with Flamma Viva (doc 13 §2).</summary>
+    /// <summary>Shades a recipe requires come out of the loading player's lanterns (a Gnome Lab may save them).</summary>
+    private void SpendCatalysts(SObject machine, string recipeId, Farmer who)
+    {
+        if (ModServices.Content.Registry.Recipes.Get(recipeId) is not { } recipe)
+            return;
+        foreach (RecipeConditionRef reference in recipe.Conditions.Where(c => c.Use == ConditionUse.Required))
+        {
+            if (ModServices.Content.Registry.Conditions.Get(reference.ConditionId)?.Catalyst is { Shades: > 0 } catalyst && !Bonuses.SavesCatalyst(machine))
+            {
+                Effects.Shades.Spend(who, catalyst.Shades);
+                this.Trace(machine, $"spent {catalyst.Shades} Shades from {who.Name}'s lanterns");
+            }
+        }
+    }
+
+    /// <summary>
+    /// A run that makes no item: kindling an Athanor with Flamma Viva (doc 13 §2), a power source's fuel recipe
+    /// (Vapor in a Boiler, Fulgur in a Coil), or a Familiar's bonding rite (doc 18 §4).
+    /// </summary>
     private void FinishProcessState(SObject machine, MachineData state, RunPlan run, Farmer who, LoadSource source)
     {
-        if (ModServices.Content.ApparatusOf(machine)?.Heat?.RequiresFlag == "Kindled")
+        if (ModServices.Content.ApparatusOf(machine)?.Heat?.RequiresFlag == "Kindled" && run.ProcessState == Power.FlammaViva)
             state.Kindled = true;
+        bool charged = Power.Charge(machine, run.ProcessState, fed: source is LoadSource.Chaining or LoadSource.Automate);
+        if (run.ProcessState is string processState && processState.StartsWith(World.Familiars.BondStatePrefix, StringComparison.Ordinal))
+            ModServices.World.Familiars.Bond(processState[World.Familiars.BondStatePrefix.Length..], machine, who);
+        this.SpendCatalysts(machine, run.RecipeId, who);
         if (source is LoadSource.Hand or LoadSource.Picker)
             state.Owner = who.UniqueMultiplayerID;
         Save(machine, state);
-        machine.Location?.playSound("fireball");
-        machine.Location?.temporarySprites.Add(new TemporaryAnimatedSprite(30, machine.TileLocation * 64f + new Vector2(0, -64), Color.OrangeRed, 8, false, 70f));
-        this.Discover(who, run.RecipeId, null, run.Tier, null, handMade: true, celebrateItem: null, message: ModServices.T("machine.kindled"));
+        machine.Location?.playSound(charged ? "steam" : "fireball");
+        machine.Location?.temporarySprites.Add(new TemporaryAnimatedSprite(30, machine.TileLocation * 64f + new Vector2(0, -64), charged ? Color.LightBlue : Color.OrangeRed, 8, false, 70f));
+        this.Discover(who, run.RecipeId, null, run.Tier, null, handMade: source is LoadSource.Hand or LoadSource.Picker, celebrateItem: null,
+            message: ModServices.T(charged ? "machine.charged" : state.Kindled ? "machine.kindled" : "machine.process-done"));
     }
 
     // ── Collection ──────────────────────────────────────────────────────────────
@@ -403,7 +441,7 @@ internal sealed class MachineService
         state.EndRun();
         Save(machine, state);
 
-        if (recipe != null && recipe != Ids.DecomposeRecipe && items.FirstOrDefault() is Item output)
+        if (recipe != null && recipe != Ids.DecomposeRecipe && ModServices.Content.Registry.Recipes.Get(recipe) != null && items.FirstOrDefault() is Item output)
         {
             int tier = ModServices.Content.Registry.Recipes.Get(recipe) is { } row && ModServices.Content.Registry.Substances.TryGet(row.Output.Id, out SubstanceRow sub) ? sub.Tier : 1;
             this.Discover(who, recipe, output, tier, state.Bonus, handMade, celebrateItem: output, message: null, count: output.Stack);
@@ -750,6 +788,13 @@ internal sealed class MachineService
             lines.Add(ModServices.T(state.Kindled ? "tooltip.kindled" : "tooltip.not-kindled"));
         if (apparatus.Fuel is { } fuel)
             lines.Add(ModServices.T("tooltip.fuel", new { have = state.Fuel, max = fuel.Capacity }));
+        if (Power.Describe(machine, apparatus) is string power)
+            lines.Add(power);
+        if (snapshot.ChargedPower.Count > 0 && apparatus.Power is null)
+            lines.Add(ModServices.T("tooltip.powered-by", new { power = string.Join(", ", snapshot.ChargedPower.Select(p => ModServices.Content.NameOf(p))) }));
+        lines.AddRange(Bonuses.For(machine, apparatus, who, roll: false).Notes);
+        if (apparatus.Id == Ids.RowPrefix + "LeyTap")
+            lines.Add(LeyTaps.Describe(machine));
         return lines;
     }
 

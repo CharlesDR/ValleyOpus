@@ -35,12 +35,13 @@ public class SystemsTests
     }
 
     [Fact]
-    public void Skill_LevelsBankPastFour()
+    public void Skill_TenLevelsOnVanillaCurve()
     {
         Assert.Equal(0, SkillMath.LevelFor(99));
         Assert.Equal(1, SkillMath.LevelFor(100));
         Assert.Equal(4, SkillMath.LevelFor(1300));
-        Assert.Equal(4, SkillMath.LevelFor(99999));
+        Assert.Equal(5, SkillMath.LevelFor(2150));
+        Assert.Equal(10, SkillMath.LevelFor(99999));
         Assert.Equal(36, SkillMath.SatchelCapacity(2));
     }
 

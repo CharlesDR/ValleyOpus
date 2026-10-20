@@ -9,8 +9,8 @@ using ValleyOpus.Framework;
 namespace ValleyOpus.Skill;
 
 /// <summary>
-/// The <c>Skill</c> module (doc 05): the SpaceCore skill, levels 1–4 in build 1 with XP banking past 4 (S14), and
-/// every XP source with its once-only keys. Keys live in the farmer's own <c>modData</c>, so they travel with a
+/// The <c>Skill</c> module (doc 05): the SpaceCore skill with ten levels and the six professions of the
+/// <c>Professions</c> rows (two at level 5, four at 10), and every XP source with its once-only keys. Keys live in the farmer's own <c>modData</c>, so they travel with a
 /// farmhand (doc 17 §1).
 /// </summary>
 internal sealed class AlchemySkill
@@ -23,7 +23,39 @@ internal sealed class AlchemySkill
 
     public AlchemySkill(SmapiLog log) => this.log = log;
 
+    private static readonly Dictionary<string, int> ProfessionIds = new(StringComparer.Ordinal);
+
     public static void Register() => SpaceCore.Skills.RegisterSkill(new Definition());
+
+    /// <summary>Adds the professions from the <c>Professions</c> rows once content can load (after launch).</summary>
+    public static void RegisterProfessions(IEnumerable<ProfessionRow> rows, SmapiLog log)
+    {
+        if (SpaceCore.Skills.GetSkill(SkillId) is not Definition skill || skill.Professions.Count > 0)
+            return;
+        var byId = new Dictionary<string, Profession>(StringComparer.Ordinal);
+        foreach (ProfessionRow row in rows.OrderBy(r => r.Level).ThenBy(r => r.Id, StringComparer.Ordinal))
+        {
+            string local = row.Id.StartsWith(Ids.RowPrefix, StringComparison.Ordinal) ? row.Id[Ids.RowPrefix.Length..] : row.Id;
+            var profession = new Profession(skill, local, row);
+            skill.Professions.Add(profession);
+            byId[row.Id] = profession;
+            ProfessionIds[local] = profession.GetVanillaId();
+        }
+        foreach (IGrouping<string, ProfessionRow> pair in rows.Where(r => r.Level == 10 && r.Parent != null).GroupBy(r => r.Parent!))
+        {
+            List<ProfessionRow> two = pair.OrderBy(r => r.Id, StringComparer.Ordinal).ToList();
+            if (two.Count == 2 && byId.TryGetValue(pair.Key, out Profession? parent))
+                skill.ProfessionsForLevels.Add(new SpaceCore.Skills.Skill.ProfessionPair(10, byId[two[0].Id], byId[two[1].Id], parent));
+        }
+        List<ProfessionRow> five = rows.Where(r => r.Level == 5).OrderBy(r => r.Id, StringComparer.Ordinal).ToList();
+        if (five.Count == 2)
+            skill.ProfessionsForLevels.Insert(0, new SpaceCore.Skills.Skill.ProfessionPair(5, byId[five[0].Id], byId[five[1].Id]));
+        log.Trace($"Registered {skill.Professions.Count} alchemy professions in {skill.ProfessionsForLevels.Count} pairs.");
+    }
+
+    /// <summary>Whether a player has a profession by its local ID (e.g. <c>Mechanist</c>).</summary>
+    public static bool HasProfession(Farmer who, string localId)
+        => ProfessionIds.TryGetValue(localId, out int id) && who.professions.Contains(id);
 
     /// <summary>Creates the skill icon once the graphics device exists.</summary>
     public static void CreateIcons()
@@ -42,6 +74,8 @@ internal sealed class AlchemySkill
         icon.SetData(pixels);
         skill.Icon = icon;
         skill.SkillsPageIcon = icon;
+        foreach (SpaceCore.Skills.Skill.Profession profession in skill.Professions)
+            profession.Icon ??= icon;
     }
 
     public int Level(Farmer who) => SpaceCore.Skills.GetSkillLevel(who, SkillId);
@@ -95,10 +129,26 @@ internal sealed class AlchemySkill
         public override string GetName() => ModServices.T("skill.name");
 
         public override List<string> GetExtraLevelUpInfo(int level)
-            => level == 2 ? new List<string> { ModServices.T("skill.level2") }
-                : level == 4 ? new List<string> { ModServices.T("skill.level4") }
-                : new List<string>();
+        {
+            string key = "skill.level" + level;
+            return ModServices.HasT(key) ? new List<string> { ModServices.T(key) } : new List<string>();
+        }
 
         public override string GetSkillPageHoverText(int level) => ModServices.T("skill.hover", new { level });
+    }
+
+    private sealed class Profession : SpaceCore.Skills.Skill.Profession
+    {
+        private readonly ProfessionRow row;
+
+        public Profession(SpaceCore.Skills.Skill skill, string id, ProfessionRow row)
+            : base(skill, id)
+        {
+            this.row = row;
+        }
+
+        public override string GetName() => this.row.NameKey != null ? ModServices.T(this.row.NameKey) : this.Id;
+
+        public override string GetDescription() => this.row.DescKey != null ? ModServices.T(this.row.DescKey) : "";
     }
 }

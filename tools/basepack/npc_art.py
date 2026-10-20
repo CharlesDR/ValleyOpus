@@ -187,7 +187,8 @@ def build_familiars(art_root, familiars, out_path):
     sheet = Image.open(os.path.join(art_root, CREATURES)).convert("RGBA")
     cols = sheet.width // 16
     out = Image.new("RGBA", (16 * len(familiars), 16), (0, 0, 0, 0))
-    for i, (fid, row) in enumerate(familiars.items()):
+    # Columns follow the sprite index order, which is how the C# side finds each Familiar's frame.
+    for i, (fid, row) in enumerate(sorted(familiars.items(), key=lambda kv: kv[1][-1])):
         index = row[-1]
         out.paste(sheet.crop(((index % cols) * 16, (index // cols) * 16, (index % cols) * 16 + 16, (index // cols) * 16 + 16)), (i * 16, 0))
     out.save(out_path)

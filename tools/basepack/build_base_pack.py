@@ -553,12 +553,16 @@ def main():
     import world_pack
     world_files = world_pack.write(PACK, i18n, write_json, header, args.art_root)
     write_json(os.path.join(PACK, "i18n", "default.json"), i18n)
+    # The C# mod reads row names (NameKey, TextKey...) through this asset, so they translate with the pack.
+    write_json(os.path.join(PACK, "data", "strings.json"), {"Changes": [
+        {"Action": "EditData", "Target": "CharlesDR.ValleyOpus/Strings",
+         "Entries": OrderedDict((k, "{{i18n:" + k + "}}") for k in i18n if not k.startswith("item."))}]}, header)
     write_json(os.path.join(PACK, "content.json"), OrderedDict([
         ("Format", "2.4.0"),
         ("Changes", [
             {"Action": "Load", "Target": "Mods/CharlesDR.ValleyOpus/Objects", "FromFile": "assets/objects.png"},
             {"Action": "Load", "Target": "Mods/CharlesDR.ValleyOpus/Furniture", "FromFile": "assets/furniture.png"},
-            {"Action": "Include", "FromFile": ", ".join(["data/registries.json", "data/items.json"] + world_files)},
+            {"Action": "Include", "FromFile": ", ".join(["data/registries.json", "data/items.json", "data/strings.json"] + world_files)},
         ])]), ["The base pack fills ValleyOpus's registries through the same door as every other pack (doc 09 §4a)."] + header)
 
     import build_art

@@ -4,15 +4,15 @@ using ValleyOpus.Engine.Registry;
 namespace ValleyOpus.Engine.Skill;
 
 /// <summary>
-/// The alchemy skill's level curve and XP rules (doc 05). Build 1 caps the skill at level 4; XP keeps banking past
-/// it, so the levels arrive when later builds raise the cap (doc 11).
+/// The alchemy skill's level curve and XP rules (doc 05): vanilla's ten levels, professions at 5 and 10. XP banked
+/// past level 4 in the test builds arrives as levels on load (doc 11).
 /// </summary>
 public static class SkillMath
 {
-    /// <summary>Cumulative XP for levels 1–4 (vanilla's first four steps).</summary>
-    public static readonly IReadOnlyList<int> Curve = new[] { 100, 380, 770, 1300 };
+    /// <summary>Cumulative XP for levels 1–10 (vanilla's curve).</summary>
+    public static readonly IReadOnlyList<int> Curve = new[] { 100, 380, 770, 1300, 2150, 3300, 4800, 6900, 10000, 15000 };
 
-    public const int MaxLevel = 4;
+    public const int MaxLevel = 10;
 
     public static int LevelFor(int xp)
     {

@@ -1,4 +1,5 @@
 using HarmonyLib;
+using StardewModdingAPI;
 using StardewValley;
 using StardewValley.GameData.Buffs;
 using StardewValley.TerrainFeatures;
@@ -22,7 +23,39 @@ internal sealed class EffectService
     private static int waterBefore = -1;
     private readonly SmapiLog log;
 
-    public EffectService(SmapiLog log) => this.log = log;
+    public EffectService(IModHelper helper, SmapiLog log)
+    {
+        this.log = log;
+    }
+
+    /// <summary>Whether a player has an active custom buff with this handler.</summary>
+    public static bool HasHandler(Farmer who, string handler) => HandlerParam(who, handler, null) != null;
+
+    /// <summary>A parameter of the strongest active custom buff with this handler ("" when it has none), or null.</summary>
+    public static string? HandlerParam(Farmer who, string handler, string? param)
+    {
+        IDictionary<string, BuffData> data = DataLoader.Buffs(Game1.content);
+        string? found = null;
+        foreach (string id in who.buffs.AppliedBuffs.Keys)
+        {
+            if (!data.TryGetValue(id, out BuffData? row) || row.CustomFields is null
+                || !row.CustomFields.TryGetValue(GameContent.HandlerField, out string? name) || name != handler)
+                continue;
+            if (param is null)
+                return "";
+            if (row.CustomFields.TryGetValue(Ids.KeyPrefix + param, out string? value))
+                found = found is null || Compare(value, found) > 0 ? value : found;
+        }
+        return found;
+    }
+
+    private static int Compare(string a, string b)
+        => double.TryParse(a, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double x)
+            && double.TryParse(b, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double y)
+                ? x.CompareTo(y) : string.CompareOrdinal(a, b);
+
+    public static double HandlerNumber(Farmer who, string handler, string param, double fallback = 0)
+        => HandlerParam(who, handler, param) is string raw && double.TryParse(raw, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double value) ? value : fallback;
 
     private static EffectService Self => ModServices.Effects;
 

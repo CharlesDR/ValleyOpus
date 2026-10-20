@@ -48,6 +48,12 @@ internal sealed class FarmState
 
     public FarmEnvelope Envelope { get; private set; } = new();
 
+    /// <summary>Raised on the host after the envelope loads, so other modules read their sections.</summary>
+    public event Action<FarmEnvelope>? EnvelopeLoaded;
+
+    /// <summary>Raised on the host just before the envelope is written, so other modules store their sections.</summary>
+    public event Action<FarmEnvelope>? EnvelopeSaving;
+
     public FarmCodex Codex { get; private set; } = new();
 
     public BuildingStrip Strip { get; }
@@ -60,7 +66,7 @@ internal sealed class FarmState
     private void Reset()
     {
         this.Envelope = new FarmEnvelope();
-        this.Codex = new FarmCodex();
+        this.Codex = NewCodex(null);
         this.loaded = null;
         this.mismatchedPeers.Clear();
     }
@@ -85,9 +91,10 @@ internal sealed class FarmState
             this.log.Error("ValleyOpus couldn't migrate this save's data; it loads read-only so nothing is lost.");
 
         this.Envelope = this.loaded.Envelope;
-        this.Codex = new FarmCodex(this.Envelope.Codex);
+        this.Codex = NewCodex(this.Envelope.Codex);
         this.Codex.ApplySecretPicks(ModServices.Content.Registry, this.GameId);
         this.Strip.AfterLoad(this.Envelope);
+        this.EnvelopeLoaded?.Invoke(this.Envelope);
         this.log.Trace($"Farm codex loaded: {this.Codex.Data.Keys.Count} keys.");
     }
 
@@ -102,6 +109,7 @@ internal sealed class FarmState
         this.Envelope.ModVersion = ModServices.Manifest.Version.ToString();
         this.Envelope.SchemaVersion = FarmEnvelope.CurrentSchemaVersion;
         this.Envelope.Codex = this.Codex.Data;
+        this.EnvelopeSaving?.Invoke(this.Envelope);
         this.helper.Data.WriteSaveData(SaveDataKey, new EnvelopeBox { Json = EnvelopeJson.Write(this.Envelope) });
         if (this.loaded?.Backup is JsonObject backup)
             this.helper.Data.WriteSaveData("Backup_v" + this.loaded.FromVersion, new EnvelopeBox { Json = backup.ToJsonString() });
@@ -112,6 +120,10 @@ internal sealed class FarmState
         if (Context.IsMainPlayer)
             this.Strip.AfterSave(this.Envelope);
     }
+
+    /// <summary>A codex whose story-gated recipes read the farm's unlocks (doc 14 §1).</summary>
+    private static FarmCodex NewCodex(CodexData? data)
+        => new(data) { IsUnlocked = id => ModServices.World?.IsUnlocked(id) ?? true };
 
     // ── Discovery ───────────────────────────────────────────────────────────────
 
@@ -226,7 +238,7 @@ internal sealed class FarmState
                     break;
 
                 case MessageTypes.CodexSnapshot when !Context.IsMainPlayer:
-                    this.Codex = new FarmCodex(e.ReadAs<CodexSnapshot>().Codex);
+                    this.Codex = NewCodex(e.ReadAs<CodexSnapshot>().Codex);
                     this.Codex.ApplySecretPicks(ModServices.Content.Registry, this.GameId);
                     break;
 

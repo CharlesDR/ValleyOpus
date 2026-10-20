@@ -1,4 +1,5 @@
 using StardewModdingAPI;
+using ValleyOpus.Engine.Model;
 using ValleyOpus.Effects;
 using ValleyOpus.Machines;
 using ValleyOpus.Routes;
@@ -26,9 +27,55 @@ internal static class ModServices
     public static ChainService Chains { get; set; } = null!;
     public static SatchelService Satchel { get; set; } = null!;
     public static EffectService Effects { get; set; } = null!;
+    public static World.WorldService World { get; set; } = null!;
 
-    /// <summary>A translated UI string (every player-facing string is i18n, doc 11 §6).</summary>
-    public static string T(string key, object? tokens = null) => Helper.Translation.Get(key, tokens).ToString();
+    /// <summary>The asset the base pack fills with its row strings (names, hints, letters), already translated by CP.</summary>
+    public const string StringsAsset = Ids.KeyPrefix + "Strings";
+
+    /// <summary>
+    /// A translated UI string (every player-facing string is i18n, doc 11 §6): the mod's own i18n first, then the
+    /// content packs' row strings, so a pack's <c>NameKey</c> translates with the pack.
+    /// </summary>
+    public static string T(string key, object? tokens = null)
+    {
+        Translation own = Helper.Translation.Get(key, tokens);
+        if (own.HasValue())
+            return own.ToString();
+        try
+        {
+            if (StardewValley.Game1.content?.Load<Dictionary<string, string>>(StringsAsset) is { } strings && strings.TryGetValue(key, out string? text))
+                return Fill(text, tokens);
+        }
+        catch (Exception)
+        {
+            // before the asset exists (title screen): fall through
+        }
+        return own.ToString();
+    }
+
+    /// <summary>Whether a key has text in either source.</summary>
+    public static bool HasT(string key)
+    {
+        if (Helper.Translation.Get(key).HasValue())
+            return true;
+        try
+        {
+            return StardewValley.Game1.content?.Load<Dictionary<string, string>>(StringsAsset)?.ContainsKey(key) == true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
+    private static string Fill(string text, object? tokens)
+    {
+        if (tokens is null)
+            return text;
+        foreach (var property in tokens.GetType().GetProperties())
+            text = text.Replace("{{" + property.Name + "}}", property.GetValue(tokens)?.ToString() ?? "", StringComparison.OrdinalIgnoreCase);
+        return text;
+    }
 }
 
 /// <summary>The player's config.json (the GMCM page arrives in B3; doc 16 §15).</summary>
