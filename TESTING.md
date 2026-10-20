@@ -1,153 +1,139 @@
 # Testing ValleyOpus
 
-**This build:** `0.1.0-alpha.2` (batch B2, the bench and the line). This is the first build you can play: the Experiment Table, the Satchel, the codex, six apparatus, chaining, Automate support, the first products and the Alchemy skill up to level 4. Item IDs are now fixed, so **farms you start with alpha.2 carry forward** to later builds. alpha.1 farms don't: start new ones.
+**This build:** `1.0.0-sos.1`, the **sink-or-swim** build. It holds everything slated for 1.0 at once: all 14 apparatus, power (Boiler, Lightning Coil, kindled Athanor), rituals and the Circle, every Tier 1–3 substance and product, the workshop under the Community Center with its 9 rooms and 25 bundles, the unlock chain, 10 NPCs with shops, Dr. Sorenson's contracts, hints and divination, Labs T1–T3, the four Familiars, Shades and the Gloam Lantern, Ley Taps, the full Alchemy skill (10 levels, 6 professions), worn and applied products, and a config menu (Generic Mod Config Menu, if you have it). Art is placeholder from open-license packs (see `CREDITS.md`).
 
-**Checked with:** Stardew Valley 1.6.15, SMAPI 4.x, Content Patcher 2.4+, SpaceCore 1.25+, Automate 2.x (VO-3 only), Stardew Valley Expanded (VO-2 only). Write the exact versions you used in the spike table's notes.
+**What "sink or swim" means here:** nothing in this build has run in the game before. Expect the first compile to need fixes and expect things to break. The goal is to find out how far it gets: play, note what breaks, share the log, and keep going with the dev commands when something blocks you. **Use new farms**; don't load a farm you care about.
 
-Contents: [1 · First-time PC setup](#1--first-time-pc-setup) · [2 · Building and installing a test build](#2--building-and-installing-a-test-build) · [3 · Test configurations](#3--test-configurations) · [4 · Logs and console commands](#4--logs-and-console-commands) · [5 · Test scripts by configuration](#5--test-scripts-by-configuration) · [6 · Spike table](#6--spike-table) · [7 · Low-confidence areas](#7--low-confidence-areas) · [8 · Bug report template](#8--bug-report-template)
+**Checked with:** Stardew Valley 1.6.15, SMAPI 4.x, Content Patcher 2.4+, SpaceCore 1.25+, Automate 2.x (VO-3 only), Stardew Valley Expanded (VO-2 only). Generic Mod Config Menu is optional.
 
----
-
-## 1 · First-time PC setup
-
-You did this for alpha.1; skip it unless something changed on your PC. A Remote Control session (Claude Code on your PC) does the building for you (D23), but it needs these tools to work, and you need to know they're there. Every command below is typed into **PowerShell**: press the Windows key, type `PowerShell`, press Enter. A blue or black window opens; type the command, press Enter, and wait for the prompt (`PS C:\Users\you>`) to come back before typing the next one.
-
-### 1a · Check .NET works
-```
-dotnet --list-sdks
-```
-**It worked if** you see at least one line starting with `6.` or higher, such as `6.0.428 [C:\Program Files\dotnet\sdk]`.
-**If you see** "dotnet is not recognized": close PowerShell, open a new one and try again (the installer only updates new windows). If it still fails, re-run the .NET 6 **SDK** installer (not the "Runtime" one) from https://dotnet.microsoft.com/download/dotnet/6.0 and choose the "x64" Windows installer under "SDK".
-
-### 1b · Tell Git who you are
-Git stamps every change with a name and email. Use the email on your GitHub account:
-```
-git --version
-git config --global user.name "Charles"
-git config --global user.email "charles.d.rose@gmail.com"
-```
-**It worked if** the first line prints something like `git version 2.47.0.windows.1` and the other two print nothing (no news is good news).
-
-### 1c · Sign Git in to GitHub
-The first time Git talks to GitHub it opens a sign-in window from "Git Credential Manager". Trigger it now by downloading the repository (this also creates the folder the builds use):
-```
-cd $HOME\Documents
-git clone https://github.com/CharlesDR/ValleyOpus.git
-```
-If a window asks how to sign in, choose **Sign in with your browser**, approve it in the browser, and come back. **It worked if** PowerShell ends with `Resolving deltas: 100%, done.` and a `ValleyOpus` folder now exists in your Documents. You never need to type Git commands again unless you want to; the Remote Control session uses this folder.
-
-### 1d · Check SMAPI and the required mods
-1. Start the game through SMAPI once. The black SMAPI window's first lines show `SMAPI 4.x.x with Stardew Valley 1.6.15`.
-2. Install, if you don't have them, into the game's `Mods` folder: **Content Patcher** and **SpaceCore** (both from Nexus). For VO-3 also **Automate**; for VO-2 also **Stardew Valley Expanded** and its requirements.
-3. Your `Mods` folder is usually `C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods`. In Steam: right-click Stardew Valley → Manage → Browse local files.
+Contents: [1 · PC setup](#1--pc-setup) · [2 · Building and installing](#2--building-and-installing) · [3 · Test configurations](#3--test-configurations) · [4 · Logs and console commands](#4--logs-and-console-commands) · [5 · Test scripts](#5--test-scripts) · [6 · Spike table](#6--spike-table) · [7 · Low-confidence areas](#7--low-confidence-areas) · [8 · Bug report template](#8--bug-report-template)
 
 ---
 
-## 2 · Building and installing a test build
+## 1 · PC setup
+
+Already done for alpha.1 and alpha.2 (.NET 6 SDK, Git signed in, the repo in `Documents\ValleyOpus`, SMAPI, Content Patcher and SpaceCore). Nothing new to install. If you'd like the in-game settings page, install **Generic Mod Config Menu** from Nexus into `Mods`; without it, settings stay in `Mods\ValleyOpus\config.json`.
+
+---
+
+## 2 · Building and installing
 
 ### 2a · With the Remote Control session (the normal way)
-When a test build is ready, Claude asks for a Remote Control session on your PC in the `Documents\ValleyOpus` folder; allow it when the card appears. That session:
-1. fetches the build's branch and runs `dotnet build src/ValleyOpus/ValleyOpus.csproj -c Release`, which compiles the mod and copies it straight into your game's `Mods\ValleyOpus` folder;
-2. copies the content packs this build needs (`[CP] ValleyOpus` and `[CP] ValleyOpus - Spikes`, which now only holds the spike Lab building) from the repo's `content` folder into `Mods`;
-3. writes a zip of the same files with the packaging tool, for keeping or sharing.
+Claude asks the Remote Control session on your PC to build this branch (`claude/full-1-0-sink-or-swim-kztlhb`). Allow it if a card asks. That session:
+1. fetches the branch and runs `dotnet build src/ValleyOpus/ValleyOpus.csproj -c Release`, which compiles the mod and copies it into `Mods\ValleyOpus`;
+2. **replaces** `Mods\[CP] ValleyOpus` with the repo's `content\[CP] ValleyOpus` (delete the old folder first: this build's pack has many new files, and leftovers from alpha.2 would confuse it). `[CP] ValleyOpus - Spikes` isn't needed any more; remove it from `Mods`. Never copy `[CP] ValleyOpus - Test Fixtures`;
+3. writes a zip with the packaging tool, for keeping.
 
-**It worked if** your `Mods` folder now holds `ValleyOpus`, `[CP] ValleyOpus` and `[CP] ValleyOpus - Spikes`, and SMAPI's window at launch shows `ValleyOpus 0.1.0-alpha.2` in the loaded mods list with no red lines under it.
+**It worked if** SMAPI's window at launch lists `ValleyOpus 1.0.0-sos.1` and `[CP] ValleyOpus 1.0.0-sos.1` with no red lines under them.
 
 ### 2b · By hand (only if you ever want to)
 From the `Documents\ValleyOpus` folder in PowerShell:
 ```
+git fetch origin
+git checkout claude/full-1-0-sink-or-swim-kztlhb
 git pull
 dotnet build src/ValleyOpus/ValleyOpus.csproj -c Release
-dotnet run --project src/ValleyOpus.Tools -c Release -- package --mod "<your Mods folder>\ValleyOpus" --content content --out ValleyOpus-alpha.2.zip --with-spikes
 ```
-The build step already put `ValleyOpus` into `Mods`; copy the two `[CP] …` folders from `content` into `Mods` too. The last line is optional: it only writes the zip. (The Tools project needs the .NET 8 SDK; the build step only needs .NET 6.)
+Then delete `Mods\[CP] ValleyOpus` and copy `content\[CP] ValleyOpus` into `Mods` in its place.
 
-### 2c · Removing the mod (for spike S3 and the uninstall test)
-Move the `ValleyOpus`, `[CP] ValleyOpus` and `[CP] ValleyOpus - Spikes` folders out of `Mods` (onto the Desktop, say). Moving them back reinstalls.
+### 2c · Going back to alpha.2
+Ask in the thread: the Remote Control session rebuilds the `claude/batch-2-bench-line-l6zmax` branch. Alpha.2 farms that loaded this build may not load cleanly in alpha.2 again, which is another reason to use new farms here.
 
 ---
 
 ## 3 · Test configurations
-At most four per build (doc 11 §6). This build uses VO-1, VO-2 and VO-3, with the same Desktop launchers as alpha.1.
+At most four per build (doc 11 §6). Same Desktop launchers as before.
 
 | # | Launcher | Mods | Farm |
 |---|---|---|---|
-| VO-1 | `VO1` (clean) | ValleyOpus + Content Patcher + SpaceCore | **new** farm named `VO1-a2`, solo |
-| VO-2 | your normal launch | your full mod list with **SVE** | **new** farm named `VO2-a2`, solo |
-| VO-3 | `VO3` | VO-1 + **Automate** | **new** farm named `VO3-a2`, solo |
+| VO-1 | `VO1` (clean) | ValleyOpus + Content Patcher + SpaceCore | **new** farm `VO1-sos`, solo |
+| VO-2 | your normal launch | your full mod list with **SVE** | **new** farm `VO2-sos`, solo |
+| VO-3 | `VO3` | VO-1 + **Automate** | **new** farm `VO3-sos`, solo |
 | 4 | co-op, split-screen, controller | deferred until you can run them (doc 17 §8b) | none this build |
 
-**Make a new farm for each.** alpha.1 farms won't work with alpha.2 because the item IDs changed, for the last time. From alpha.2 on, keep your farms: later builds load them.
+Start with **VO-1**. Only move on to VO-2 and VO-3 once VO-1 gets reasonably far.
 
 ---
 
 ## 4 · Logs and console commands
 
 **Where the log is:** `%appdata%\StardewValley\ErrorLogs\SMAPI-latest.txt` (paste `%appdata%` into the File Explorer address bar).
-**Sharing it:** open https://smapi.io/log, drop the file in, click upload, and paste the link here. Every ValleyOpus line is marked `[ValleyOpus]`.
+**Sharing it:** open https://smapi.io/log, drop the file in, click upload, and paste the link in the thread. Every ValleyOpus line is marked `[ValleyOpus]`.
 
-**Console commands** are typed into the black SMAPI window while the game runs, then Enter. In commands, item names are the English name with no spaces (`Ignis`, `CaputMortuum`, `RosMaialis`).
+**Logging for this build:** turn on `valleyopus_verbose` at the start of every session (or set `"Verbose": true` in `config.json` so it's always on). It logs every machine decision, chaining move, Automate load, power charge, unlock grant, bundle donation, contract, hint and Familiar step. The log gets long; that's expected.
+
+**Console commands** are typed into the black SMAPI window while the game runs, then Enter. Item names are the English name with no spaces (`Ignis`, `CaputMortuum`, `RosMaialis`); a vanilla item takes its full ID, e.g. `(O)72` for a Diamond. Unlock, room and Familiar names are the ones in the tables below.
 
 | Command | What it does |
 |---|---|
-| `valleyopus_dev on` | turns on the test helpers below (they're off by default so normal play isn't affected) |
-| `valleyopus_dev kit` | gives you the Satchel, the Lens, the six apparatus (and their crafting recipes), 4 Ignis and 10 Coal |
-| `valleyopus_dev give <Name> [count]` | gives you any ValleyOpus item, e.g. `valleyopus_dev give Terra 10` |
-| `valleyopus_dev discover all` | marks every recipe as discovered (no XP), to look at a full codex |
-| `valleyopus_dev xp <amount>` | adds Alchemy XP (levels at 100, 380, 770 and 1300) |
+| `valleyopus_dev on` | turns on the dev commands below (off by default) |
+| `valleyopus_dev kit` | Satchel, Lens, six starter apparatus and their recipes, 4 Ignis, 10 Coal |
+| `valleyopus_dev give <Name> [count]` | any ValleyOpus item, e.g. `valleyopus_dev give Terra 10`; the apparatus need `(BC)` IDs, e.g. `(BC)CharlesDR.ValleyOpus_Boiler` |
+| `valleyopus_dev discover all` | marks every recipe discovered (no XP) |
+| `valleyopus_dev xp <amount>` | adds Alchemy XP (levels at 100, 380, 770, 1300, 2150, 3300, 4800, 6900, 10000, 15000) |
+| `valleyopus_dev unlock <Id\|all>` | grants an unlock as if earned (host only). IDs: Intro, FurnaceRoom, TobinArrives, FinchRoute, IvoGuild, DeltaArrives, BennetArrives, Cistern, SorensonArrives, TobinCoilLetter, Library, HesperArrives, LeyTap, AgnesArrives, AgnesCrucible, Sanctum, Undercroft, Observatory, CrystalVault, GreatWork, LarkArrives, LanternUpgrade |
+| `valleyopus_dev room <Id\|all>` | restores a workshop room as if its bundles were done. Rooms: FurnaceRoom, Cistern, Library, Sanctum, Undercroft, Observatory, CrystalVault, GreatWorkChamber |
+| `valleyopus_dev workshop` | grants the intro and warps you into the workshop's Entrance Hall |
+| `valleyopus_dev meet <Familiar\|all>` | marks a Familiar met: Salamander, Undine, Gnome, Sylph |
+| `valleyopus_dev shades <n>` | sets your Gloam Lantern's Shades (gives you a lantern if you have none) |
+| `valleyopus_dev charge` | fully charges the Boiler or Lightning Coil you face |
+| `valleyopus_dev place50` | places 50 Retorts with chests (performance check) |
 | `valleyopus_dev prices` | prints every item's sell price |
-| `valleyopus_inspect` | prints what the machine you face holds: tray, remembered recipe, pin, neighbours, fuel, heat |
-| `valleyopus_report` | prints your codex, skill and Satchel numbers |
+| `valleyopus_dev worldreset` | clears world progress (unlocks, bundles, contracts, Familiars); items stay |
+| `valleyopus_inspect` | what the machine you face holds: tray, recipe, pin, neighbours, power, fuel, heat, bonuses |
+| `valleyopus_report` | your codex, skill, Satchel and world progress |
 | `valleyopus_validate` | checks the content and prints problems (you want "No findings.") |
-| `valleyopus_verbose` | toggles detailed logging; turn it on before reproducing a bug |
-| `valleyopus_spike list`, `valleyopus_spike <id> [args]` | runs a spike (S3, S9 and S15 in this build) |
-
-Spike lines read `[S3] PASS …`, `FAIL …` or `LOOK …`. **LOOK** means only your eyes can judge: do what the line says and write down what you saw.
+| `valleyopus_verbose` | toggles detailed logging |
 
 ---
 
-## 5 · Test scripts by configuration
-Work through one configuration at a time and tick what passes. For anything odd, fill in the bug template (§8). If a step crashes or prints `ERROR`, share the log and move on.
+## 5 · Test scripts
 
-**How to play it, in short.** Hold the **Satchel** and click an apparatus to choose what to load into it; click empty ground with it to open the Satchel. Hold the **Lens** and click a chest to assay what's in it (learn each item's Prime profile). The **Experiment Table** is where you try combinations and discover recipes. The **codex** shows what you've found: open the Satchel and click its **Codex** button, or set `CodexKey` in `Mods\ValleyOpus\config.json` to a key you like (for example `"K"`).
+Two passes on VO-1: first **play it straight** for a few in-game days to see whether the opening works as a player would meet it, then **jump ahead** with dev commands to reach each later system. Tick what works; for anything odd, write a line in the bug template (§8). If something crashes or prints red `ERROR` lines, share the log and keep going.
 
-### VO-1 · clean (farm `VO1-a2`): the full walk-through
-Start the farm and sleep once so you're on Day 2. Then, in the SMAPI window, type `valleyopus_dev on` and then `valleyopus_dev kit`.
-- [ ] **Load check.** `valleyopus_validate` prints "No findings."
-- [ ] **Satchel collects reagents.** `valleyopus_dev give Terra 5`: the Terra goes into the Satchel, not your backpack. Chop some Wood: it goes into the backpack as usual.
-- [ ] **Satchel screen.** Hold the Satchel and click empty ground: the Satchel opens and shows the Terra, and you can take it back out.
-- [ ] **Lens.** Put a Wood and a crop in a chest. Hold the Lens and click the chest: each item's Prime profile appears, and the items show as assayed in the codex.
-- [ ] **Decomposition.** Place the Calcinator and put Wood in it. When it's done it gives Primes (and sometimes Caput Mortuum), and you get Alchemy XP.
-- [ ] **Experiment Table.** Place it, put two Primes on it and try them. A new recipe shows a discovery message, gives XP and appears in the codex. A combination you already tried says so.
-- [ ] **Athanor kindling.** Place the Athanor and load 2 Ignis: it's kindled (`valleyopus_inspect` says so). Feed it Coal as fuel.
-- [ ] **Heat.** Place the Alembic right next to the kindled Athanor (north, east, south or west). Recipes that need heat now run there. Move the Alembic away and they're refused with a reason.
-- [ ] **Remembered recipe and pin.** After a machine makes something, it remembers the recipe. Pin it from its panel: it then refuses a different recipe.
-- [ ] **Chaining.** Put a chest south of a machine and a second machine east of it. With its recipe remembered, the first machine pulls inputs from the chest to its south and pushes its output east, into the next machine or a chest.
-- [ ] **Products.** `valleyopus_dev give RosMaialis`, then drink it: a buff appears. Water crops: about half the waterings use no water. Hold Caput Mortuum and click tilled soil: it's placed like fertilizer.
-- [ ] **Skill.** `valleyopus_dev xp 1300`: Alchemy reaches level 4, with level-up screens, and the Satchel grows to 36 slots at level 2. XP past level 4 keeps counting.
-- [ ] **Codex.** Open it: the Tier 1 grid shows "???" for recipes you haven't found, and finishing your first recipe of a tier shows a milestone message.
-- [ ] **Saves carry over.** Sleep, quit to title and load the farm again: the Satchel's contents, machine trays, remembered recipes, codex and XP are all still there.
-- [ ] **S15 spike.** Drink Ros Maialis, then type `valleyopus_spike S15`. Face tilled empty soil and run it again. You want PASS both times; then do the LOOK step it prints.
-- [ ] **S3 spike, part 1.** On the farm, in an open area, type `valleyopus_spike S3 build`. Sleep. Next morning, `valleyopus_spike S3 check` should PASS: the Lab is still there with its Athanor and chest.
-- [ ] **S3 spike, part 2 (removal).** Quit the game. Move the three ValleyOpus folders out of `Mods` (§2c). Load the farm: you want **no red errors** and no Lab. Sleep to save, then quit. Move the folders back, load the farm and type `valleyopus_spike S3 check`. You want PASS, with the Lab's contents in chests beside the farmhouse.
+### VO-1 · pass A: play it straight (farm `VO1-sos`)
+Don't use dev commands in this pass, except `valleyopus_verbose`.
+- [ ] **Load check.** At launch there are no red ValleyOpus lines; `valleyopus_validate` prints "No findings."
+- [ ] **The intro.** Once the Community Center is open (Lewis's letter, around Spring 5), walk through Town between 6am and 3pm: Oriel's event plays behind the Community Center. Afterwards you have the Satchel, the Lens, the Table, Alembic, Retort and Athanor, and a welcome letter the next day.
+- [ ] **The door.** Behind the Community Center (tile 53,9) a door leads down into the workshop's Entrance Hall. The Curator is there.
+- [ ] **Room doors.** In the Entrance Hall, the Furnace Room door opens; the others say what they wait for.
+- [ ] **Bundles.** The Furnace Room's board shows three bundles (Kindling, Mine Salts, Spring Gleanings). Donating works; finishing one pays its reward; finishing all three restores the room, with a message and new recipes (Athanor, Hermetic Vessel, the Lab T1 blueprint at Robin's).
+- [ ] **The next day.** Tobin arrives (letter, Calcinator recipe) and can be found in the Cistern room. His shop opens when you talk to him once his lines run out.
+- [ ] **The core loop** from alpha.2 still works: Satchel, Lens, Calcinator, Table discoveries, Athanor kindling and heat, chaining, products, codex.
 
-### VO-2 · your full mod list with SVE (farm `VO2-a2`)
-Same start: sleep once, then `valleyopus_dev on` and `valleyopus_dev kit`.
-- [ ] **Load check.** `valleyopus_validate` prints "No findings.", and there are no red ValleyOpus lines in the log at launch.
-- [ ] **A quick pass of VO-1.** Satchel, Lens, Calcinator, Table, and the Athanor with the Alembic beside it. Watch especially for clashes with your other mods: inventory or chest mods with the Satchel, sorting mods with our items.
-- [ ] **Workshop warp.** Behind the Community Center at 53,9: it still leads to the workshop.
-- [ ] **Saves carry over.** Sleep, quit, reload: everything is still there.
+### VO-1 · pass B: jump ahead (same farm, or a fresh one)
+Type `valleyopus_dev on`. Work down the list; each line says how to get there quickly.
+- [ ] **Every room opens.** `valleyopus_dev room all`, then `valleyopus_dev workshop`. Walk through each door: every room loads, has its board, and NPCs stand where they live (Oriel in the Library, Tobin in the Cistern, Hesper in the Observatory, the Curator in the Hall, Finch in the Hall on his days).
+- [ ] **All unlocks.** `valleyopus_dev unlock all`. Letters arrive over the next mornings; the crafting menu shows all 14 apparatus.
+- [ ] **Power.** Craft or give a Boiler. Load it (Ignis and Aqua), then put a Process Vat beside it: the Vat runs its steam recipes, and `valleyopus_inspect` shows the Boiler's time left. A Lightning Coil charges in a storm (or `valleyopus_dev charge`) and each run beside it spends one charge.
+- [ ] **Rituals.** Place the Ritual Altar, load a ritual's inputs and catalysts, and use it. Then craft the Circle Sigil rug, put the altar on it: it becomes the Ritual Circle (bigger batches).
+- [ ] **Shades.** `valleyopus_dev shades 10`, then run a recipe that uses Shades: it spends them from the lantern. In the mines, kills add Shades to a carried lantern.
+- [ ] **Ley Taps.** Craft a Ley Tap and place it on a ley node (one in the Sanctum, the rest after the Observatory). Next morning it holds Aether.
+- [ ] **Labs.** At Robin's, build a Lab (T1), then upgrade it to T2 and T3. Inside: hearths count as heat and alcoves as dark. Machines inside run faster (`valleyopus_inspect` shows the bonus).
+- [ ] **Familiars.** `valleyopus_dev meet all`. In the Great Work Chamber the four spirits wait. In a T3 Lab, use the Familiar ritual at the altar: the spirit moves into the Lab and floats there. Matching machines in that Lab show its bonus. The Lab's shrine releases it.
+- [ ] **Skill and professions.** `valleyopus_dev xp 15000`: level-up screens through level 10, a profession choice at 5 and at 10 (SpaceCore's screen), and the chosen profession's bonus shows in `valleyopus_inspect`.
+- [ ] **Products.** `valleyopus_dev give` a few products and use them: drinks give buffs, applied ones work on what you face, rings and trinkets apply their effect while worn. Try at least Ros Maialis, a Fixative, an Hourglass, a Censer, a Vial Pendant and the Azoth Diffuser.
+- [ ] **NPCs.** Talk to each new NPC. Once their lines for the day run out, talking again opens their shop (Finch, Tobin, Agnes, Bennet, Ivo and Hesper), Dr. Sorenson's contracts, or a daily hint.
+- [ ] **Contracts.** Accept and deliver one of Dr. Sorenson's contracts: the reward arrives.
+- [ ] **Hints and divination.** At a bundle board, divine with Caput Mortuum: you get a hint for something you haven't found. Hints land in the codex's Notes page.
+- [ ] **Config menu.** If GMCM is installed, its page lists ValleyOpus's settings; a change takes effect without restarting.
+- [ ] **Saves carry over.** Sleep, quit to title, reload: rooms, bundles, unlocks, Labs, Familiars, lantern Shades, Boiler/Coil power and machine trays are all still there.
 
-### VO-3 · with Automate (farm `VO3-a2`)
-Same start: sleep once, then `valleyopus_dev on` and `valleyopus_dev kit`.
-- [ ] **Automate feeds a machine.** Place a Calcinator with a chest next to it holding Wood. Within a couple of in-game hours the Wood goes in and the Primes come out into the chest.
-- [ ] **Automate with a remembered recipe.** Make Saxum once by hand at the Retort. Then put a chest of Terra next to it (`valleyopus_dev give Terra 20`): Automate keeps it making Saxum.
-- [ ] **Locked output.** A run whose result is locked (from a flower bonus) doesn't go into the chest: clicking the machine yourself hands it to you.
-- [ ] **S9 spike (performance).** On the farm, in a big open area, type `valleyopus_spike S9 place` (it places 50 Retorts with chests). Hold the Satchel and walk around for an in-game hour, then type `valleyopus_spike S9 measure`. Note whether the game felt slower.
-- [ ] **Saves carry over.** Sleep, quit, reload.
+### VO-2 · your full mod list with SVE (farm `VO2-sos`)
+- [ ] **Load check** as in VO-1. Watch especially for clashes with SVE's Town map near the CC, with SVE NPCs and schedules, and with inventory or sorting mods.
+- [ ] **Intro and door** as in pass A: the event plays and the door at 53,9 works with SVE's Town.
+- [ ] **A quick pass B**: rooms, a Lab at Robin's (her menu is long with SVE), two NPC shops, a Boiler line.
+
+### VO-3 · with Automate (farm `VO3-sos`)
+- [ ] **Automate runs the new apparatus**: a Boiler with a chest of Ignis and Aqua, a Process Vat beside it with a chest of inputs. Automate keeps both going.
+- [ ] **Ritual Altar**: note whether Automate feeds it. Rituals are meant to be done by hand, so it should be left alone.
+- [ ] **Ley Tap**: Automate collects its Aether into a chest.
+- [ ] **Performance**: `valleyopus_dev place50`, walk around for an in-game hour, and note whether it felt slower.
+
+---
 
 ## 6 · Spike table
-Desk results come from reading public sources before the build (doc 22 §4). In-game results are filled in from your runs. The alpha.1 rows stay as the record; alpha.2 adds rows for the S3 and S16 fixes and runs S9 and S15.
+Desk results come from reading public sources before the build (doc 22 §4). In-game results are filled in from your runs. The alpha.1 rows stay as the record; alpha.2 adds rows for the S3 and S16 fixes and runs S9 and S15. The sink-or-swim build runs no new spikes.
 
 | Spike | Build | Desk result | In-game result | Fallback taken |
 |---|---|---|---|---|
@@ -169,26 +155,34 @@ Desk results come from reading public sources before the build (doc 22 §4). In-
 
 ---
 
+
+---
+
 ## 7 · Low-confidence areas
-This build was written in the cloud and compiles for the first time on your PC, so that first compile may need fixes (the Remote Control session makes them and reports what changed). After that, watch these:
-- **S3 Lab strip on save.** It uses the game's own building serializer in a way that isn't documented. Watch for red errors around saving or loading, and for a Lab that loses its contents.
-- **Satchel auto-collect.** It hooks the game's "add item to inventory" step. Watch for reagents vanishing, doubling or skipping the Satchel, and check that other items (Wood, crops) still go to your backpack.
-- **Undine's Gift (Ros Maialis).** About half your waterings should use no water. Watch the watering can's level.
-- **Automate (VO-3).** Locked outputs, and pinned machines with Automate feeding them.
-- **Menus.** This is the first version of the Table, apparatus panel, Satchel, codex and assay screens. Anything cut off, overlapping or unreadable is worth a screenshot.
-- **Deliberate differences from the design docs in this build:** a pinned machine refuses a different recipe instead of asking first; a sealed run ignores speed-up modifiers; codex lore text is a placeholder; Flamma Viva is one recipe, made on the Table or the Athanor.
+Everything in this build is a first run. These are the parts most likely to break, roughly from most to least likely:
+- **The first compile.** Written in the cloud against decompiled game code; expect a few compile fixes on your PC.
+- **The intro event.** Spawning Oriel in an event before she's a "real" villager, and the event's positions behind the CC.
+- **Workshop and Lab maps.** Our own map files (exits, tile properties for heat and dark, the shrine and bundle tiles). Watch for black screens, being stuck in a wall, or doors that do nothing.
+- **NPCs.** Home tiles, schedules, gift tastes and portraits. An NPC standing in a wall or missing entirely is worth a screenshot.
+- **Labs.** Building data, interiors and the warp in and out; the T1→T2→T3 upgrades; the strip-on-save fix from alpha.2 now covers three tiers.
+- **Buff effects with code behind them.** Volatile, Second Wind, Savour, Dissolution (tool use), Good Cheer and the Azoth Diffuser all hook game code; watch for crashes when they trigger.
+- **Context tags in bundles.** Spring Gleanings, Curios and Clear Spirits accept items by tag (`season_spring`, `item_type_arch`, `alcohol_item`); if an item you expect is refused, note which.
+- **Familiar bonuses** match machines to the Familiar's operations approximately. Note any machine that gets (or misses) a bonus it shouldn't.
+- **Professions not wired yet:** Mystic's fewer catalysts and altar triggering, Hermeticist's double bonus conditions and bigger circle batches show in the skill screen but don't act yet.
+- **Multiplayer** (deferred): world progress is built host-owned, but co-op isn't tested.
+- **Balance** isn't tuned at all: prices, XP, bundle counts and timings are first drafts.
 
 ---
 
 ## 8 · Bug report template
-Paste this into the thread, filled in:
+Paste this into the thread, filled in. One line per bug is fine for a sink-or-swim run.
 ```
 Configuration: VO-1 / VO-2 / VO-3
-Build: 0.1.0-alpha.2
-Save day: (e.g. Spring 3, Year 1)
+Build: 1.0.0-sos.1
+Save day: (e.g. Spring 7, Year 1)
 What I did:
 What happened:
 What I expected:
 Log: (smapi.io/log link)
-Screenshot: (if it's a menu or something you saw)
+Screenshot: (if it's a menu, map or sprite)
 ```

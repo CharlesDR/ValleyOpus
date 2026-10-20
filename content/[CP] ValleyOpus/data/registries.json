@@ -6848,7 +6848,7 @@
             {
               "Type": "Capacity",
               "Ref": "LanternShades",
-              "Count": 6
+              "Count": 40
             }
           ],
           "Source": {

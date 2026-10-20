@@ -71,8 +71,8 @@ UNLOCKS = OrderedDict([
     ("GreatWork", ("Story", [("Flag", P + "Blueprint_LabT3", 0), ("Mail", P + "Mail_GreatWork", 0)], ("WorkshopRoom", "GreatWorkChamber"), [],
                    "Year2", "The Great Work", "Restore every room, then the Great Work Chamber.")),
     ("LarkArrives", ("NPC", [("Mail", P + "Mail_Lark", 0)], ("Discoveries", "10"), ["Intro"], "Summer", "Lark", "Lark turns up after the farm's tenth discovery.")),
-    ("LanternUpgrade", ("Capacity", [("Capacity", "LanternShades", 6)], ("Skill", P + "Alchemy 6"), ["Undercroft"], "Fall", "A deeper lantern",
-                        "Alchemy level 6, with the Undercroft restored: the Gloam Lantern holds six Shades.")),
+    ("LanternUpgrade", ("Capacity", [("Capacity", "LanternShades", 40)], ("Skill", P + "Alchemy 6"), ["Undercroft"], "Fall", "A deeper lantern",
+                        "Alchemy level 6, with the Undercroft restored: the Gloam Lantern holds twice as many Shades (40).")),
 ])
 
 # Workshop rooms (doc 14 §2): id, tier, motif, host NPC, opens (mode, rooms), bundles, display name, map size, floor style, wall style

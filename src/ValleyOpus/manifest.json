@@ -1,8 +1,8 @@
 {
   "Name": "ValleyOpus",
   "Author": "CharlesDR",
-  "Version": "0.1.0-alpha.2",
-  "Description": "Alchemy and automation for the Valley. Test build alpha.1: foundation and spikes, nothing playable yet.",
+  "Version": "1.0.0-sos.1",
+  "Description": "Alchemy and automation for the Valley. Sink-or-swim test build of everything slated for 1.0; expect rough edges.",
   "UniqueID": "CharlesDR.ValleyOpus",
   "EntryDll": "ValleyOpus.dll",
   "MinimumApiVersion": "4.0.0",
