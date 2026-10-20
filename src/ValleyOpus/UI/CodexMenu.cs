@@ -309,6 +309,24 @@ internal sealed class CodexMenu : IClickableMenu
         IEnumerable<string> keys = ModServices.Farm.Codex.Data.Keys.Keys.OrderBy(k => k, StringComparer.Ordinal).ToList();
         var rows = new List<Row>();
 
+        // Hints the farm has been shown, grouped by channel (doc 16 Notes page): never lost to a closed dialogue box.
+        var hints = keys.Where(k => k.StartsWith(CodexKeys.HintPrefix, StringComparison.Ordinal))
+            .Select(k => ModServices.Content.Registry.Hints.Get(k[CodexKeys.HintPrefix.Length..]))
+            .OfType<HintRow>()
+            .GroupBy(h => h.Channel)
+            .OrderBy(g => g.Key, StringComparer.Ordinal);
+        foreach (IGrouping<string, HintRow> channel in hints)
+        {
+            rows.Add(new Row(null, false, ModServices.T("ui.codex.notes-hints", new { channel = channel.Key }), null, null, Header: true));
+            foreach (HintRow hint in channel)
+            {
+                string? target = ModServices.Content.Registry.Recipes.Get(hint.Target)?.Output.Id ?? hint.Target;
+                string? icon = ModServices.Content.Registry.ResolveItemId(target);
+                string text = World.WorldService.HintText(hint);
+                rows.Add(new Row(icon, !ModServices.Farm.Codex.Has(CodexKeys.Item(icon ?? "")), ModServices.Content.NameOf(target), text, text));
+            }
+        }
+
         List<string> tried = keys.Where(k => k.StartsWith(CodexKeys.TriedPrefix, StringComparison.Ordinal)).ToList();
         if (tried.Count > 0)
         {

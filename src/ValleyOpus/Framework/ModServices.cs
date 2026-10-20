@@ -95,4 +95,10 @@ internal sealed class ModConfig
 
     /// <summary>Machines chaining moves per second, for performance (doc 09 §8).</summary>
     public int ChainBudgetPerSecond { get; set; } = 200;
+
+    /// <summary>The Azoth Diffuser's radius in tiles (doc 15: a config setting, default 7).</summary>
+    public int DiffuserRadius { get; set; } = 7;
+
+    /// <summary>Allow the dev commands that grant unlocks and fill bundles (always allowed in test builds).</summary>
+    public bool DevCommands { get; set; } = true;
 }

@@ -41,6 +41,7 @@ public sealed class ModEntry : Mod
         ModServices.Effects = new EffectService(helper, log);
         ModServices.World = new World.WorldService(helper, log);
         _ = new Effects.Shades(helper, log);
+        _ = new Effects.Handlers(helper, log);
         _ = new HudOverlay(helper);
         _ = new Commands(helper, this.Monitor);
         _ = new SpikeRunner(helper, this.Monitor, new ISpike[] { new BuildingSpike(), new PerfSpike(helper), new EffectsSpike() });
@@ -51,6 +52,7 @@ public sealed class ModEntry : Mod
         EffectService.Patch(harmony);
         ProfileTooltip.Patch(harmony);
         World.Npcs.Patch(harmony);
+        Effects.Handlers.Patch(harmony);
 
         AlchemySkill.Register();
         Neighbours.RegisterQueries();
@@ -74,6 +76,7 @@ public sealed class ModEntry : Mod
             this.Monitor.Log($"Couldn't register the alchemy professions: {ex}", LogLevel.Error);
         }
         AlchemySkill.CreateIcons();
+        ConfigMenu.Register(this.Helper, this.ModManifest);
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)

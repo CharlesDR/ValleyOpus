@@ -16,7 +16,7 @@
     },
     {
       "Action": "Include",
-      "FromFile": "data/registries.json, data/items.json, data/world.json"
+      "FromFile": "data/registries.json, data/items.json, data/strings.json, data/world.json"
     }
   ]
 }

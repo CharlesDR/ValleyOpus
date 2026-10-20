@@ -33,7 +33,7 @@ internal sealed class Commands
         });
         helper.ConsoleCommands.Add("valleyopus_inspect", "Prints the faced or hovered machine's tray, recipe memory, pin, neighbour state, lock, fuel and kindling.", this.Inspect);
         helper.ConsoleCommands.Add("valleyopus_report", "Prints this farm's codex, skill and Satchel numbers.", this.Report);
-        helper.ConsoleCommands.Add("valleyopus_dev", "Developer commands for test builds. 'valleyopus_dev on', then: kit | give <name> [count] | discover all | xp <amount> | place50 | prices | off", this.Dev);
+        helper.ConsoleCommands.Add("valleyopus_dev", "Developer commands for test builds. 'valleyopus_dev on', then: kit | give <name> [count] | discover all | xp <amount> | place50 | prices | unlock <id|all> | room <id|all> | workshop | meet <familiar|all> | shades <n> | charge | worldreset | off", this.Dev);
     }
 
     private void Info(string message) => this.monitor.Log(message, LogLevel.Info);
@@ -106,6 +106,14 @@ internal sealed class Commands
         this.Info($"Codex: {recipes} of {registry.Recipes.Count} recipes discovered, {tried} tried pairings, {codex.Data.Keys.Count} keys in all.");
         this.Info($"Alchemy: level {ModServices.Skill.Level(who)}, {SpaceCore.Skills.GetExperienceFor(who, AlchemySkill.SkillId)} XP.");
         this.Info($"Satchel: {ModServices.Satchel.Inventory(who).Count(i => i != null)} of {ModServices.Satchel.Capacity(who)} types.");
+        World.WorldData world = ModServices.World.View;
+        this.Info($"World: {registry.Unlocks.All.Count(u => ModServices.World.IsUnlocked(u.Id))} of {registry.Unlocks.Count} unlocks, {world.BundlesDone.Count} of {registry.Bundles.Count} bundles, {world.Contracts.Count} of {registry.Contracts.Count} contracts, {world.Divinations} divinations.");
+        foreach (WorkshopRoomRow room in registry.Rooms.All)
+            this.Info($"  {World.WorldService.Local(room.Id)}: {(ModServices.World.IsRestored(room.Id) ? "restored" : ModServices.World.IsOpen(room.Id) ? "open" : "sealed")}");
+        this.Info($"  unlocked: {string.Join(", ", registry.Unlocks.All.Where(u => ModServices.World.IsUnlocked(u.Id)).Select(u => World.WorldService.Local(u.Id)))}");
+        foreach ((string familiar, World.FamiliarState state) in world.Familiars)
+            this.Info($"  Familiar {familiar}: met day {state.MetDay}, {(state.Lab is null ? "waiting in the workshop" : "bonded")}, {state.BondPoints} bond points");
+        this.Info($"Shades carried: {Effects.Shades.Carried(who)}.");
     }
 
     private void Dev(string name, string[] args)
@@ -175,8 +183,87 @@ internal sealed class Commands
                     this.Info($"  {itemId}: {price}g");
                 break;
 
+            case "unlock" when args.Length >= 2:
+                if (!Context.IsMainPlayer)
+                {
+                    this.Info("Only the host can grant unlocks.");
+                    break;
+                }
+                IEnumerable<string> ids = args[1] == "all" ? ModServices.Content.Registry.Unlocks.All.Select(u => u.Id) : new[] { World.WorldService.Full(args[1]) };
+                int granted = ids.Count(u => ModServices.World.Grant(u, "dev command"));
+                this.Info($"Granted {granted} unlock(s).");
+                break;
+
+            case "room" when args.Length >= 2:
+                if (!Context.IsMainPlayer)
+                {
+                    this.Info("Only the host can restore rooms.");
+                    break;
+                }
+                ModServices.World.Grant(World.WorldService.IntroUnlock, "dev command");
+                foreach (WorkshopRoomRow room in ModServices.Content.Registry.Rooms.All.Where(r => args[1] == "all" || World.WorldService.Local(r.Id).Equals(args[1], StringComparison.OrdinalIgnoreCase)))
+                {
+                    ModServices.World.DevRestore(room.Id);
+                    this.Info($"Restored {World.WorldService.Local(room.Id)}.");
+                }
+                break;
+
+            case "workshop":
+                ModServices.World.Grant(World.WorldService.IntroUnlock, "dev command");
+                World.Workshop.Enter(who);
+                break;
+
+            case "meet" when args.Length >= 2:
+                foreach (FamiliarRow familiar in ModServices.Content.Registry.Familiars.All.Where(f => args[1] == "all" || World.WorldService.Local(f.Id).Equals(args[1], StringComparison.OrdinalIgnoreCase)))
+                {
+                    string local = World.WorldService.Local(familiar.Id);
+                    if (Context.IsMainPlayer)
+                    {
+                        if (!ModServices.World.HostData.Familiars.TryGetValue(local, out World.FamiliarState? fs))
+                            ModServices.World.HostData.Familiars[local] = fs = new World.FamiliarState();
+                        fs.MetDay = (int)Game1.stats.DaysPlayed;
+                        ModServices.World.Publish();
+                    }
+                    else
+                        ModServices.World.SendFamiliar("Meet", local);
+                    this.Info($"Met the {local}.");
+                }
+                break;
+
+            case "shades" when args.Length >= 2 && int.TryParse(args[1], out int shades):
+                Item? lantern = Effects.Shades.Lanterns(who).FirstOrDefault();
+                if (lantern is null)
+                {
+                    lantern = ItemRegistry.Create(Effects.Shades.LanternId);
+                    who.addItemByMenuIfNecessary(lantern);
+                }
+                lantern.modData[Effects.Shades.ShadesKey] = shades.ToString();
+                this.Info($"Your lantern holds {shades} Shades.");
+                break;
+
+            case "charge":
+                if (Target() is SObject source && ModServices.Content.ApparatusOf(source)?.Power is { } spec)
+                {
+                    if (spec.Mode == "Charges")
+                        source.modData[Power.ChargesKey] = Power.Capacity(source, spec).ToString();
+                    else
+                        source.modData[Power.PoweredUntilKey] = (Power.Now + spec.Amount).ToString();
+                    this.Info($"Charged {source.DisplayName}.");
+                }
+                else
+                    this.Info("Face or hover a Boiler or Lightning Coil first.");
+                break;
+
+            case "worldreset":
+                if (Context.IsMainPlayer)
+                {
+                    ModServices.World.DevReset();
+                    this.Info("World progress cleared (unlocks, bundles, contracts, familiars). Items and recipes you hold stay.");
+                }
+                break;
+
             default:
-                this.Info("Unknown dev command. Try: kit | give <name> [count] | discover all | xp <amount> | place50 | prices | off");
+                this.Info("Unknown dev command. Try: kit | give <name> [count] | discover all | xp <amount> | place50 | prices | unlock <id|all> | room <id|all> | workshop | meet <familiar|all> | shades <n> | charge | worldreset | off");
                 break;
         }
     }
