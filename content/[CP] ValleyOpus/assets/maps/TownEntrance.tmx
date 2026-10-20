@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="16" tileheight="16" infinite="0">
+ <tileset firstgid="1" name="z_valleyopus_entrance" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="z_valleyopus_entrance.png" width="16" height="16"/>
+ </tileset>
+ <layer id="1" name="Back" width="1" height="1">
+  <data encoding="csv">
+0
+  </data>
+ </layer>
+ <layer id="2" name="Buildings" width="1" height="1">
+  <data encoding="csv">
+1
+  </data>
+ </layer>
+ <objectgroup id="3" name="Buildings">
+  <object id="1" name="TileData" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="Action" value="CharlesDR.ValleyOpus_Enter"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

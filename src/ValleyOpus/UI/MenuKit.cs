@@ -15,6 +15,12 @@ internal static class MenuKit
     /// <summary>The height of one inventory row as <see cref="InventoryMenu"/> lays it out (64 px slot + 4 px gap).</summary>
     public const int InventoryRowHeight = 68;
 
+    /// <summary>
+    /// Rows a player-inventory grid draws: vanilla's InventoryMenu always lays out 36 slots in 3 rows (locked slots
+    /// included), whatever the backpack size, so menus must leave room for all three (SOS Pass A: the grid spilled out).
+    /// </summary>
+    public const int PlayerInventoryRows = 3;
+
     public static readonly Rectangle UpArrowSource = new(421, 459, 11, 12);
     public static readonly Rectangle DownArrowSource = new(421, 472, 11, 12);
     private static readonly Rectangle ButtonSource = new(432, 439, 9, 9);

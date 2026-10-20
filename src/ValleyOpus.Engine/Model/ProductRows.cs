@@ -161,6 +161,9 @@ public sealed class MilestoneRow : RowBase
 public sealed class FuelSpec
 {
     public string Item { get; init; } = "";
+
+    /// <summary>Other items that burn the same way (the Calcinator takes Bitumen as well as Coal).</summary>
+    public List<string> Alternates { get; init; } = new();
     public int Capacity { get; init; } = 10;
     public int PerRun { get; init; } = 1;
 }

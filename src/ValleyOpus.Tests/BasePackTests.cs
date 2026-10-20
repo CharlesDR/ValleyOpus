@@ -41,14 +41,17 @@ public class BasePackTests
     }
 
     [Fact]
-    public void SliceCounts_MatchDoc11()
+    public void FullCounts_Match1_0Content()
     {
         var r = this.pipeline.Registry;
         Assert.Equal(8, r.Primes.Count);
-        Assert.Equal(6, r.Apparatus.Count);
-        Assert.Equal(46, this.read.Items.All.Count(i => i.QualifiedId.StartsWith("(O)" + P) && !i.HasTag("valleyopus_tool")));
+        Assert.Equal(15, r.Apparatus.Count); // 14 apparatus and the Ritual Circle (doc 13)
         Assert.Equal(36, r.Recipes.All.Count(x => r.Substances.Get(x.Output.Id)?.Tier == 1));
-        Assert.Equal(4, r.Recipes.All.Count(x => r.Substances.Get(x.Output.Id)?.Tier == 2));
+        Assert.Equal(26, r.Recipes.All.Count(x => r.Substances.Get(x.Output.Id)?.Tier == 2)); // the slice's 4, 20 more and 3 dark twins, less Radicula (it makes a placeable plant)
+        Assert.Equal(4 + 3 + 4, r.Recipes.All.Count(x => r.Substances.Get(x.Output.Id)?.Tier == 3)); // capstones, secrets, Familiar bonds
+        Assert.Equal(9, r.Rooms.Count);
+        Assert.Equal(25, r.Bundles.Count);
+        Assert.Empty(this.pipeline.Findings);
     }
 
     [Fact]

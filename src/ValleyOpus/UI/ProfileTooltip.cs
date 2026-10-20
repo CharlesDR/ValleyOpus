@@ -22,6 +22,7 @@ internal static class ProfileTooltip
     {
         harmony.Patch(AccessTools.Method(typeof(SObject), nameof(SObject.getDescription)),
             postfix: new HarmonyMethod(typeof(ProfileTooltip), nameof(GetDescriptionPostfix)));
+        ElementTooltip.Patch(harmony);
     }
 
     private static void GetDescriptionPostfix(SObject __instance, ref string __result)

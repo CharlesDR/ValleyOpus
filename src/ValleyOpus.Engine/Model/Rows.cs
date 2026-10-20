@@ -98,6 +98,9 @@ public sealed class RecipeConditionRef
 
 public sealed class RecipeOutput
 {
+    /// <summary>The output ID of a stage advance: the advanced input itself comes back, higher (doc 12 §5).</summary>
+    public const string SameAsInput = Ids.RowPrefix + "SameAsInput";
+
     /// <summary>A substance ID, or a vanilla item ID.</summary>
     public string Id { get; init; } = "";
     public int Count { get; init; } = 1;
@@ -158,6 +161,9 @@ public sealed class RecipeRow : RowBase
     public string? TwinGroup { get; init; }
     public DiscoveryRule Discovery { get; init; } = new();
     public string? SecretPool { get; init; }
+
+    /// <summary>An unlock the farm must hold before the recipe exists at all: only Tier 3 uses it (doc 14 §1).</summary>
+    public string? RequiresUnlock { get; init; }
 
     [JsonIgnore]
     public int InputCount => this.Inputs.Sum(p => p.Count);

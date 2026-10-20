@@ -51,7 +51,7 @@ internal sealed class SatchelMenu : IClickableMenu
     {
         int capacity = ModServices.Satchel.Capacity(this.who);
         int satchelRows = MenuKit.Rows(capacity);
-        int playerRows = MenuKit.Rows(this.who.MaxItems);
+        int playerRows = MenuKit.PlayerInventoryRows;
         int innerWidth = 12 * 64;
         int width = innerWidth + Pad * 2;
         int height = Pad + 52 + 40 + satchelRows * MenuKit.InventoryRowHeight + 16 + 36 + 16 + playerRows * MenuKit.InventoryRowHeight + 40 + Pad;

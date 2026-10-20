@@ -25,6 +25,9 @@ internal static class Neighbours
     /// <summary>The map tile property that makes a tile dark (Lab alcoves, doc 18).</summary>
     public const string DarkTileProperty = "ValleyOpus_Dark";
 
+    /// <summary>The map tile property that heats a tile (the floor in front of a Lab hearth, doc 18).</summary>
+    public const string HeatTileProperty = "ValleyOpus_Heat";
+
     private static readonly Dictionary<string, IReadOnlySet<string>> TagCache = new(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>Registers our game state queries (doc 11 §3, doc 18).</summary>
@@ -51,7 +54,8 @@ internal static class Neighbours
         var tile = ((int)machine.TileLocation.X, (int)machine.TileLocation.Y);
 
         bool heat = ReceivesHeat(location, tile);
-        string? state = NeighbourStates.Resolve(apparatus, new HashSet<string>(), heat);
+        Power.Supply power = Power.Read(location, tile, machine);
+        string? state = NeighbourStates.Resolve(apparatus, power.Adjacent, heat);
 
         var facts = new List<NeighbourFact>();
         foreach ((int x, int y) in ChainGeometry.Within(tile, 2))
@@ -65,7 +69,14 @@ internal static class Neighbours
         foreach (ConditionRow row in ModServices.Content.Registry.Conditions.All.Where(c => c.Kind == ConditionKind.Gsq && c.Query != null))
             queries[row.Query!] = GameStateQuery.CheckConditions(row.Query, location, who ?? Game1.player, targetItem: machine);
 
-        return new ConditionSnapshot { NeighbourState = state, Neighbours = facts, Queries = queries };
+        return new ConditionSnapshot
+        {
+            NeighbourState = state,
+            Neighbours = facts,
+            Queries = queries,
+            ChargedPower = power.Charged,
+            Shades = who is null ? 0 : Effects.Shades.Carried(who),
+        };
     }
 
     /// <summary>
@@ -74,6 +85,10 @@ internal static class Neighbours
     /// </summary>
     public static bool ReceivesHeat(GameLocation location, (int X, int Y) tile)
     {
+        // A Lab hearth heats the floor tile in front of it (doc 18 §2a).
+        if (location.doesTileHaveProperty(tile.X, tile.Y, HeatTileProperty, "Back") != null)
+            return true;
+
         var sources = new List<(int X, int Y)>();
         int maxConsumers = 2;
         foreach ((int x, int y) in ChainGeometry.Cardinals(tile))

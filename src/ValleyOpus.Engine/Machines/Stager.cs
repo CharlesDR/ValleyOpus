@@ -89,7 +89,8 @@ public sealed class Stager
             && !this.decomposer.ProfileOf(item).IsEmpty;
 
     public bool IsFuel(ApparatusRow apparatus, ItemInfo item)
-        => apparatus.Fuel is { } fuel && Ids.QualifyItem(fuel.Item).Equals(item.QualifiedId, StringComparison.OrdinalIgnoreCase);
+        => apparatus.Fuel is { } fuel
+            && fuel.Alternates.Prepend(fuel.Item).Any(f => Ids.QualifyItem(f).Equals(item.QualifiedId, StringComparison.OrdinalIgnoreCase));
 
     /// <summary>Decides what to do with one offered item.</summary>
     public StagePlan Offer(MachineContext context, MachineData state, IReadOnlyList<ItemStack> tray, ItemStack item, IRecipeAvailability codex)
@@ -182,19 +183,25 @@ public sealed class Stager
         int tier = this.registry.Substances.TryGet(row.Output.Id, out SubstanceRow substance) ? substance.Tier : 1;
         ConditionOutcome conditions = match.Conditions ?? ConditionOutcome.AllMet;
 
+        // A stage advance returns its advanced input (the one the first spec takes), one stage higher (doc 12 §5).
+        ItemStack? advanced = row.Output.Id == RecipeOutput.SameAsInput ? AdvancedInput(recipe, tray) : null;
+        if (advanced != null && this.registry.SubstanceForItem(advanced.Item.QualifiedId) is { } advancedSubstance)
+            tier = advancedSubstance.Tier;
+
         int quality = QualityCalculator.Compute(
             row.Quality,
-            tray.SelectMany(t => Enumerable.Repeat(t.Quality, t.Count)),
+            advanced != null ? new[] { advanced.Quality } : tray.SelectMany(t => Enumerable.Repeat(t.Quality, t.Count)),
             context.Apparatus,
-            new[] { conditions.BonusQualitySteps });
+            new[] { conditions.BonusQualitySteps, context.ExtraQualitySteps },
+            context.CapRaise);
 
-        double speed = conditions.MetBonuses.Select(b => b.Effect?.SpeedMultiplier ?? 1).DefaultIfEmpty(1).Aggregate((a, b) => a * b);
+        double speed = conditions.MetBonuses.Select(b => b.Effect?.SpeedMultiplier ?? 1).DefaultIfEmpty(1).Aggregate((a, b) => a * b) * context.SpeedMultiplier;
         int minutes = Math.Max(10, (int)Math.Round((row.Minutes ?? DefaultMinutes(tier)) * speed));
 
         string? process = this.ProcessStateOf(row);
         return new RunPlan(
             RecipeId: recipe.Id,
-            OutputItemId: process is null ? this.registry.ResolveItemId(row.Output.Id) : null,
+            OutputItemId: process is not null ? null : advanced != null ? advanced.Item.QualifiedId : this.registry.ResolveItemId(row.Output.Id),
             Count: Math.Max(1, row.Output.Count),
             Quality: quality,
             Minutes: minutes,
@@ -203,6 +210,17 @@ public sealed class Stager
             ProcessState: process,
             Bonus: conditions.MetBonuses.FirstOrDefault()?.ConditionId,
             Tier: tier);
+    }
+
+    /// <summary>The tray item a stage advance's first spec takes: the substance, not the catalyst.</summary>
+    public static ItemStack? AdvancedInput(CompiledRecipe recipe, IReadOnlyList<ItemStack> tray)
+    {
+        if (recipe.Specs.Count == 0)
+            return null;
+        CompiledSpec first = recipe.Specs[0];
+        var others = recipe.Specs.Skip(1).ToList();
+        return tray.FirstOrDefault(t => first.Matches(t.Item, t.Quality) && !others.Any(o => o.Spec.Item != null && o.Matches(t.Item, t.Quality)))
+            ?? tray.FirstOrDefault(t => first.Matches(t.Item, t.Quality));
     }
 
     /// <summary>The run a decomposition makes: the first Prime is the held output, the rest and the residue are extras.</summary>

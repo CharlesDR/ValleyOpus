@@ -66,6 +66,11 @@ internal sealed class GameContent
             e.LoadFrom(() => new Dictionary<string, JObject>(), AssetLoadPriority.Exclusive);
             return;
         }
+        if (e.NameWithoutLocale.IsEquivalentTo(ModServices.StringsAsset))
+        {
+            e.LoadFrom(() => new Dictionary<string, string>(), AssetLoadPriority.Exclusive);
+            return;
+        }
 
         // The data compiler edits early, so other packs can still override what it writes (doc 09 §4c).
         if (e.NameWithoutLocale.IsEquivalentTo("Data/Objects"))
@@ -110,7 +115,7 @@ internal sealed class GameContent
         return loaded;
     }
 
-    private static RawRegistries ReadRaw()
+    public static RawRegistries ReadRaw()
     {
         var raw = new RawRegistries();
         foreach (string registry in RegistryNames.All)
@@ -240,7 +245,20 @@ internal sealed class GameContent
 
     /// <summary>The item for an apparatus row's ID, or the apparatus row for a placed object.</summary>
     public ApparatusRow? ApparatusOf(SObject? obj)
-        => obj is { bigCraftable.Value: true } ? this.Registry.ApparatusForItem(obj.QualifiedItemId) : null;
+    {
+        ApparatusRow? row = obj is { bigCraftable.Value: true } ? this.Registry.ApparatusForItem(obj.QualifiedItemId) : null;
+        // An altar standing on a Circle Sigil is a Ritual Circle (doc 13 §5): same machine, the circle's recipes.
+        if (row?.Kind == ApparatusKinds.RitualAltar && obj!.Location is GameLocation location && OnCircleSigil(location, obj.TileLocation)
+            && this.Registry.Apparatus.Get(CircleApparatusId) is ApparatusRow circle)
+            return circle;
+        return row;
+    }
+
+    public const string CircleApparatusId = Ids.RowPrefix + "RitualCircle";
+    public const string CircleSigilId = "(F)" + Ids.RowPrefix + "CircleSigil";
+
+    public static bool OnCircleSigil(GameLocation location, Microsoft.Xna.Framework.Vector2 tile)
+        => location.furniture.Any(f => f.QualifiedItemId == CircleSigilId && f.GetBoundingBox().Contains((int)tile.X * 64 + 32, (int)tile.Y * 64 + 32));
 
     /// <summary>The display name of a substance, Prime or item ID; Power substances (never items) are named in our i18n.</summary>
     public string NameOf(string id)
