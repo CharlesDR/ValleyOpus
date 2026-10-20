@@ -353,7 +353,7 @@ NPCS = OrderedDict([
                 "Fri": "Orichalcum isn't real. Show me some and I'll change my report.",
                 "Sat": "Assaying is just honesty with a scale.",
                 "Sun": "Off duty. Still not believing."})),
-    ("Bennet", ("Bennet", "Male", "Young", ("Desert", 18, 23), ("Summer", 26), "BennetArrives", "human_m", ("m", 1, 0), ("#E0A040", "#8A5A2B"),
+    ("Bennet", ("Bennet", "Male", "Adult", ("Desert", 18, 23), ("Summer", 26), "BennetArrives", "human_m", ("m", 1, 0), ("#E0A040", "#8A5A2B"),
                 ([v("Vitrum"), v("RosaVitrea")], [o(80), o(338)]),
                 {"Introduction": "Bennet! Sandy's nephew. I blow glass. The desert sand here is perfect.",
                  "Mon": "A Pelican circulates a substance round and round. Add Sal Fixum and it comes back finer.",
