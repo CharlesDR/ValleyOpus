@@ -65,7 +65,7 @@ internal sealed class TableMenu : IClickableMenu
         int width = innerWidth + Pad * 2;
         int height = Pad + 52 + 80 + 72 + 36 + playerRows * MenuKit.InventoryRowHeight + 36 + satchelRows * MenuKit.InventoryRowHeight + Pad;
         Vector2 topLeft = Utility.getTopLeftPositionForCenteringOnScreen(width, height);
-        this.initialize((int)topLeft.X, (int)topLeft.Y, width, height, showUpperRightCloseButton: true);
+        this.initialize((int)topLeft.X, (int)topLeft.Y, width, height, true);
 
         int left = this.xPositionOnScreen + Pad;
         int y = this.yPositionOnScreen + Pad + 52;
@@ -227,10 +227,12 @@ internal sealed class TableMenu : IClickableMenu
             return;
         }
         var inputs = this.picked.ToList();
-        this.picked.Clear();
         try
         {
             TableOutcome result = ModServices.Machines.AttemptTable(this.table, inputs, Game1.player);
+            // Blocked and too-many attempts use nothing, so the picks stay for another try (doc 16 §3).
+            if (result.Kind is not (TableOutcomeKind.Blocked or TableOutcomeKind.TooManyInputs))
+                this.picked.Clear();
             this.outcome = result.Kind switch
             {
                 TableOutcomeKind.Success => ModServices.T("ui.table.success", new { name = ModServices.Content.NameOf(result.Recipe!.Row.Output.Id) }),
@@ -243,6 +245,7 @@ internal sealed class TableMenu : IClickableMenu
         catch (Exception ex)
         {
             ModServices.Log.Error($"The Table attempt failed: {ex}");
+            this.picked.Clear();
             this.outcome = ModServices.T("ui.error");
         }
     }

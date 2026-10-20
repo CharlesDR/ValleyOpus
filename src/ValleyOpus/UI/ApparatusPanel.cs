@@ -82,7 +82,7 @@ internal sealed class ApparatusPanel : IClickableMenu
         this.tray = MachineService.TrayItems(this.machine);
         this.pinned = MachineService.State(this.machine).Pinned;
         this.recipes = ModServices.Machines.Runnable(this.machine, this.Who)
-            .Select(r => (r, ModServices.Machines.Loads(r, this.Who)))
+            .Select(r => (Recipe: r, Loads: ModServices.Machines.Loads(r, this.Who)))
             .ToList();
         this.Layout();
     }
@@ -96,7 +96,7 @@ internal sealed class ApparatusPanel : IClickableMenu
         this.visibleRows = Math.Clamp(room / RowHeight, 2, 6);
         int height = fixedHeight + this.visibleRows * RowHeight;
         Vector2 topLeft = Utility.getTopLeftPositionForCenteringOnScreen(PanelWidth, height);
-        this.initialize((int)topLeft.X, (int)topLeft.Y, PanelWidth, height, showUpperRightCloseButton: true);
+        this.initialize((int)topLeft.X, (int)topLeft.Y, PanelWidth, height, true);
         this.scroll = Math.Clamp(this.scroll, 0, Math.Max(0, this.recipes.Count - this.visibleRows));
 
         int left = this.xPositionOnScreen + Pad;
@@ -345,7 +345,7 @@ internal sealed class ApparatusPanel : IClickableMenu
         int left = this.xPositionOnScreen + Pad;
         int innerWidth = this.width - Pad * 2;
 
-        string title = this.machine.DisplayName + (this.pickerMode ? "  ·  " + ModServices.T("ui.panel.picker") : "");
+        string title = this.machine.DisplayName + (this.pickerMode ? " - " + ModServices.T("ui.panel.picker") : "");
         MenuKit.DrawText(b, MenuKit.Fit(title, innerWidth - 48), left, this.yPositionOnScreen + Pad, font: Game1.dialogueFont);
 
         int y = this.linesTop;
@@ -404,7 +404,7 @@ internal sealed class ApparatusPanel : IClickableMenu
         int countWidth = (int)Game1.smallFont.MeasureString(count).X;
         int textWidth = r.Width - 72 - countWidth - 16;
         MenuKit.DrawText(b, MenuKit.Fit(ModServices.Content.NameOf(outputId), textWidth), r.X + 64, r.Y + 4, Game1.textColor * alpha);
-        MenuKit.DrawText(b, MenuKit.Fit(MenuKit.InputNames(recipe.Row), (int)(textWidth / 0.8f), 0.8f), r.X + 64, r.Y + 34, Color.DimGray * alpha, 0.8f);
+        MenuKit.DrawText(b, MenuKit.Fit(MenuKit.InputNames(recipe.Row), textWidth, 0.8f), r.X + 64, r.Y + 34, Color.DimGray * alpha, 0.8f);
         MenuKit.DrawText(b, count, r.Right - countWidth - 8, r.Y + 18, Game1.textColor * alpha);
         b.Draw(Game1.staminaRect, new Rectangle(r.X, r.Bottom - 2, r.Width, 2), Color.SaddleBrown * 0.3f);
     }
