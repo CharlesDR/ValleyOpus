@@ -268,6 +268,7 @@ def build(art_root):
             colour = blend(known) if known else "#6E6A66"
             prime_colour.setdefault(local, colour)
             extra, category, tags = product_extra(local)
+            tags = tags + ["valleyopus_tier_" + str(tier)]
             add_object(local, display, gloss, sort, category, 1, tags, colour, rune_for(rune), 1 if tier == 1 else 2, extra)
             registries["Decomposition/Overrides"][q(local)] = (
                 {"Profile": profile_of(inputs), "Units": max(1, tier)} if inputs else {"Refuse": True})
@@ -403,12 +404,14 @@ def build(art_root):
     registries["Recipes"][P + "Radicula"]["Output"] = {"Id": "(BC)" + P + "RadiculaPlant"}
 
     # ── Furniture (Circle Sigil, glazed décor) ──
+    import build_art
+    furniture_cols, _, _ = build_art.furniture_layout(F.FURNITURE)
     for n, (local, display, ftype, size, _, desc) in enumerate(F.FURNITURE):
         w, h = size
         i18n[f"furniture.{local}.name"] = display
         i18n[f"furniture.{local}.desc"] = desc
         bounds = f"{w} {h}" if ftype == "rug" else f"{w} 1"
-        furniture[P + local] = f"{P}{local}/{ftype}/{w} {h}/{bounds}/1/500/-1/{{{{i18n:furniture.{local}.name}}}}/{n}/{FURNITURE_TEXTURE}/true/valleyopus_furniture"
+        furniture[P + local] = f"{P}{local}/{ftype}/{w} {h}/{bounds}/1/500/-1/{{{{i18n:furniture.{local}.name}}}}/{furniture_cols[n]}/{FURNITURE_TEXTURE}/true/valleyopus_furniture"
 
     # ── Alternate vanilla crafting recipes and décor (doc 15 §8, §9) ──
     for rid, (ingredients, yield_id, count, learn) in F.ALT_CRAFTING.items():

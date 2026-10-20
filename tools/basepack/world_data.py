@@ -78,15 +78,15 @@ UNLOCKS = OrderedDict([
 # Workshop rooms (doc 14 §2): id, tier, motif, host NPC, opens (mode, rooms), bundles, display name, map size, floor style, wall style
 ROOMS = OrderedDict([
     ("EntranceHall", (0, None, "Curator", ("AllOf", []), [], "Entrance Hall", (30, 14), 0, 0)),
-    ("FurnaceRoom", (1, "Calcination", "Curator", ("AllOf", ["EntranceHall"]), ["Kindling", "MineSalts", "SpringGleanings"], "Furnace Room", (15, 12), 3, 9)),
+    ("FurnaceRoom", (1, "Calcination", "Curator", ("AllOf", ["EntranceHall"]), ["Kindling", "MineSalts", "SpringGleanings"], "Furnace Room", (15, 12), 3, 19)),
     ("Cistern", (2, "Dissolution", "Tobin", ("AllOf", ["FurnaceRoom"]), ["FirstWaters", "Fittings", "RiverAndLake"], "Cistern", (15, 12), 6, 12)),
-    ("Library", (2, "Separation", "Oriel", ("AllOf", ["FurnaceRoom"]), ["FirstFires", "Curios", "Bindings"], "Library", (15, 12), 1, 4)),
-    ("Sanctum", (3, "Conjunction", "Oriel", ("AnyOf", ["Cistern", "Library"]), ["Unions", "Offerings", "SummerLight"], "Sanctum", (15, 12), 10, 20)),
-    ("Undercroft", (3, "Fermentation", "Curator", ("AnyOf", ["Cistern", "Library"]), ["RotAndReturn", "NightHarvest", "DarkThings"], "Undercroft", (15, 12), 14, 30)),
-    ("Observatory", (4, "Distillation", "Hesper", ("AnyOf", ["Sanctum", "Undercroft"]), ["StarChart", "ClearSpirits", "WinterSky"], "Observatory", (15, 12), 20, 40)),
-    ("CrystalVault", (4, "Coagulation", "Curator", ("AnyOf", ["Sanctum", "Undercroft"]), ["FixedSalts", "Gems", "MetalsOfTheWeek"], "Crystal Vault", (15, 12), 24, 50)),
+    ("Library", (2, "Separation", "Oriel", ("AllOf", ["FurnaceRoom"]), ["FirstFires", "Curios", "Bindings"], "Library", (15, 12), 1, 10)),
+    ("Sanctum", (3, "Conjunction", "Oriel", ("AnyOf", ["Cistern", "Library"]), ["Unions", "Offerings", "SummerLight"], "Sanctum", (15, 12), 10, 14)),
+    ("Undercroft", (3, "Fermentation", "Curator", ("AnyOf", ["Cistern", "Library"]), ["RotAndReturn", "NightHarvest", "DarkThings"], "Undercroft", (15, 12), 14, 23)),
+    ("Observatory", (4, "Distillation", "Hesper", ("AnyOf", ["Sanctum", "Undercroft"]), ["StarChart", "ClearSpirits", "WinterSky"], "Observatory", (15, 12), 20, 3)),
+    ("CrystalVault", (4, "Coagulation", "Curator", ("AnyOf", ["Sanctum", "Undercroft"]), ["FixedSalts", "Gems", "MetalsOfTheWeek"], "Crystal Vault", (15, 12), 24, 16)),
     ("GreatWorkChamber", (5, "Ritual", "Curator", ("AllOf", ["FurnaceRoom", "Cistern", "Library", "Sanctum", "Undercroft", "Observatory", "CrystalVault"]),
-                          ["Nigredo", "Albedo", "Citrinitas", "Rubedo"], "Great Work Chamber", (17, 14), 30, 60)),
+                          ["Nigredo", "Albedo", "Citrinitas", "Rubedo"], "Great Work Chamber", (17, 14), 30, 30)),
 ])
 
 
