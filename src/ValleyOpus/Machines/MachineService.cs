@@ -292,7 +292,14 @@ internal sealed class MachineService
         Power.Spend(machine, run.RecipeId);
         this.SpendCatalysts(machine, run.RecipeId, who);
         this.Trace(machine, $"started {run.RecipeId}: {run.OutputItemId} x{run.Count} q{run.Quality} in {run.Minutes} min{(run.Locked ? ", locked" : "")}{(run.Extras.Count > 0 ? ", extras " + MachineData.FormatExtras(run.Extras) : "")}");
+        RunStarted?.Invoke(machine, run.RecipeId, who);
     }
+
+    /// <summary>Raised when an apparatus starts a run: the machine, the recipe ID and the loading player (the starter chain listens).</summary>
+    public static event Action<SObject, string, Farmer>? RunStarted;
+
+    /// <summary>Raised when a player makes a recipe for the first time (the starter chain listens).</summary>
+    public static event Action<Farmer, string>? Discovered;
 
     /// <summary>Shades a recipe requires come out of the loading player's lanterns (a Gnome Lab may save them).</summary>
     private void SpendCatalysts(SObject machine, string recipeId, Farmer who)
@@ -473,6 +480,7 @@ internal sealed class MachineService
         if (fresh.Contains(CodexKeys.Recipe(recipeId)))
         {
             this.log.Info($"Discovery: {who.Name} made {recipeId} for the first time.");
+            Discovered?.Invoke(who, recipeId);
             if (who.IsLocalPlayer)
             {
                 string name = output?.DisplayName ?? ModServices.Content.NameOf(ModServices.Content.Registry.Recipes.Get(recipeId)?.Output.Id ?? recipeId);

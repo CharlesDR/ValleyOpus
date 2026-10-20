@@ -4,48 +4,8 @@
   "Changes": [
     {
       "Action": "Load",
-      "Target": "Maps/CharlesDR.ValleyOpus_Workshop_EntranceHall",
-      "FromFile": "assets/maps/Workshop_EntranceHall.tmx"
-    },
-    {
-      "Action": "Load",
-      "Target": "Maps/CharlesDR.ValleyOpus_Workshop_FurnaceRoom",
-      "FromFile": "assets/maps/Workshop_FurnaceRoom.tmx"
-    },
-    {
-      "Action": "Load",
-      "Target": "Maps/CharlesDR.ValleyOpus_Workshop_Cistern",
-      "FromFile": "assets/maps/Workshop_Cistern.tmx"
-    },
-    {
-      "Action": "Load",
-      "Target": "Maps/CharlesDR.ValleyOpus_Workshop_Library",
-      "FromFile": "assets/maps/Workshop_Library.tmx"
-    },
-    {
-      "Action": "Load",
-      "Target": "Maps/CharlesDR.ValleyOpus_Workshop_Sanctum",
-      "FromFile": "assets/maps/Workshop_Sanctum.tmx"
-    },
-    {
-      "Action": "Load",
-      "Target": "Maps/CharlesDR.ValleyOpus_Workshop_Undercroft",
-      "FromFile": "assets/maps/Workshop_Undercroft.tmx"
-    },
-    {
-      "Action": "Load",
-      "Target": "Maps/CharlesDR.ValleyOpus_Workshop_Observatory",
-      "FromFile": "assets/maps/Workshop_Observatory.tmx"
-    },
-    {
-      "Action": "Load",
-      "Target": "Maps/CharlesDR.ValleyOpus_Workshop_CrystalVault",
-      "FromFile": "assets/maps/Workshop_CrystalVault.tmx"
-    },
-    {
-      "Action": "Load",
-      "Target": "Maps/CharlesDR.ValleyOpus_Workshop_GreatWorkChamber",
-      "FromFile": "assets/maps/Workshop_GreatWorkChamber.tmx"
+      "Target": "Maps/CharlesDR.ValleyOpus_Workshop",
+      "FromFile": "assets/maps/Workshop.tmx"
     },
     {
       "Action": "Load",
@@ -66,110 +26,14 @@
       "Action": "EditData",
       "Target": "Data/Locations",
       "Entries": {
-        "CharlesDR.ValleyOpus_Workshop_EntranceHall": {
-          "DisplayName": "{{i18n:room.EntranceHall.name}}",
+        "CharlesDR.ValleyOpus_Workshop": {
+          "DisplayName": "{{i18n:location.Workshop.name}}",
           "DefaultArrivalTile": {
-            "X": 15,
-            "Y": 11
+            "X": 30,
+            "Y": 17
           },
           "CreateOnLoad": {
-            "MapPath": "Maps/CharlesDR.ValleyOpus_Workshop_EntranceHall",
-            "AlwaysActive": true
-          },
-          "CanPlantHere": false
-        },
-        "CharlesDR.ValleyOpus_Workshop_FurnaceRoom": {
-          "DisplayName": "{{i18n:room.FurnaceRoom.name}}",
-          "DefaultArrivalTile": {
-            "X": 7,
-            "Y": 9
-          },
-          "CreateOnLoad": {
-            "MapPath": "Maps/CharlesDR.ValleyOpus_Workshop_FurnaceRoom",
-            "AlwaysActive": true
-          },
-          "CanPlantHere": false
-        },
-        "CharlesDR.ValleyOpus_Workshop_Cistern": {
-          "DisplayName": "{{i18n:room.Cistern.name}}",
-          "DefaultArrivalTile": {
-            "X": 7,
-            "Y": 9
-          },
-          "CreateOnLoad": {
-            "MapPath": "Maps/CharlesDR.ValleyOpus_Workshop_Cistern",
-            "AlwaysActive": true
-          },
-          "CanPlantHere": false
-        },
-        "CharlesDR.ValleyOpus_Workshop_Library": {
-          "DisplayName": "{{i18n:room.Library.name}}",
-          "DefaultArrivalTile": {
-            "X": 7,
-            "Y": 9
-          },
-          "CreateOnLoad": {
-            "MapPath": "Maps/CharlesDR.ValleyOpus_Workshop_Library",
-            "AlwaysActive": true
-          },
-          "CanPlantHere": false
-        },
-        "CharlesDR.ValleyOpus_Workshop_Sanctum": {
-          "DisplayName": "{{i18n:room.Sanctum.name}}",
-          "DefaultArrivalTile": {
-            "X": 7,
-            "Y": 9
-          },
-          "CreateOnLoad": {
-            "MapPath": "Maps/CharlesDR.ValleyOpus_Workshop_Sanctum",
-            "AlwaysActive": true
-          },
-          "CanPlantHere": false
-        },
-        "CharlesDR.ValleyOpus_Workshop_Undercroft": {
-          "DisplayName": "{{i18n:room.Undercroft.name}}",
-          "DefaultArrivalTile": {
-            "X": 7,
-            "Y": 9
-          },
-          "CreateOnLoad": {
-            "MapPath": "Maps/CharlesDR.ValleyOpus_Workshop_Undercroft",
-            "AlwaysActive": true
-          },
-          "CanPlantHere": false
-        },
-        "CharlesDR.ValleyOpus_Workshop_Observatory": {
-          "DisplayName": "{{i18n:room.Observatory.name}}",
-          "DefaultArrivalTile": {
-            "X": 7,
-            "Y": 9
-          },
-          "CreateOnLoad": {
-            "MapPath": "Maps/CharlesDR.ValleyOpus_Workshop_Observatory",
-            "AlwaysActive": true
-          },
-          "CanPlantHere": false
-        },
-        "CharlesDR.ValleyOpus_Workshop_CrystalVault": {
-          "DisplayName": "{{i18n:room.CrystalVault.name}}",
-          "DefaultArrivalTile": {
-            "X": 7,
-            "Y": 9
-          },
-          "CreateOnLoad": {
-            "MapPath": "Maps/CharlesDR.ValleyOpus_Workshop_CrystalVault",
-            "AlwaysActive": true
-          },
-          "CanPlantHere": false
-        },
-        "CharlesDR.ValleyOpus_Workshop_GreatWorkChamber": {
-          "DisplayName": "{{i18n:room.GreatWorkChamber.name}}",
-          "DefaultArrivalTile": {
-            "X": 8,
-            "Y": 11
-          },
-          "CreateOnLoad": {
-            "MapPath": "Maps/CharlesDR.ValleyOpus_Workshop_GreatWorkChamber",
+            "MapPath": "Maps/CharlesDR.ValleyOpus_Workshop",
             "AlwaysActive": true
           },
           "CanPlantHere": false
@@ -531,10 +395,10 @@
           "Home": [
             {
               "Id": "Default",
-              "Location": "CharlesDR.ValleyOpus_Workshop_Library",
+              "Location": "CharlesDR.ValleyOpus_Workshop",
               "Tile": {
-                "X": 7,
-                "Y": 5
+                "X": 19,
+                "Y": 6
               },
               "Direction": "down"
             }
@@ -567,10 +431,10 @@
           "Home": [
             {
               "Id": "Default",
-              "Location": "CharlesDR.ValleyOpus_Workshop_Cistern",
+              "Location": "CharlesDR.ValleyOpus_Workshop",
               "Tile": {
-                "X": 7,
-                "Y": 5
+                "X": 12,
+                "Y": 6
               },
               "Direction": "down"
             }
@@ -603,10 +467,10 @@
           "Home": [
             {
               "Id": "Default",
-              "Location": "CharlesDR.ValleyOpus_Workshop_EntranceHall",
+              "Location": "Forest",
               "Tile": {
-                "X": 24,
-                "Y": 8
+                "X": 33,
+                "Y": 12
               },
               "Direction": "down"
             }
@@ -639,10 +503,10 @@
           "Home": [
             {
               "Id": "Default",
-              "Location": "CharlesDR.ValleyOpus_Workshop_Cistern",
+              "Location": "CharlesDR.ValleyOpus_Workshop",
               "Tile": {
-                "X": 11,
-                "Y": 8
+                "X": 14,
+                "Y": 7
               },
               "Direction": "down"
             }
@@ -675,10 +539,10 @@
           "Home": [
             {
               "Id": "Default",
-              "Location": "CharlesDR.ValleyOpus_Workshop_Observatory",
+              "Location": "CharlesDR.ValleyOpus_Workshop",
               "Tile": {
-                "X": 7,
-                "Y": 5
+                "X": 40,
+                "Y": 6
               },
               "Direction": "down"
             }
@@ -855,10 +719,10 @@
           "Home": [
             {
               "Id": "Default",
-              "Location": "CharlesDR.ValleyOpus_Workshop_EntranceHall",
+              "Location": "CharlesDR.ValleyOpus_Workshop",
               "Tile": {
-                "X": 14,
-                "Y": 5
+                "X": 34,
+                "Y": 14
               },
               "Direction": "down"
             }
@@ -897,10 +761,10 @@
           "Home": [
             {
               "Id": "Default",
-              "Location": "CharlesDR.ValleyOpus_Workshop_EntranceHall",
+              "Location": "CharlesDR.ValleyOpus_Workshop",
               "Tile": {
-                "X": 6,
-                "Y": 9
+                "X": 26,
+                "Y": 14
               },
               "Direction": "down"
             }
@@ -937,9 +801,8 @@
       "Action": "EditData",
       "Target": "Data/mail",
       "Entries": {
-        "CharlesDR.ValleyOpus_Mail_Welcome": "@,^Welcome to the workshop. The Curator will show you the bundle board in the Entrance Hall.^Decompose things in the Athanor, combine Primes at the Table, and write down everything.^   -Oriel[#]Welcome",
         "CharlesDR.ValleyOpus_Mail_Tobin": "Heard you got the old furnace lit.^I'll be in the workshop from today. I've brought plans for a coal-fired Calcinator. Faster than that old Athanor, if less pretty.^   -Tobin[#]Tobin",
-        "CharlesDR.ValleyOpus_Mail_Finch": "Greetings, alchemist!^My wagon rolls into the workshop's hall each week. Rare reagents, fair prices, and a curiosity or two.^   -Finch[#]Finch",
+        "CharlesDR.ValleyOpus_Mail_Finch": "Greetings, alchemist!^My wagon stands in Cindersap Forest, just along from the travelling cart's spot. Rare reagents, fair prices, and a curiosity or two.^   -Finch[#]Finch",
         "CharlesDR.ValleyOpus_Mail_Ivo": "Farmer.^I'm at the Guild. I trade for monster parts. Come and see.^   -Ivo[#]Ivo",
         "CharlesDR.ValleyOpus_Mail_Delta": "Hello!^I'm doing research at the tide pools. If you've caught anything unusual, I'd love to see it.^   -Delta[#]Delta",
         "CharlesDR.ValleyOpus_Mail_Bennet": "Hi! Aunt Sandy says you're the alchemist everyone's talking about.^I've got a kiln out in the desert, and plans for a Pelican: glass that makes substances finer. Come by!^   -Bennet[#]Bennet",
@@ -955,8 +818,18 @@
         "CharlesDR.ValleyOpus_Mail_Undercroft": "Child,^You opened the dark room under the hall. Good. Here is how to make a lantern that holds Shades. Sleep with it, and it fills.^   -the Witch[#]Undercroft",
         "CharlesDR.ValleyOpus_Mail_Observatory": "Dear @,^With the Observatory open I've charted the rest of the valley's nodes. They're in your codex now.^   -Hesper[#]Observatory",
         "CharlesDR.ValleyOpus_Mail_Vault": "@,^The Crystal Vault is restored. Lay a Circle Sigil under an altar and you have a Ritual Circle: one great rite at a time.^   -the Curator[#]Vault",
-        "CharlesDR.ValleyOpus_Mail_GreatWork": "@,^You have restored every room. I remember now. My name was Cyprian, and this was my workshop.^The Great Work is yours to finish.^   -Cyprian[#]GreatWork",
         "CharlesDR.ValleyOpus_Mail_Lark": "Hi!!^I'm Lark, I'm visiting my aunt, and I heard you do ALCHEMY. Can I come and watch? I'll be in the workshop.^   -Lark[#]Lark"
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/Quests",
+      "Entries": {
+        "CharlesDR.ValleyOpus_Q1": "Basic/{{i18n:quest.Q1.title}}/{{i18n:quest.Q1.desc}}/{{i18n:quest.Q1.objective}}/null/-1/0/-1/false",
+        "CharlesDR.ValleyOpus_Q2": "Basic/{{i18n:quest.Q2.title}}/{{i18n:quest.Q2.desc}}/{{i18n:quest.Q2.objective}}/null/-1/0/-1/false",
+        "CharlesDR.ValleyOpus_Q3": "Basic/{{i18n:quest.Q3.title}}/{{i18n:quest.Q3.desc}}/{{i18n:quest.Q3.objective}}/null/-1/0/-1/false",
+        "CharlesDR.ValleyOpus_Q4": "Basic/{{i18n:quest.Q4.title}}/{{i18n:quest.Q4.desc}}/{{i18n:quest.Q4.objective}}/null/-1/0/-1/false",
+        "CharlesDR.ValleyOpus_Q5": "Basic/{{i18n:quest.Q5.title}}/{{i18n:quest.Q5.desc}}/{{i18n:quest.Q5.objective}}/null/-1/0/-1/false"
       }
     },
     {
@@ -1161,7 +1034,19 @@
       "Action": "EditData",
       "Target": "Data/Events/Town",
       "Entries": {
-        "CharlesDR.ValleyOpus_Intro/G PLAYER_HAS_MAIL Host ccDoorUnlock Received, !PLAYER_HAS_MAIL Host CharlesDR.ValleyOpus_Unlock_Intro Received/t 600 1500": "continue/53 13/farmer 53 15 0 CharlesDR.ValleyOpus_Oriel 53 11 2/skippable/pause 500/speak CharlesDR.ValleyOpus_Oriel \"{{i18n:event.intro.1}}\"/move farmer 0 -2 0/pause 300/speak CharlesDR.ValleyOpus_Oriel \"{{i18n:event.intro.2}}\"/faceDirection CharlesDR.ValleyOpus_Oriel 0/pause 600/faceDirection CharlesDR.ValleyOpus_Oriel 2/speak CharlesDR.ValleyOpus_Oriel \"{{i18n:event.intro.3}}\"/pause 300/end"
+        "CharlesDR.ValleyOpus_Intro/G PLAYER_HAS_MAIL Host ccDoorUnlock Received, PLAYER_HAS_MAIL Current CharlesDR.ValleyOpus_IntroReady Received, !PLAYER_HAS_MAIL Host CharlesDR.ValleyOpus_Unlock_Intro Received/t 600 1500": "continue/53 13/farmer 53 15 0 CharlesDR.ValleyOpus_Oriel 53 11 2/skippable/pause 500/speak CharlesDR.ValleyOpus_Oriel \"{{i18n:event.intro.1}}\"/move farmer 0 -2 0/pause 300/speak CharlesDR.ValleyOpus_Oriel \"{{i18n:event.intro.2}}\"/faceDirection CharlesDR.ValleyOpus_Oriel 0/pause 600/faceDirection CharlesDR.ValleyOpus_Oriel 2/speak CharlesDR.ValleyOpus_Oriel \"{{i18n:event.intro.3}}\"/pause 300/end"
+      }
+    },
+    {
+      "Action": "Load",
+      "Target": "Data/Events/CharlesDR.ValleyOpus_Workshop",
+      "FromFile": "data/events_empty.json"
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/Events/CharlesDR.ValleyOpus_Workshop",
+      "Entries": {
+        "CharlesDR.ValleyOpus_CuratorName/G PLAYER_HAS_MAIL Host CharlesDR.ValleyOpus_Unlock_GreatWork Received": "continue/54 8/farmer 54 12 0 CharlesDR.ValleyOpus_Curator 54 7 2/skippable/pause 800/speak CharlesDR.ValleyOpus_Curator \"{{i18n:event.reveal.1}}\"/move farmer 0 -2 0/pause 400/speak CharlesDR.ValleyOpus_Curator \"{{i18n:event.reveal.2}}\"/pause 600/speak CharlesDR.ValleyOpus_Curator \"{{i18n:event.reveal.3}}\"/pause 400/end"
       }
     }
   ]

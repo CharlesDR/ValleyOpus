@@ -21,7 +21,7 @@ internal sealed class Familiars
 {
     public const string BondStatePrefix = Ids.RowPrefix + "FamiliarBond_";
     public const string GreatWorkUnlock = Ids.RowPrefix + "GreatWork";
-    public const string ChamberLocation = Ids.RowPrefix + "Workshop_GreatWorkChamber";
+    public const string ChamberLocation = Workshop.HallLocation;
     public const string TextureAsset = "Mods/" + Ids.ModId + "/Familiars";
 
     private readonly SmapiLog log;
@@ -290,7 +290,11 @@ internal sealed class Familiars
                 continue;
             }
             if (state.Lab is null && location.Name == ChamberLocation)
-                yield return (local, row, new Vector2(4 + 3 * i, 6));
+            {
+                // Waiting spirits stand in the Great Work Chamber's corner of the workshop.
+                Point corner = Workshop.Boards(location).FirstOrDefault(b => b.Room == "GreatWorkChamber").Tile;
+                yield return (local, row, new Vector2(corner.X + 1.5f * i, 6));
+            }
             else if (state.Lab != null && Bonuses.FamiliarIn(location) == local && location.Map is { } map)
                 yield return (local, row, new Vector2(map.Layers[0].LayerWidth - 3, 5));
             i++;

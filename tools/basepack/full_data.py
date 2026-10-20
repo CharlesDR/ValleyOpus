@@ -44,9 +44,9 @@ APPARATUS = [
 CIRCLE = ("RitualCircle", "Ritual Circle", "RitualCircle", {op: ["Open"] for op in ["Calcination", "Dissolution", "Separation", "Conjunction", "Fermentation", "Distillation", "Coagulation", "Ritual"]})
 
 APPARATUS_EXTRA = {
-    "Athanor": {"Decompose": {"Concentration": 2, "ResidueRate": {"Count": 1, "Chance": 0.1}, "Minutes": 120},
+    "Athanor": {"Decompose": {"Concentration": 2, "ResidueRate": {"Count": 1, "Chance": 0.1}, "Minutes": 30},
                 "Heat": {"RequiresFlag": "Kindled", "MaxConsumers": 2}},
-    "Calcinator": {"Decompose": {"ResidueRate": {"Count": 1, "Chance": 0.35}, "Minutes": 30},
+    "Calcinator": {"Decompose": {"ResidueRate": {"Count": 1, "Chance": 0.35}, "Minutes": 10},
                    "Fuel": {"Item": "(O)382", "Alternates": ["(O)" + P + "Bitumen"], "Capacity": 10, "PerRun": 1}},
     "Boiler": {"Power": {"Emits": P + "Vapor", "MaxConsumers": 4, "Mode": "Duration", "Amount": 840},
                "Heat": {"RequiresFlag": None, "MaxConsumers": 2}},

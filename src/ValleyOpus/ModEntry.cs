@@ -56,7 +56,9 @@ public sealed class ModEntry : Mod
 
         AlchemySkill.Register();
         Neighbours.RegisterQueries();
-        World.Workshop.Register();
+        World.Workshop.Register(helper);
+        World.FinchWagon.Register(helper);
+        World.StarterQuests.Register(helper);
         ModServices.Content.Reloaded += Neighbours.ClearCache;
 
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;

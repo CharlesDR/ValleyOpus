@@ -386,6 +386,7 @@
         "profession.Theurgist.desc": "{{i18n:profession.Theurgist.desc}}",
         "unlock.Learn.name": "{{i18n:unlock.Learn.name}}",
         "unlock.Learn.how": "{{i18n:unlock.Learn.how}}",
+        "location.Workshop.name": "{{i18n:location.Workshop.name}}",
         "building.LabT1.name": "{{i18n:building.LabT1.name}}",
         "building.LabT1.desc": "{{i18n:building.LabT1.desc}}",
         "building.LabT2.name": "{{i18n:building.LabT2.name}}",
@@ -403,9 +404,27 @@
         "npc.Bennet.name": "{{i18n:npc.Bennet.name}}",
         "npc.Curator.name": "{{i18n:npc.Curator.name}}",
         "npc.Lark.name": "{{i18n:npc.Lark.name}}",
+        "quest.Q1.title": "{{i18n:quest.Q1.title}}",
+        "quest.Q1.desc": "{{i18n:quest.Q1.desc}}",
+        "quest.Q1.objective": "{{i18n:quest.Q1.objective}}",
+        "quest.Q2.title": "{{i18n:quest.Q2.title}}",
+        "quest.Q2.desc": "{{i18n:quest.Q2.desc}}",
+        "quest.Q2.objective": "{{i18n:quest.Q2.objective}}",
+        "quest.Q3.title": "{{i18n:quest.Q3.title}}",
+        "quest.Q3.desc": "{{i18n:quest.Q3.desc}}",
+        "quest.Q3.objective": "{{i18n:quest.Q3.objective}}",
+        "quest.Q4.title": "{{i18n:quest.Q4.title}}",
+        "quest.Q4.desc": "{{i18n:quest.Q4.desc}}",
+        "quest.Q4.objective": "{{i18n:quest.Q4.objective}}",
+        "quest.Q5.title": "{{i18n:quest.Q5.title}}",
+        "quest.Q5.desc": "{{i18n:quest.Q5.desc}}",
+        "quest.Q5.objective": "{{i18n:quest.Q5.objective}}",
         "event.intro.1": "{{i18n:event.intro.1}}",
         "event.intro.2": "{{i18n:event.intro.2}}",
-        "event.intro.3": "{{i18n:event.intro.3}}"
+        "event.intro.3": "{{i18n:event.intro.3}}",
+        "event.reveal.1": "{{i18n:event.reveal.1}}",
+        "event.reveal.2": "{{i18n:event.reveal.2}}",
+        "event.reveal.3": "{{i18n:event.reveal.3}}"
       }
     }
   ]

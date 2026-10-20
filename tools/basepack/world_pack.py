@@ -198,48 +198,58 @@ def entrance_map(pack, art_root):
         f.write(tmx)
 
 
+WORKSHOP = P + "Workshop"
+WORKSHOP_SIZE = (60, 20)
+ZONE_W = 7          # each room's corner of the workshop (doc 14 §2), left to right along the back wall
+ZONE_ROWS = (3, 9)  # floor rows a room's corner covers
+
+
 def location_name(room):
-    return P + "Workshop_" + room
+    """Every room is a corner of the one workshop (Charles, SOS Pass B: one screen, like the vanilla CC)."""
+    return WORKSHOP
 
 
-ROOM_DOORS = OrderedDict()  # room → hall door column
+def zone_x(room):
+    rooms = [r for r in W.ROOMS if r != "EntranceHall"]
+    return 2 + ZONE_W * rooms.index(room)
+
+
+def home_tile(loc, x, y):
+    """Maps a room-relative home (the old 15x12 room maps) into the room's corner; hall homes go to the hall floor."""
+    if loc == "EntranceHall":
+        return 20 + min(x, 20), 12 + min(y, 4) // 2
+    return zone_x(loc) + min(max(x // 2, 1), ZONE_W - 2), 5 + min(y, 8) // 4
 
 
 def workshop_maps():
-    """The Entrance Hall and one map per room; returns {map asset suffix: TileMap} and the hall arrival tile."""
+    """One big room: each workshop room is a corner along the back wall whose bundle board appears once the room is
+    open (drawn in by the mod from the ValleyOpus_Boards map property). Returns {map asset suffix: TileMap}."""
     maps = OrderedDict()
-    hall_w, hall_h = W.ROOMS["EntranceHall"][6]
-    hall = room_shell(hall_w, hall_h, 0, 0, hall_w // 2)
-    rooms = [r for r in W.ROOMS if r != "EntranceHall"]
-    for i, room in enumerate(rooms):
-        x = 3 + 3 * i
-        ROOM_DOORS[room] = x
-        hall.clear("Back", x, 1)
-        hall.clear("Back", x, 2)
-        hall.set("Back", x, 3, WF, floor_tiles(0)[0])
-        hall.clear("Buildings", x, 3)
-        hall.prop("Back", x, 3, "TouchAction", P + "Door " + P + room)
-    stamp(hall, "Buildings", 1, 1, SHELF)
-    hall.props["Warp"] = f"{hall_w // 2} {hall_h} Town {TOWN_RETURN[0]} {TOWN_RETURN[1]}"
-    maps["Workshop_EntranceHall"] = hall
-
-    for room in rooms:
-        tier, motif, host, opens, bundles, display, (w, h), floor, wall = W.ROOMS[room]
-        m = room_shell(w, h, wall, floor, w // 2)
-        stamp(m, "Buildings", 2, 1, BOARD)
-        for x in (2, 3):
-            m.prop("Buildings", x, 3, "Action", P + "Bundles " + P + room)
+    w, h = WORKSHOP_SIZE
+    m = room_shell(w, h, 0, 0, w // 2)
+    boards = []
+    for room in [r for r in W.ROOMS if r != "EntranceHall"]:
+        tier, motif, host, opens, bundles, display, size, floor, wall = W.ROOMS[room]
+        x0 = zone_x(room)
+        ft, wt = floor_tiles(floor), wall_tiles(wall)
+        for x in range(x0, x0 + ZONE_W):
+            m.set("Back", x, 1, WF, wt[0])
+            m.set("Back", x, 2, WF, wt[1])
+            m.set("Buildings", x, 3, WF, wt[2])
+            for y in range(ZONE_ROWS[0] + 1, ZONE_ROWS[1] + 1):
+                m.set("Back", x, y, WF, ft[(x % 2) + 2 * (y % 2)])
+        boards.append(f"{room} {x0 + 1} 1")
         if room in ("FurnaceRoom", "GreatWorkChamber"):
-            stamp(m, "Buildings", w - 4, 1, HEARTH)
+            stamp(m, "Buildings", x0 + 4, 1, HEARTH)
         if room == "Library":
-            stamp(m, "Buildings", w - 4, 1, SHELF)
-            stamp(m, "Buildings", w - 7, 1, SHELF)
+            stamp(m, "Buildings", x0 + 4, 1, SHELF)
         if room == "Undercroft":
-            for x in range(1, w - 1):
-                for y in range(4, h - 2):
+            for x in range(x0, x0 + ZONE_W):
+                for y in range(ZONE_ROWS[0] + 1, ZONE_ROWS[1] + 1):
                     m.prop("Back", x, y, "ValleyOpus_Dark", "T")
-        m.props["Warp"] = f"{w // 2} {h} {location_name('EntranceHall')} {ROOM_DOORS[room]} 4"
-        maps["Workshop_" + room] = m
+    m.props["ValleyOpus_Boards"] = " ".join(boards)
+    m.props["Warp"] = f"{w // 2} {h} Town {TOWN_RETURN[0]} {TOWN_RETURN[1]}"
+    maps["Workshop"] = m
     return maps
 
 
@@ -298,13 +308,13 @@ def write(pack, i18n, write_json, header, art_root):
         changes.append({"Action": "Load", "Target": "Maps/" + P + name, "FromFile": f"assets/maps/{name}.tmx"})
 
     locations = OrderedDict()
-    for room, row in W.ROOMS.items():
-        w, h = row[6]
-        locations[location_name(room)] = OrderedDict([
-            ("DisplayName", "{{i18n:room." + room + ".name}}"),
-            ("DefaultArrivalTile", {"X": w // 2, "Y": h - 3}),
-            ("CreateOnLoad", {"MapPath": "Maps/" + P + "Workshop_" + room, "AlwaysActive": True}),
-            ("CanPlantHere", False)])
+    w, h = WORKSHOP_SIZE
+    i18n["location.Workshop.name"] = "The Workshop"
+    locations[WORKSHOP] = OrderedDict([
+        ("DisplayName", "{{i18n:location.Workshop.name}}"),
+        ("DefaultArrivalTile", {"X": w // 2, "Y": h - 3}),
+        ("CreateOnLoad", {"MapPath": "Maps/" + WORKSHOP, "AlwaysActive": True}),
+        ("CanPlantHere", False)])
     changes.append({"Action": "EditData", "Target": "Data/Locations", "Entries": locations})
     # The workshop door behind the CC: our own door tile on Buildings (CP adds the tilesheet), used with the action button.
     entrance_map(pack, art_root)
@@ -346,7 +356,8 @@ def write(pack, i18n, write_json, header, art_root):
         loc, hx, hy = home
         location = location_name(loc) if loc in W.ROOMS else loc
         if loc in W.ROOMS:
-            homes[("Workshop_" + loc, hx, hy)] = nid
+            hx, hy = home_tile(loc, hx, hy)
+            homes[("Workshop", hx, hy)] = nid
         i18n[f"npc.{nid}.name"] = display
         row = OrderedDict([
             ("DisplayName", "{{i18n:npc.%s.name}}" % nid), ("BirthSeason", birthday[0]), ("BirthDay", birthday[1]),
@@ -384,6 +395,15 @@ def write(pack, i18n, write_json, header, art_root):
         mail[P + mid] = text + "[#]" + mid.replace("Mail_", "")
     changes.append({"Action": "EditData", "Target": "Data/mail", "Entries": mail})
 
+    # ── The starter chain (doc 11): plain vanilla quests; the mod completes each and hands out the next ──
+    quests = OrderedDict()
+    for qid, (giver, title, desc, objective, reward) in W.STARTER_QUESTS.items():
+        for part, text in (("title", title), ("desc", desc), ("objective", objective)):
+            i18n[f"quest.{qid}.{part}"] = text
+        quests[P + qid] = "/".join(["Basic", "{{i18n:quest.%s.title}}" % qid, "{{i18n:quest.%s.desc}}" % qid,
+                                    "{{i18n:quest.%s.objective}}" % qid, "null", "-1", "0", "-1", "false"])
+    changes.append({"Action": "EditData", "Target": "Data/Quests", "Entries": quests})
+
     # ── Shops (opened by talking to their owner once their dialogue for the day is done) ──
     shops = OrderedDict()
     for sid, (owner, items, buys) in W.SHOPS.items():
@@ -419,9 +439,35 @@ def write(pack, i18n, write_json, header, art_root):
         "pause 300", "end"])
     i18n["event.intro.1"] = "Oh! You must be the farmer who opened the Community Center. I'm Oriel.#$b#I study the older kind of craft. Alchemy."
     i18n["event.intro.2"] = "There's a workshop under this building. Derelict, but not dead. A spirit keeps it.#$b#He calls himself the Curator."
-    i18n["event.intro.3"] = "The door's just here, behind the Center. Come and see. I've set out a few things for you down there; take them home.#$b#And if you meet a man called Tobin, he's the one who could get the machines running again."
-    precondition = f"G PLAYER_HAS_MAIL Host ccDoorUnlock Received, !PLAYER_HAS_MAIL Host {P}Unlock_Intro Received/t 600 1500"
+    i18n["event.intro.3"] = ("The door's just here, behind the Center. Come and see. I've set out a few things for you down there; take them home."
+                             "#$b#The Curator will show you the bundle board. Take things apart in the Athanor, combine Primes at the Table, and write down everything."
+                             "#$b#And if you meet a man called Tobin, he's the one who could get the machines running again.")
+    # The intro waits for the next Town visit after the CC opening scene (Charles, SOS Pass A): the mod sets IntroReady
+    # when the player leaves Town with ccDoorUnlock, so the two scenes never play back to back.
+    precondition = (f"G PLAYER_HAS_MAIL Host ccDoorUnlock Received, PLAYER_HAS_MAIL Current {P}IntroReady Received, "
+                    f"!PLAYER_HAS_MAIL Host {P}Unlock_Intro Received/t 600 1500")
     changes.append({"Action": "EditData", "Target": "Data/Events/Town", "Entries": {f"{P}Intro/{precondition}": script}})
+
+    # ── The Curator's name (Charles, SOS Pass B: a cutscene, never a letter): plays in the workshop once every room is restored ──
+    curator = P + "Curator"
+    cx = zone_x("GreatWorkChamber") + 3
+    reveal = "/".join([
+        "continue", f"{cx} 8",
+        f"farmer {cx} 12 0 {curator} {cx} 7 2",
+        "skippable", "pause 800",
+        f"speak {curator} \"{{{{i18n:event.reveal.1}}}}\"",
+        "move farmer 0 -2 0", "pause 400",
+        f"speak {curator} \"{{{{i18n:event.reveal.2}}}}\"",
+        "pause 600",
+        f"speak {curator} \"{{{{i18n:event.reveal.3}}}}\"",
+        "pause 400", "end"])
+    i18n["event.reveal.1"] = "Every room. Every one of them, lit again.#$b#I could not have done it. I had forgotten how."
+    i18n["event.reveal.2"] = "And now I remember. My name was Cyprian.#$b#This was my workshop, long before there was a Community Center over it."
+    i18n["event.reveal.3"] = "The Great Work is yours to finish, @. I'll be here."
+    reveal_pre = f"G PLAYER_HAS_MAIL Host {P}Unlock_GreatWork Received"
+    write_json(os.path.join(pack, "data", "events_empty.json"), {})   # our location has no vanilla event file to edit
+    changes.append({"Action": "Load", "Target": "Data/Events/" + WORKSHOP, "FromFile": "data/events_empty.json"})
+    changes.append({"Action": "EditData", "Target": "Data/Events/" + WORKSHOP, "Entries": {f"{P}CuratorName/{reveal_pre}": reveal}})
 
     write_json(os.path.join(pack, "data", "world.json"), {"Changes": changes}, header)
     files.append("data/world.json")

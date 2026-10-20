@@ -1,8 +1,10 @@
 # Testing ValleyOpus
 
-**This build:** `1.0.0-sos.1`, the **sink-or-swim** build. It holds everything slated for 1.0 at once: all 14 apparatus, power (Boiler, Lightning Coil, kindled Athanor), rituals and the Circle, every Tier 1–3 substance and product, the workshop under the Community Center with its 9 rooms and 25 bundles, the unlock chain, 10 NPCs with shops, Dr. Sorenson's contracts, hints and divination, Labs T1–T3, the four Familiars, Shades and the Gloam Lantern, Ley Taps, the full Alchemy skill (10 levels, 6 professions), worn and applied products, and a config menu (Generic Mod Config Menu, if you have it). Art is placeholder from open-license packs (see `CREDITS.md`).
+**This build:** `1.0.0-sos.2`, the **sink-or-swim** build. It holds everything slated for 1.0 at once: all 14 apparatus, power (Boiler, Lightning Coil, kindled Athanor), rituals and the Circle, every Tier 1–3 substance and product, the workshop under the Community Center (one big space; each room's corner and bundle board appear as it opens) with 25 bundles, Oriel's five starter quests, the unlock chain, 10 NPCs with shops, Dr. Sorenson's contracts, hints and divination, Labs T1–T3, the four Familiars, Shades and the Gloam Lantern, Ley Taps, the full Alchemy skill (10 levels, 6 professions), worn and applied products, and a config menu (Generic Mod Config Menu, if you have it). Art is placeholder from open-license packs (see `CREDITS.md`).
 
-**What "sink or swim" means here:** nothing in this build has run in the game before. Expect the first compile to need fixes and expect things to break. The goal is to find out how far it gets: play, note what breaks, share the log, and keep going with the dev commands when something blocks you. **Use new farms**; don't load a farm you care about.
+**What "sink or swim" means here:** nothing in this build has run in the game before. Expect the first compile to need fixes and expect things to break. The goal is to find out how far it gets: play, note what breaks, share the log, and keep going with the dev commands when something blocks you. **Use new farms**; don't load a farm you care about. sos.2 changed the workshop map, so **start fresh farms** for this round too.
+
+**New in sos.2 (your Pass A/B feedback):** the workshop is one screen with no room doors; each room's bundle board appears (with a sparkle) only once that room is open, and the board looks like the vanilla bundle screen with rewards hidden. Oriel's intro waits until your next walk into Town after the Community Center opening scene, and covers what the welcome letter used to say (the letter is gone). Oriel gives five starter quests in a row. Finch's wagon stands in Cindersap Forest, just east of the travelling cart's spot. Item tooltips list the Elements you've discovered inside them, with a ? if some are still unknown. The Curator's name is revealed in a cutscene once every room is restored. Breaking items down is faster (Athanor 30 minutes, Calcinator 10).
 
 **Checked with:** Stardew Valley 1.6.15, SMAPI 4.x, Content Patcher 2.4+, SpaceCore 1.25+, Automate 2.x (VO-3 only), Stardew Valley Expanded (VO-2 only). Generic Mod Config Menu is optional.
 
@@ -24,7 +26,7 @@ Claude asks the Remote Control session on your PC to build this branch (`claude/
 2. **replaces** `Mods\[CP] ValleyOpus` with the repo's `content\[CP] ValleyOpus` (delete the old folder first: this build's pack has many new files, and leftovers from alpha.2 would confuse it). `[CP] ValleyOpus - Spikes` isn't needed any more; remove it from `Mods`. Never copy `[CP] ValleyOpus - Test Fixtures`;
 3. writes a zip with the packaging tool, for keeping.
 
-**It worked if** SMAPI's window at launch lists `ValleyOpus 1.0.0-sos.1` and `[CP] ValleyOpus 1.0.0-sos.1` with no red lines under them.
+**It worked if** SMAPI's window at launch lists `ValleyOpus 1.0.0-sos.2` and `[CP] ValleyOpus 1.0.0-sos.1` with no red lines under them.
 
 ### 2b · By hand (only if you ever want to)
 From the `Documents\ValleyOpus` folder in PowerShell:
@@ -73,7 +75,7 @@ Start with **VO-1**. Only move on to VO-2 and VO-3 once VO-1 gets reasonably far
 | `valleyopus_dev xp <amount>` | adds Alchemy XP (levels at 100, 380, 770, 1300, 2150, 3300, 4800, 6900, 10000, 15000) |
 | `valleyopus_dev unlock <Id\|all>` | grants an unlock as if earned (host only). IDs: Intro, FurnaceRoom, TobinArrives, FinchRoute, IvoGuild, DeltaArrives, BennetArrives, Cistern, SorensonArrives, TobinCoilLetter, Library, HesperArrives, LeyTap, AgnesArrives, AgnesCrucible, Sanctum, Undercroft, Observatory, CrystalVault, GreatWork, LarkArrives, LanternUpgrade |
 | `valleyopus_dev room <Id\|all>` | restores a workshop room as if its bundles were done. Rooms: FurnaceRoom, Cistern, Library, Sanctum, Undercroft, Observatory, CrystalVault, GreatWorkChamber |
-| `valleyopus_dev workshop` | grants the intro and warps you into the workshop's Entrance Hall |
+| `valleyopus_dev workshop` | grants the intro and warps you into the workshop |
 | `valleyopus_dev meet <Familiar\|all>` | marks a Familiar met: Salamander, Undine, Gnome, Sylph |
 | `valleyopus_dev shades <n>` | sets your Gloam Lantern's Shades (gives you a lantern if you have none) |
 | `valleyopus_dev charge` | fully charges the Boiler or Lightning Coil you face |
@@ -94,18 +96,23 @@ Two passes on VO-1: first **play it straight** for a few in-game days to see whe
 ### VO-1 · pass A: play it straight (farm `VO1-sos`)
 Don't use dev commands in this pass, except `valleyopus_verbose`.
 - [ ] **Load check.** At launch there are no red ValleyOpus lines; `valleyopus_validate` prints "No findings."
-- [ ] **The intro.** Once the Community Center is open (Lewis's letter, around Spring 5), walk through Town between 6am and 3pm: Oriel's event plays behind the Community Center. Afterwards you have the Satchel and the Lens, and a welcome letter. The Table, Alembic, Retort and Athanor are waiting in the workshop's Entrance Hall: pick each up with your pickaxe and take it home.
-- [ ] **The door.** Behind the Community Center (tile 53,9) there's a wooden door. Face it and press the action button (right-click): it takes you down into the workshop's Entrance Hall. Walking past it does nothing. The Curator is inside.
-- [ ] **Room doors.** In the Entrance Hall, the Furnace Room door opens; the others say what they wait for.
-- [ ] **Bundles.** The Furnace Room's board shows three bundles (Kindling, Mine Salts, Spring Gleanings). **For this test round every bundle slot asks for just 1 Stone, Wood, Fiber or Sap**, so bring a few of each. Donating works; finishing one pays its reward; finishing all three restores the room, with a message and new recipes (Athanor, Hermetic Vessel, the Lab T1 blueprint at Robin's).
-- [ ] **The next day.** Tobin arrives (letter, Calcinator recipe) and can be found in the Cistern room. His shop opens when you talk to him once his lines run out.
+- [ ] **The intro waits.** Watch the Community Center opening scene. Oriel's event does **not** play straight after it. Leave Town, come back (6am–3pm): now it plays behind the Community Center. Her lines cover the bundle board, the Athanor and the Table. Afterwards you have the Satchel and the Lens, and **no** welcome letter. The Table, Alembic, Retort and Athanor are waiting in the workshop: pick each up with your pickaxe and take it home.
+- [ ] **Starter quests.** Oriel's first quest ("Take it apart") is in your journal. Each one finishes as soon as you've done its step and pays the material for the next: break something down in the Athanor, discover a recipe at the Table, run the Alembic, restore the Furnace Room, then (after Tobin arrives) run a machine inside your own Lab.
+- [ ] **The door.** Behind the Community Center (tile 53,9) there's a wooden door. Face it and press the action button (right-click): it takes you down into the workshop. Walking past it does nothing. The Curator is inside.
+- [ ] **One space.** The workshop is a single wide room with no inner doors. Only the Furnace Room's corner has a bundle board at first, with a sparkle over it; other corners are bare until their room opens.
+- [ ] **Tooltips.** Hover a Prime-bearing item (e.g. a crop) after the intro: it lists the Elements you've found in it, with a ? if there are more. Key items (Satchel, Lens) show none.
+- [ ] **Bundles.** The Furnace Room's board looks like the vanilla bundle screen (rewards hidden) and shows three bundles (Kindling, Mine Salts, Spring Gleanings). **For this test round every bundle slot asks for just 1 Stone, Wood, Fiber or Sap**, so bring a few of each. Donating works; finishing one pays its reward; finishing all three restores the room, with a message and new recipes (Athanor, Hermetic Vessel, the Lab T1 blueprint at Robin's).
+- [ ] **The next day.** Tobin arrives (letter the next morning, Calcinator recipe) and stands in the workshop. A new board (the Cistern's) appears. His shop opens when you talk to him once his lines run out.
 - [ ] **The core loop** from alpha.2 still works: Satchel, Lens, Table discoveries, Athanor kindling and heat, chaining, products, codex. (The Calcinator isn't part of the intro: Tobin brings its recipe the day after the Furnace Room is restored.)
 - [ ] **Table refuses non-Elements.** Click Wood or Stone in the Table screen: it says only Elements go on the Table, and nothing is used. Non-Elements are greyed out.
 - [ ] **Menus fit.** The Satchel, Table, Lens and bundle screens hold your whole inventory grid (all three rows) inside their panels.
 
 ### VO-1 · pass B: jump ahead (same farm, or a fresh one)
 Type `valleyopus_dev on`. Work down the list; each line says how to get there quickly.
-- [ ] **Every room opens.** `valleyopus_dev room all`, then `valleyopus_dev workshop`. Walk through each door: every room loads, has its board, and NPCs stand where they live (Oriel in the Library, Tobin in the Cistern, Hesper in the Observatory, the Curator in the Hall, Finch in the Hall on his days).
+- [ ] **Every room opens.** `valleyopus_dev room all`, then `valleyopus_dev workshop`. Every corner along the back wall has its board, and NPCs stand in their room's corner (Oriel by the Library, Tobin by the Cistern, Hesper by the Observatory, the Curator in the middle).
+- [ ] **The Curator's name.** With every room restored (`valleyopus_dev unlock GreatWork` if needed), enter the workshop: a cutscene plays where the Curator remembers who they were. There's no letter for it.
+- [ ] **Finch's wagon.** `valleyopus_dev unlock FinchRoute`, sleep, then visit Cindersap Forest: Finch stands by a purple-tinted wagon just east of where the travelling cart parks. Check this with SVE too (VO-2).
+- [ ] **Faster breakdown.** The Athanor breaks an item down in 30 in-game minutes, the Calcinator in 10.
 - [ ] **All unlocks.** `valleyopus_dev unlock all`. Letters arrive over the next mornings; the crafting menu shows all 14 apparatus.
 - [ ] **Power.** Craft or give a Boiler. Load it (Ignis and Aqua), then put a Process Vat beside it: the Vat runs its steam recipes, and `valleyopus_inspect` shows the Boiler's time left. A Lightning Coil charges in a storm (or `valleyopus_dev charge`) and each run beside it spends one charge.
 - [ ] **Rituals.** Place the Ritual Altar, load a ritual's inputs and catalysts, and use it. Then craft the Circle Sigil rug, put the altar on it: it becomes the Ritual Circle (bigger batches).
@@ -124,6 +131,7 @@ Type `valleyopus_dev on`. Work down the list; each line says how to get there qu
 ### VO-2 · your full mod list with SVE (farm `VO2-sos`)
 - [ ] **Load check** as in VO-1. Watch especially for clashes with SVE's Town map near the CC, with SVE NPCs and schedules, and with inventory or sorting mods.
 - [ ] **Intro and door** as in pass A: the event plays and the door at 53,9 works with SVE's Town.
+- [ ] **Finch in SVE's Forest**: his wagon sits on open ground near the travelling cart, not inside a tree or fence.
 - [ ] **A quick pass B**: rooms, a Lab at Robin's (her menu is long with SVE), two NPC shops, a Boiler line.
 
 ### VO-3 · with Automate (farm `VO3-sos`)
@@ -164,6 +172,7 @@ Desk results come from reading public sources before the build (doc 22 §4). In-
 Everything in this build is a first run. These are the parts most likely to break, roughly from most to least likely:
 - **The first compile.** Written in the cloud against decompiled game code; expect a few compile fixes on your PC.
 - **The intro event.** Spawning Oriel in an event before she's a "real" villager, and the event's positions behind the CC.
+- **sos.2's new parts:** the one-screen workshop map and boards that appear on the map, the starter quests, Finch's spot in a modded Forest, and the two new cutscenes.
 - **Workshop and Lab maps.** Our own map files (exits, tile properties for heat and dark, the shrine and bundle tiles). Watch for black screens, being stuck in a wall, or doors that do nothing.
 - **NPCs.** Home tiles, schedules, gift tastes and portraits. An NPC standing in a wall or missing entirely is worth a screenshot.
 - **Labs.** Building data, interiors and the warp in and out; the T1→T2→T3 upgrades; the strip-on-save fix from alpha.2 now covers three tiers.
@@ -180,7 +189,7 @@ Everything in this build is a first run. These are the parts most likely to brea
 Paste this into the thread, filled in. One line per bug is fine for a sink-or-swim run.
 ```
 Configuration: VO-1 / VO-2 / VO-3
-Build: 1.0.0-sos.1
+Build: 1.0.0-sos.2
 Save day: (e.g. Spring 7, Year 1)
 What I did:
 What happened:

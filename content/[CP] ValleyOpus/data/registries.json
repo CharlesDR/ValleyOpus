@@ -280,7 +280,7 @@
               "Count": 1,
               "Chance": 0.1
             },
-            "Minutes": 120
+            "Minutes": 30
           },
           "Heat": {
             "RequiresFlag": "Kindled",
@@ -401,7 +401,7 @@
               "Count": 1,
               "Chance": 0.35
             },
-            "Minutes": 30
+            "Minutes": 10
           },
           "Fuel": {
             "Item": "(O)382",
@@ -6381,10 +6381,6 @@
             {
               "Type": "CraftingRecipe",
               "Ref": "CharlesDR.ValleyOpus_Lens"
-            },
-            {
-              "Type": "Mail",
-              "Ref": "CharlesDR.ValleyOpus_Mail_Welcome"
             }
           ],
           "Source": {
@@ -6808,10 +6804,6 @@
             {
               "Type": "Flag",
               "Ref": "CharlesDR.ValleyOpus_Blueprint_LabT3"
-            },
-            {
-              "Type": "Mail",
-              "Ref": "CharlesDR.ValleyOpus_Mail_GreatWork"
             }
           ],
           "Source": {
@@ -7206,7 +7198,7 @@
           },
           "Bundles": [],
           "Unlocks": [],
-          "Location": "CharlesDR.ValleyOpus_Workshop_EntranceHall",
+          "Location": "CharlesDR.ValleyOpus_Workshop",
           "NameKey": "room.EntranceHall.name"
         },
         "CharlesDR.ValleyOpus_FurnaceRoom": {
@@ -7226,7 +7218,7 @@
           "Unlocks": [
             "CharlesDR.ValleyOpus_FurnaceRoom"
           ],
-          "Location": "CharlesDR.ValleyOpus_Workshop_FurnaceRoom",
+          "Location": "CharlesDR.ValleyOpus_Workshop",
           "NameKey": "room.FurnaceRoom.name"
         },
         "CharlesDR.ValleyOpus_Cistern": {
@@ -7246,7 +7238,7 @@
           "Unlocks": [
             "CharlesDR.ValleyOpus_Cistern"
           ],
-          "Location": "CharlesDR.ValleyOpus_Workshop_Cistern",
+          "Location": "CharlesDR.ValleyOpus_Workshop",
           "NameKey": "room.Cistern.name"
         },
         "CharlesDR.ValleyOpus_Library": {
@@ -7266,7 +7258,7 @@
           "Unlocks": [
             "CharlesDR.ValleyOpus_Library"
           ],
-          "Location": "CharlesDR.ValleyOpus_Workshop_Library",
+          "Location": "CharlesDR.ValleyOpus_Workshop",
           "NameKey": "room.Library.name"
         },
         "CharlesDR.ValleyOpus_Sanctum": {
@@ -7287,7 +7279,7 @@
           "Unlocks": [
             "CharlesDR.ValleyOpus_Sanctum"
           ],
-          "Location": "CharlesDR.ValleyOpus_Workshop_Sanctum",
+          "Location": "CharlesDR.ValleyOpus_Workshop",
           "NameKey": "room.Sanctum.name"
         },
         "CharlesDR.ValleyOpus_Undercroft": {
@@ -7308,7 +7300,7 @@
           "Unlocks": [
             "CharlesDR.ValleyOpus_Undercroft"
           ],
-          "Location": "CharlesDR.ValleyOpus_Workshop_Undercroft",
+          "Location": "CharlesDR.ValleyOpus_Workshop",
           "NameKey": "room.Undercroft.name"
         },
         "CharlesDR.ValleyOpus_Observatory": {
@@ -7329,7 +7321,7 @@
           "Unlocks": [
             "CharlesDR.ValleyOpus_Observatory"
           ],
-          "Location": "CharlesDR.ValleyOpus_Workshop_Observatory",
+          "Location": "CharlesDR.ValleyOpus_Workshop",
           "NameKey": "room.Observatory.name"
         },
         "CharlesDR.ValleyOpus_CrystalVault": {
@@ -7350,7 +7342,7 @@
           "Unlocks": [
             "CharlesDR.ValleyOpus_CrystalVault"
           ],
-          "Location": "CharlesDR.ValleyOpus_Workshop_CrystalVault",
+          "Location": "CharlesDR.ValleyOpus_Workshop",
           "NameKey": "room.CrystalVault.name"
         },
         "CharlesDR.ValleyOpus_GreatWorkChamber": {
@@ -7377,7 +7369,7 @@
           "Unlocks": [
             "CharlesDR.ValleyOpus_GreatWork"
           ],
-          "Location": "CharlesDR.ValleyOpus_Workshop_GreatWorkChamber",
+          "Location": "CharlesDR.ValleyOpus_Workshop",
           "NameKey": "room.GreatWorkChamber.name"
         }
       }

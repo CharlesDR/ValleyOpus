@@ -35,7 +35,7 @@ UNLOCKS = OrderedDict([
                          ("Place", "(BC)" + P + "Retort", 1), ("Place", "(BC)" + P + "Athanor", 1),
                          ("CraftingRecipe", P + "ExperimentTable", 0), ("CraftingRecipe", P + "Alembic", 0),
                          ("CraftingRecipe", P + "Retort", 0), ("CraftingRecipe", P + "Satchel", 0), ("CraftingRecipe", P + "Lens", 0),
-                         ("Mail", P + "Mail_Welcome", 0)],
+                         ],
                ("Intro", ""), ["gate:CcOpen"], "Spring", "The derelict workshop", "Oriel finds you in town after the Community Center opens.")),
     ("FurnaceRoom", ("Apparatus", [("CraftingRecipe", P + "Athanor", 0), ("CraftingRecipe", P + "HermeticVessel", 0), ("Flag", P + "Blueprint_LabT1", 0)],
                      ("WorkshopRoom", "FurnaceRoom"), [], "Spring", "The Furnace Room", "Restore the Furnace Room.")),
@@ -68,7 +68,7 @@ UNLOCKS = OrderedDict([
                      "Restore the Observatory: the remaining ley nodes.")),
     ("CrystalVault", ("Tool", [("CraftingRecipe", P + "CircleSigil", 0), ("Mail", P + "Mail_Vault", 0)], ("WorkshopRoom", "CrystalVault"), [],
                       "Winter", "The Crystal Vault", "Restore the Crystal Vault: the Circle Sigil.")),
-    ("GreatWork", ("Story", [("Flag", P + "Blueprint_LabT3", 0), ("Mail", P + "Mail_GreatWork", 0)], ("WorkshopRoom", "GreatWorkChamber"), [],
+    ("GreatWork", ("Story", [("Flag", P + "Blueprint_LabT3", 0)], ("WorkshopRoom", "GreatWorkChamber"), [],
                    "Year2", "The Great Work", "Restore every room, then the Great Work Chamber.")),
     ("LarkArrives", ("NPC", [("Mail", P + "Mail_Lark", 0)], ("Discoveries", "10"), ["Intro"], "Summer", "Lark", "Lark turns up after the farm's tenth discovery.")),
     ("LanternUpgrade", ("Capacity", [("Capacity", "LanternShades", 40)], ("Skill", P + "Alchemy 6"), ["Undercroft"], "Fall", "A deeper lantern",
@@ -141,14 +141,14 @@ SECRET_CANDIDATES = [
 ]
 
 PRIME_LORE = {
-    "Ignis": "Cyprian's note: \"Everything that burns gives some of this back.\"",
-    "Aqua": "Cyprian's note: \"Even stone weeps a little Aqua, if you ask it right.\"",
-    "Terra": "Cyprian's note: \"The commonest Prime, and the most patient.\"",
-    "Aer": "Cyprian's note: \"Flowers are mostly breath.\"",
-    "Sal": "Cyprian's note: \"The sea is full of it. So are tears.\"",
-    "Sulphur": "Cyprian's note: \"Eggs, sap and anything that stinks.\"",
-    "Mercurius": "Cyprian's note: \"It runs out of every vessel but one.\"",
-    "Aether": "Cyprian's note: \"I have held it three times. Each time something rare was given up for it.\"",
+    "Ignis": "An old note: \"Everything that burns gives some of this back.\"",
+    "Aqua": "An old note: \"Even stone weeps a little Aqua, if you ask it right.\"",
+    "Terra": "An old note: \"The commonest Prime, and the most patient.\"",
+    "Aer": "An old note: \"Flowers are mostly breath.\"",
+    "Sal": "An old note: \"The sea is full of it. So are tears.\"",
+    "Sulphur": "An old note: \"Eggs, sap and anything that stinks.\"",
+    "Mercurius": "An old note: \"It runs out of every vessel but one.\"",
+    "Aether": "An old note: \"I have held it three times. Each time something rare was given up for it.\"",
 }
 
 MORE_LORE = [
@@ -160,7 +160,7 @@ MORE_LORE = [
     ("Elixir", 10, "The Curator watches you bottle it with something like longing."),
     ("Rebis", 1, "The two-headed thing. It is warm on one side and cool on the other."),
     ("Orichalcum", 1, "Agnes ran the assay three times, then sat down for a while."),
-    ("PrimaMateria", 1, "Cyprian: \"I looked for it in gold for forty years. It was in the dung heap all along.\""),
+    ("PrimaMateria", 1, "From a burnt journal: \"I looked for it in gold for forty years. It was in the dung heap all along.\""),
     ("LapisPhilosophorum", 1, "The Stone. It is smaller than you imagined, and heavier."),
     ("CaputMortuum", 50, "The dead head. Somewhere in this pile is the start of everything."),
 ]
@@ -168,7 +168,7 @@ MORE_LORE = [
 MILESTONES = [
     ("FirstTier1", "FirstOfTier:1", "HoldUp", "Your first Tier 1 substance!"),
     ("FirstTier2", "FirstOfTier:2", "HoldUp", "A Tier 2 compound: two substances made one."),
-    ("FirstTier3", "FirstOfTier:3", "Flourish", "A work of the third order. Cyprian would be proud."),
+    ("FirstTier3", "FirstOfTier:3", "Flourish", "A work of the third order. The Curator would be proud."),
     ("Kindled", "Process:" + P + "FlammaViva", "HoldUp", "The Athanor is lit, and will stay lit."),
     ("FirstSteam", "Process:" + P + "Vapor", "HoldUp", "Steam! Tobin will want to hear about this."),
     ("FirstLightning", "Process:" + P + "Fulgur", "HoldUp", "Lightning in a coil. The hair on your arms stands up."),
@@ -298,7 +298,7 @@ NPCS = OrderedDict([
                 "Fri": "Storms charge a Lightning Coil for free. Best weather there is, for a man like me.",
                 "Sat": "If it can be done twice, it can be done by a machine.",
                 "Sun": "Even engines need a day off. Not mine, but some engines."})),
-    ("Finch", ("Finch", "Male", "Adult", ("EntranceHall", 24, 8), ("Fall", 3), "FinchRoute", "human_m", ("m", 0, 2), ("#C2542D", "#3B5E3A"),
+    ("Finch", ("Finch", "Male", "Adult", ("Forest", 33, 12), ("Fall", 3), "FinchRoute", "human_m", ("m", 0, 2), ("#C2542D", "#3B5E3A"),
                ([o(74), v("MelVitae")], [v("SalMarinum"), o(72)]),
                {"Introduction": "Finch, purveyor of the rare and the regrettable! I come by every week. Bring me your surplus, take my curiosities.",
                 "Mon": "Fresh stock! Some of it even fresher than it looks.",
@@ -405,11 +405,25 @@ SHOPS = OrderedDict([
     ("Hesper", ("Hesper", [("(O)" + P + "Luna", 600, None, 0, None), (o(797), 1000, None, 0, None)], [])),
 ])
 
+# The starter chain (doc 11 §first evening, Charles 2026-10-18): each quest appears when the last is done, and its
+# reward is material for the next step. id → giver, title, description, objective, reward [(item, count)]
+STARTER_QUESTS = OrderedDict([
+    ("Q1", ("Oriel", "Take it apart", "Oriel: \"Everything is made of Primes. Put something into the Athanor and it gives them back. The Satchel will catch them.\"",
+            "Decompose any item in the Athanor.", [("(O)" + P + "Ignis", 4)])),
+    ("Q2", ("Oriel", "Two become one", "Oriel: \"Now put two Primes on the Experiment Table and see what they make. Try Ignis with Ignis.\"",
+            "Make any discovery at the Experiment Table.", [("(O)" + P + "Aqua", 4)])),
+    ("Q3", ("Oriel", "A living flame", "Oriel: \"Load Flamma Viva into the Athanor to kindle it. An Alembic right beside a kindled Athanor is heated: distill Aqua and Aqua there.\"",
+            "Kindle the Athanor and run a recipe in an Alembic beside it.", [(o(382), 5)])),
+    ("Q4", ("Oriel", "The Furnace Room", "Oriel: \"The Curator's board in the workshop wants things for the Furnace Room. Fill its three bundles.\"",
+            "Restore the Furnace Room.", [(o(338), 10)])),
+    ("Q5", ("Tobin", "A room of your own", "Tobin: \"A proper alchemist needs a proper laboratory. Robin can build you one. Then run something in it.\"",
+            "Build a Laboratory and run a recipe inside it.", [(o(382), 10)])),
+])
+
 # Mail (Data/mail): id → text. "@" is the farmer's name; "%item id <qid> <count> %%" attaches items.
 MAIL = OrderedDict([
-    ("Mail_Welcome", "@,^Welcome to the workshop. The Curator will show you the bundle board in the Entrance Hall.^Decompose things in the Athanor, combine Primes at the Table, and write down everything.^   -Oriel"),
     ("Mail_Tobin", "Heard you got the old furnace lit.^I'll be in the workshop from today. I've brought plans for a coal-fired Calcinator. Faster than that old Athanor, if less pretty.^   -Tobin"),
-    ("Mail_Finch", "Greetings, alchemist!^My wagon rolls into the workshop's hall each week. Rare reagents, fair prices, and a curiosity or two.^   -Finch"),
+    ("Mail_Finch", "Greetings, alchemist!^My wagon stands in Cindersap Forest, just along from the travelling cart's spot. Rare reagents, fair prices, and a curiosity or two.^   -Finch"),
     ("Mail_Ivo", "Farmer.^I'm at the Guild. I trade for monster parts. Come and see.^   -Ivo"),
     ("Mail_Delta", "Hello!^I'm doing research at the tide pools. If you've caught anything unusual, I'd love to see it.^   -Delta"),
     ("Mail_Bennet", "Hi! Aunt Sandy says you're the alchemist everyone's talking about.^I've got a kiln out in the desert, and plans for a Pelican: glass that makes substances finer. Come by!^   -Bennet"),
@@ -425,7 +439,6 @@ MAIL = OrderedDict([
     ("Mail_Undercroft", "Child,^You opened the dark room under the hall. Good. Here is how to make a lantern that holds Shades. Sleep with it, and it fills.^   -the Witch"),
     ("Mail_Observatory", "Dear @,^With the Observatory open I've charted the rest of the valley's nodes. They're in your codex now.^   -Hesper"),
     ("Mail_Vault", "@,^The Crystal Vault is restored. Lay a Circle Sigil under an altar and you have a Ritual Circle: one great rite at a time.^   -the Curator"),
-    ("Mail_GreatWork", "@,^You have restored every room. I remember now. My name was Cyprian, and this was my workshop.^The Great Work is yours to finish.^   -Cyprian"),
     ("Mail_Lark", "Hi!!^I'm Lark, I'm visiting my aunt, and I heard you do ALCHEMY. Can I come and watch? I'll be in the workshop.^   -Lark"),
 ])
 
@@ -448,7 +461,7 @@ def fill(registries, i18n, learned_by):
             ("Tier", tier), ("Motif", P + motif if motif else None), ("Host", P + host),
             ("Opens", {opens[0]: [P + r for r in opens[1]]}), ("Bundles", [P + b for b in bundles]),
             ("Unlocks", [P + rid] if P + rid in registries["Unlocks"] or rid in UNLOCKS else []),
-            ("Location", P + "Workshop_" + rid), ("NameKey", "room." + rid + ".name")])
+            ("Location", P + "Workshop"), ("NameKey", "room." + rid + ".name")])
         i18n["room." + rid + ".name"] = display
     registries["WorkshopRooms"][P + "GreatWorkChamber"]["Unlocks"] = [P + "GreatWork"]
 
