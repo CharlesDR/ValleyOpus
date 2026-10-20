@@ -311,6 +311,7 @@ internal sealed class WorldService
                     break;
             }
         }
+        Workshop.PlaceStarterEquipment(row.Grants.Where(g => g.Type == GrantTypes.Place).Select(g => g.Ref).ToList());
         this.Publish();
         this.log.Info($"Unlock {Local(unlockId)} granted ({why}) on day {day}.");
         if (row.NameKey != null && row.Kind != "Hidden" && row.Source.Type != UnlockSources.AnyOf)

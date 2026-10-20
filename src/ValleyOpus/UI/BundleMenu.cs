@@ -54,7 +54,7 @@ internal sealed class BundleMenu : IClickableMenu
 
     private void Layout()
     {
-        int playerRows = MenuKit.Rows(Game1.player.MaxItems);
+        int playerRows = MenuKit.PlayerInventoryRows;
         int innerWidth = 12 * 64;
         int width = innerWidth + Pad * 2;
         int height = Pad + 60 + this.bundles.Count * BundleRowHeight + 64 + 36 + playerRows * MenuKit.InventoryRowHeight + Pad;

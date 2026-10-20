@@ -94,12 +94,14 @@ Two passes on VO-1: first **play it straight** for a few in-game days to see whe
 ### VO-1 · pass A: play it straight (farm `VO1-sos`)
 Don't use dev commands in this pass, except `valleyopus_verbose`.
 - [ ] **Load check.** At launch there are no red ValleyOpus lines; `valleyopus_validate` prints "No findings."
-- [ ] **The intro.** Once the Community Center is open (Lewis's letter, around Spring 5), walk through Town between 6am and 3pm: Oriel's event plays behind the Community Center. Afterwards you have the Satchel, the Lens, the Table, Alembic, Retort and Athanor, and a welcome letter the next day.
-- [ ] **The door.** Behind the Community Center (tile 53,9) a door leads down into the workshop's Entrance Hall. The Curator is there.
+- [ ] **The intro.** Once the Community Center is open (Lewis's letter, around Spring 5), walk through Town between 6am and 3pm: Oriel's event plays behind the Community Center. Afterwards you have the Satchel and the Lens, and a welcome letter. The Table, Alembic, Retort and Athanor are waiting in the workshop's Entrance Hall: pick each up with your pickaxe and take it home.
+- [ ] **The door.** Behind the Community Center (tile 53,9) there's a wooden door. Face it and press the action button (right-click): it takes you down into the workshop's Entrance Hall. Walking past it does nothing. The Curator is inside.
 - [ ] **Room doors.** In the Entrance Hall, the Furnace Room door opens; the others say what they wait for.
-- [ ] **Bundles.** The Furnace Room's board shows three bundles (Kindling, Mine Salts, Spring Gleanings). Donating works; finishing one pays its reward; finishing all three restores the room, with a message and new recipes (Athanor, Hermetic Vessel, the Lab T1 blueprint at Robin's).
+- [ ] **Bundles.** The Furnace Room's board shows three bundles (Kindling, Mine Salts, Spring Gleanings). **For this test round every bundle slot asks for just 1 Stone, Wood, Fiber or Sap**, so bring a few of each. Donating works; finishing one pays its reward; finishing all three restores the room, with a message and new recipes (Athanor, Hermetic Vessel, the Lab T1 blueprint at Robin's).
 - [ ] **The next day.** Tobin arrives (letter, Calcinator recipe) and can be found in the Cistern room. His shop opens when you talk to him once his lines run out.
-- [ ] **The core loop** from alpha.2 still works: Satchel, Lens, Calcinator, Table discoveries, Athanor kindling and heat, chaining, products, codex.
+- [ ] **The core loop** from alpha.2 still works: Satchel, Lens, Table discoveries, Athanor kindling and heat, chaining, products, codex. (The Calcinator isn't part of the intro: Tobin brings its recipe the day after the Furnace Room is restored.)
+- [ ] **Table refuses non-Elements.** Click Wood or Stone in the Table screen: it says only Elements go on the Table, and nothing is used. Non-Elements are greyed out.
+- [ ] **Menus fit.** The Satchel, Table, Lens and bundle screens hold your whole inventory grid (all three rows) inside their panels.
 
 ### VO-1 · pass B: jump ahead (same farm, or a fresh one)
 Type `valleyopus_dev on`. Work down the list; each line says how to get there quickly.

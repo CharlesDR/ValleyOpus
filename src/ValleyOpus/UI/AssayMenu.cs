@@ -39,7 +39,7 @@ internal sealed class AssayMenu : IClickableMenu
 
     private void Layout()
     {
-        int playerRows = MenuKit.Rows(this.who.MaxItems);
+        int playerRows = MenuKit.PlayerInventoryRows;
         int width = 12 * 64 + Pad * 2;
         int height = Pad + 52 + ResultHeight + 16 + playerRows * MenuKit.InventoryRowHeight + Pad;
         Vector2 topLeft = Utility.getTopLeftPositionForCenteringOnScreen(width, height);

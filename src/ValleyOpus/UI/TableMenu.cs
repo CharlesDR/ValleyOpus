@@ -6,6 +6,7 @@ using StardewValley;
 using StardewValley.Inventories;
 using StardewValley.Menus;
 using ValleyOpus.Engine.Codex;
+using ValleyOpus.Engine.Model;
 using ValleyOpus.Engine.Resolver;
 using ValleyOpus.Framework;
 using SObject = StardewValley.Object;
@@ -59,7 +60,7 @@ internal sealed class TableMenu : IClickableMenu
         this.capacity = Math.Max(1, ModServices.Farm.Codex.Data.TableCapacity);
         int satchelCapacity = ModServices.Satchel.Capacity(Game1.player);
         int satchelRows = MenuKit.Rows(satchelCapacity);
-        int playerRows = MenuKit.Rows(Game1.player.MaxItems);
+        int playerRows = MenuKit.PlayerInventoryRows;
 
         int innerWidth = 12 * 64;
         int width = innerWidth + Pad * 2;
@@ -94,7 +95,7 @@ internal sealed class TableMenu : IClickableMenu
         this.outcomeTop = y + 80;
         this.playerLabelTop = this.outcomeTop + 72;
         int playerTop = this.playerLabelTop + 36 + 16;
-        this.playerInventory = new InventoryMenu(left, playerTop, true, Game1.player.Items, InventoryMenu.highlightAllItems);
+        this.playerInventory = new InventoryMenu(left, playerTop, true, Game1.player.Items, IsElement);
         this.satchelLabelTop = playerTop - 16 + playerRows * MenuKit.InventoryRowHeight;
         int satchelTop = this.satchelLabelTop + 36 + 4;
         this.satchelInventory = new InventoryMenu(left, satchelTop, false, this.SatchelItems, InventoryMenu.highlightAllItems, satchelCapacity, satchelRows);
@@ -200,6 +201,13 @@ internal sealed class TableMenu : IClickableMenu
     /// <summary>Puts one of an item into the next free slot; the item stays where it is until the attempt.</summary>
     private void Pick(Item item, IInventory from)
     {
+        if (!IsElement(item))
+        {
+            // Only Elements go on the Table (doc 03a); a refused pick uses nothing (SOS Pass A).
+            this.outcome = ModServices.T("ui.table.not-element", new { name = item.DisplayName });
+            Game1.playSound("cancel");
+            return;
+        }
         if (this.picked.Count >= this.capacity)
         {
             this.outcome = ModServices.T("ui.table.slots-full");
@@ -249,6 +257,11 @@ internal sealed class TableMenu : IClickableMenu
             this.outcome = ModServices.T("ui.error");
         }
     }
+
+    /// <summary>Whether an item is an Element: a Prime, a substance or anything made from them (doc 03a).</summary>
+    private static bool IsElement(Item item)
+        => !item.HasContextTag("valleyopus_tool") && !item.HasContextTag("valleyopus_apparatus")
+            && (item.HasContextTag("valleyopus_prime") || item.HasContextTag("valleyopus_substance") || item.HasContextTag(Ids.ProductTag));
 
     private bool AlreadyTried
         => this.picked.Count == this.capacity

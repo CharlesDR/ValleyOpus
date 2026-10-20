@@ -6343,22 +6343,22 @@
               "Count": 1
             },
             {
-              "Type": "Item",
+              "Type": "Place",
               "Ref": "(BC)CharlesDR.ValleyOpus_ExperimentTable",
               "Count": 1
             },
             {
-              "Type": "Item",
+              "Type": "Place",
               "Ref": "(BC)CharlesDR.ValleyOpus_Alembic",
               "Count": 1
             },
             {
-              "Type": "Item",
+              "Type": "Place",
               "Ref": "(BC)CharlesDR.ValleyOpus_Retort",
               "Count": 1
             },
             {
-              "Type": "Item",
+              "Type": "Place",
               "Ref": "(BC)CharlesDR.ValleyOpus_Athanor",
               "Count": 1
             },
@@ -7390,16 +7390,13 @@
           "Room": "CharlesDR.ValleyOpus_FurnaceRoom",
           "Slots": [
             {
-              "Item": "(O)709",
-              "Count": 10
+              "Item": "(O)390"
             },
             {
-              "Item": "(O)382",
-              "Count": 5
+              "Item": "(O)388"
             },
             {
-              "Item": "(O)92",
-              "Count": 20
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7413,18 +7410,16 @@
           "Room": "CharlesDR.ValleyOpus_FurnaceRoom",
           "Slots": [
             {
-              "Item": "(O)334",
-              "Count": 5
+              "Item": "(O)390"
             },
             {
-              "Item": "(O)84"
+              "Item": "(O)388"
             },
             {
-              "Item": "(O)86"
+              "Item": "(O)771"
             },
             {
-              "Item": "(O)80",
-              "Count": 3
+              "Item": "(O)92"
             }
           ],
           "Distinct": false,
@@ -7438,19 +7433,19 @@
           "Room": "CharlesDR.ValleyOpus_FurnaceRoom",
           "Slots": [
             {
-              "Tag": "forage_item season_spring"
+              "Item": "(O)390"
             },
             {
-              "Tag": "forage_item season_spring"
+              "Item": "(O)388"
             },
             {
-              "Tag": "forage_item season_spring"
+              "Item": "(O)771"
             },
             {
-              "Tag": "forage_item season_spring"
+              "Item": "(O)92"
             }
           ],
-          "Distinct": true,
+          "Distinct": false,
           "Reward": {
             "Item": "(O)368",
             "Count": 10
@@ -7461,16 +7456,13 @@
           "Room": "CharlesDR.ValleyOpus_Cistern",
           "Slots": [
             {
-              "Item": "CharlesDR.ValleyOpus_RosMaialis",
-              "Count": 5
+              "Item": "(O)390"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_SalMarinum",
-              "Count": 10
+              "Item": "(O)388"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Limus",
-              "Count": 10
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7484,15 +7476,13 @@
           "Room": "CharlesDR.ValleyOpus_Cistern",
           "Slots": [
             {
-              "Item": "(O)335",
-              "Count": 5
+              "Item": "(O)390"
             },
             {
-              "Item": "(O)338",
-              "Count": 5
+              "Item": "(O)388"
             },
             {
-              "Item": "(O)599"
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7506,19 +7496,19 @@
           "Room": "CharlesDR.ValleyOpus_Cistern",
           "Slots": [
             {
-              "Category": -4
+              "Item": "(O)390"
             },
             {
-              "Category": -4
+              "Item": "(O)388"
             },
             {
-              "Category": -4
+              "Item": "(O)771"
             },
             {
-              "Category": -4
+              "Item": "(O)92"
             }
           ],
-          "Distinct": true,
+          "Distinct": false,
           "Reward": {
             "Item": "(O)685",
             "Count": 30
@@ -7529,16 +7519,13 @@
           "Room": "CharlesDR.ValleyOpus_Library",
           "Slots": [
             {
-              "Item": "CharlesDR.ValleyOpus_Calx",
-              "Count": 10,
-              "MinQuality": 1
+              "Item": "(O)390"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Magma",
-              "Count": 5
+              "Item": "(O)388"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Vitrum"
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7552,16 +7539,16 @@
           "Room": "CharlesDR.ValleyOpus_Library",
           "Slots": [
             {
-              "Tag": "item_type_arch"
+              "Item": "(O)390"
             },
             {
-              "Tag": "item_type_arch"
+              "Item": "(O)388"
             },
             {
-              "Tag": "item_type_arch"
+              "Item": "(O)771"
             }
           ],
-          "Distinct": true,
+          "Distinct": false,
           "Reward": {
             "Item": "(O)535",
             "Count": 5
@@ -7572,21 +7559,19 @@
           "Room": "CharlesDR.ValleyOpus_Library",
           "Slots": [
             {
-              "Item": "(O)771",
-              "Count": 50
+              "Item": "(O)390"
             },
             {
-              "Item": "(O)330",
-              "Count": 10
+              "Item": "(O)388"
             },
             {
-              "Tag": "flower_item season_spring"
+              "Item": "(O)771"
             },
             {
-              "Tag": "flower_item season_spring"
+              "Item": "(O)92"
             }
           ],
-          "Distinct": true,
+          "Distinct": false,
           "Reward": {
             "Item": "(O)770",
             "Count": 20
@@ -7597,26 +7582,22 @@
           "Room": "CharlesDR.ValleyOpus_Sanctum",
           "Slots": [
             {
-              "Item": "CharlesDR.ValleyOpus_Vitrum",
-              "Count": 20
+              "Item": "(O)390"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Vigor"
+              "Item": "(O)388"
             },
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 1
+              "Item": "(O)771"
             },
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 1
+              "Item": "(O)92"
             },
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 1
+              "Item": "(O)390"
             }
           ],
-          "Distinct": true,
+          "Distinct": false,
           "Reward": {
             "Item": "(O)787",
             "Count": 1
@@ -7627,24 +7608,22 @@
           "Room": "CharlesDR.ValleyOpus_Sanctum",
           "Slots": [
             {
-              "Item": "(O)340",
-              "Count": 5
+              "Item": "(O)390"
             },
             {
-              "Tag": "flower_item"
+              "Item": "(O)388"
             },
             {
-              "Tag": "flower_item"
+              "Item": "(O)771"
             },
             {
-              "Tag": "flower_item"
+              "Item": "(O)92"
             },
             {
-              "Category": -75,
-              "MinQuality": 2
+              "Item": "(O)390"
             }
           ],
-          "Distinct": true,
+          "Distinct": false,
           "Reward": {
             "Item": "(O)446",
             "Count": 1
@@ -7655,14 +7634,13 @@
           "Room": "CharlesDR.ValleyOpus_Sanctum",
           "Slots": [
             {
-              "Item": "(O)421"
+              "Item": "(O)390"
             },
             {
-              "Item": "(O)254"
+              "Item": "(O)388"
             },
             {
-              "Item": "(O)768",
-              "Count": 5
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7676,16 +7654,13 @@
           "Room": "CharlesDR.ValleyOpus_Undercroft",
           "Slots": [
             {
-              "Item": "CharlesDR.ValleyOpus_CaputMortuum",
-              "Count": 50
+              "Item": "(O)390"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Miasma",
-              "Count": 10
+              "Item": "(O)388"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Bitumen",
-              "Count": 10
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7699,15 +7674,13 @@
           "Room": "CharlesDR.ValleyOpus_Undercroft",
           "Slots": [
             {
-              "Item": "(O)422"
+              "Item": "(O)390"
             },
             {
-              "Item": "(O)769",
-              "Count": 5
+              "Item": "(O)388"
             },
             {
-              "Item": "(O)767",
-              "Count": 10
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7721,16 +7694,16 @@
           "Room": "CharlesDR.ValleyOpus_Undercroft",
           "Slots": [
             {
-              "Category": -28
+              "Item": "(O)390"
             },
             {
-              "Category": -28
+              "Item": "(O)388"
             },
             {
-              "Category": -28
+              "Item": "(O)771"
             }
           ],
-          "Distinct": true,
+          "Distinct": false,
           "Reward": {
             "Item": "(O)286",
             "Count": 10
@@ -7741,16 +7714,13 @@
           "Room": "CharlesDR.ValleyOpus_Observatory",
           "Slots": [
             {
-              "Item": "CharlesDR.ValleyOpus_Luna",
-              "Count": 3
+              "Item": "(O)390"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Sol",
-              "Count": 3
+              "Item": "(O)388"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Spiritus",
-              "Count": 3
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7765,15 +7735,13 @@
           "Room": "CharlesDR.ValleyOpus_Observatory",
           "Slots": [
             {
-              "Item": "CharlesDR.ValleyOpus_AquaVitae",
-              "Count": 5
+              "Item": "(O)390"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Elixir",
-              "MinQuality": 2
+              "Item": "(O)388"
             },
             {
-              "Tag": "alcohol_item"
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7787,19 +7755,19 @@
           "Room": "CharlesDR.ValleyOpus_Observatory",
           "Slots": [
             {
-              "Tag": "forage_item season_winter"
+              "Item": "(O)390"
             },
             {
-              "Tag": "forage_item season_winter"
+              "Item": "(O)388"
             },
             {
-              "Tag": "forage_item season_winter"
+              "Item": "(O)771"
             },
             {
-              "Tag": "forage_item season_winter"
+              "Item": "(O)92"
             }
           ],
-          "Distinct": true,
+          "Distinct": false,
           "Reward": {
             "Item": "(O)414",
             "Count": 5
@@ -7810,16 +7778,13 @@
           "Room": "CharlesDR.ValleyOpus_CrystalVault",
           "Slots": [
             {
-              "Item": "CharlesDR.ValleyOpus_SalFixum",
-              "Count": 10
+              "Item": "(O)390"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_MercuriusFixus",
-              "MinQuality": 1
+              "Item": "(O)388"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Gelum",
-              "Count": 5
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7833,14 +7798,13 @@
           "Room": "CharlesDR.ValleyOpus_CrystalVault",
           "Slots": [
             {
-              "Item": "(O)72"
+              "Item": "(O)390"
             },
             {
-              "Item": "(O)60"
+              "Item": "(O)388"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Vitreus",
-              "Count": 10
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7854,21 +7818,19 @@
           "Room": "CharlesDR.ValleyOpus_CrystalVault",
           "Slots": [
             {
-              "Item": "CharlesDR.ValleyOpus_Argentum"
+              "Item": "(O)390"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Stannum"
+              "Item": "(O)388"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Plumbum"
+              "Item": "(O)771"
             },
             {
-              "Item": "(O)336",
-              "Count": 5
+              "Item": "(O)92"
             },
             {
-              "Item": "(O)335",
-              "Count": 10
+              "Item": "(O)390"
             }
           ],
           "Distinct": false,
@@ -7883,16 +7845,13 @@
           "Room": "CharlesDR.ValleyOpus_GreatWorkChamber",
           "Slots": [
             {
-              "Item": "CharlesDR.ValleyOpus_Tenebrae",
-              "Count": 3
+              "Item": "(O)390"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Mors",
-              "Count": 3
+              "Item": "(O)388"
             },
             {
-              "Item": "CharlesDR.ValleyOpus_Perditio",
-              "Count": 3
+              "Item": "(O)771"
             }
           ],
           "Distinct": false,
@@ -7906,27 +7865,22 @@
           "Room": "CharlesDR.ValleyOpus_GreatWorkChamber",
           "Slots": [
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 1
+              "Item": "(O)390"
             },
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 1
+              "Item": "(O)388"
             },
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 1
+              "Item": "(O)771"
             },
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 1
+              "Item": "(O)92"
             },
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 1
+              "Item": "(O)390"
             }
           ],
-          "Distinct": true,
+          "Distinct": false,
           "Reward": {
             "Item": "(O)74",
             "Count": 1
@@ -7937,19 +7891,16 @@
           "Room": "CharlesDR.ValleyOpus_GreatWorkChamber",
           "Slots": [
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 2
+              "Item": "(O)390"
             },
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 2
+              "Item": "(O)388"
             },
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 2
+              "Item": "(O)771"
             }
           ],
-          "Distinct": true,
+          "Distinct": false,
           "Reward": {
             "Item": "(O)74",
             "Count": 1
@@ -7960,8 +7911,7 @@
           "Room": "CharlesDR.ValleyOpus_GreatWorkChamber",
           "Slots": [
             {
-              "Tag": "valleyopus_tier_2",
-              "MinQuality": 4
+              "Item": "(O)390"
             }
           ],
           "Distinct": false,

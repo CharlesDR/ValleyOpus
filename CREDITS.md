@@ -11,5 +11,6 @@ ValleyOpus's placeholder art is cut from open-license packs at build time by `to
 | NPC portraits | Fantasy Portrait Pack | Ravenmore (dycha) | CC-BY 3.0 per its OpenGameArt page (the stockpile copy has no license file; re-check before release). Credit: "Portraits by Ravenmore, http://dycha.net" |
 | The Curator (ghost) | Ghost monster (OpenGameArt remix) | OpenGameArt contributors | CC0 |
 | Familiars | Tiny Creatures | Clint Bellanger | CC0 |
+| The workshop door behind the Community Center | Tiny Dungeon | Kenney | CC0 |
 
 CC0 packs need no credit; they're listed so testers and later artists know where each sheet came from. Every placeholder is due for replacement before a public release (see `docs/design` art direction).

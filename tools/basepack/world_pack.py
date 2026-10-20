@@ -159,6 +159,45 @@ def stamp(m, layer_bottom, x, y, tiles, cols=2):
             m.set(layer, x + c, y + r, U, tiles[r * cols + c])
 
 
+ENTRANCE_ART = "tiny-dungeon/kenney_tinydungeon/Tilemap/tilemap_packed.png"  # Kenney Tiny Dungeon (CC0)
+ENTRANCE_TILE = 45  # a wooden door in a stone frame
+
+
+def entrance_map(pack, art_root):
+    """A 1x1 map holding the workshop door on Buildings, with its own tilesheet (z_ sorts after the Town's sheets)."""
+    from PIL import Image
+    sheet = Image.open(os.path.join(art_root, ENTRANCE_ART)).convert("RGBA")
+    x, y = (ENTRANCE_TILE % 12) * 16, (ENTRANCE_TILE // 12) * 16
+    out_dir = os.path.join(pack, "assets", "maps")
+    sheet.crop((x, y, x + 16, y + 16)).save(os.path.join(out_dir, "z_valleyopus_entrance.png"))
+    tmx = f'''<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="16" tileheight="16" infinite="0">
+ <tileset firstgid="1" name="z_valleyopus_entrance" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="z_valleyopus_entrance.png" width="16" height="16"/>
+ </tileset>
+ <layer id="1" name="Back" width="1" height="1">
+  <data encoding="csv">
+0
+  </data>
+ </layer>
+ <layer id="2" name="Buildings" width="1" height="1">
+  <data encoding="csv">
+1
+  </data>
+ </layer>
+ <objectgroup id="3" name="Buildings">
+  <object id="1" name="TileData" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="Action" value="{P}Enter"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
+'''
+    with open(os.path.join(out_dir, "TownEntrance.tmx"), "w", encoding="utf-8") as f:
+        f.write(tmx)
+
+
 def location_name(room):
     return P + "Workshop_" + room
 
@@ -267,8 +306,13 @@ def write(pack, i18n, write_json, header, art_root):
             ("CreateOnLoad", {"MapPath": "Maps/" + P + "Workshop_" + room, "AlwaysActive": True}),
             ("CanPlantHere", False)])
     changes.append({"Action": "EditData", "Target": "Data/Locations", "Entries": locations})
+    # The workshop door behind the CC: our own door tile on Buildings (CP adds the tilesheet), used with the action button.
+    entrance_map(pack, art_root)
+    files_entrance = {"X": TOWN_ENTRANCE[0], "Y": TOWN_ENTRANCE[1], "Width": 1, "Height": 1}
+    changes.append({"Action": "EditMap", "Target": "Maps/Town", "FromFile": "assets/maps/TownEntrance.tmx",
+                    "FromArea": {"X": 0, "Y": 0, "Width": 1, "Height": 1}, "ToArea": files_entrance, "PatchMode": "Overlay"})
     changes.append({"Action": "EditMap", "Target": "Maps/Town", "MapTiles": [
-        {"Position": {"X": TOWN_ENTRANCE[0], "Y": TOWN_ENTRANCE[1]}, "Layer": "Back", "SetProperties": {"TouchAction": P + "Enter"}}]})
+        {"Position": {"X": TOWN_ENTRANCE[0], "Y": TOWN_ENTRANCE[1]}, "Layer": "Buildings", "SetProperties": {"Action": P + "Enter"}}]})
 
     # ── Laboratories (doc 18 §1) ──
     costs = {1: (25000, [("(O)388", 400), ("(O)338", 20), ("(O)334", 10), ("(O)" + P + "Saxum", 10)], 2, None, "Buildings/Shed", "FurnaceRoom"),
@@ -375,7 +419,7 @@ def write(pack, i18n, write_json, header, art_root):
         "pause 300", "end"])
     i18n["event.intro.1"] = "Oh! You must be the farmer who opened the Community Center. I'm Oriel.#$b#I study the older kind of craft. Alchemy."
     i18n["event.intro.2"] = "There's a workshop under this building. Derelict, but not dead. A spirit keeps it.#$b#He calls himself the Curator."
-    i18n["event.intro.3"] = "The door's just here, behind the Center. Come and see. I've left you a few things to start with.#$b#And if you meet a man called Tobin, he's the one who could get the machines running again."
+    i18n["event.intro.3"] = "The door's just here, behind the Center. Come and see. I've set out a few things for you down there; take them home.#$b#And if you meet a man called Tobin, he's the one who could get the machines running again."
     precondition = f"G PLAYER_HAS_MAIL Host ccDoorUnlock Received, !PLAYER_HAS_MAIL Host {P}Unlock_Intro Received/t 600 1500"
     changes.append({"Action": "EditData", "Target": "Data/Events/Town", "Entries": {f"{P}Intro/{precondition}": script}})
 

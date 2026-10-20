@@ -67,16 +67,36 @@ public sealed class ModEntry : Mod
         this.Monitor.Log($"ValleyOpus {this.ModManifest.Version}: test build. Type 'valleyopus_dev on' then 'valleyopus_dev kit' to start, or see TESTING.md.", LogLevel.Info);
         if (this.Helper.ModRegistry.IsLoaded("Pathoschild.Automate"))
             this.Monitor.Log("Automate is installed: it runs ValleyOpus apparatus through its own generic handler (D25).", LogLevel.Trace);
+        ConfigMenu.Register(this.Helper, this.ModManifest);
+        // Content Patcher fills our registries a few ticks after launch, so the professions wait for them (SOS Pass A:
+        // registering at launch found none).
+        this.Helper.Events.GameLoop.UpdateTicked += this.RegisterProfessionsWhenReady;
+    }
+
+    private void RegisterProfessionsWhenReady(object? sender, UpdateTickedEventArgs e)
+    {
+        if (e.Ticks % 10 != 0)
+            return;
+        bool giveUp = e.Ticks >= 600;
         try
         {
-            AlchemySkill.RegisterProfessions(Engine.Registry.RegistryLoader.Load(GameContent.ReadRaw()).Professions.All, ModServices.Log);
+            var professions = Engine.Registry.RegistryLoader.Load(GameContent.ReadRaw()).Professions.All.ToList();
+            if (professions.Count == 0 && !giveUp)
+            {
+                // Drop a cached empty read so the next try sees Content Patcher's rows.
+                this.Helper.GameContent.InvalidateCache(asset => Engine.Model.RegistryNames.All.Any(r => asset.NameWithoutLocale.IsEquivalentTo(Engine.Model.RegistryNames.AssetName(r))));
+                return;
+            }
+            AlchemySkill.RegisterProfessions(professions, ModServices.Log);
+            if (professions.Count == 0)
+                this.Monitor.Log("No alchemy professions loaded ten seconds after launch; is [CP] ValleyOpus installed?", LogLevel.Warn);
         }
         catch (Exception ex)
         {
             this.Monitor.Log($"Couldn't register the alchemy professions: {ex}", LogLevel.Error);
         }
         AlchemySkill.CreateIcons();
-        ConfigMenu.Register(this.Helper, this.ModManifest);
+        this.Helper.Events.GameLoop.UpdateTicked -= this.RegisterProfessionsWhenReady;
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)

@@ -81,6 +81,7 @@
   "ui.table.inventory": "Inventory",
   "ui.table.satchel": "Satchel",
   "ui.table.slots-full": "The slots are full. Click a slot to clear it.",
+  "ui.table.not-element": "{{name}} isn't an Element. Only Primes, substances and what's made from them go on the Table.",
   "ui.table.success": "You made {{name}}!",
   "ui.table.too-many": "The Table can't hold that many things at once.",
   "ui.panel.picker": "Recipes",

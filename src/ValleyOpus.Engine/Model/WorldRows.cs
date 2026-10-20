@@ -10,6 +10,9 @@ public static class GrantTypes
     public const string Flag = "Flag";
     public const string Mail = "Mail";
     public const string Capacity = "Capacity";
+
+    /// <summary>A big craftable set down once in the workshop's Entrance Hall for the farm to pick up (Charles, SOS Pass A).</summary>
+    public const string Place = "Place";
 }
 
 public static class UnlockSources

@@ -316,7 +316,7 @@ public static class Validator
                 registry.Warn(RegistryNames.Unlocks, row.Id, $"requires unknown unlock '{missing}'; it can never fire");
             if (row.Source.Type == UnlockSources.WorkshopRoom && !registry.Rooms.Contains(Ids.RowPrefix + row.Source.Ref))
                 registry.Warn(RegistryNames.Unlocks, row.Id, $"source room '{row.Source.Ref}' is unknown");
-            foreach (UnlockGrant grant in row.Grants.Where(g => g.Type == GrantTypes.Item))
+            foreach (UnlockGrant grant in row.Grants.Where(g => g.Type is GrantTypes.Item or GrantTypes.Place))
                 if (!KnownItem(options, grant.Ref) && !grant.Ref.Contains(Ids.RowPrefix, StringComparison.Ordinal))
                     registry.Warn(RegistryNames.Unlocks, row.Id, $"grants unknown item '{grant.Ref}'");
         }

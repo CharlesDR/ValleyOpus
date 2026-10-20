@@ -179,15 +179,33 @@
     {
       "Action": "EditMap",
       "Target": "Maps/Town",
+      "FromFile": "assets/maps/TownEntrance.tmx",
+      "FromArea": {
+        "X": 0,
+        "Y": 0,
+        "Width": 1,
+        "Height": 1
+      },
+      "ToArea": {
+        "X": 53,
+        "Y": 9,
+        "Width": 1,
+        "Height": 1
+      },
+      "PatchMode": "Overlay"
+    },
+    {
+      "Action": "EditMap",
+      "Target": "Maps/Town",
       "MapTiles": [
         {
           "Position": {
             "X": 53,
             "Y": 9
           },
-          "Layer": "Back",
+          "Layer": "Buildings",
           "SetProperties": {
-            "TouchAction": "CharlesDR.ValleyOpus_Enter"
+            "Action": "CharlesDR.ValleyOpus_Enter"
           }
         }
       ]

@@ -31,8 +31,8 @@ GATES = {
 # id → kind, grants [(type, ref, count)], source (type, ref), requires [unlock ids or "gate:<Gate>"], pace, name, how-to line
 UNLOCKS = OrderedDict([
     ("Intro", ("Story", [("Item", "(O)" + P + "Satchel", 1), ("Item", "(O)" + P + "Lens", 1),
-                         ("Item", "(BC)" + P + "ExperimentTable", 1), ("Item", "(BC)" + P + "Alembic", 1),
-                         ("Item", "(BC)" + P + "Retort", 1), ("Item", "(BC)" + P + "Athanor", 1),
+                         ("Place", "(BC)" + P + "ExperimentTable", 1), ("Place", "(BC)" + P + "Alembic", 1),
+                         ("Place", "(BC)" + P + "Retort", 1), ("Place", "(BC)" + P + "Athanor", 1),
                          ("CraftingRecipe", P + "ExperimentTable", 0), ("CraftingRecipe", P + "Alembic", 0),
                          ("CraftingRecipe", P + "Retort", 0), ("CraftingRecipe", P + "Satchel", 0), ("CraftingRecipe", P + "Lens", 0),
                          ("Mail", P + "Mail_Welcome", 0)],
@@ -127,6 +127,11 @@ BUNDLES = OrderedDict([
     ("Citrinitas", ("GreatWorkChamber", "Citrinitas", [("#valleyopus_tier_2", 1, 2)] * 3, None, True, (o(74), 1))),
     ("Rubedo", ("GreatWorkChamber", "Rubedo", [("#valleyopus_tier_2", 1, 4)], None, False, (o(74), 2))),
 ])
+
+# TEMPORARY (Charles, SOS Pass A 2026-10-20): every bundle slot asks for 1 Stone, Wood, Fiber or Sap so bundle
+# completion can be tested quickly. Set to False to restore the real bundle contents above.
+EASY_BUNDLES = True
+EASY_ITEMS = [o(390), o(388), o(771), o(92)]
 
 # The farm-secret candidates (doc 07): one per farm, hand-made at the altar. id, display, inputs, operation, gloss
 SECRET_CANDIDATES = [
@@ -448,6 +453,9 @@ def fill(registries, i18n, learned_by):
     registries["WorkshopRooms"][P + "GreatWorkChamber"]["Unlocks"] = [P + "GreatWork"]
 
     for bid, (room, display, slots, required, distinct, reward) in BUNDLES.items():
+        if EASY_BUNDLES:
+            slots = [(EASY_ITEMS[n % len(EASY_ITEMS)], 1, 0) for n in range(len(slots))]
+            distinct = False
         slot_rows = []
         for spec, count, quality in slots:
             s = OrderedDict()
