@@ -129,8 +129,8 @@ internal sealed class Commands
         switch (command)
         {
             case "kit":
-                foreach (string id in new[] { SatchelService.SatchelItemId, SatchelService.LensItemId })
-                    who.addItemByMenuIfNecessary(ItemRegistry.Create(id));
+                foreach (string itemId in new[] { SatchelService.SatchelItemId, SatchelService.LensItemId })
+                    who.addItemByMenuIfNecessary(ItemRegistry.Create(itemId));
                 foreach (string local in new[] { "ExperimentTable", "Athanor", "Alembic", "Retort", "HermeticVessel", "Calcinator" })
                 {
                     who.addItemByMenuIfNecessary(ItemRegistry.Create("(BC)" + Ids.RowPrefix + local));

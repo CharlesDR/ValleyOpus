@@ -70,9 +70,19 @@ internal sealed class MachineService
 
     // ── State helpers ───────────────────────────────────────────────────────────
 
-    public static MachineData State(SObject machine) => MachineData.Read(machine.modData);
+    // modData is a net dictionary, not an IDictionary, so the engine's state reads and writes a plain copy.
+    public static MachineData State(SObject machine) => MachineData.Read(machine.modData.Pairs.ToDictionary(p => p.Key, p => p.Value));
 
-    public static void Save(SObject machine, MachineData state) => state.Write(machine.modData);
+    public static void Save(SObject machine, MachineData state)
+    {
+        var copy = machine.modData.Pairs.ToDictionary(p => p.Key, p => p.Value);
+        state.Write(copy);
+        foreach (string key in machine.modData.Keys.Where(k => !copy.ContainsKey(k)).ToList())
+            machine.modData.Remove(key);
+        foreach ((string key, string value) in copy)
+            if (!machine.modData.TryGetValue(key, out string? old) || old != value)
+                machine.modData[key] = value;
+    }
 
     /// <summary>The machine's tray: a global inventory, created on first use (doc 17 §1).</summary>
     public static Inventory Tray(SObject machine, MachineData state, bool create)
@@ -458,7 +468,7 @@ internal sealed class MachineService
 
     private void OnTick(SObject machine)
     {
-        if (!Context.IsMainPlayer)
+        if (!StardewModdingAPI.Context.IsMainPlayer)
             return; // the host owns machine state in multiplayer
         MachineData state = State(machine);
         if (state.Recipe is null)

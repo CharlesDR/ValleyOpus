@@ -79,7 +79,7 @@ internal static class Neighbours
         foreach ((int x, int y) in ChainGeometry.Cardinals(tile))
         {
             if (location.getObjectAtTile(x, y) is SObject source && ModServices.Content.ApparatusOf(source) is { Heat: { } heatSpec }
-                && (heatSpec.RequiresFlag is null || (heatSpec.RequiresFlag == "Kindled" && MachineData.Read(source.modData).Kindled)))
+                && (heatSpec.RequiresFlag is null || (heatSpec.RequiresFlag == "Kindled" && MachineService.State(source).Kindled)))
             {
                 sources.Add((x, y));
                 maxConsumers = heatSpec.MaxConsumers;
