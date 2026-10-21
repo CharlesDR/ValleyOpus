@@ -844,7 +844,7 @@ def build(out_path):
     K.sheet(cells, CELL_W, CELL_H, CELLS).save(out_path)
 
 # Light while working (Data/Machines LightWhileWorking): radius in tiles and the light's colour, which the game's
-# lighting inverts (DarkCyan gives the furnaces' warm orange, as vanilla's own furnace uses).
+# lighting inverts (DarkCyan gives the warm orange of vanilla's own furnace light; Orange gives blue).
 LIGHT = {
     "Athanor": (1.25, "DarkCyan"),
     "Calcinator": (1.25, "DarkCyan"),

@@ -312,9 +312,18 @@ internal sealed class Familiars
             {
                 this.texture ??= Game1.content.Load<Texture2D>(TextureAsset);
                 int column = sorted.IndexOf(row);
-                float bob = (float)Math.Sin(Game1.currentGameTime.TotalGameTime.TotalMilliseconds / 400.0 + column) * 6f;
+                double ms = Game1.currentGameTime.TotalGameTime.TotalMilliseconds;
+                float bob = (float)Math.Sin(ms / 400.0 + column) * 6f;
+                // Each column holds a Familiar's idle loop, one 16x16 frame per row.
+                int frames = Math.Max(1, this.texture.Height / 16);
+                int frame = (int)(ms / 180 + column * 2) % frames;
+                float depth = (tile.Y * 64f + 64) / 10000f;
+                // A shadow on the floor that shrinks as the spirit bobs up.
+                Vector2 floor = Game1.GlobalToLocal(Game1.viewport, tile * 64f + new Vector2(32, 52));
+                e.SpriteBatch.Draw(Game1.shadowTexture, floor, Game1.shadowTexture.Bounds, Color.White * 0.5f, 0f,
+                    new Vector2(Game1.shadowTexture.Bounds.Center.X, Game1.shadowTexture.Bounds.Center.Y), 3f - bob / 12f, SpriteEffects.None, depth - 0.0001f);
                 Vector2 screen = Game1.GlobalToLocal(Game1.viewport, tile * 64f + new Vector2(0, -24 + bob));
-                e.SpriteBatch.Draw(this.texture, screen, new Rectangle(column * 16, 0, 16, 16), Color.White, 0f, Vector2.Zero, 4f, SpriteEffects.None, (tile.Y * 64f + 64) / 10000f);
+                e.SpriteBatch.Draw(this.texture, screen, new Rectangle(column * 16, frame * 16, 16, 16), Color.White, 0f, Vector2.Zero, 4f, SpriteEffects.None, depth);
             }
         }
         catch (Exception ex)

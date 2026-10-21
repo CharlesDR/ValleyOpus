@@ -219,15 +219,9 @@ internal sealed class GameContent
         {
             var frames = framesText.Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Select(f => int.TryParse(f, out int n) ? n : -1).Where(n => n >= 0).ToList();
+            // The game loops a working effect's frames for as long as the machine works.
             if (frames.Count > 0)
-            {
-                // The game plays a working effect when the clock ticks, so the cycle repeats to fill the ten minutes.
-                var cycle = new List<int>();
-                for (int i = 0; i < 12; i++)
-                    cycle.AddRange(frames);
-                machine.WorkingEffects = new List<MachineEffects> { new() { Id = Ids.RowPrefix + "Working", Frames = cycle, Interval = 150 } };
-                machine.WorkingEffectChance = 1f;
-            }
+                machine.WorkingEffects = new List<MachineEffects> { new() { Id = Ids.RowPrefix + "Working", Frames = frames, Interval = 150 } };
         }
         if (fields.TryGetValue(Ids.KeyPrefix + "ReadyFrame", out string? ready) && ready.Equals("true", StringComparison.OrdinalIgnoreCase))
             machine.ShowNextIndexWhenReady = true;

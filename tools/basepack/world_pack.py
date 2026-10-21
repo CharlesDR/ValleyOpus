@@ -293,7 +293,9 @@ def walk_check(maps, homes):
 
 def write(pack, i18n, write_json, header, art_root):
     import build_art
-    import npc_art
+    import familiar_art
+    import npc_portraits
+    import npc_sprites
     files = []
     maps = workshop_maps()
     for tier, fw, fh in LABS:
@@ -369,12 +371,12 @@ def write(pack, i18n, write_json, header, art_root):
             ("Home", [{"Id": "Default", "Location": location, "Tile": {"X": hx, "Y": hy}, "Direction": "down"}]),
             ("CustomFields", {P + "Npc": "true"})])
         if nid == "Curator":
-            row["Size"] = {"X": 32, "Y": 32}
+            # He floats, so his chest doesn't rise and fall.
             row["Breather"] = False
-            row["CanReceiveGifts"] = True
         characters[name] = row
         strip = lambda ids: " ".join(i[3:] if i.startswith("(O)") else i for i in ids)
-        gifts[name] = f"This is wonderful. Thank you!/{strip(loves)}/Thank you!/{strip(likes)}/Oh. Thanks./ /Hm./ /Thanks./ "
+        # Placeholder reactions, with the portrait codes that pick the happy and sad faces.
+        gifts[name] = f"This is wonderful. Thank you!$h/{strip(loves)}/Thank you!$h/{strip(likes)}/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ "
         dialogue = OrderedDict((k, v) for k, v in lines.items())
         write_json(os.path.join(pack, "data", "dialogue", nid + ".json"), dialogue)
         changes.append({"Action": "Load", "Target": "Characters/Dialogue/" + name, "FromFile": f"data/dialogue/{nid}.json"})
@@ -385,8 +387,12 @@ def write(pack, i18n, write_json, header, art_root):
         raise SystemExit("\n".join(problems))
     changes.append({"Action": "EditData", "Target": "Data/Characters", "Entries": characters})
     changes.append({"Action": "EditData", "Target": "Data/NPCGiftTastes", "Entries": gifts})
-    npc_art.build(art_root, W.NPCS, os.path.join(pack, "assets", "npcs"))
-    npc_art.build_familiars(art_root, W.FAMILIARS, os.path.join(pack, "assets", "familiars.png"))
+    npc_dir = os.path.join(pack, "assets", "npcs")
+    os.makedirs(npc_dir, exist_ok=True)
+    for nid in W.NPCS:
+        npc_sprites.build(nid).save(os.path.join(npc_dir, nid + ".png"))
+        npc_portraits.build(art_root, nid, os.path.join(npc_dir, nid + "_portrait.png"))
+    familiar_art.build(W.FAMILIARS, os.path.join(pack, "assets", "familiars.png"))
     changes.append({"Action": "Load", "Target": "Mods/CharlesDR.ValleyOpus/Familiars", "FromFile": "assets/familiars.png"})
 
     # ── Mail ──
