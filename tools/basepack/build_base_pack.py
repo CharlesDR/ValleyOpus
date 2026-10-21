@@ -13,6 +13,8 @@ from collections import OrderedDict
 import slice_data as D
 import full_data as F
 import world_data as W
+import apparatus_art as A
+import ui_icons as U
 
 P = D.P
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -20,6 +22,32 @@ PACK = os.path.join(ROOT, "content", "[CP] ValleyOpus")
 TEXTURE = "Mods/CharlesDR.ValleyOpus/Objects"
 # Data/Furniture is slash-delimited, so the texture path uses backslashes (SOS Pass B: "Failed loading texture Mods").
 FURNITURE_TEXTURE = "Mods\\CharlesDR.ValleyOpus\\Furniture"
+APPARATUS_TEXTURE = "Mods/CharlesDR.ValleyOpus/Apparatus"
+
+
+def buff_icons(registries):
+    fields = OrderedDict()
+    for eid in registries["Effects"]:
+        index = U.buff_index(eid[len(P):])
+        if index is None:
+            raise SystemExit(f"No buff icon for effect {eid}: add one to ui_icons.py")
+        fields[eid] = OrderedDict([("IconTexture", U.TEXTURE), ("IconSpriteIndex", index)])
+    return fields
+
+
+def apparatus_look(local):
+    """The apparatus sheet's sprite and, for machines that animate, the frames and light the C# data compiler copies
+    into Data/Machines (custom fields, so other packs' apparatus can opt in the same way)."""
+    fields = OrderedDict([("Texture", APPARATUS_TEXTURE), ("SpriteIndex", A.sprite_index(local))])
+    if local in A.ANIMATED:
+        custom = OrderedDict([
+            ("CharlesDR.ValleyOpus/WorkingFrames", " ".join(str(f) for f in A.WORKING)),
+            ("CharlesDR.ValleyOpus/ReadyFrame", "true")])
+        if local in A.LIGHT:
+            radius, colour = A.LIGHT[local]
+            custom["CharlesDR.ValleyOpus/Light"] = f"{radius} {colour}"
+        fields["CustomFields"] = custom
+    return fields
 D_REAGENT = "valleyopus_reagent"
 
 SORT_DARK, SORT_T3, SORT_WORN, SORT_NEW, SORT_CURIO = 2150, 9000, 3000, 3100, 3200
@@ -152,8 +180,8 @@ def build(art_root):
         big[P + local] = OrderedDict([
             ("Name", P + local), ("DisplayName", "{{i18n:apparatus." + local + ".name}}"),
             ("Description", "{{i18n:apparatus." + local + ".desc}}"), ("Price", 100), ("Fragility", 0),
-            ("CanBePlacedOutdoors", True), ("CanBePlacedIndoors", True), ("IsLamp", local in ("Athanor", "Boiler")),
-            ("Texture", "TileSheets/Craftables"), ("SpriteIndex", sprite),
+            ("CanBePlacedOutdoors", True), ("CanBePlacedIndoors", True),
+            *apparatus_look(local).items(),
             ("ContextTags", ["valleyopus_apparatus", "valleyopus_apparatus_" + local.lower()])])
     clocal, cdisplay, ckind, cops = F.CIRCLE
     registries["Apparatus"][P + clocal] = OrderedDict([
@@ -396,8 +424,8 @@ def build(art_root):
         big[P + local] = OrderedDict([
             ("Name", P + local), ("DisplayName", "{{i18n:apparatus." + local + ".name}}"),
             ("Description", "{{i18n:apparatus." + local + ".desc}}"), ("Price", 500), ("Fragility", 0),
-            ("CanBePlacedOutdoors", True), ("CanBePlacedIndoors", True), ("Texture", "TileSheets/Craftables"),
-            ("SpriteIndex", sprite), ("ContextTags", ["valleyopus_placed", "valleyopus_placed_" + local.lower()])])
+            ("CanBePlacedOutdoors", True), ("CanBePlacedIndoors", True), *apparatus_look(local).items(),
+            ("ContextTags", ["valleyopus_placed", "valleyopus_placed_" + local.lower()])])
         if ingredients:
             crafting[P + local] = f"{ingredients}/Home/{P}{local}/true/none/"
             learned_by[P + local] = P + learn
@@ -550,6 +578,8 @@ def main():
         {"Action": "EditData", "Target": "Data/CraftingRecipes", "Entries": crafting},
         {"Action": "EditData", "Target": "Data/Trinkets", "Entries": trinkets},
         {"Action": "EditData", "Target": "Data/Furniture", "Entries": furniture},
+        # The C# data compiler writes our Data/Buffs rows first (doc 15 §3); these give each its own icon.
+        {"Action": "EditData", "Target": "Data/Buffs", "Fields": buff_icons(registries)},
     ]}, header)
     import world_pack
     world_files = world_pack.write(PACK, i18n, write_json, header, args.art_root)
@@ -563,12 +593,16 @@ def main():
         ("Changes", [
             {"Action": "Load", "Target": "Mods/CharlesDR.ValleyOpus/Objects", "FromFile": "assets/objects.png"},
             {"Action": "Load", "Target": "Mods/CharlesDR.ValleyOpus/Furniture", "FromFile": "assets/furniture.png"},
+            {"Action": "Load", "Target": APPARATUS_TEXTURE, "FromFile": "assets/apparatus.png"},
+            {"Action": "Load", "Target": U.TEXTURE, "FromFile": "assets/ui.png"},
             {"Action": "Include", "FromFile": ", ".join(["data/registries.json", "data/items.json", "data/strings.json"] + world_files)},
         ])]), ["The base pack fills ValleyOpus's registries through the same door as every other pack (doc 09 §4a)."] + header)
 
     import build_art
-    build_art.build(args.art_root, sprites, os.path.join(PACK, "assets", "objects.png"))
-    build_art.build_furniture(args.art_root, F.FURNITURE, os.path.join(PACK, "assets", "furniture.png"))
+    build_art.build(sprites, os.path.join(PACK, "assets", "objects.png"))
+    build_art.build_furniture(F.FURNITURE, os.path.join(PACK, "assets", "furniture.png"))
+    A.build(os.path.join(PACK, "assets", "apparatus.png"))
+    U.build(os.path.join(PACK, "assets", "ui.png"))
     print(f"Wrote {len(objects)} objects, {len(big)} big craftables, {len(registries['Recipes'])} recipes, "
           f"{len(trinkets)} trinkets, {len(furniture)} furniture, {len(i18n)} strings.")
 

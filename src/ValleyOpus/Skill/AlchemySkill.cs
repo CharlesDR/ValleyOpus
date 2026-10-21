@@ -5,6 +5,7 @@ using StardewValley;
 using ValleyOpus.Engine.Model;
 using ValleyOpus.Engine.Skill;
 using ValleyOpus.Framework;
+using ValleyOpus.UI;
 
 namespace ValleyOpus.Skill;
 
@@ -57,25 +58,41 @@ internal sealed class AlchemySkill
     public static bool HasProfession(Farmer who, string localId)
         => ProfessionIds.TryGetValue(localId, out int id) && who.professions.Contains(id);
 
-    /// <summary>Creates the skill icon once the graphics device exists.</summary>
-    public static void CreateIcons()
+    // Cells on the base pack's UI sheet (sos.3 art).
+    private const int SkillCell = 4;
+    private const int SkillsPageCell = 5;
+
+    private static readonly Dictionary<string, int> ProfessionCells = new(StringComparer.Ordinal)
+    {
+        ["Mechanist"] = 6, ["Mystic"] = 7, ["Engineer"] = 8, ["Artificer"] = 9, ["Hermeticist"] = 10, ["Theurgist"] = 11,
+    };
+
+    /// <summary>Cuts the skill and profession icons from the UI sheet once the graphics device exists.</summary>
+    public static void CreateIcons(SmapiLog log)
     {
         if (SpaceCore.Skills.GetSkill(SkillId) is not SpaceCore.Skills.Skill skill)
             return;
-        var icon = new Texture2D(Game1.graphics.GraphicsDevice, 16, 16);
-        var pixels = new Color[16 * 16];
-        for (int y = 0; y < 16; y++)
-            for (int x = 0; x < 16; x++)
-            {
-                int dx = x - 8, dy = y - 9;
-                bool flask = (dx * dx + dy * dy <= 30 && y >= 6) || (Math.Abs(dx) <= 1 && y is >= 2 and < 6);
-                pixels[y * 16 + x] = flask ? (y < 9 ? new Color(200, 230, 240) : new Color(122, 74, 168)) : Color.Transparent;
-            }
+        try
+        {
+            Texture2D sheet = Game1.content.Load<Texture2D>(MenuKit.UiTexture);
+            skill.Icon = Cut(sheet, MenuKit.UiCell(SkillCell));
+            skill.SkillsPageIcon = Cut(sheet, MenuKit.UiCell(SkillsPageCell, 10));
+            foreach (SpaceCore.Skills.Skill.Profession profession in skill.Professions)
+                profession.Icon = ProfessionCells.TryGetValue(profession.Id, out int cell) ? Cut(sheet, MenuKit.UiCell(cell)) : skill.Icon;
+        }
+        catch (Exception ex)
+        {
+            log.Warn($"Couldn't load the Alchemy skill icons; the skill page will show none. {ex.Message}");
+        }
+    }
+
+    private static Texture2D Cut(Texture2D sheet, Rectangle area)
+    {
+        var pixels = new Color[area.Width * area.Height];
+        sheet.GetData(0, area, pixels, 0, pixels.Length);
+        var icon = new Texture2D(Game1.graphics.GraphicsDevice, area.Width, area.Height);
         icon.SetData(pixels);
-        skill.Icon = icon;
-        skill.SkillsPageIcon = icon;
-        foreach (SpaceCore.Skills.Skill.Profession profession in skill.Professions)
-            profession.Icon ??= icon;
+        return icon;
     }
 
     public int Level(Farmer who) => SpaceCore.Skills.GetSkillLevel(who, SkillId);

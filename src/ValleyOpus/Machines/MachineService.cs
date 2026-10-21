@@ -504,12 +504,28 @@ internal sealed class MachineService
             return;
         try
         {
+            SyncReadyFrame(__instance);
             Self.OnTick(__instance);
         }
         catch (Exception ex)
         {
             Self.log.Error($"Machine timer failed on {__instance.QualifiedItemId} at {__instance.TileLocation}: {ex}");
         }
+    }
+
+    /// <summary>
+    /// Shows the apparatus's ready cell while an output waits, and its idle cell otherwise (sos.3 art), whichever path
+    /// set the output: the game's own timer, a sealed run or an extra handed over after Automate took the last one.
+    /// </summary>
+    private static void SyncReadyFrame(SObject machine)
+    {
+        if (!StardewModdingAPI.Context.IsMainPlayer)
+            return;
+        if (machine.GetMachineData()?.ShowNextIndexWhenReady != true)
+            return;
+        bool ready = machine.readyForHarvest.Value && machine.heldObject.Value != null;
+        if (machine.showNextIndex.Value != ready)
+            machine.showNextIndex.Value = ready;
     }
 
     private void OnTick(SObject machine)

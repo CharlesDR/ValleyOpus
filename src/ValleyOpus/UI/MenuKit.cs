@@ -25,6 +25,32 @@ internal static class MenuKit
     public static readonly Rectangle DownArrowSource = new(421, 472, 11, 12);
     private static readonly Rectangle ButtonSource = new(432, 439, 9, 9);
 
+    /// <summary>The base pack's UI sheet (sos.3 art): 16x16 cells, 16 to a row.</summary>
+    public const string UiTexture = Ids.KeyPrefix + "UI";
+
+    /// <summary>UI sheet cells the C# mod draws (the base pack's tools/basepack/ui_icons.py lays them out).</summary>
+    public const int UnknownVialCell = 0, IntakeCell = 12, SpoutCell = 13;
+
+    private static bool uiSheetMissing;
+
+    /// <summary>The UI sheet, or null without the base pack (callers fall back to vanilla art).</summary>
+    public static Texture2D? UiSheet()
+    {
+        if (uiSheetMissing)
+            return null;
+        try
+        {
+            return Game1.content.Load<Texture2D>(UiTexture);
+        }
+        catch (Exception)
+        {
+            uiSheetMissing = true;
+            return null;
+        }
+    }
+
+    public static Rectangle UiCell(int index, int size = 16) => new(index % 16 * 16, index / 16 * 16, size, size);
+
     public static void DrawBackdrop(SpriteBatch b)
         => b.Draw(Game1.fadeToBlackRect, new Rectangle(0, 0, Game1.uiViewport.Width, Game1.uiViewport.Height), Color.Black * 0.5f);
 

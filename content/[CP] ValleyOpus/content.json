@@ -15,6 +15,16 @@
       "FromFile": "assets/furniture.png"
     },
     {
+      "Action": "Load",
+      "Target": "Mods/CharlesDR.ValleyOpus/Apparatus",
+      "FromFile": "assets/apparatus.png"
+    },
+    {
+      "Action": "Load",
+      "Target": "Mods/CharlesDR.ValleyOpus/UI",
+      "FromFile": "assets/ui.png"
+    },
+    {
       "Action": "Include",
       "FromFile": "data/registries.json, data/items.json, data/strings.json, data/world.json"
     }
