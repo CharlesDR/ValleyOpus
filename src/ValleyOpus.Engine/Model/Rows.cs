@@ -281,6 +281,11 @@ public sealed class ApparatusRow : RowBase
     public AutomationMode Automation { get; init; } = AutomationMode.Full;
     public bool Chaining { get; init; } = true;
     public PowerSpec? Power { get; init; }
+    public FuelSpec? Fuel { get; init; }
+    public HeatSpec? Heat { get; init; }
+
+    /// <summary>The item that places this apparatus, e.g. <c>(BC)CharlesDR.ValleyOpus_Athanor</c>.</summary>
+    public string? ItemId { get; init; }
     public string? FeedbackStyle { get; init; }
     public string? UnlockFlag { get; init; }
     public string? NameKey { get; init; }

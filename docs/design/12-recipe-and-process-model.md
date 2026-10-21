@@ -1,6 +1,6 @@
 # 12 · Recipe & Process Model
 
-Status: **DRAFT v0.4a** (2026-10-19) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
+Status: **DRAFT v0.5** (2026-10-19) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
 Depends on: 01, 03, 03a, 03b, 04, 07 · Feeds: 03/03a (data shape, apparatus column), 05, 06, 07, 09, 13, 14, 15, 17
 
 ## Purpose
@@ -138,7 +138,7 @@ Each key records the day and the discovering player for the shared-codex notice.
 - **Uninstall (S3):** recipes are data; machines keep only a recipe ID and a snapshot in `modData`, which is inert without the mod.
 
 ## Data shape
-All registries are **public Content Patcher assets** under `CharlesDR.ValleyOpus/…`, edited with `EditData`. Each carries a `FormatVersion`. IDs are namespaced (`{{ModId}}_Name`). Pack references that don't resolve disable the row with a SMAPI warning, never a crash.
+All registries are **public Content Patcher assets** under `CharlesDR.ValleyOpus/…`, edited with `EditData`. Each carries a `FormatVersion`. IDs are namespaced (`{{ModId}}_Name`). In our own base CP pack, `{{ModId}}` resolves to the content pack's ID (`CharlesDR.ValleyOpus.CP`), not the C# mod's, so base-pack rows write the `CharlesDR.ValleyOpus_` prefix literally; third-party packs use their own `{{ModId}}_` prefix. Pack references that don't resolve disable the row with a SMAPI warning, never a crash.
 
 | Asset | Kind | Key fields |
 |---|---|---|
@@ -184,6 +184,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Four-plus Table inputs need no model change. A Potion Craft–style brew map would add a new operation with its own resolver, plugged in beside this one.
 
 ## Change log
+- **v0.5 (2026-10-19):** B2 docs update: base-pack rows write the `CharlesDR.ValleyOpus_` prefix literally, since `{{ModId}}` there resolves to the content pack's ID.
 - **v0.4a (2026-10-19):** pre-gate cleanup sweep: R1 and §6 note that the stage names are internal; player-facing quality uses vanilla words and stars (doc 16 §2).
 - **v0.4 (2026-10-18), Charles's answers:** ValleyOpus items decompose at a loss; a re-roll replaces the discovered secret; Electrum and Rebis are a counterpart pair, and twin routes always share their output.
 - **v0.4 (2026-10-18):** cleanup sweep: settled open questions removed (doc 07 already adopted the "releases a locked output" wording); darkness outside a Lab added as an open question from doc 18; the Satchel-storage conflict tagged for doc 17; the Cooling Coil example replaced (doc 13 cut it).

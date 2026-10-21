@@ -1,68 +1,73 @@
 using HarmonyLib;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using ValleyOpus.Engine;
+using ValleyOpus.Diagnostics;
+using ValleyOpus.Effects;
 using ValleyOpus.Framework;
+using ValleyOpus.Machines;
+using ValleyOpus.Routes;
+using ValleyOpus.Satchel;
+using ValleyOpus.Skill;
 using ValleyOpus.Spikes;
+using ValleyOpus.State;
+using ValleyOpus.UI;
 
 namespace ValleyOpus;
 
 /// <summary>
-/// The SMAPI entry point. Test build alpha.1 (batch B1) holds the registry assets, the in-game validator and the
-/// spike commands; the adapter modules of doc 09 §3 arrive in batch B2.
+/// The SMAPI entry point. Test build alpha.2 (batch B2, "the bench and the line"): the adapter modules of doc 09 §3
+/// behind the engine, with the remaining spike commands (S3, S9, S15).
 /// </summary>
 public sealed class ModEntry : Mod
 {
-    private SmapiLog log = null!;
-    private GameContent content = null!;
-
     public override void Entry(IModHelper helper)
     {
-        this.log = new SmapiLog(this.Monitor);
-        this.content = new GameContent(helper, this.log);
+        var log = new SmapiLog(this.Monitor);
+        ModServices.Helper = helper;
+        ModServices.Monitor = this.Monitor;
+        ModServices.Manifest = this.ModManifest;
+        ModServices.Log = log;
+        ModServices.Config = helper.ReadConfig<ModConfig>();
+        log.Verbose = ModServices.Config.Verbose;
+
+        helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded; // first, so the registries load before the services read them
+
+        ModServices.Content = new GameContent(helper, log);
+        ModServices.Farm = new FarmState(helper, log);
+        ModServices.Skill = new AlchemySkill(log);
+        ModServices.Machines = new MachineService(log);
+        ModServices.Chains = new ChainService(helper, log);
+        ModServices.Satchel = new SatchelService(helper, log);
+        ModServices.Effects = new EffectService(log);
+        _ = new HudOverlay(helper);
+        _ = new Commands(helper, this.Monitor);
+        _ = new SpikeRunner(helper, this.Monitor, new ISpike[] { new BuildingSpike(), new PerfSpike(helper), new EffectsSpike() });
 
         var harmony = new Harmony(this.ModManifest.UniqueID);
-        MachineSpike.Patch(harmony, this.Monitor);
-        AutomateSpike.Patch(harmony, this.Monitor);
-        SkillSpike.Register();
+        MachineService.Patch(harmony, this.Monitor);
+        SatchelService.Patch(harmony);
+        EffectService.Patch(harmony);
+        ProfileTooltip.Patch(harmony);
 
-        _ = new SpikeRunner(helper, this.Monitor, new ISpike[]
-        {
-            new MachineSpike(), new AutomateSpike(helper), new BuildingSpike(), new HoldUpSpike(helper), new SortSpike(),
-            new SatchelSpike(), new WarpSpike(helper), new SkillSpike(helper), new CategorySpike(), new RobinMenuSpike(helper),
-        });
-
-        helper.ConsoleCommands.Add("valleyopus_validate", "Reads every ValleyOpus registry from the loaded content packs and prints the validator's report.", this.OnValidate);
-        helper.ConsoleCommands.Add("valleyopus_verbose", "Toggles verbose logging (every resolver decision at Debug level).", (_, _) =>
-        {
-            this.log.Verbose = !this.log.Verbose;
-            this.Monitor.Log($"Verbose logging {(this.log.Verbose ? "on" : "off")}.", LogLevel.Info);
-        });
+        AlchemySkill.Register();
+        Neighbours.RegisterQueries();
+        ModServices.Content.Reloaded += Neighbours.ClearCache;
 
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        this.Monitor.Log($"ValleyOpus {this.ModManifest.Version}: test build with spike commands. Type 'valleyopus_spike list'.", LogLevel.Info);
+        this.Monitor.Log($"ValleyOpus {this.ModManifest.Version}: test build. Type 'valleyopus_dev on' then 'valleyopus_dev kit' to start, or see TESTING.md.", LogLevel.Info);
         if (this.Helper.ModRegistry.IsLoaded("Pathoschild.Automate"))
-            this.Monitor.Log("Automate is installed: it runs ValleyOpus machines through its own handler (no integration code needed).", LogLevel.Trace);
-        SkillSpike.CreateIcons();
+            this.Monitor.Log("Automate is installed: it runs ValleyOpus apparatus through its own generic handler (D25).", LogLevel.Trace);
+        AlchemySkill.CreateIcons();
     }
 
-    private void OnValidate(string name, string[] args)
+    private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        if (!Context.IsWorldReady)
-        {
-            this.Monitor.Log("Load a save first, so every content pack's edits are applied.", LogLevel.Error);
-            return;
-        }
-
-        ContentPipeline pipeline = this.content.Load();
-        var r = pipeline.Registry;
-        this.Monitor.Log($"Registries: {r.Primes.Count} Primes, {r.Substances.Count} substances, {r.Recipes.Count} recipes, {r.Apparatus.Count} apparatus, {r.Conditions.Count} conditions.", LogLevel.Info);
-        foreach (var finding in pipeline.Findings)
-            this.Monitor.Log("  " + finding, LogLevel.Info);
-        this.Monitor.Log(pipeline.Findings.Count == 0 ? "No findings." : $"{pipeline.Findings.Count} finding(s).", LogLevel.Info);
+        var timer = System.Diagnostics.Stopwatch.StartNew();
+        _ = ModServices.Content.Load();
+        this.Monitor.Log($"Resolver ready in {timer.ElapsedMilliseconds} ms.", LogLevel.Info);
     }
 }

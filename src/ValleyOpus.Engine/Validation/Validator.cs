@@ -28,6 +28,8 @@ public static class Validator
         CheckUniqueness(registry, options);
         CheckTierOneGrid(registry);
         CheckSettings(registry);
+        CheckProducts(registry, options);
+        CheckSkillAndCodex(registry);
 
         return registry.Findings.Skip(before).ToList();
     }
@@ -251,6 +253,52 @@ public static class Validator
                 if (!pairs.Contains(ids[0] + "+" + ids[1]))
                     registry.Warn(RegistryNames.Recipes, ids[0] + "+" + ids[1], "missing Tier 1 cell: this pairing is an undefined combination");
             }
+    }
+
+    private static void CheckProducts(ContentRegistry registry, ValidationOptions options)
+    {
+        foreach (SubstanceRow substance in registry.Substances.All)
+            if (substance.Class == SubstanceClass.Item && substance.ItemId != null && options.Catalog.Get(Ids.QualifyItem(substance.ItemId)) is null
+                && (options.CatalogIsComplete || substance.ItemId.Contains(Ids.RowPrefix, StringComparison.OrdinalIgnoreCase)))
+                registry.Warn(RegistryNames.Substances, substance.Id, $"no authored Data/Objects row for '{substance.ItemId}' (doc 09 §4c)");
+
+        foreach (ProductRow product in registry.Products.All.ToList())
+        {
+            string? item = registry.ResolveItemId(product.Id);
+            if (item is null || (!registry.Substances.Contains(product.Id) && !KnownItem(options, item)))
+            {
+                registry.Disable(registry.Products, product.Id, "the key is neither a substance nor a known item");
+                continue;
+            }
+            string? effect = product.Uses.SelectMany(u => u.Effects).FirstOrDefault(e => !registry.Effects.Contains(e));
+            if (effect != null)
+            {
+                registry.Disable(registry.Products, product.Id, $"unknown effect '{effect}'");
+                continue;
+            }
+            if (product.Price.Mode == PriceMode.Fixed && product.Price.Value <= 0)
+                registry.Warn(RegistryNames.Products, product.Id, "fixed price of 0 or less");
+            if (product.Price.ReferenceRecipe is string reference && !registry.Recipes.Contains(reference))
+                registry.Warn(RegistryNames.Products, product.Id, $"reference recipe '{reference}' is unknown; the cheapest route is used");
+        }
+
+        foreach (EffectRow effect in registry.Effects.All.ToList())
+            if (effect.Kind == EffectKind.Custom && string.IsNullOrWhiteSpace(effect.Handler))
+                registry.Disable(registry.Effects, effect.Id, "custom effect with no Handler");
+    }
+
+    private static void CheckSkillAndCodex(ContentRegistry registry)
+    {
+        foreach (XpSourceRow row in registry.XpSources.All.ToList())
+            if (!XpEvents.All.Contains(row.Event))
+                registry.Disable(registry.XpSources, row.Id, $"unknown XP event '{row.Event}'");
+
+        foreach (MilestoneRow row in registry.Milestones.All.ToList())
+        {
+            string kind = row.Trigger.Split(':')[0];
+            if (kind is not ("FirstOfTier" or "TierComplete" or "RowComplete" or "Process"))
+                registry.Disable(registry.Milestones, row.Id, $"unknown trigger '{row.Trigger}'");
+        }
     }
 
     private static void CheckSettings(ContentRegistry registry)

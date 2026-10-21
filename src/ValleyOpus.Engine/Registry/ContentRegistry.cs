@@ -19,6 +19,12 @@ public sealed class ContentRegistry
     public RowSet<TagWeightRow> TagWeights { get; } = new(RegistryNames.TagWeights);
     public RowSet<CategoryDefaultRow> CategoryDefaults { get; } = new(RegistryNames.CategoryDefaults);
     public RowSet<DecompositionOverrideRow> Overrides { get; } = new(RegistryNames.Overrides);
+    public RowSet<ProductRow> Products { get; } = new(RegistryNames.Products);
+    public RowSet<EffectRow> Effects { get; } = new(RegistryNames.Effects);
+    public RowSet<XpSourceRow> XpSources { get; } = new(RegistryNames.XpSources);
+    public RowSet<CodexPageRow> CodexPages { get; } = new(RegistryNames.CodexPages);
+    public RowSet<LoreRow> Lore { get; } = new(RegistryNames.CodexLore);
+    public RowSet<MilestoneRow> Milestones { get; } = new(RegistryNames.Milestones);
     public DecompositionSettingsRow Settings { get; internal set; } = new() { Id = "Default" };
 
     /// <summary>Loader and validator findings so far.</summary>
@@ -40,6 +46,23 @@ public sealed class ContentRegistry
     /// <summary>The Prime whose item this is, if any.</summary>
     public PrimeRow? PrimeForItem(string qualifiedItemId)
         => this.Primes.All.FirstOrDefault(p => p.ItemId != null && Ids.QualifyItem(p.ItemId).Equals(qualifiedItemId, StringComparison.OrdinalIgnoreCase));
+
+    /// <summary>The substance whose item this is, if any.</summary>
+    public SubstanceRow? SubstanceForItem(string qualifiedItemId)
+        => this.Substances.All.FirstOrDefault(s => s.ItemId != null && Ids.QualifyItem(s.ItemId).Equals(qualifiedItemId, StringComparison.OrdinalIgnoreCase));
+
+    /// <summary>The apparatus placed by this item, if any.</summary>
+    public ApparatusRow? ApparatusForItem(string qualifiedItemId)
+        => this.Apparatus.All.FirstOrDefault(a => a.ItemId != null && a.ItemId.Equals(qualifiedItemId, StringComparison.OrdinalIgnoreCase));
+
+    /// <summary>The product row for an item: keyed by its substance ID or its qualified item ID.</summary>
+    public ProductRow? ProductForItem(string qualifiedItemId)
+    {
+        SubstanceRow? substance = this.SubstanceForItem(qualifiedItemId);
+        if (substance != null && this.Products.TryGet(substance.Id, out ProductRow row))
+            return row;
+        return this.Products.TryGet(qualifiedItemId, out ProductRow byItem) ? byItem : null;
+    }
 
     /// <summary>Apparatus rows of a kind.</summary>
     public IEnumerable<ApparatusRow> ApparatusOfKind(string kind) => this.Apparatus.All.Where(a => a.Kind == kind);

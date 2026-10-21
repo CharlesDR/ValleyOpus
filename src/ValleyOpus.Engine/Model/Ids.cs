@@ -12,6 +12,15 @@ public static class Ids
     /// <summary>Prefix of every registry asset, <c>modData</c> key and save-data key.</summary>
     public const string KeyPrefix = ModId + "/";
 
+    /// <summary>The recipe memory a machine holds when it is set to decompose (doc 13 §6a).</summary>
+    public const string DecomposeRecipe = RowPrefix + "Decompose";
+
+    /// <summary>Context tag on every reagent the Satchel auto-collects (doc 15).</summary>
+    public const string ReagentTag = "valleyopus_reagent";
+
+    /// <summary>Context tag on every product with an outside use (doc 15).</summary>
+    public const string ProductTag = "valleyopus_product";
+
     /// <summary>Qualifies an item ID the way the game does; an unqualified ID is assumed to be an object <c>(O)</c>.</summary>
     public static string QualifyItem(string id)
     {
@@ -35,11 +44,18 @@ public static class RegistryNames
     public const string CategoryDefaults = "Decomposition/CategoryDefaults";
     public const string Overrides = "Decomposition/Overrides";
     public const string Settings = "Decomposition/Settings";
+    public const string Products = "Products";
+    public const string Effects = "Effects";
+    public const string XpSources = "XpSources";
+    public const string CodexPages = "Codex/Pages";
+    public const string CodexLore = "Codex/Lore";
+    public const string Milestones = "Milestones";
 
     public static readonly IReadOnlyList<string> All = new[]
     {
         Primes, Substances, Recipes, Conditions, Operations, Apparatus, SecretPools,
-        TagWeights, CategoryDefaults, Overrides, Settings
+        TagWeights, CategoryDefaults, Overrides, Settings,
+        Products, Effects, XpSources, CodexPages, CodexLore, Milestones
     };
 
     /// <summary>The full asset name, e.g. <c>CharlesDR.ValleyOpus/Recipes</c>.</summary>

@@ -1,6 +1,6 @@
 # 18 · Laboratory & Familiars
 
-Status: **DRAFT v0.2** (2026-10-18) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
+Status: **DRAFT v0.3** (2026-10-19) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
 Depends on: 01, 02, 03a, 05, 06, 08a, 12, 13, 14, 15 · Feeds: 06, 09, 11, 16, 17, 20, 21
 
 ## Purpose
@@ -195,7 +195,7 @@ Because the bonding rite is hand-made only, an environmental Variant may decorat
 - **SVE and tie-in mods:** farm maps change, but buildings place normally. Tie-in packs may add Familiars only in 2.0 (the four are the 1.0 set; the data allows more, uniqueness is per Familiar).
 - **Automate:** a Lab is an ordinary location; Automate links chests and machines inside it as in a Shed. Bonuses are applied in the resolver at load (doc 13 §6), so automated loads get them too.
 - **Walk of Life:** no profession touches Labs or Familiars, so resets change nothing here.
-- **Uninstall (S3):** Labs disappear with their contents. "Prepare for removal" offers to empty every Lab into chests outside first (doc 09). Familiar state is mod save data and simply goes unused.
+- **Uninstall (S3; Charles, 2026-10-19, option C):** on every save the host strips Labs out of the farm into the mod's save data and restores them right after saving and on load (doc 17 §6), so removing the mod can never crash a save or leave an Error building. If the mod is reinstalled on a save played without it, the Lab stays gone, but everything that was inside it (machines, chests and their contents, items) is put into chests beside the farmhouse. "Prepare for removal" still offers to empty every Lab into chests outside first. Familiar state is mod save data and simply goes unused. This replaces S3's original fallback ("prepare for removal also removes emptied Labs").
 
 ## Data shape
 | Table | Kind | Fields |
@@ -235,6 +235,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 Where darkness holds outside a Lab is now a doc 12 open question.
 
 ## Change log
+- **v0.3 (2026-10-19):** B2 docs update: Labs are stripped into save data on every save and restored after; a reinstall after play without the mod returns the Lab's contents in chests (Charles, option C; doc 17 §6).
 - **Cleanup sweep (2026-10-18):** settled open questions removed; the darkness-outside-a-Lab item moved to doc 12's open questions.
 - **v0.2 (2026-10-18):** T1 costs more and needs Saxum (Charles); every tier 3 tiles wider for a central aisle, and the Undine also appears in snow (Charles). Floorplans redrawn so each tier fits full-width Tobin lines with aisles and walkways round them and the hearths reachable (§2d); Sylph signature is now a small daily charge chance in any weather; the Undine meets the player at the forest pond (Charles). A met but unbonded Familiar waits in the workshop under the CC (Charles). Charles also answered all four cards: built-in hearths and alcoves count as neighbours, condensation rule 2 is final, Lab tier and Familiar are Bonus only, and Familiars specialize by operation. Readiness: ready for architecture.
 - **v0.1 (2026-10-18):** first draft: three tiers with costs and bonuses, nested floorplans with hearths, alcoves, a dais and a colonnade, draft process layouts that test doc 13's rule 2, the space check on real floor areas, four Familiars specialized by operation, meeting, bonding by hand-made rite, release and bond hearts, data shape and tech hooks.

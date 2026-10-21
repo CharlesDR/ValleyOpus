@@ -30,6 +30,25 @@ public sealed class FarmEnvelope
     public JsonObject Familiars { get; set; } = new();
     public Dictionary<string, PlayerRecord> Players { get; set; } = new();
     public JsonObject SliceStats { get; set; } = new();
+
+    /// <summary>
+    /// Our buildings, stripped out of the farm on every save so a removed mod can't break the save (S3 fix, Charles
+    /// option C, doc 17 §6). Restored right after saving and on load.
+    /// </summary>
+    public List<StrippedBuilding> StrippedBuildings { get; set; } = new();
+
+    /// <summary>The day (DaysPlayed) the strip was written; a save loaded on a later day was played without the mod.</summary>
+    public int StrippedAtDay { get; set; }
+}
+
+/// <summary>One stripped building: where it stood and its vanilla XML, as the game serializes it.</summary>
+public sealed class StrippedBuilding
+{
+    public string Location { get; set; } = "Farm";
+    public string BuildingType { get; set; } = "";
+    public int TileX { get; set; }
+    public int TileY { get; set; }
+    public string Xml { get; set; } = "";
 }
 
 /// <summary>Per-player records kept by the host, keyed by the player's multiplayer ID (doc 17 data shape).</summary>
