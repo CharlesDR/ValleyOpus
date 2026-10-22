@@ -1,6 +1,6 @@
 # 10 · Roadmap & Open Questions
 
-Status: **DRAFT v0.10g** (2026-10-19). v0.10g: D25, Automate runs our machines through its generic handler. v0.10f: execution planning (doc 22); Charles decided D23 and D24. v0.10d: the architecture gate (doc 09 v1.0) adds two framework defaults for Charles and turns the gate checks into first-build spikes. v0.10c: pre-gate cleanup sweep (stale review states, quality terms, test deferral, the mine-drop item from the to-do list). v0.10b: Charles confirmed every remaining default (D4, D11–D14). v0.10: doc 17 settles Satchel storage (Charles chose one bag per player) and adds defaults D11–D14. v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
+Status: **DRAFT v0.10h** (2026-10-21). v0.10h: docs cleanup sweep (B1 and B2 results, Charles's sink-or-swim feedback, the tooltip question). v0.10g: D25, Automate runs our machines through its generic handler. v0.10f: execution planning (doc 22); Charles decided D23 and D24. v0.10d: the architecture gate (doc 09 v1.0) adds two framework defaults for Charles and turns the gate checks into first-build spikes. v0.10c: pre-gate cleanup sweep (stale review states, quality terms, test deferral, the mine-drop item from the to-do list). v0.10b: Charles confirmed every remaining default (D4, D11–D14). v0.10: doc 17 settles Satchel storage (Charles chose one bag per player) and adds defaults D11–D14. v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
 
 ## Version scope
 | | 1.0 | 2.0 |
@@ -22,7 +22,7 @@ Status: **DRAFT v0.10g** (2026-10-19). v0.10g: D25, Automate runs our machines t
 | Arcane logistics | ✗ | ✓ |
 | Tool and weapon forging (Orichalcum) | ✗ | ✓ |
 | Potion Craft-style **brew map** | ✗ | ✓ (needs more design before it's scoped) |
-| Commissioned art | before the 1.0 publish | |
+| Commissioned art | before the 1.0 publish: all of it, every item icon and the Element icons included; open-license art is placeholder only (Charles, 2026-10-21) | |
 
 **Release plan (Charles, doc 01):** what we call 1.0 is a **public beta**, released after a lot of polish. Success means technical polish, satisfying loops and a fun experience. After 1.0 the mod is maintained: game updates, bug fixes, new content and translations.
 
@@ -30,6 +30,7 @@ Status: **DRAFT v0.10g** (2026-10-19). v0.10g: D25, Automate runs our machines t
 1. ~~**Nexus popularity export**~~: done (2026-10-14). Charles supplied the top-80 list; the targets are in doc 09.
 2. ~~Full review of the design docs~~: done (2026-10-14, applied in v0.8).
 3. ~~Answer the questions from the v0.6 pass~~: done (below).
+4. **Rewrite the cutscene scripts** (Charles, 2026-10-20, after the sink-or-swim run: the draft dialogue is awkward). Doc 11's draft-scripts item.
 
 ## Answers to the v0.6 questions (Charles, 2026-10-13 21:47)
 All 18 answered and applied in v0.7.
@@ -56,7 +57,7 @@ All 18 answered and applied in v0.7.
 All Part 4 decisions (doc 00) and the earlier pending items were answered by 2026-10-13: cast names (the apprentice is Lark), the Reagent Satchel (doc 03b), the arcane automation model (doc 04), the ritual mini-game in 2.0, the Gloam Lantern collecting Shades (doc 04), and the defaults (mod ID, 36-cell grid, dark twins, perks-only-add, residue → Prima Materia).
 
 ## First playable slice (S1)
-Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel. Specced in doc 11 (v0.2, merged as PR #14): six apparatus, a five-quest starter chain, four test configurations (chaining-only first, SVE from the first build), unit tests, logging and a testing guide.
+Spring Y1 end to end: the intro cutscene, the first workshop room, decomposition, the Experiment Table, 4–6 apparatus (engineered and minor arcane), the codex and the Satchel. Specced in doc 11 (v0.2, merged as PR #14): six apparatus, a five-quest starter chain, four test configurations (chaining-only first, SVE from the first build), unit tests, logging and a testing guide. Built in three batches (doc 22): B1 merged as PR #21 and B2 as PR #22; B3, the workshop, waits for Charles's yes. Sink-or-swim trial builds of the full 1.0 run beside them (doc 22 §3a).
 
 ## Open questions
 The one list of everything still open, across all docs (collected in the 2026-10-18 cleanup sweep). Each doc's own Open questions section keeps its items with a tag and owner; when an item is settled, it is written into its owning doc and removed from both lists.
@@ -77,11 +78,11 @@ Every default once listed here is confirmed and written into its owning doc. **C
 
 ### Design questions still open
 - `[blocks-content]` **Where darkness holds outside a Lab** (night outdoors, caves, unlit rooms), since darkness is Required for every putrefaction recipe. *Owner: doc 12.*
-- `[blocks-content]` **Inventory sort keys:** verify what vanilla Organize and the common sort mods key on before tags, categories and IDs are assigned (doc 03b rule 5); now spike S11 of the first build (doc 09 §11, §14). *Owner: the first build.*
+- `[blocks-content]` **Elements in item tooltips** (Charles, 2026-10-20; doc 16 §11): the tooltip shows an item's Elements "discovered so far" plus a "?". Does that mean every Element the farm has discovered (as build sos.2 does) or only those this item has given, and what does assaying add? *Owner: Charles.*
 - `[blocks-content]` **Effect count:** the 2–3 cap stays suspended; doc 15 §3a's catalogue is the 1.0 list for now. *Owner: Charles (doc 15).*
 
 ### Gate checks from the Phase 4 docs (16 UX, 17 Multiplayer, Saves & Compat)
-- **Doc 16:** merged (PR #17). Charles confirmed its defaults D15–D19 and decided no late-install fast start (2026-10-18); only art and sound remain (doc 21). Its gate checks (the vanilla hold-up pausing the clock, controller snapping in the codex's triangular grid, the smallest split-screen viewport, the bundle menu, overlay frame time in a full T3 Lab) are now first-build spikes S5–S9 with fallbacks (doc 09 §14), since the gate can't run the game; the bundle menu is D20.
+- **Doc 16:** merged (PR #17). Charles confirmed its defaults D15–D19 and decided no late-install fast start (2026-10-18); only art and sound remain (doc 21). Its gate checks became spikes S5–S9 (doc 09 §14): the hold-up pausing the clock passed in B1 (S5); codex snapping and the smallest split-screen viewport (S6, S7) wait with the deferred controller and split-screen runs; the bundle menu is D20 (S8); overlay frame time (S9) is measured with 50 apparatus in `alpha.2` and in a full T3 Lab later.
 - **Doc 17:** merged (PR #16). Satchel storage (D10) and its other defaults (D11–D14) are confirmed; its test items are carried into each build's test plan (doc 17 §8c). New touchpoints (Familiar meeting places, ley-node sites, hidden-area entrances, Hesper's spot) join its register when chosen.
 
 ### Content pass (rows, docs 19 and 20)
@@ -99,6 +100,7 @@ Every default once listed here is confirmed and written into its owning doc. **C
 - The 150% late-game cap is to be revisited later (Charles, doc 06); condition stacking (docs 02, 06).
 - Every Lab, Familiar, perk and price number (docs 05, 15, 18).
 - Lab T1's 25,000g in late Spring Y1 is tight; the slice report measures it (doc 11 §1a).
+- Decomposition speed: placeholder times Athanor 30 minutes, Calcinator 10 (Charles wants decomposing quick, 2026-10-20); whether the Calcinator should also arrive earlier (doc 13).
 - Aether yield by source rarity: a trace from Solar and Void Essence, the bulk from Prismatic Shards and legendary fish (placeholder 1 : 15–20 per item; doc 11, for docs 03 and 14 §7).
 
 ### Deferred design passes (agreed to come later)
@@ -106,18 +108,21 @@ Every default once listed here is confirmed and written into its owning doc. **C
 - Capstones, once progression is coherent (doc 19).
 - Skill display name (working name: Alchemy).
 - Lark's family (Jodi's or Pam's) and Hesper's outdoor spot.
+- A more interesting workshop floor plan; one big rectangle for now (Charles, 2026-10-20; doc 14 §2).
+- Finch's wagon spot, open with and without SVE (doc 17 §7a).
 - Mine-drop restraint may relax if the Sympathetic Band and Lodestone Cairn (ideas backlog) are approved for mid-game (docs 01, 03b rule 1).
 
 ### 2.0
 Collected in the version-scope table above and tagged `[2.0]` in each doc: arcane logistics, forging, the brew map, the ritual mini-game, prestige perks, Lookup Anything recipe rules, flower-fed trickles, tie-in Familiars and more Lab specializations, custom-effect bombs.
 
 ## Upcoming tasks
-- Execution: the three batches to build 1 in [doc 22](22-execution-plan.md), each released by Charles's yes. The verification tasks below are desk checks in batch 1 (doc 22 §4).
+- Execution: the three batches to build 1 in [doc 22](22-execution-plan.md), each released by Charles's yes. B1 and B2 are merged; B3 is next.
 - Balance sweep tooling (doc 06), including the item census (doc 03b).
 - Lore check: read the vanilla and SVE wiki entries for every villager with a planned alchemy angle (doc 08), and the Alecto the Witch, Ridgeside Village and East Scarp pages for tie-in spots and map edits to avoid.
-- Verify the CC-opening event ID, the Quarry bridge and bus repair flags (both CC and Joja routes), and the SVE Town map behind the CC.
+- Verify the CC-opening event ID and the Quarry bridge and bus repair flags (both CC and Joja routes). The Town warp behind the CC is settled (spike S13: Town 53,9, vanilla and SVE).
 
 ## Change log
+- **v0.10h (2026-10-21):** docs cleanup sweep: the sort-key question is closed (spike S11: the internal `Name`, doc 03b rule 5); the tooltip question added for Charles; doc 16's gate checks show their B1 results; B1 and B2 shown as merged and the sink-or-swim trials noted; Charles's 2026-10-20 feedback filed (decomposition speed in the balance pass, the workshop floor plan and Finch's spot deferred, his script rewrite as an action item); all art is commissioned (2026-10-21).
 - **v0.10g (2026-10-19):** D25 (spike S2): Charles chose option B, Automate's generic handler runs our machines.
 - **v0.10f (2026-10-19):** doc 22 (Execution Plan): D23 (compile on Charles's PC by Remote Control) and D24 (three batches) decided by Charles; upcoming tasks point to its batches.
 - **v0.10e (2026-10-19):** Charles's vanilla-first rule (doc 09 §1a); D22 settled: Familiars keep their own bond points.

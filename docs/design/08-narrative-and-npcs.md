@@ -1,6 +1,6 @@
 # 08 · Narrative & NPCs
 
-Status: **DRAFT v0.6** (2026-10-13). v0.6: Charles's answers: Evelyn is a secret alchemist, Andy is the skeptic, and the slapstick, dark-past and Witch defaults are confirmed. v0.5: tone, the plants-only ban and who enforces it, alchemy's public reputation, full vanilla and SVE villager integration, careful lore additions, the ending as the 1.0 finished state, and 1.0 tie-ins with Alecto the Witch, Ridgeside Village and East Scarp (Charles's guiding answers, doc 01). v0.4: Gloam Lanterns for the Witch, and the Lore & Worldbuilding pillar (doc 01). Cast details: [08a-cast.md](08a-cast.md).
+Status: **DRAFT v0.6a** (2026-10-21). v0.6a: docs cleanup sweep: the workshop is one screen and the Curator's name is revealed in a cutscene, never a letter (Charles, 2026-10-20; doc 14). v0.6: Charles's answers: Evelyn is a secret alchemist, Andy is the skeptic, and the slapstick, dark-past and Witch defaults are confirmed. v0.5: tone, the plants-only ban and who enforces it, alchemy's public reputation, full vanilla and SVE villager integration, careful lore additions, the ending as the 1.0 finished state, and 1.0 tie-ins with Alecto the Witch, Ridgeside Village and East Scarp (Charles's guiding answers, doc 01). v0.4: Gloam Lanterns for the Witch, and the Lore & Worldbuilding pillar (doc 01). Cast details: [08a-cast.md](08a-cast.md).
 
 ## Tone (Charles, doc 01)
 - **Dark in a "rated PG" way**, close to vanilla Stardew's own tone, which already has ghosts, zombies and skeletons. Dark alchemy should feel **spooky and ominous, never grotesque**: ghosts, skeletons, shadows and eerie lights are fine; **blood and gore are not**.
@@ -22,7 +22,7 @@ Letters from key NPCs · new NPCs · the **derelict workshop** restored through 
 
 ## The derelict workshop (approved)
 - **Where:** a **basement under the Community Center**, entered by walking **behind the CC building** (a new warp on the Town map).
-- **What it is:** the mod's **unlock and bundle hub and research centre**. Key NPCs (Oriel, Tobin, the Curator, Hesper on visiting days) spend part of their time here. Restoring rooms through bundles unlocks apparatus blueprints, recipes and story.
+- **What it is:** the mod's **unlock and bundle hub and research centre**, one map that fits on one screen, with each room an area of it (Charles, 2026-10-20; doc 14 §2). Key NPCs (Oriel, Tobin, the Curator, Hesper on visiting days) spend part of their time here. Restoring rooms through bundles unlocks apparatus blueprints, recipes and story.
 - **What it isn't:** the player's production space. Players build and run apparatus on their farm and in Laboratories (doc 02). The workshop is where they come to **unlock** things.
 - **Joja route:** if the player sides with Joja, the CC becomes a warehouse, but the basement workshop is unaffected and stays reachable from behind the building. Dr. Sorenson's Joja storyline gains extra weight on that route. Bundles here are separate from CC bundles, so both routes work.
 
@@ -31,7 +31,7 @@ Letters from key NPCs · new NPCs · the **derelict workshop** restored through 
 2. **Restoration (Spring–Summer):** Tobin arrives and starts on the machinery alongside the mysterious **Curator**. Their early clashes over progress vs. tradition play out in events. Each restored room unlocks apparatus and the Laboratory blueprint at Robin's.
 3. **Two Ways of Working (Summer–Fall):** Oriel's grand rituals and Tobin's engineered lines give voice to the core design axis. Neither is wrong; each has a ceiling the other doesn't.
 4. **Bright and Dark (Fall):** the **Wizard** teaches the bright celestial substances (Sol, Luna, Vitae, Spiritus); the **Witch** teaches putrefaction and the dark twins (Tenebrae, Mors, Perditio). The player chooses whom to visit first; both are reachable.
-5. **The Curator Revealed (late Y1):** Tobin learns the Curator is **Cyprian**, the founder he idolized but misunderstood. Mutual respect follows.
+5. **The Curator Revealed (late Y1):** Tobin learns the Curator is **Cyprian**, the founder he idolized but misunderstood. Mutual respect follows. The reveal is always a cutscene, never a letter (Charles, 2026-10-20).
 6. **The Great Work (Winter Y1 → Year 2 at a diligent pace):** Cyprian's unfinished Opus, the capstones (doc 02), and Dr. Sorenson's Joja questline in parallel.
 7. **The Ending (the 1.0 finished state):** completing the Great Work concludes the story: Cyprian can finally rest (the anti-Flamel payoff from the lore research), the cast's arcs resolve, the player earns the capstone items, and the valley changes visibly (doc 02). Post-ending, 1.0 keeps heart events, codex depth and rare recipes; an endless long tail is 2.0.
 

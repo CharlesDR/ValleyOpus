@@ -1,6 +1,6 @@
 # 09 · Technical Architecture
 
-Status: **DRAFT v1.1** (2026-10-19) · Readiness: architecture plan, awaiting Charles's review (every gate decision is made; no `[blocks-arch]` item is open)
+Status: **DRAFT v1.1a** (2026-10-21) · Readiness: the architecture plan, approved (v1.0 merged as PR #19, v1.1 with B2 as PR #22; every gate decision is made, no `[blocks-arch]` item is open)
 Depends on: 00, 01, 03, 03a, 03b, 04, 05, 07, 11, 12, 13, 14, 15, 16, 17, 18 · Feeds: execution planning, every build, 19, 20, 21
 
 ## Purpose
@@ -66,7 +66,7 @@ Three rules hold everywhere:
 | Satchel storage | 1.6 global inventories | vanilla |
 | Labs | `Data/Buildings` | vanilla |
 | Config | GMCM | optional framework |
-| Workshop bundle board | our own (D20) | own: vanilla bundles can't add rooms, and the board needs sealed doors, silhouettes and divination; Unlockable Bundles is the alternative (§10) |
+| Workshop bundle board | our own (D20) | own: vanilla bundles can't add rooms, and the board needs Element silhouettes and divination; it looks like vanilla's bundle menu (doc 16 §10); Unlockable Bundles is the alternative (§10) |
 | Codex, hints, discovery | our own | own: no base-game equivalent |
 | Recipe resolver, adjacency, chaining, rituals, ley nodes, Shades | our own | own: these are the mod's new mechanics |
 
@@ -189,7 +189,7 @@ Directional chaining is its 1.0 implementation: output East first, then the Sout
 
 **e. Farm state.** Codex, unlocks, bundle progress, Familiars and per-player records live in one host-owned envelope (doc 17 §5). Each is a service with a local mirror: the host writes and broadcasts; farmhands send requests and read their mirror, so no menu waits on the network. Unlock state is mirrored into mail flags and crafting recipes for every player on connect and at day start (doc 14). Bundle deposits wait for the host's confirmation (doc 17 §3b).
 
-**f. Perks, effects and XP.** The perk service is called by the resolver for speed, quality, fuel, batch and catalyst chances, and by ritual triggers. It reads the loader's perks for hand loads and the owner's for chain and Automate loads, from saved farmer data even when the owner is offline (doc 17 §2e). Effects are a registry of handlers keyed by ID with a small public C# API, so new effects are a data row plus a handler (P2). XP goes through SpaceCore; one-time keys sit in the envelope.
+**f. Perks, effects and XP.** The perk service is called by the resolver for speed, quality, fuel, batch and catalyst chances, and by ritual triggers. It reads the loader's perks for hand loads and the owner's for chain and Automate loads, from saved farmer data even when the owner is offline (doc 17 §2e). Effects are a registry of handlers keyed by ID with a small public C# API, so new effects are a data row plus a handler (P2). XP goes through SpaceCore; one-time keys sit in each farmer's `modData` (§6).
 
 **g. Rituals and arrangements.** Altars are resolver apparatus with `Trigger: Hand`. The trigger checks Required conditions on a fresh snapshot, says why it can't run if it can't, and otherwise plays the batch animation. The Circle Sigil check reads the rug under the altar and the catalyst tiles of its `Arrangements` row; a matched arrangement changes the centre's apparatus kind for that run only.
 
@@ -245,7 +245,7 @@ Every optional integration is looked up once at launch, version-checked, and iso
 ### 10 · Framework choices made at the gate
 | Choice | Default or decision | Alternative | Why the default |
 |---|---|---|---|
-| **Bundle menu** (doc 14, doc 16 §10) | **our own bundle board** (chosen by Charles, 2026-10-19, D20) | Unlockable Bundles | the board needs sealed doors, Element silhouettes with hints, the divination panel and host-confirmed deposits, and bundle progress belongs in our envelope with the rest of farm state. UB would save the slot UI but bring its own state, sync and layout, plus a dependency. |
+| **Bundle menu** (doc 14, doc 16 §10) | **our own bundle board** (chosen by Charles, 2026-10-19, D20) | Unlockable Bundles | the board needs Element silhouettes with hints, the divination panel and host-confirmed deposits, and bundle progress belongs in our envelope with the rest of farm state. UB would save the slot UI but bring its own state, sync and layout, plus a dependency. |
 | **Familiar sprites** (doc 18) | **our own light renderer** (chosen by Charles, 2026-10-19, D21): a non-colliding sprite that wanders between favoured machines in its Lab or the workshop | Custom Companions | four sprites in known rooms is little code; greeting, gifts and bonding are our own handlers in either case, so the framework would add a dependency for the drawing alone. |
 | Ring effects (doc 15) | our own equip and unequip hooks (§13) | a ring framework | only a couple of rings in 1.0 |
 | Extra Machine Configs | not used | — | the resolver covers every case doc 13 lists |
@@ -282,7 +282,7 @@ Doc 11 §6 and doc 17 §8 own the test plan; this is where the pieces live.
 - We ship a short content-pack guide and an example pack, which is the test fixture pack minus its deliberate errors.
 
 ### 14 · Risk register and spikes
-The gate can't run the game, so every platform question below becomes a spike in the first build, run before the code that depends on it. Each has a fallback, so no answer forces a redesign. Items doc 10 asked to "verify at the gate" are S5–S9.
+The gate can't run the game, so every platform question below becomes a spike in the first build, run before the code that depends on it. Each has a fallback, so no answer forces a redesign. Items doc 10 asked to "verify at the gate" are S5–S9. Results live in `TESTING.md`'s spike table; in B1 (`alpha.1`) S1, S2, S5, S12 (solo), S14, S17 and S19 passed, and S3, S11, S13 and S16 went as their rows say.
 
 | # | Risk or question | Raised by | Fallback if the spike fails |
 |---|---|---|---|
@@ -365,6 +365,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Arcane logistics as a second `IItemRoute`; content-pack professions; Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
+- **v1.1a (2026-10-21):** docs cleanup sweep: marked approved (PRs #19 and #22 merged); one-time XP keys in §5f follow §6; the board's rationale drops sealed doors (Charles's vanilla-style board, doc 16 §10); §14 summarizes the B1 spike results.
 - **v1.1 (2026-10-19):** B2 docs update: B1 spike results (S3 replaced by stripping Labs on every save, S11 sort keys in internal `Name`, S13 warp at Town 53,9, S16 Blacksmith patch 9, Charles's option A); `{{ModId}}` in the base pack; trays, Satchels and locked outputs as global inventories; XP keys in the farmer's `modData`.
 - **v1.0a (2026-10-19):** Charles chose option B for spike S2 (D25): Automate's generic handler runs our machines; the Automate factory is dropped; Harmony patches 7 and 8 added; §5a, §5d, §9 and the S2 row follow.
 - **v1.0a (2026-10-19):** Charles's vanilla-first rule (§1a) with an audit of every area; Sorenson's contracts become vanilla special orders; machine timing keeps vanilla `ReadyTimeModifiers` (spike S19); D22: Charles kept Familiars on their own bond points.
