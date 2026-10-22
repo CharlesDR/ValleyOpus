@@ -25,6 +25,11 @@ internal sealed class TableMenu : IClickableMenu
     private const int SatchelBaseId = 2000;
     private const int Pad = 32;
 
+    // The anticipation beat (doc 07, doc 16 §3): the attempt is made at once, but its outcome waits behind a short
+    // simmer over the slots, then shows with a glow for a success or a comic puff for an undefined mix.
+    private const int SimmerTicks = 66;
+    private const int RevealTicks = 48;
+
     private readonly SObject table;
     private readonly List<(Item Item, IInventory From)> picked = new();
     private readonly List<ClickableComponent> slots = new();
@@ -37,6 +42,13 @@ internal sealed class TableMenu : IClickableMenu
     private int satchelLabelTop;
     private string? outcome;
     private Item? hovered;
+    private readonly List<Item> simmering = new();
+    private int simmerStart = -1;
+    private int revealStart = -1;
+    private string? pendingOutcome;
+    private string revealSound = "newArtifact";
+    private bool revealSuccess;
+    private Item? outcomeIcon;
 
     private TableMenu(SObject table)
     {
@@ -136,6 +148,8 @@ internal sealed class TableMenu : IClickableMenu
             base.receiveLeftClick(x, y, playSound);
             return;
         }
+        if (this.Simmering)
+            return;
 
         for (int i = 0; i < this.slots.Count; i++)
         {
@@ -181,7 +195,7 @@ internal sealed class TableMenu : IClickableMenu
 
     public override void receiveGamePadButton(Buttons b)
     {
-        if (b == Buttons.Y)
+        if (b == Buttons.Y && !this.Simmering)
             this.Try();
         else
             base.receiveGamePadButton(b);
@@ -222,10 +236,13 @@ internal sealed class TableMenu : IClickableMenu
         }
         this.picked.Add((item, from));
         this.outcome = null;
+        this.outcomeIcon = null;
         Game1.playSound("smallSelect");
         if (Game1.options.SnappyMenus && this.picked.Count >= this.capacity)
             MenuKit.Snap(this, TryId);
     }
+
+    private bool Simmering => this.simmerStart >= 0;
 
     private void Try()
     {
@@ -235,13 +252,15 @@ internal sealed class TableMenu : IClickableMenu
             return;
         }
         var inputs = this.picked.ToList();
+        List<Item> shown = inputs.Select(i => i.Item.getOne()).ToList();
+        this.outcomeIcon = null;
         try
         {
             TableOutcome result = ModServices.Machines.AttemptTable(this.table, inputs, Game1.player);
             // Blocked and too-many attempts use nothing, so the picks stay for another try (doc 16 §3).
             if (result.Kind is not (TableOutcomeKind.Blocked or TableOutcomeKind.TooManyInputs))
                 this.picked.Clear();
-            this.outcome = result.Kind switch
+            string? text = result.Kind switch
             {
                 TableOutcomeKind.Success => ModServices.T("ui.table.success", new { name = ModServices.Content.NameOf(result.Recipe!.Row.Output.Id) }),
                 TableOutcomeKind.Blocked => ModServices.T("table.blocked"),
@@ -249,6 +268,13 @@ internal sealed class TableMenu : IClickableMenu
                 TableOutcomeKind.TooManyInputs => ModServices.T("ui.table.too-many"),
                 _ => null,
             };
+            if (result.Kind is TableOutcomeKind.Success or TableOutcomeKind.Undefined)
+                this.StartSimmer(result, shown, text);
+            else
+            {
+                this.outcome = text;
+                Game1.playSound("cancel");
+            }
         }
         catch (Exception ex)
         {
@@ -256,6 +282,41 @@ internal sealed class TableMenu : IClickableMenu
             this.picked.Clear();
             this.outcome = ModServices.T("ui.error");
         }
+    }
+
+    private void StartSimmer(TableOutcome result, List<Item> shown, string? text)
+    {
+        this.revealSuccess = result.Kind == TableOutcomeKind.Success;
+        string? iconId = this.revealSuccess
+            ? ModServices.Content.Registry.ResolveItemId(result.Recipe!.Row.Output.Id)
+            : ModServices.Content.Registry.Settings.ResidueItem;
+        Item? icon = iconId != null && ItemRegistry.GetData(iconId) != null ? ItemRegistry.Create(iconId) : null;
+        // A Power or Process state has no item: it reveals with a puff of steam instead (doc 16 §3).
+        this.revealSound = !this.revealSuccess ? "dirtyHit" : icon != null ? "newArtifact" : "steam";
+        this.pendingOutcome = text;
+        this.outcome = null;
+        this.simmering.Clear();
+        this.simmering.AddRange(shown);
+        this.outcomeIcon = icon;
+        this.simmerStart = Game1.ticks;
+        this.revealStart = -1;
+        Game1.playSound("bubbles");
+    }
+
+    public override void update(GameTime time)
+    {
+        base.update(time);
+        if (this.Simmering && Game1.ticks - this.simmerStart >= SimmerTicks)
+        {
+            this.simmerStart = -1;
+            this.revealStart = Game1.ticks;
+            this.simmering.Clear();
+            this.outcome = this.pendingOutcome;
+            this.pendingOutcome = null;
+            Game1.playSound(this.revealSound);
+        }
+        else if (this.revealStart >= 0 && Game1.ticks - this.revealStart >= RevealTicks)
+            this.revealStart = -1;
     }
 
     /// <summary>Whether an item is an Element: a Prime, a substance or anything made from them (doc 03a).</summary>
@@ -277,22 +338,57 @@ internal sealed class TableMenu : IClickableMenu
         int innerWidth = this.width - Pad * 2;
         MenuKit.DrawText(b, ModServices.T("ui.table.title"), left, this.yPositionOnScreen + Pad, font: Game1.dialogueFont);
 
+        int simmerAge = this.Simmering ? Game1.ticks - this.simmerStart : 0;
         for (int i = 0; i < this.slots.Count; i++)
         {
             Rectangle r = this.slots[i].bounds;
             MenuKit.DrawSlot(b, r);
-            if (i < this.picked.Count)
+            if (this.Simmering && i < this.simmering.Count)
+            {
+                // The inputs tremble and warm as the mix simmers, faster towards the reveal.
+                float shake = (float)Math.Sin((simmerAge + i * 7) * (0.35 + simmerAge / 120.0)) * (1.5f + simmerAge / 22f);
+                Color warm = Color.Lerp(Color.White, Color.Gold, simmerAge / (float)SimmerTicks * 0.6f);
+                this.simmering[i].drawInMenu(b, new Vector2(r.X + shake, r.Y - Math.Abs(shake) / 2), 1f, 1f, 0.9f, StackDrawType.Hide, warm, false);
+                MenuKit.DrawEffect(b, 11, (simmerAge / 6 + i * 3) % 8, new Vector2(r.Center.X + (i % 2 == 0 ? -14 : 14), r.Y + 8 - simmerAge % 24), 0.6f, Color.White * 0.8f);
+            }
+            else if (i < this.picked.Count)
                 this.picked[i].Item.drawInMenu(b, new Vector2(r.X, r.Y), 1f, 1f, 0.9f, StackDrawType.Hide);
             if (i < this.slots.Count - 1)
                 MenuKit.DrawText(b, "+", r.Right + 16, r.Y + 16, font: Game1.dialogueFont);
         }
-        MenuKit.DrawButton(b, this.tryButton, ModServices.T("ui.table.try"), this.picked.Count > 0);
+        MenuKit.DrawButton(b, this.tryButton, ModServices.T("ui.table.try"), this.picked.Count > 0 && !this.Simmering);
+        if (this.revealStart >= 0 && this.slots.Count > 0)
+        {
+            int age = Game1.ticks - this.revealStart;
+            Vector2 middle = new((this.slots[0].bounds.Left + this.slots[^1].bounds.Right) / 2f, this.slots[0].bounds.Center.Y);
+            if (this.revealSuccess)
+                MenuKit.DrawEffect(b, 10, age / 6, middle, 2f, Color.LightGoldenrodYellow);
+            else
+            {
+                // The comic puff: a fat grey cloud that bursts over the slots.
+                MenuKit.DrawEffect(b, 5, age / 6, middle, 2.5f, Color.LightGray);
+                MenuKit.DrawEffect(b, 5, age / 6 + 1, middle + new Vector2(-48, 8), 1.5f, Color.Gray);
+                MenuKit.DrawEffect(b, 5, age / 6 + 1, middle + new Vector2(48, 8), 1.5f, Color.Gray);
+            }
+        }
 
         int lineY = this.outcomeTop;
         if (this.AlreadyTried)
             lineY += MenuKit.DrawWrapped(b, ModServices.T("table.already-tried"), left, lineY, innerWidth, Color.DarkRed);
         if (this.outcome != null)
-            MenuKit.DrawWrapped(b, this.outcome, left, lineY, innerWidth);
+        {
+            int textLeft = left;
+            if (this.outcomeIcon != null)
+            {
+                // The result rises into the outcome line as it is revealed.
+                float rise = this.revealStart >= 0 ? Math.Max(0, 1f - (Game1.ticks - this.revealStart) / 24f) * 40f : 0f;
+                this.outcomeIcon.drawInMenu(b, new Vector2(left, lineY - 12 + rise), 0.85f, 1f, 0.9f, StackDrawType.Hide);
+                textLeft += 64;
+            }
+            MenuKit.DrawWrapped(b, this.outcome, textLeft, lineY + 8, innerWidth - (textLeft - left));
+        }
+        else if (this.Simmering)
+            MenuKit.DrawWrapped(b, ModServices.T("ui.table.simmering"), left, lineY, innerWidth, Color.DimGray);
         else if (this.picked.Count == 0 && !this.AlreadyTried)
             MenuKit.DrawWrapped(b, ModServices.T("ui.table.hint"), left, lineY, innerWidth, Color.DimGray);
 

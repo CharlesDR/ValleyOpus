@@ -7,10 +7,12 @@ Content/Maps at runtime, so no vanilla texture is copied into the pack (art lice
 import os
 from collections import OrderedDict
 
+import workshop_dressing as D
 import world_data as W
 
 P = W.P
-TOWN_ENTRANCE = (53, 9)   # behind the Community Center (S13; Charles: never the front door)
+TOWN_ENTRANCE = (53, 9)   # behind the Community Center (S13; Charles: never the front door): where the player stands
+TOWN_DOOR = (53, 8)       # the cave mouth in the cliff just above it, which holds the Enter action
 TOWN_RETURN = (53, 10)
 
 # Tile indices, read from the vanilla Shed map: u = townInterior, w = walls_and_floors.
@@ -18,7 +20,6 @@ BORDER = {"tl": 9, "top": 2, "tr": 11, "left": 64, "right": 68, "bl": 160, "br":
           "bottom": 165, "bottom_l": 161, "bottom_r": 166, "door_l": 162, "door_r": 163,
           "sill": 0, "sill_door_l": 96, "sill_door": 165, "sill_door_r": 130}
 BOARD = [241, 242, 273, 274]            # a framed chart, 2x2: the bundle board
-SHELF = [577, 578, 609, 610, 641, 642]  # a bookshelf, 2x3
 HEARTH = [666, 667, 698, 699, 730, 731]  # a brick chimney breast, 2x3
 
 
@@ -35,11 +36,13 @@ def floor_tiles(style):
 class TileMap:
     """A small Stardew map in Tiled's TMX format: Back, Buildings, Front and AlwaysFront, plus tile properties."""
 
-    SHEETS = [("untitled tile sheet", "townInterior", 512, 1088), ("walls_and_floors", "walls_and_floors", 256, 688)]
+    SHEETS = [("untitled tile sheet", "townInterior", 512, 1088), ("walls_and_floors", "walls_and_floors", 256, 688),
+              ("townInterior_2", "townInterior_2", 512, 656)]
 
     def __init__(self, w, h):
         self.w, self.h = w, h
-        self.layers = OrderedDict((name, [[None] * w for _ in range(h)]) for name in ["Back", "Buildings", "Front", "AlwaysFront"])
+        # Front2 draws over Front (the game sorts layers by their number), for props that stack two things on one tile.
+        self.layers = OrderedDict((name, [[None] * w for _ in range(h)]) for name in ["Back", "Buildings", "Front", "Front2", "AlwaysFront"])
         self.tile_props = OrderedDict((name, {}) for name in self.layers)
         self.props = OrderedDict()
 
@@ -99,7 +102,16 @@ def xml(v):
     return str(v).replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-U, WF = "untitled tile sheet", "walls_and_floors"
+U, WF, U2 = "untitled tile sheet", "walls_and_floors", "townInterior_2"
+
+
+def place(m, name, x, y):
+    """Lays a prop from workshop_dressing at (x, y), its top-left tile."""
+    for layer, rows in D.PROPS[name].items():
+        for dy, row in enumerate(rows):
+            for dx, t in enumerate(row):
+                if t is not None:
+                    m.set(layer, x + dx, y + dy, *((U2, t - D.U2) if t >= D.U2 else (U, t)))
 
 
 def room_shell(w, h, wall_style, floor_style, door_x):
@@ -159,41 +171,41 @@ def stamp(m, layer_bottom, x, y, tiles, cols=2):
             m.set(layer, x + c, y + r, U, tiles[r * cols + c])
 
 
-ENTRANCE_ART = "tiny-dungeon/kenney_tinydungeon/Tilemap/tilemap_packed.png"  # Kenney Tiny Dungeon (CC0)
-ENTRANCE_TILE = 45  # a wooden door in a stone frame
+# The workshop door behind the CC is a timbered mouth cut into the cliff, three tiles wide, laid out like the mine
+# entrance on the Mountain map with tile indices into the Town's own landscape sheet. The sheet keeps the Town's
+# tilesheet id and image, so SMAPI reuses the Town's sheet: it follows the seasons and any recolour mod, and nothing
+# vanilla is shipped. The cliff face behind the CC (rows 6-8) is the same in vanilla and SVE.
+ENTRANCE_ORIGIN = (TOWN_DOOR[0] - 1, TOWN_DOOR[1] - 2)
+ENTRANCE_TILES = {
+    # Under the frame posts the Back keeps what the Town has there (the same in vanilla and SVE): shaded grass at the foot.
+    "Back": [[352, 217, 175], [1094, 509, 326], [1094, 534, 1094]],
+    # The mouth's floor tile is repeated on Buildings at the bottom so it can hold the Enter action.
+    "Buildings": [[483, None, 485], [508, None, 510], [533, 534, 535]],
+    "Front": [[483, 484, 485], [None, None, None], [None, None, None]],
+}
 
 
-def entrance_map(pack, art_root):
-    """A 1x1 map holding the workshop door on Buildings, with its own tilesheet (z_ sorts after the Town's sheets)."""
-    from PIL import Image
-    sheet = Image.open(os.path.join(art_root, ENTRANCE_ART)).convert("RGBA")
-    x, y = (ENTRANCE_TILE % 12) * 16, (ENTRANCE_TILE // 12) * 16
-    out_dir = os.path.join(pack, "assets", "maps")
-    sheet.crop((x, y, x + 16, y + 16)).save(os.path.join(out_dir, "z_valleyopus_entrance.png"))
+def entrance_map(pack):
+    """A 3x3 map of the workshop door for an EditMap patch onto the Town's cliff."""
+    def csv(rows):
+        return ",\n".join(",".join(str(t + 1 if t is not None else 0) for t in row) for row in rows)
+    layers = "\n".join(f''' <layer id="{i + 1}" name="{name}" width="3" height="3">
+  <data encoding="csv">
+{csv(rows)}
+  </data>
+ </layer>''' for i, (name, rows) in enumerate(ENTRANCE_TILES.items()))
     tmx = f'''<?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="16" tileheight="16" infinite="0">
- <tileset firstgid="1" name="z_valleyopus_entrance" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="z_valleyopus_entrance.png" width="16" height="16"/>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="3" height="3" tilewidth="16" tileheight="16" infinite="0">
+ <tileset firstgid="1" name="Landscape" tilewidth="16" tileheight="16" tilecount="1975" columns="25">
+  <image source="spring_outdoorsTileSheet.png" width="400" height="1264"/>
  </tileset>
- <layer id="1" name="Back" width="1" height="1">
-  <data encoding="csv">
-0
-  </data>
- </layer>
- <layer id="2" name="Buildings" width="1" height="1">
-  <data encoding="csv">
-1
-  </data>
- </layer>
- <objectgroup id="3" name="Buildings">
-  <object id="1" name="TileData" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="Action" value="{P}Enter"/>
-   </properties>
-  </object>
- </objectgroup>
+{layers}
 </map>
 '''
+    out_dir = os.path.join(pack, "assets", "maps")
+    stale = os.path.join(out_dir, "z_valleyopus_entrance.png")
+    if os.path.exists(stale):
+        os.remove(stale)
     with open(os.path.join(out_dir, "TownEntrance.tmx"), "w", encoding="utf-8") as f:
         f.write(tmx)
 
@@ -226,7 +238,11 @@ def workshop_maps():
     open (drawn in by the mod from the ValleyOpus_Boards map property). Returns {map asset suffix: TileMap}."""
     maps = OrderedDict()
     w, h = WORKSHOP_SIZE
-    m = room_shell(w, h, 0, 0, w // 2)
+    m = room_shell(w, h, 12, 0, w // 2)
+    # The hall's floor is the plank floor the vanilla rugs are drawn on, so they sit in it without a seam.
+    for y in range(4, h - 2):
+        for x in range(1, w - 1):
+            m.set("Back", x, y, U, D.WOOD_FLOOR[y % 2][x % 2])
     boards = []
     for room in [r for r in W.ROOMS if r != "EntranceHall"]:
         tier, motif, host, opens, bundles, display, size, floor, wall = W.ROOMS[room]
@@ -239,14 +255,25 @@ def workshop_maps():
             for y in range(ZONE_ROWS[0] + 1, ZONE_ROWS[1] + 1):
                 m.set("Back", x, y, WF, ft[(x % 2) + 2 * (y % 2)])
         boards.append(f"{room} {x0 + 1} 1")
-        if room in ("FurnaceRoom", "GreatWorkChamber"):
+        if room == "GreatWorkChamber":
             stamp(m, "Buildings", x0 + 4, 1, HEARTH)
-        if room == "Library":
-            stamp(m, "Buildings", x0 + 4, 1, SHELF)
+        for prop, dx, y in D.ROOM_PROPS.get(room, []):
+            place(m, prop, x0 + dx, y)
+        # The board, its Action tile and the floor in front of it must stay clear of furniture.
+        board = [(x, y) for x in (x0 + 1, x0 + 2) for y in (1, 2, 4) if m.layers["Buildings"][y][x] or m.layers["Front"][y][x]]
+        board += [(x, 3) for x in (x0 + 1, x0 + 2) if m.layers["Front"][3][x] or m.layers["Buildings"][3][x] != (WF, wt[2])]
+        if board:
+            raise SystemExit(f"Workshop props cover the {room} bundle board at {board}")
         if room == "Undercroft":
             for x in range(x0, x0 + ZONE_W):
                 for y in range(ZONE_ROWS[0] + 1, ZONE_ROWS[1] + 1):
                     m.prop("Back", x, y, "ValleyOpus_Dark", "T")
+    for prop, x, y in D.HALL_PROPS:
+        place(m, prop, x, y)
+    x0, y0, x1, y1 = D.HALL_CLEAR
+    blocked = [(x, y) for x in range(x0, x1 + 1) for y in range(y0, y1 + 1) if m.layers["Buildings"][y][x]]
+    if blocked:
+        raise SystemExit(f"Workshop props block the hall's open middle at {blocked}")
     m.props["ValleyOpus_Boards"] = " ".join(boards)
     m.props["Warp"] = f"{w // 2} {h} Town {TOWN_RETURN[0]} {TOWN_RETURN[1]}"
     maps["Workshop"] = m
@@ -272,12 +299,14 @@ def lab_map(tier, fw, fh):
     for ax, ay in alcoves:
         for dx in (0, 1):
             for dy in (0, 1):
-                m.set("Back", ax + dx, ay + dy, WF, floor_tiles(14)[dx + 2 * dy])
+                m.set("Back", ax + dx, ay + dy, WF, floor_tiles(D.LAB_ALCOVE_FLOOR)[dx + 2 * dy])
                 m.prop("Back", ax + dx, ay + dy, "ValleyOpus_Dark", "T")
     if tier >= 3:
         # The Familiar's shrine niche (doc 18 §3).
         m.prop("Buildings", w - 3, 3, "Action", P + "Shrine")
         m.prop("Back", w - 3, 4, "ValleyOpus_Shrine", "T")
+    for prop, x, y in D.lab_props(tier, w):
+        place(m, prop, x, y)
     m.props["Warp"] = f"{door} {h} Farm 0 0"
     return m
 
@@ -293,7 +322,9 @@ def walk_check(maps, homes):
 
 def write(pack, i18n, write_json, header, art_root):
     import build_art
-    import npc_art
+    import familiar_art
+    import npc_portraits
+    import npc_sprites
     files = []
     maps = workshop_maps()
     for tier, fw, fh in LABS:
@@ -316,13 +347,14 @@ def write(pack, i18n, write_json, header, art_root):
         ("CreateOnLoad", {"MapPath": "Maps/" + WORKSHOP, "AlwaysActive": True}),
         ("CanPlantHere", False)])
     changes.append({"Action": "EditData", "Target": "Data/Locations", "Entries": locations})
-    # The workshop door behind the CC: our own door tile on Buildings (CP adds the tilesheet), used with the action button.
-    entrance_map(pack, art_root)
-    files_entrance = {"X": TOWN_ENTRANCE[0], "Y": TOWN_ENTRANCE[1], "Width": 1, "Height": 1}
+    # The workshop door behind the CC: a cave mouth in the cliff, used with the action button from the grass below it.
+    entrance_map(pack)
     changes.append({"Action": "EditMap", "Target": "Maps/Town", "FromFile": "assets/maps/TownEntrance.tmx",
-                    "FromArea": {"X": 0, "Y": 0, "Width": 1, "Height": 1}, "ToArea": files_entrance, "PatchMode": "Overlay"})
+                    "FromArea": {"X": 0, "Y": 0, "Width": 3, "Height": 3},
+                    "ToArea": {"X": ENTRANCE_ORIGIN[0], "Y": ENTRANCE_ORIGIN[1], "Width": 3, "Height": 3},
+                    "PatchMode": "ReplaceByLayer"})
     changes.append({"Action": "EditMap", "Target": "Maps/Town", "MapTiles": [
-        {"Position": {"X": TOWN_ENTRANCE[0], "Y": TOWN_ENTRANCE[1]}, "Layer": "Buildings", "SetProperties": {"Action": P + "Enter"}}]})
+        {"Position": {"X": TOWN_DOOR[0], "Y": TOWN_DOOR[1]}, "Layer": "Buildings", "SetProperties": {"Action": P + "Enter"}}]})
 
     # ── Laboratories (doc 18 §1) ──
     costs = {1: (25000, [("(O)388", 400), ("(O)338", 20), ("(O)334", 10), ("(O)" + P + "Saxum", 10)], 2, None, "Buildings/Shed", "FurnaceRoom"),
@@ -369,12 +401,12 @@ def write(pack, i18n, write_json, header, art_root):
             ("Home", [{"Id": "Default", "Location": location, "Tile": {"X": hx, "Y": hy}, "Direction": "down"}]),
             ("CustomFields", {P + "Npc": "true"})])
         if nid == "Curator":
-            row["Size"] = {"X": 32, "Y": 32}
+            # He floats, so his chest doesn't rise and fall.
             row["Breather"] = False
-            row["CanReceiveGifts"] = True
         characters[name] = row
         strip = lambda ids: " ".join(i[3:] if i.startswith("(O)") else i for i in ids)
-        gifts[name] = f"This is wonderful. Thank you!/{strip(loves)}/Thank you!/{strip(likes)}/Oh. Thanks./ /Hm./ /Thanks./ "
+        # Placeholder reactions, with the portrait codes that pick the happy and sad faces.
+        gifts[name] = f"This is wonderful. Thank you!$h/{strip(loves)}/Thank you!$h/{strip(likes)}/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ "
         dialogue = OrderedDict((k, v) for k, v in lines.items())
         write_json(os.path.join(pack, "data", "dialogue", nid + ".json"), dialogue)
         changes.append({"Action": "Load", "Target": "Characters/Dialogue/" + name, "FromFile": f"data/dialogue/{nid}.json"})
@@ -385,8 +417,12 @@ def write(pack, i18n, write_json, header, art_root):
         raise SystemExit("\n".join(problems))
     changes.append({"Action": "EditData", "Target": "Data/Characters", "Entries": characters})
     changes.append({"Action": "EditData", "Target": "Data/NPCGiftTastes", "Entries": gifts})
-    npc_art.build(art_root, W.NPCS, os.path.join(pack, "assets", "npcs"))
-    npc_art.build_familiars(art_root, W.FAMILIARS, os.path.join(pack, "assets", "familiars.png"))
+    npc_dir = os.path.join(pack, "assets", "npcs")
+    os.makedirs(npc_dir, exist_ok=True)
+    for nid in W.NPCS:
+        npc_sprites.build(nid).save(os.path.join(npc_dir, nid + ".png"))
+        npc_portraits.build(art_root, nid, os.path.join(npc_dir, nid + "_portrait.png"))
+    familiar_art.build(W.FAMILIARS, os.path.join(pack, "assets", "familiars.png"))
     changes.append({"Action": "Load", "Target": "Mods/CharlesDR.ValleyOpus/Familiars", "FromFile": "assets/familiars.png"})
 
     # ── Mail ──

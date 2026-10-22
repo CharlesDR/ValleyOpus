@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using StardewValley.GameData.BigCraftables;
 using StardewValley.GameData.Buffs;
 using StardewValley.GameData.Machines;
 using StardewValley.GameData.Objects;
@@ -177,11 +178,12 @@ internal sealed class GameContent
         try
         {
             ContentRegistry registry = RegistryLoader.Load(ReadRaw());
+            var crafts = Game1.content.Load<Dictionary<string, BigCraftableData>>("Data/BigCraftables");
             foreach (ApparatusRow apparatus in registry.Apparatus.All)
             {
                 if (apparatus.ItemId is null || apparatus.Kind == ApparatusKinds.Table || data.ContainsKey(apparatus.ItemId))
                     continue;
-                data[apparatus.ItemId] = new MachineData
+                var machine = data[apparatus.ItemId] = new MachineData
                 {
                     OutputRules = new List<MachineOutputRule>
                     {
@@ -195,11 +197,41 @@ internal sealed class GameContent
                     },
                     // ReadyTimeModifiers stay empty but open, so other mods' speed edits apply on top (S19).
                 };
+                string localId = apparatus.ItemId.StartsWith("(BC)") ? apparatus.ItemId[4..] : apparatus.ItemId;
+                if (crafts.TryGetValue(localId, out BigCraftableData? craft) && craft.CustomFields != null)
+                    ApplyLook(machine, craft.CustomFields);
             }
         }
         catch (Exception ex)
         {
             this.log.Error($"The data compiler couldn't write machine rules; our apparatus won't run. {ex}");
+        }
+    }
+
+    /// <summary>
+    /// Copies an apparatus's look from its big craftable's custom fields into its machine row (sos.3 art): working
+    /// frames as sprite offsets from the idle cell, the cell after idle shown when ready, and a light while working
+    /// ("radius colour"). Any pack's apparatus can opt in with the same fields.
+    /// </summary>
+    private void ApplyLook(MachineData machine, IDictionary<string, string> fields)
+    {
+        if (fields.TryGetValue(Ids.KeyPrefix + "WorkingFrames", out string? framesText))
+        {
+            var frames = framesText.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .Select(f => int.TryParse(f, out int n) ? n : -1).Where(n => n >= 0).ToList();
+            // The game loops a working effect's frames for as long as the machine works.
+            if (frames.Count > 0)
+                machine.WorkingEffects = new List<MachineEffects> { new() { Id = Ids.RowPrefix + "Working", Frames = frames, Interval = 150 } };
+        }
+        if (fields.TryGetValue(Ids.KeyPrefix + "ReadyFrame", out string? ready) && ready.Equals("true", StringComparison.OrdinalIgnoreCase))
+            machine.ShowNextIndexWhenReady = true;
+        if (fields.TryGetValue(Ids.KeyPrefix + "Light", out string? light))
+        {
+            string[] parts = light.Split(' ', 2, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length == 2 && float.TryParse(parts[0], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float radius))
+                machine.LightWhileWorking = new MachineLight { Radius = radius, Color = parts[1] };
+            else
+                this.log.Warn($"Couldn't read the apparatus light '{light}'; expected a radius and a colour.");
         }
     }
 

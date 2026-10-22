@@ -97,7 +97,7 @@ public sealed class ModEntry : Mod
         {
             this.Monitor.Log($"Couldn't register the alchemy professions: {ex}", LogLevel.Error);
         }
-        AlchemySkill.CreateIcons();
+        AlchemySkill.CreateIcons(ModServices.Log);
         this.Helper.Events.GameLoop.UpdateTicked -= this.RegisterProfessionsWhenReady;
     }
 

@@ -47,16 +47,16 @@
       "FromArea": {
         "X": 0,
         "Y": 0,
-        "Width": 1,
-        "Height": 1
+        "Width": 3,
+        "Height": 3
       },
       "ToArea": {
-        "X": 53,
-        "Y": 9,
-        "Width": 1,
-        "Height": 1
+        "X": 52,
+        "Y": 6,
+        "Width": 3,
+        "Height": 3
       },
-      "PatchMode": "Overlay"
+      "PatchMode": "ReplaceByLayer"
     },
     {
       "Action": "EditMap",
@@ -65,7 +65,7 @@
         {
           "Position": {
             "X": 53,
-            "Y": 9
+            "Y": 8
           },
           "Layer": "Buildings",
           "SetProperties": {
@@ -730,12 +730,7 @@
           "CustomFields": {
             "CharlesDR.ValleyOpus_Npc": "true"
           },
-          "Size": {
-            "X": 32,
-            "Y": 32
-          },
-          "Breather": false,
-          "CanReceiveGifts": true
+          "Breather": false
         },
         "CharlesDR.ValleyOpus_Lark": {
           "DisplayName": "{{i18n:npc.Lark.name}}",
@@ -779,17 +774,17 @@
       "Action": "EditData",
       "Target": "Data/NPCGiftTastes",
       "Entries": {
-        "CharlesDR.ValleyOpus_Oriel": "This is wonderful. Thank you!/CharlesDR.ValleyOpus_Rebis CharlesDR.ValleyOpus_PhialaStellarum 74/Thank you!/CharlesDR.ValleyOpus_Sol CharlesDR.ValleyOpus_Luna 66/Oh. Thanks./ /Hm./ /Thanks./ ",
-        "CharlesDR.ValleyOpus_Tobin": "This is wonderful. Thank you!/CharlesDR.ValleyOpus_Vitrum 335 787/Thank you!/382 334 CharlesDR.ValleyOpus_Saxum/Oh. Thanks./ /Hm./ /Thanks./ ",
-        "CharlesDR.ValleyOpus_Finch": "This is wonderful. Thank you!/74 CharlesDR.ValleyOpus_MelVitae/Thank you!/CharlesDR.ValleyOpus_SalMarinum 72/Oh. Thanks./ /Hm./ /Thanks./ ",
-        "CharlesDR.ValleyOpus_Sorenson": "This is wonderful. Thank you!/CharlesDR.ValleyOpus_Vitrum CharlesDR.ValleyOpus_AquaRegia/Thank you!/395 CharlesDR.ValleyOpus_Calx/Oh. Thanks./ /Hm./ /Thanks./ ",
-        "CharlesDR.ValleyOpus_Hesper": "This is wonderful. Thank you!/CharlesDR.ValleyOpus_PhialaStellarum CharlesDR.ValleyOpus_Luna/Thank you!/768 769/Oh. Thanks./ /Hm./ /Thanks./ ",
-        "CharlesDR.ValleyOpus_Ivo": "This is wonderful. Thank you!/769 768/Thank you!/767 684/Oh. Thanks./ /Hm./ /Thanks./ ",
-        "CharlesDR.ValleyOpus_Delta": "This is wonderful. Thank you!/CharlesDR.ValleyOpus_SalMarinum 392/Thank you!/152 393/Oh. Thanks./ /Hm./ /Thanks./ ",
-        "CharlesDR.ValleyOpus_Agnes": "This is wonderful. Thank you!/CharlesDR.ValleyOpus_Orichalcum CharlesDR.ValleyOpus_Argentum/Thank you!/336 337/Oh. Thanks./ /Hm./ /Thanks./ ",
-        "CharlesDR.ValleyOpus_Bennet": "This is wonderful. Thank you!/CharlesDR.ValleyOpus_Vitrum CharlesDR.ValleyOpus_RosaVitrea/Thank you!/80 338/Oh. Thanks./ /Hm./ /Thanks./ ",
-        "CharlesDR.ValleyOpus_Curator": "This is wonderful. Thank you!/CharlesDR.ValleyOpus_Spiritus CharlesDR.ValleyOpus_Ectoplasm/Thank you!/CharlesDR.ValleyOpus_Anima CharlesDR.ValleyOpus_QuintaEssentia/Oh. Thanks./ /Hm./ /Thanks./ ",
-        "CharlesDR.ValleyOpus_Lark": "This is wonderful. Thank you!/CharlesDR.ValleyOpus_SalVolatile 221/Thank you!/18 22/Oh. Thanks./ /Hm./ /Thanks./ "
+        "CharlesDR.ValleyOpus_Oriel": "This is wonderful. Thank you!$h/CharlesDR.ValleyOpus_Rebis CharlesDR.ValleyOpus_PhialaStellarum 74/Thank you!$h/CharlesDR.ValleyOpus_Sol CharlesDR.ValleyOpus_Luna 66/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ ",
+        "CharlesDR.ValleyOpus_Tobin": "This is wonderful. Thank you!$h/CharlesDR.ValleyOpus_Vitrum 335 787/Thank you!$h/382 334 CharlesDR.ValleyOpus_Saxum/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ ",
+        "CharlesDR.ValleyOpus_Finch": "This is wonderful. Thank you!$h/74 CharlesDR.ValleyOpus_MelVitae/Thank you!$h/CharlesDR.ValleyOpus_SalMarinum 72/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ ",
+        "CharlesDR.ValleyOpus_Sorenson": "This is wonderful. Thank you!$h/CharlesDR.ValleyOpus_Vitrum CharlesDR.ValleyOpus_AquaRegia/Thank you!$h/395 CharlesDR.ValleyOpus_Calx/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ ",
+        "CharlesDR.ValleyOpus_Hesper": "This is wonderful. Thank you!$h/CharlesDR.ValleyOpus_PhialaStellarum CharlesDR.ValleyOpus_Luna/Thank you!$h/768 769/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ ",
+        "CharlesDR.ValleyOpus_Ivo": "This is wonderful. Thank you!$h/769 768/Thank you!$h/767 684/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ ",
+        "CharlesDR.ValleyOpus_Delta": "This is wonderful. Thank you!$h/CharlesDR.ValleyOpus_SalMarinum 392/Thank you!$h/152 393/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ ",
+        "CharlesDR.ValleyOpus_Agnes": "This is wonderful. Thank you!$h/CharlesDR.ValleyOpus_Orichalcum CharlesDR.ValleyOpus_Argentum/Thank you!$h/336 337/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ ",
+        "CharlesDR.ValleyOpus_Bennet": "This is wonderful. Thank you!$h/CharlesDR.ValleyOpus_Vitrum CharlesDR.ValleyOpus_RosaVitrea/Thank you!$h/80 338/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ ",
+        "CharlesDR.ValleyOpus_Curator": "This is wonderful. Thank you!$h/CharlesDR.ValleyOpus_Spiritus CharlesDR.ValleyOpus_Ectoplasm/Thank you!$h/CharlesDR.ValleyOpus_Anima CharlesDR.ValleyOpus_QuintaEssentia/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ ",
+        "CharlesDR.ValleyOpus_Lark": "This is wonderful. Thank you!$h/CharlesDR.ValleyOpus_SalVolatile 221/Thank you!$h/18 22/Oh. Thanks.$s/ /Hm.$s/ /Thanks./ "
       }
     },
     {

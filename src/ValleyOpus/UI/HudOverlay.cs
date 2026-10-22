@@ -112,9 +112,18 @@ internal sealed class HudOverlay
             }
 
             SpriteBatch b = e.SpriteBatch;
+            Texture2D? sheet = MenuKit.UiSheet();
+            int bob = (int)Math.Round(Math.Sin(Game1.ticks / 12.0) * 3);
             foreach (Vector2 tile in screen.Apparatus)
             {
                 Vector2 origin = Game1.GlobalToLocal(Game1.viewport, tile * 64f);
+                if (sheet != null)
+                {
+                    // Arrows pointing east: one into the West intake, one out of the East spout (sos.3 art).
+                    b.Draw(sheet, new Rectangle((int)origin.X - 20 + bob, (int)origin.Y + 16, 32, 32), MenuKit.UiCell(MenuKit.IntakeCell), Color.White * 0.9f, 0f, Vector2.Zero, SpriteEffects.None, 0.99f);
+                    b.Draw(sheet, new Rectangle((int)origin.X + 52 + bob, (int)origin.Y + 16, 32, 32), MenuKit.UiCell(MenuKit.SpoutCell), Color.White * 0.9f, 0f, Vector2.Zero, SpriteEffects.None, 0.99f);
+                    continue;
+                }
                 b.Draw(Game1.staminaRect, new Rectangle((int)origin.X, (int)origin.Y + 20, 8, 24), null, IntakeColor * 0.85f, 0f, Vector2.Zero, SpriteEffects.None, 0.99f);
                 b.Draw(Game1.staminaRect, new Rectangle((int)origin.X + 56, (int)origin.Y + 20, 8, 24), null, SpoutColor * 0.85f, 0f, Vector2.Zero, SpriteEffects.None, 0.99f);
             }
@@ -139,7 +148,15 @@ internal sealed class HudOverlay
         Vector2 start = from + direction * 16f;
         Vector2 end = to - direction * 16f;
 
-        DrawLine(b, start, end, color, 4f);
+        // Dots march along the link toward the spout's neighbour, so the flow reads at a glance (sos.3).
+        float length = (end - start).Length();
+        float offset = Game1.ticks % 30 / 30f * 16f;
+        for (float d = offset; d < length - 8f; d += 16f)
+        {
+            Vector2 dot = start + direction * d;
+            b.Draw(Game1.staminaRect, new Rectangle((int)dot.X - 4, (int)dot.Y - 4, 8, 8), null, Color.Black * 0.35f, 0f, Vector2.Zero, SpriteEffects.None, 1f);
+            b.Draw(Game1.staminaRect, new Rectangle((int)dot.X - 3, (int)dot.Y - 3, 6, 6), null, color, 0f, Vector2.Zero, SpriteEffects.None, 1f);
+        }
         float angle = (float)Math.Atan2(direction.Y, direction.X);
         const float headLength = 14f, headAngle = 2.6f;
         DrawLine(b, end, end + new Vector2((float)Math.Cos(angle + headAngle), (float)Math.Sin(angle + headAngle)) * headLength, color, 4f);

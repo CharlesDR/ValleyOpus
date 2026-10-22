@@ -25,6 +25,32 @@ internal static class MenuKit
     public static readonly Rectangle DownArrowSource = new(421, 472, 11, 12);
     private static readonly Rectangle ButtonSource = new(432, 439, 9, 9);
 
+    /// <summary>The base pack's UI sheet (sos.3 art): 16x16 cells, 16 to a row.</summary>
+    public const string UiTexture = Ids.KeyPrefix + "UI";
+
+    /// <summary>UI sheet cells the C# mod draws (the base pack's tools/basepack/ui_icons.py lays them out).</summary>
+    public const int UnknownVialCell = 0, IntakeCell = 12, SpoutCell = 13;
+
+    private static bool uiSheetMissing;
+
+    /// <summary>The UI sheet, or null without the base pack (callers fall back to vanilla art).</summary>
+    public static Texture2D? UiSheet()
+    {
+        if (uiSheetMissing)
+            return null;
+        try
+        {
+            return Game1.content.Load<Texture2D>(UiTexture);
+        }
+        catch (Exception)
+        {
+            uiSheetMissing = true;
+            return null;
+        }
+    }
+
+    public static Rectangle UiCell(int index, int size = 16) => new(index % 16 * 16, index / 16 * 16, size, size);
+
     public static void DrawBackdrop(SpriteBatch b)
         => b.Draw(Game1.fadeToBlackRect, new Rectangle(0, 0, Game1.uiViewport.Width, Game1.uiViewport.Height), Color.Black * 0.5f);
 
@@ -51,6 +77,13 @@ internal static class MenuKit
         b.Draw(texture, new Rectangle(area.X + (area.Width - w) / 2, area.Y + (area.Height - h) / 2, w, h), source, color);
         return true;
     }
+
+    /// <summary>
+    /// Draws one frame of a vanilla effect from TileSheets/animations (64x64 cells, one effect per row; row 5 is the
+    /// white puff, row 10 the sparkle burst, row 11 small twinkles), centred on a point.
+    /// </summary>
+    public static void DrawEffect(SpriteBatch b, int row, int frame, Vector2 centre, float scale, Color color)
+        => b.Draw(Game1.animations, centre, new Rectangle(frame % 10 * 64, row * 64, 64, 64), color, 0f, new Vector2(32, 32), scale, SpriteEffects.None, 1f);
 
     public static void DrawText(SpriteBatch b, string text, int x, int y, Color? color = null, float scale = 1f, SpriteFont? font = null)
         => Utility.drawTextWithShadow(b, text, font ?? Game1.smallFont, new Vector2(x, y), color ?? Game1.textColor, scale);

@@ -104,6 +104,33 @@ public class RegistryAndPackTests
     }
 
     [Fact]
+    public void PackReader_WarnsAboutFieldsOnlyWhereItReadsRows()
+    {
+        string dir = Path.Combine(Path.GetTempPath(), "vo-pack-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(dir);
+        try
+        {
+            File.WriteAllText(Path.Combine(dir, "manifest.json"), "{ \"UniqueID\": \"Test.Pack\" }");
+            File.WriteAllText(Path.Combine(dir, "content.json"), """
+            {
+              "Format": "2.4.0",
+              "Changes": [
+                { "Action": "EditData", "Target": "Data/Buffs", "Fields": { "X": { "IconSpriteIndex": 3 } } },
+                { "Action": "EditData", "Target": "CharlesDR.ValleyOpus/Primes", "Fields": { "Y": { "Color": "#FFFFFF" } } }
+              ]
+            }
+            """);
+            PackReadResult read = ContentPackReader.Read(new[] { dir });
+            Finding only = Assert.Single(read.Findings);
+            Assert.Equal("content.json change #1", only.RowId);
+        }
+        finally
+        {
+            Directory.Delete(dir, recursive: true);
+        }
+    }
+
+    [Fact]
     public void Ids_QualifyAndPrefix()
     {
         Assert.Equal("(O)74", Ids.QualifyItem("74"));

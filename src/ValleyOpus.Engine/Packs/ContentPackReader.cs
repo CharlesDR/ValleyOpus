@@ -137,17 +137,27 @@ public static class ContentPackReader
         return true;
     }
 
+    private static bool IsReadTarget(string target)
+        => (RawRegistries.TryGetRegistryName(target, out _) && target.StartsWith(Ids.KeyPrefix, StringComparison.OrdinalIgnoreCase))
+           || target.Equals("Data/Objects", StringComparison.OrdinalIgnoreCase)
+           || target.Equals("Data/BigCraftables", StringComparison.OrdinalIgnoreCase);
+
     private static void ReadEditData(JsonObject change, string where, PackContext context)
     {
-        foreach (string unsupported in new[] { "Fields", "TargetField", "MoveEntries", "TextOperations" })
-            if (change.ContainsKey(unsupported))
-                context.Result.Findings.Add(new(Severity.Warning, context.PackName, where, $"'{unsupported}' isn't read by the CI reader"));
-
         string targets = Resolve(change["Target"]?.GetValue<string>() ?? "", where, context);
+        string[] targetList = targets.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+        // Edits to assets the reader skips (Data/Buffs icons, say) may use any CP feature; only warn where rows are read.
+        if (targetList.Any(IsReadTarget))
+        {
+            foreach (string unsupported in new[] { "Fields", "TargetField", "MoveEntries", "TextOperations" })
+                if (change.ContainsKey(unsupported))
+                    context.Result.Findings.Add(new(Severity.Warning, context.PackName, where, $"'{unsupported}' isn't read by the CI reader"));
+        }
         if (change["Entries"] is not JsonObject entries)
             return;
 
-        foreach (string target in targets.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        foreach (string target in targetList)
         {
             bool isRegistry = RawRegistries.TryGetRegistryName(target, out string registry) && target.StartsWith(Ids.KeyPrefix, StringComparison.OrdinalIgnoreCase);
             bool isObjects = target.Equals("Data/Objects", StringComparison.OrdinalIgnoreCase);

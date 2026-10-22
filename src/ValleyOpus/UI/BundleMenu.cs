@@ -192,6 +192,7 @@ internal sealed class BundleMenu : IClickableMenu
         int was = this.page;
         this.page = -1;
         this.hovered = null;
+        this.sparkles.Clear();
         this.Layout();
         if (Game1.options.SnappyMenus)
             MenuKit.Snap(this, BundleBaseId + Math.Max(0, was));
@@ -246,7 +247,14 @@ internal sealed class BundleMenu : IClickableMenu
         if (!ModServices.World.Donate(Game1.player, bundle, item))
             return;
         this.message = ModServices.T("ui.bundle.donated", new { name, bundle = WorldService.BundleName(bundle) });
-        if (ModServices.World.Filled(bundle) >= bundle.RequiredCount)
+        int filled = ModServices.World.Filled(bundle);
+        if (filled < bundle.RequiredCount && filled - 1 < this.boxes.Count && filled > 0)
+        {
+            // The box the item went into glints, as vanilla's Junimo note does.
+            Rectangle box = this.boxes[filled - 1];
+            this.sparkles.AddRange(Utility.sparkleWithinArea(box, 3, BagColor(this.page) * 0.6f));
+        }
+        if (filled >= bundle.RequiredCount)
         {
             // Back to the overview, where the bag finishes with vanilla's sparkle (Bundle.completionAnimation).
             int index = this.page;
@@ -434,6 +442,9 @@ internal sealed class BundleMenu : IClickableMenu
                 MenuKit.DrawText(b, "*", r.X + 30, r.Y + 22, Color.DarkGreen);
         }
 
+        foreach (TemporaryAnimatedSprite sparkle in this.sparkles)
+            sparkle.draw(b, localPosition: true);
+
         this.inventory.draw(b);
         if (this.message != null)
             MenuKit.DrawText(b, MenuKit.Fit(this.message, 520), x + 680, y + 620);
@@ -498,6 +509,10 @@ internal static class Divination
         who.Items.ReduceId(residue, total);
         ModServices.World.CountDivination(lines.Count);
         Game1.playSound("fireball");
+        // A small smoke flourish as the residue burns (doc 16 §10).
+        Game1.Multiplayer.broadcastSprites(who.currentLocation,
+            new TemporaryAnimatedSprite(5, who.Position + new Vector2(0, -96), Color.MediumPurple * 0.8f, 8, false, 80f),
+            new TemporaryAnimatedSprite(27, who.Position + new Vector2(-24, -128), Color.Lavender * 0.7f, 8, false, 90f) { delayBeforeAnimationStart = 150 });
         Game1.drawObjectDialogue(string.Join("^^", lines));
     }
 }

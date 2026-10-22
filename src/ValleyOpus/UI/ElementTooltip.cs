@@ -86,11 +86,17 @@ internal static class ElementTooltip
         }
     }
 
-    /// <summary>A Prime's vial, greyed, with a "?" over it: the same art as the Element icons.</summary>
+    /// <summary>The "?" vial from the UI sheet (sos.3 art); without the sheet, a Prime's vial greyed with a "?" over it.</summary>
     private static void DrawUnknown(SpriteBatch b, string vialItemId, int left, int top, float alpha)
     {
+        var area = new Rectangle(left, top, IconSize, IconSize);
+        if (MenuKit.UiSheet() is Texture2D sheet)
+        {
+            b.Draw(sheet, area, MenuKit.UiCell(MenuKit.UnknownVialCell), Color.White * alpha);
+            return;
+        }
         ParsedItemData data = ItemRegistry.GetDataOrErrorItem(vialItemId);
-        b.Draw(data.GetTexture(), new Rectangle(left, top, IconSize, IconSize), data.GetSourceRect(), Color.DimGray * 0.8f * alpha);
+        b.Draw(data.GetTexture(), area, data.GetSourceRect(), Color.DimGray * 0.8f * alpha);
         Vector2 size = Game1.smallFont.MeasureString("?");
         var at = new Vector2(left + (IconSize - size.X) / 2, top + (IconSize - size.Y) / 2 + 2);
         b.DrawString(Game1.smallFont, "?", at + new Vector2(2, 2), Game1.textShadowColor * alpha);

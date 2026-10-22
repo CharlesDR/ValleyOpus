@@ -1589,9 +1589,8 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 208,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 0,
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_experimenttable"
@@ -1605,9 +1604,13 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": true,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 13,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 8,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true",
+            "CharlesDR.ValleyOpus/Light": "1.25 DarkCyan"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_athanor"
@@ -1621,9 +1624,12 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 12,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 16,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_alembic"
@@ -1637,9 +1643,12 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 15,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 24,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_retort"
@@ -1653,9 +1662,13 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 21,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 32,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true",
+            "CharlesDR.ValleyOpus/Light": "0.75 DarkGreen"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_hermeticvessel"
@@ -1669,9 +1682,13 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 114,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 40,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true",
+            "CharlesDR.ValleyOpus/Light": "1.25 DarkCyan"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_calcinator"
@@ -1685,9 +1702,12 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 163,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 48,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_processvat"
@@ -1701,9 +1721,12 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 16,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 56,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_press"
@@ -1717,9 +1740,13 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": true,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 19,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 64,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true",
+            "CharlesDR.ValleyOpus/Light": "1.0 DarkCyan"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_boiler"
@@ -1733,9 +1760,13 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 9,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 72,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true",
+            "CharlesDR.ValleyOpus/Light": "1.0 Orange"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_lightningcoil"
@@ -1749,9 +1780,12 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 20,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 80,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_pelican"
@@ -1765,9 +1799,13 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 160,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 88,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true",
+            "CharlesDR.ValleyOpus/Light": "0.75 DarkCyan"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_ritualaltar"
@@ -1781,9 +1819,13 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 182,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 96,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true",
+            "CharlesDR.ValleyOpus/Light": "1.0 DarkCyan"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_quarrycrucible"
@@ -1797,9 +1839,13 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "IsLamp": false,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 105,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 104,
+          "CustomFields": {
+            "CharlesDR.ValleyOpus/WorkingFrames": "2 3 4 5",
+            "CharlesDR.ValleyOpus/ReadyFrame": "true",
+            "CharlesDR.ValleyOpus/Light": "0.75 DarkRed"
+          },
           "ContextTags": [
             "valleyopus_apparatus",
             "valleyopus_apparatus_leytap"
@@ -1813,8 +1859,8 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 25,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 112,
           "ContextTags": [
             "valleyopus_placed",
             "valleyopus_placed_azothdiffuser"
@@ -1828,8 +1874,8 @@
           "Fragility": 0,
           "CanBePlacedOutdoors": true,
           "CanBePlacedIndoors": true,
-          "Texture": "TileSheets/Craftables",
-          "SpriteIndex": 90,
+          "Texture": "Mods/CharlesDR.ValleyOpus/Apparatus",
+          "SpriteIndex": 120,
           "ContextTags": [
             "valleyopus_placed",
             "valleyopus_placed_radiculaplant"
@@ -1927,6 +1973,128 @@
         "CharlesDR.ValleyOpus_GlazedUrn": "CharlesDR.ValleyOpus_GlazedUrn/decor/1 2/1 1/1/500/-1/{{i18n:furniture.GlazedUrn.name}}/5/Mods\\CharlesDR.ValleyOpus\\Furniture/true/valleyopus_furniture",
         "CharlesDR.ValleyOpus_GlazedPlanter": "CharlesDR.ValleyOpus_GlazedPlanter/decor/1 1/1 1/1/500/-1/{{i18n:furniture.GlazedPlanter.name}}/6/Mods\\CharlesDR.ValleyOpus\\Furniture/true/valleyopus_furniture",
         "CharlesDR.ValleyOpus_GlazedTileRug": "CharlesDR.ValleyOpus_GlazedTileRug/rug/3 2/3 2/1/500/-1/{{i18n:furniture.GlazedTileRug.name}}/7/Mods\\CharlesDR.ValleyOpus\\Furniture/true/valleyopus_furniture"
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/Buffs",
+      "Fields": {
+        "CharlesDR.ValleyOpus_UndinesGift": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 16
+        },
+        "CharlesDR.ValleyOpus_Fixative": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 17
+        },
+        "CharlesDR.ValleyOpus_FixativeStrong": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 17
+        },
+        "CharlesDR.ValleyOpus_Volatile": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 18
+        },
+        "CharlesDR.ValleyOpus_LunarDream": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 19
+        },
+        "CharlesDR.ValleyOpus_Savour": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 20
+        },
+        "CharlesDR.ValleyOpus_GoodCheer": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 21
+        },
+        "CharlesDR.ValleyOpus_Vitality": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 22
+        },
+        "CharlesDR.ValleyOpus_Cleanse": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 23
+        },
+        "CharlesDR.ValleyOpus_Glow": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 24
+        },
+        "CharlesDR.ValleyOpus_Tailwind": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 25
+        },
+        "CharlesDR.ValleyOpus_Kindled": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 26
+        },
+        "CharlesDR.ValleyOpus_Stonesense": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 27
+        },
+        "CharlesDR.ValleyOpus_Eruption": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 28
+        },
+        "CharlesDR.ValleyOpus_Quintessence": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 29
+        },
+        "CharlesDR.ValleyOpus_Midas": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 30
+        },
+        "CharlesDR.ValleyOpus_Hourglass": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 31
+        },
+        "CharlesDR.ValleyOpus_Spectral": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 32
+        },
+        "CharlesDR.ValleyOpus_Dissolution": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 33
+        },
+        "CharlesDR.ValleyOpus_SecondWind": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 34
+        },
+        "CharlesDR.ValleyOpus_Venom": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 35
+        },
+        "CharlesDR.ValleyOpus_LuckyHoney": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 36
+        },
+        "CharlesDR.ValleyOpus_Planetary": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 37
+        },
+        "CharlesDR.ValleyOpus_PlanetaryStrong": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 37
+        },
+        "CharlesDR.ValleyOpus_Ouroboros": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 38
+        },
+        "CharlesDR.ValleyOpus_Censer": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 39
+        },
+        "CharlesDR.ValleyOpus_VialPendant": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 40
+        },
+        "CharlesDR.ValleyOpus_RebisAmulet": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 41
+        },
+        "CharlesDR.ValleyOpus_Transmutation": {
+          "IconTexture": "Mods/CharlesDR.ValleyOpus/UI",
+          "IconSpriteIndex": 42
+        }
       }
     }
   ]

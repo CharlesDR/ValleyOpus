@@ -1,16 +1,11 @@
 # Credits
 
-ValleyOpus's placeholder art is cut from open-license packs at build time by `tools/basepack` (from the project's art stockpile, kept outside the repo). Only the cut-down sheets in `content/[CP] ValleyOpus/assets` ship. Vanilla Stardew Valley textures are referenced at load time, never copied.
+ValleyOpus's art is placeholder until it is commissioned (see `docs/design` art direction). Since build 1.0.0-sos.3 almost all of it is drawn for ValleyOpus by `tools/basepack` itself (item and apparatus sprites, UI icons, villager walk sheets, the Familiars, clothes and props on the portraits). Only the cut-down sheets in `content/[CP] ValleyOpus/assets` ship.
+
+Vanilla Stardew Valley art is referenced, never copied: the workshop, Lab and Town-door maps place furniture by tile index into the game's own tilesheets (`townInterior`, `townInterior_2`, `walls_and_floors`, the Town's landscape sheet), and effects use the game's own effect sheet and sounds. The game loads those at run time, so they follow recolour mods and the seasons.
 
 | Used for | Pack | Author | License |
 |---|---|---|---|
-| Item and apparatus icons (potion bottles) | Pixel Potion Set 16x16 | yafarida | CC0 |
-| Prime and Element glyphs, furniture sigils | Alchemical Codex | Idylwild | CC0 |
-| Product and tool icons | 496 RPG Icons | Henrique Lazarini (7Soul1) | CC0 |
-| NPC overworld sprites | 32-pixel Human Sprites | cyanowl | CC0 |
-| NPC portraits | Fantasy Portrait Pack | Ravenmore (dycha) | CC-BY 3.0 per its OpenGameArt page (the stockpile copy has no license file; re-check before release). Credit: "Portraits by Ravenmore, http://dycha.net" |
-| The Curator (ghost) | Ghost monster (OpenGameArt remix) | OpenGameArt contributors | CC0 |
-| Familiars | Tiny Creatures | Clint Bellanger | CC0 |
-| The workshop door behind the Community Center | Tiny Dungeon | Kenney | CC0 |
+| NPC portrait heads (faces, hair, brows, eyes, facial hair, hats) | [64x64 Portrait](https://opengameart.org/content/64x64-portrait) | Nila122 | Dual-licensed CC-BY-SA 3.0 or OGA-BY 3.0; used under **OGA-BY 3.0**. Credit: "Portraits built from Nila122's 64x64 Portrait kit (OpenGameArt)" |
 
-CC0 packs need no credit; they're listed so testers and later artists know where each sheet came from. Every placeholder is due for replacement before a public release (see `docs/design` art direction).
+Every placeholder is due for replacement before a public release.
