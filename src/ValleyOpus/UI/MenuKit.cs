@@ -78,6 +78,13 @@ internal static class MenuKit
         return true;
     }
 
+    /// <summary>
+    /// Draws one frame of a vanilla effect from TileSheets/animations (64x64 cells, one effect per row; row 5 is the
+    /// white puff, row 10 the sparkle burst, row 11 small twinkles), centred on a point.
+    /// </summary>
+    public static void DrawEffect(SpriteBatch b, int row, int frame, Vector2 centre, float scale, Color color)
+        => b.Draw(Game1.animations, centre, new Rectangle(frame % 10 * 64, row * 64, 64, 64), color, 0f, new Vector2(32, 32), scale, SpriteEffects.None, 1f);
+
     public static void DrawText(SpriteBatch b, string text, int x, int y, Color? color = null, float scale = 1f, SpriteFont? font = null)
         => Utility.drawTextWithShadow(b, text, font ?? Game1.smallFont, new Vector2(x, y), color ?? Game1.textColor, scale);
 

@@ -160,19 +160,19 @@ internal sealed class FarmState
     }
 
     /// <summary>A toast for this screen; toasts within two seconds merge into one (doc 16 §7).</summary>
-    public void Toast(string text)
+    public void Toast(string text, Item? icon = null)
     {
         if (ModServices.Config.Toasts == "None")
             return;
-        this.toasts.Value.Add(text);
+        this.toasts.Value.Add(text, icon);
     }
 
     /// <summary>Holds an item up with a message (the clock pauses in single player, S5); a toast when someone else is connected.</summary>
-    public void Celebrate(Item? item, string message)
+    public void Celebrate(Item? item, string message, Item? icon = null)
     {
         if (item != null && !Context.IsMultiplayer && Game1.activeClickableMenu is null)
             Game1.player.holdUpItemThenMessage(item, showMessage: true);
-        this.Toast(message);
+        this.Toast(message, item ?? icon);
     }
 
     /// <summary>Checks milestones after a discovery and celebrates each new one.</summary>
@@ -269,17 +269,17 @@ internal sealed class FarmState
             Game1.addHUDMessage(new HUDMessage(ModServices.T("notice.shared-discovery", new { name = Game1.getFarmer(discoverer)?.Name ?? "?", count = recipes })) { noIcon = true });
     }
 
-    /// <summary>Merges toasts that arrive within two seconds (120 ticks).</summary>
+    /// <summary>Merges toasts that arrive within two seconds (120 ticks); a toast shows its item's icon (doc 16 §8).</summary>
     private sealed class ToastQueue
     {
-        private readonly List<string> pending = new();
+        private readonly List<(string Text, Item? Icon)> pending = new();
         private int firstTick;
 
-        public void Add(string text)
+        public void Add(string text, Item? icon)
         {
             if (this.pending.Count == 0)
                 this.firstTick = Game1.ticks;
-            this.pending.Add(text);
+            this.pending.Add((text, icon));
         }
 
         public void Tick()
@@ -287,9 +287,12 @@ internal sealed class FarmState
             if (this.pending.Count == 0 || Game1.ticks - this.firstTick < 120)
                 return;
             string text = this.pending.Count == 1
-                ? this.pending[0]
-                : ModServices.T("toast.merged", new { count = this.pending.Count, list = string.Join(", ", this.pending.Take(3)) });
-            Game1.addHUDMessage(new HUDMessage(text, HUDMessage.newQuest_type));
+                ? this.pending[0].Text
+                : ModServices.T("toast.merged", new { count = this.pending.Count, list = string.Join(", ", this.pending.Take(3).Select(p => p.Text)) });
+            Item? icon = this.pending.Select(p => p.Icon).FirstOrDefault(i => i != null);
+            Game1.addHUDMessage(icon != null
+                ? new HUDMessage(text) { messageSubject = icon.getOne() }
+                : new HUDMessage(text, HUDMessage.newQuest_type));
             this.pending.Clear();
         }
     }

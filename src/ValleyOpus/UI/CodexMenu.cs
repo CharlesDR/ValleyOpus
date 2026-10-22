@@ -568,12 +568,24 @@ internal sealed class CodexMenu : IClickableMenu
                     break;
                 }
                 case CellState.Warm:
-                    b.Draw(Game1.staminaRect, inner, Color.Gold * 0.35f);
+                {
+                    // The warm hint shimmers: a slow gold pulse, offset per cell, with a twinkle now and then.
+                    double phase = Game1.currentGameTime.TotalGameTime.TotalMilliseconds / 600.0 + (cell.Data.Row * 3 + cell.Data.Column) * 0.7;
+                    b.Draw(Game1.staminaRect, inner, Color.Gold * (0.28f + 0.14f * (float)Math.Sin(phase)));
                     DrawCentred(b, "?", r, Color.DarkGoldenrod, 1f);
+                    int frame = (int)(phase * 4) % 24;
+                    if (frame < 8)
+                        MenuKit.DrawEffect(b, 11, frame, new Vector2(r.Right - size / 4f, r.Y + size / 4f), size / 128f, Color.White * 0.9f);
                     break;
+                }
                 case CellState.Tried:
-                    DrawCentred(b, "x", r, Color.DarkRed, 1f);
+                {
+                    // A small residue mark: this pair was tried and gave only Caput Mortuum (doc 16 §6).
+                    int mark = size / 2;
+                    if (!MenuKit.DrawItemIcon(b, content.Registry.Settings.ResidueItem, new Rectangle(r.Center.X - mark / 2, r.Center.Y - mark / 2, mark, mark), Color.White * 0.55f))
+                        DrawCentred(b, "x", r, Color.DarkRed, 1f);
                     break;
+                }
                 default:
                     DrawCentred(b, "?", r, Color.Gray, 1f);
                     break;

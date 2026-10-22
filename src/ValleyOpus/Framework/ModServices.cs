@@ -93,6 +93,9 @@ internal sealed class ModConfig
     /// <summary>Discovery toasts: All, FirstOnly, or None (doc 16 §15).</summary>
     public string Toasts { get; set; } = "All";
 
+    /// <summary>A shimmer or a puff of steam, with a sound, when an apparatus finishes (doc 07 feedback styles).</summary>
+    public bool MachineFeedback { get; set; } = true;
+
     /// <summary>Machines chaining moves per second, for performance (doc 09 §8).</summary>
     public int ChainBudgetPerSecond { get; set; } = 200;
 

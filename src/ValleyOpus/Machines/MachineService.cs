@@ -484,7 +484,7 @@ internal sealed class MachineService
             if (who.IsLocalPlayer)
             {
                 string name = output?.DisplayName ?? ModServices.Content.NameOf(ModServices.Content.Registry.Recipes.Get(recipeId)?.Output.Id ?? recipeId);
-                ModServices.Farm.Celebrate(celebrateItem, message ?? ModServices.T("discovery.new", new { name }));
+                ModServices.Farm.Celebrate(celebrateItem, message ?? ModServices.T("discovery.new", new { name }), icon: output);
             }
         }
         if (bonus != null && fresh.Contains(CodexKeys.Effect(bonus)))
@@ -525,7 +525,11 @@ internal sealed class MachineService
             return;
         bool ready = machine.readyForHarvest.Value && machine.heldObject.Value != null;
         if (machine.showNextIndex.Value != ready)
+        {
             machine.showNextIndex.Value = ready;
+            if (ready)
+                Feedback.CycleDone(machine);
+        }
     }
 
     private void OnTick(SObject machine)
@@ -729,7 +733,7 @@ internal sealed class MachineService
                 Game1.createItemDebris(made, who.getStandingPosition(), who.FacingDirection, who.currentLocation);
             if (!isItem)
                 table.Location?.temporarySprites.Add(new TemporaryAnimatedSprite(5, table.TileLocation * 64f + new Vector2(0, -32), Color.White, 8, false, 80f));
-            table.Location?.playSound(isItem ? "newArtifact" : "steam");
+            // The Table menu plays the reveal sound after its anticipation beat.
             this.Discover(who, row.Id, made, tier, null, handMade: true, celebrateItem: made,
                 message: isItem ? null : ModServices.T("table.power-reveal", new { name = ModServices.Content.NameOf(row.Output.Id) }));
             return outcome;
@@ -742,7 +746,6 @@ internal sealed class MachineService
             if (!who.addItemToInventoryBool(caput))
                 Game1.createItemDebris(caput, who.getStandingPosition(), who.FacingDirection, who.currentLocation);
         }
-        table.Location?.playSound("dirtyHit");
         List<string> fresh = ModServices.Farm.Record(who, new[] { CodexKeys.Tried(inputs.Select(i => i.Item.QualifiedItemId)) });
         ModServices.Skill.Grant(who, XpEvents.TriedKey, outcome.TriedSignature);
         if (fresh.Count > 0)
