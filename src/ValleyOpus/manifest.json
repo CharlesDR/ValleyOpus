@@ -1,7 +1,7 @@
 {
   "Name": "ValleyOpus",
   "Author": "CharlesDR",
-  "Version": "1.0.0-sos.2",
+  "Version": "1.0.0-sos.3",
   "Description": "Alchemy and automation for the Valley. Sink-or-swim test build of everything slated for 1.0; expect rough edges.",
   "UniqueID": "CharlesDR.ValleyOpus",
   "EntryDll": "ValleyOpus.dll",

@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- SMAPI 4 runs on .NET 6; building it with a newer SDK is fine. -->
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
-    <Version>0.1.0-alpha.1</Version>
+    <Version>1.0.0-sos.3</Version>
     <Authors>CharlesDR</Authors>
   </PropertyGroup>
 </Project>

@@ -1,8 +1,17 @@
 # Testing ValleyOpus
 
-**This build:** `1.0.0-sos.2`, the **sink-or-swim** build. It holds everything slated for 1.0 at once: all 14 apparatus, power (Boiler, Lightning Coil, kindled Athanor), rituals and the Circle, every Tier 1–3 substance and product, the workshop under the Community Center (one big space; each room's corner and bundle board appear as it opens) with 25 bundles, Oriel's five starter quests, the unlock chain, 10 NPCs with shops, Dr. Sorenson's contracts, hints and divination, Labs T1–T3, the four Familiars, Shades and the Gloam Lantern, Ley Taps, the full Alchemy skill (10 levels, 6 professions), worn and applied products, and a config menu (Generic Mod Config Menu, if you have it). Art is placeholder from open-license packs (see `CREDITS.md`).
+**This build:** `1.0.0-sos.3`, the **sink-or-swim** build, round three: sos.2's code with an art and polish pass. It holds everything slated for 1.0 at once: all 14 apparatus, power (Boiler, Lightning Coil, kindled Athanor), rituals and the Circle, every Tier 1–3 substance and product, the workshop under the Community Center (one big space; each room's corner and bundle board appear as it opens) with 25 bundles, Oriel's five starter quests, the unlock chain, 10 NPCs with shops, Dr. Sorenson's contracts, hints and divination, Labs T1–T3, the four Familiars, Shades and the Gloam Lantern, Ley Taps, the full Alchemy skill (10 levels, 6 professions), worn and applied products, and a config menu (Generic Mod Config Menu, if you have it). Art is placeholder, now almost all drawn for ValleyOpus by the build tools, plus the game's own furniture on the maps (see `CREDITS.md`).
 
-**What "sink or swim" means here:** nothing in this build has run in the game before. Expect the first compile to need fixes and expect things to break. The goal is to find out how far it gets: play, note what breaks, share the log, and keep going with the dev commands when something blocks you. **Use new farms**; don't load a farm you care about. sos.2 changed the workshop map, so **start fresh farms** for this round too.
+**What "sink or swim" means here:** the goal is still to find out how far it gets: play, note what breaks, share the log, and keep going with the dev commands when something blocks you. sos.3 keeps sos.2's gameplay code; its new art, maps and effects haven't run in the game yet. **Use test farms**; don't load a farm you care about. Your sos.2 test farms should load in sos.3 (nothing in the save format changed), which is worth checking; start a fresh farm if anything looks off.
+
+**New in sos.3 (art and look-and-feel pass):**
+- **Art:** every item icon, apparatus sprite, buff icon, skill and profession icon and décor piece is redrawn in one style. Apparatus have idle, working (four frames) and ready frames, and give off light while they work.
+- **Villagers:** new walk sprites drawn to each character's brief (the Curator is a floating, bearded scholar ghost) and new portraits with six expressions each (neutral, happy, sad, a unique one, blush, angry). Gift reactions use the happy and sad faces; the lines themselves are unchanged and still yours to rewrite.
+- **Familiars:** each has a four-frame idle loop and a shadow.
+- **Workshop:** each room's corner has its own wall, floor and furniture from the game's own interiors (forge and anvil, pipes and boiler, bookshelves, potion shelves, cave vines and mushrooms, a telescope under a starry wall, reagent cabinets, a ritual circle). The hall has a plank floor, a cauldron, plants and tables, with its middle left clear.
+- **Labs:** wall furniture only (every floor tile stays free for apparatus), dark slate alcoves, and sconces either side of the T3 shrine.
+- **Town door:** the workshop entrance behind the Community Center is now a timbered cave mouth in the cliff. Stand on the same spot as before (just below it) and press the action button.
+- **Feedback:** apparatus shimmer with a chime (arcane ones) or clunk and puff steam (engineered ones) when they finish; you can turn this off in the config menu ("Machine finish effects"). The Experiment Table simmers for about a second before it shows the result, then glows and lifts the result into view, or gives a comic puff and shows the residue. Discovery toasts show the item's icon. Codex grid: warm cells shimmer, tried cells show a faint residue mark. Bundle board: the box glints when you donate; buying a divination hint gives a puff of smoke.
 
 **New in sos.2 (your Pass A/B feedback):** the workshop is one screen with no room doors; each room's bundle board appears (with a sparkle) only once that room is open, and the board looks like the vanilla bundle screen with rewards hidden. Oriel's intro waits until your next walk into Town after the Community Center opening scene, and covers what the welcome letter used to say (the letter is gone). Oriel gives five starter quests in a row. Finch's wagon stands in Cindersap Forest, just east of the travelling cart's spot. Item tooltips list the Elements you've discovered inside them, with a ? if some are still unknown. The Curator's name is revealed in a cutscene once every room is restored. Breaking items down is faster (Athanor 30 minutes, Calcinator 10).
 
@@ -21,25 +30,25 @@ Already done for alpha.1 and alpha.2 (.NET 6 SDK, Git signed in, the repo in `Do
 ## 2 · Building and installing
 
 ### 2a · With the Remote Control session (the normal way)
-Claude asks the Remote Control session on your PC to build this branch (`claude/full-1-0-sink-or-swim-kztlhb`). Allow it if a card asks. That session:
+Claude asks the Remote Control session on your PC to build this branch (`claude/project-thread-tglhhs`). Allow it if a card asks. That session:
 1. fetches the branch and runs `dotnet build src/ValleyOpus/ValleyOpus.csproj -c Release`, which compiles the mod and copies it into `Mods\ValleyOpus`;
 2. **replaces** `Mods\[CP] ValleyOpus` with the repo's `content\[CP] ValleyOpus` (delete the old folder first: this build's pack has many new files, and leftovers from alpha.2 would confuse it). `[CP] ValleyOpus - Spikes` isn't needed any more; remove it from `Mods`. Never copy `[CP] ValleyOpus - Test Fixtures`;
 3. writes a zip with the packaging tool, for keeping.
 
-**It worked if** SMAPI's window at launch lists `ValleyOpus 1.0.0-sos.2` and `[CP] ValleyOpus 1.0.0-sos.1` with no red lines under them.
+**It worked if** SMAPI's window at launch lists `ValleyOpus 1.0.0-sos.3` and `[CP] ValleyOpus 1.0.0-sos.3` with no red lines under them.
 
 ### 2b · By hand (only if you ever want to)
 From the `Documents\ValleyOpus` folder in PowerShell:
 ```
 git fetch origin
-git checkout claude/full-1-0-sink-or-swim-kztlhb
+git checkout claude/project-thread-tglhhs
 git pull
 dotnet build src/ValleyOpus/ValleyOpus.csproj -c Release
 ```
 Then delete `Mods\[CP] ValleyOpus` and copy `content\[CP] ValleyOpus` into `Mods` in its place.
 
-### 2c · Going back to alpha.2
-Ask in the thread: the Remote Control session rebuilds the `claude/batch-2-bench-line-l6zmax` branch. Alpha.2 farms that loaded this build may not load cleanly in alpha.2 again, which is another reason to use new farms here.
+### 2c · Going back to sos.2 or alpha.2
+Ask in the thread: the Remote Control session rebuilds sos.2 from the `claude/full-1-0-sink-or-swim-kztlhb` branch, or alpha.2 from `main`. sos.2 and sos.3 share a save format; alpha.2 farms that loaded a sink-or-swim build may not load cleanly in alpha.2 again.
 
 ---
 
@@ -170,8 +179,9 @@ Desk results come from reading public sources before the build (doc 22 §4). In-
 
 ## 7 · Low-confidence areas
 Everything in this build is a first run. These are the parts most likely to break, roughly from most to least likely:
-- **The first compile.** Written in the cloud against decompiled game code; expect a few compile fixes on your PC.
+- **The compile.** sos.3 already compiles in the cloud against your game's own DLLs (copied from your PC), so a compile failure on your PC would be a surprise worth reporting.
 - **The intro event.** Spawning Oriel in an event before she's a "real" villager, and the event's positions behind the CC.
+- **sos.3's new parts:** the town door patch (it reuses the Town's own landscape tilesheet, so it should follow the seasons and recolour mods; check it in winter and with SVE), the workshop and Lab furniture (it uses the game's `townInterior_2` sheet and an extra `Front2` map layer for the first time: look for missing or black tiles, furniture you can walk through or can't walk past, and anything covering a bundle board), the machine finish effects (too loud or too frequent in a busy Lab?), the Table's simmer (clicks are ignored for about a second), toast icons, portrait framing in the dialogue box, the new walk sprites (frame order when villagers walk), the Familiars' animation, buff icons, and apparatus lights and ready frames.
 - **sos.2's new parts:** the one-screen workshop map and boards that appear on the map, the starter quests, Finch's spot in a modded Forest, and the two new cutscenes.
 - **Workshop and Lab maps.** Our own map files (exits, tile properties for heat and dark, the shrine and bundle tiles). Watch for black screens, being stuck in a wall, or doors that do nothing.
 - **NPCs.** Home tiles, schedules, gift tastes and portraits. An NPC standing in a wall or missing entirely is worth a screenshot.
@@ -189,7 +199,7 @@ Everything in this build is a first run. These are the parts most likely to brea
 Paste this into the thread, filled in. One line per bug is fine for a sink-or-swim run.
 ```
 Configuration: VO-1 / VO-2 / VO-3
-Build: 1.0.0-sos.2
+Build: 1.0.0-sos.3
 Save day: (e.g. Spring 7, Year 1)
 What I did:
 What happened:
