@@ -1,6 +1,6 @@
 # 22 · Execution Plan
 
-Status: **DRAFT v0.3** (2026-10-19) · Readiness: plan for build 1, awaiting Charles's review (D23 and D24 decided)
+Status: **DRAFT v0.4** (2026-10-21) · Readiness: the plan for build 1, approved (PR #20 merged); B1 and B2 are done, B3 waits for Charles's yes
 Depends on: 00, 09, 10, 11, 17 · Feeds: every build batch, `TESTING.md`, the to-do list and ideas backlog
 
 ## Purpose
@@ -25,7 +25,7 @@ None. Players meet the result as builds; testers meet it through each build's `T
 
 ### 1 · Terms
 - **Batch:** one unit of work Charles releases with one yes. It ends in one PR (two when review size calls for it, for example engine and content) and, in one **test build**.
-- **Test build:** a zip Charles installs and plays from `TESTING.md`. Named `0.1.0-alpha.N`; build 1 itself ships as `0.1.0`. Each test build is a git tag on `main`.
+- **Test build:** one zip Charles installs and plays from `TESTING.md`, holding the C# mod and `[CP] ValleyOpus`, made on his PC after compiling (Charles, 2026-10-20). Named `0.1.0-alpha.N`; build 1 itself ships as `0.1.0`. Each test build is a git tag on `main`. Sink-or-swim trial builds (§3a) are named `1.0.0-sos.N` and stay on their own branch.
 - **Milestone:** the state a batch reaches, stated as what Charles can do in game at the end of it.
 - **Build 1** is the first playable slice of doc 11: Spring Y1 end to end, walked through its finish line.
 
@@ -66,7 +66,7 @@ Three batches (Charles, 2026-10-19, **D24**). Every batch also carries: the doc 
 - **Exit:** every wave A spike has a result, so B2 can fix IDs and build the machine path. A failed spike takes its doc 09 fallback; if the fallback changes a rule, a docs PR lands before B2 is proposed.
 
 **B2 · The bench and the line** (`alpha.2`; **saves carry forward from here**, schema version 1)
-- **Log:** B2 started 2026-10-19 on Charles's yes. B1's results: every wave A and B spike passed except S3 (fixed in B2: Labs are stripped into save data on every save and restored after, doc 17 §6) and S16's Blacksmith bonus (a Harmony postfix on `valleyopus_metal_bar`, Charles's option A, doc 15 §6).
+- **Log:** B2 started 2026-10-19 on Charles's yes and merged as PR #22 on 2026-10-21 (`alpha.2`). B1's results: every wave A and B spike passed except S3 (fixed in B2: Labs are stripped into save data on every save and restored after, doc 17 §6) and S16's Blacksmith bonus (a Harmony postfix on `valleyopus_metal_bar`, Charles's option A, doc 15 §6); S13 passed at Town 53,9 after failing at 52,7 with SVE.
 *The bench:*
 - **IDs and sort keys fixed** per S11's result (doc 09 §11), together with categories per S16. From this build on, every ID is permanent.
 - The base CP pack with every slice registry row of doc 11 (8 Primes, 46 objects, 41 resolver recipes, 6 apparatus rows, conditions, tag weights and category defaults for Spring's items, Aether weights by source rarity) and their authored `Data/Objects` and `Data/BigCraftables` rows; the data compiler (doc 09 §4c); the data test fails CI on any validator finding.
@@ -81,13 +81,16 @@ Three batches (Charles, 2026-10-19, **D24**). Every batch also carries: the doc 
 - Performance: the resolver timing line in the log and a developer command that places 50 apparatus under Automate (doc 09 §8).
 
 **B3 · The workshop** (`0.1.0`, build 1)
-- `World`: the Town warp behind the CC (vanilla and SVE), the workshop map with the Entrance Hall and the Furnace Room in both states, Laboratory T1 at Robin's with hearth, alcove and the Lab Bonus.
-- The bundle board (our own, D20) with all seven rooms laid out, the Furnace Room's three bundles, `Unlocks` with mail flags and recipe grants.
+- `World`: the Town warp behind the CC (vanilla and SVE), the one-screen workshop map with the Entrance Hall and the Furnace Room's area in both states (doc 14 §2), Laboratory T1 at Robin's with hearth, alcove and the Lab Bonus.
+- The bundle board (our own, D20) in vanilla's bundle style, showing only open rooms' bundles (doc 16 §10), the Furnace Room's three bundles, `Unlocks` with mail flags and recipe grants.
 - Oriel, Tobin and the Curator, workshop-bound; the soft-start cutscene, the Furnace Room scene, Tobin's arrival, the Lab blueprint mail, the five-quest starter chain, the Cyprian journal pages and the slice hints. **Draft scripts** are written for this batch (doc 11's open question; doc 20 replaces them later).
 - GMCM page, the slice report CSV, "prepare for removal", the full `TESTING.md` (setup per configuration, log locations, commands, low-confidence areas, bug template).
 - **Done when:** the doc 11 finish line is walked on configurations 1, 2 and 3 (CC route on 1 and 2, Joja late install on 3); the uninstall test passes on configuration 1; an `alpha.2` save carries into `0.1.0` (the first migration check); CI is green and the validator reports zero findings; the spike table has every build-1 spike filled.
 
 **D24 · How many batches before build 1** (Charles, 2026-10-19): three, as above. The five-batch alternative (foundation, spikes, bench, line and workshop each on their own) gave smaller test builds but more yeses and test sessions.
+
+### 3a · Sink-or-swim trial builds (Charles, 2026-10-20)
+Beside the three batches, Charles asked for a **full 1.0 trial build** played sink-or-swim: every system at once, built from the B2 code on its own branch (draft PR #23, `1.0.0-sos.N`), and rewound to `alpha.2` if it goes poorly. Each trial build still needs Charles's yes. Its findings go to the to-do list like any playtest's, and design changes reach the owning docs through a docs PR (§5 rule 4). B3 is unchanged and still waits for its own yes.
 
 ### 4 · Spike order and fallbacks
 Every spike gets a **desk check** first (public docs and the open-source code of SMAPI, Content Patcher, Automate and SpaceCore), which often settles it or narrows what Charles has to look at. The **in-game check** then runs in the earliest test build that can hold it. Fallbacks are doc 09 §14's; none forces a redesign.
@@ -166,6 +169,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 None open. D23 and D24 are decided (Decisions locked).
 
 ## Change log
+- **v0.4 (2026-10-21):** docs cleanup sweep: marked approved (PR #20 merged); the batch log adds B1 (PR #21, `alpha.1`, merged 2026-10-19) and B2 (PR #22, `alpha.2`, merged 2026-10-21); one zip per build (Charles, 2026-10-20); the sink-or-swim trial builds (§3a); B3's workshop and board follow Charles's one-screen workshop and vanilla-style board (docs 14, 16).
 - **v0.3 (2026-10-19):** B2 docs update: B2 started on Charles's yes; B1's spike results logged (all wave A/B passed except S3 and S16's Blacksmith bonus).
 - **v0.2a (2026-10-19):** S2 settled as D25 (Automate's generic handler runs our machines).
 - **v0.2 (2026-10-19):** Charles decided D23 (a Remote Control session on his PC compiles each test build) and D24 (three batches: foundation and spikes, the bench and the line, the workshop); §3 and the spike table follow.

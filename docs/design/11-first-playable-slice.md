@@ -1,6 +1,6 @@
 # 11 · First Playable Slice
 
-Status: **DRAFT v0.2a** (2026-10-19) · Readiness: ready for architecture (Charles reviewed and merged it as PR #14; no `[blocks-arch]` item open)
+Status: **DRAFT v0.2b** (2026-10-21) · Readiness: ready for architecture (Charles reviewed and merged it as PR #14; no `[blocks-arch]` item open)
 Depends on: 00, 02, 03, 03a, 03b, 05, 07, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 16, 17, execution planning
 
 ## Purpose
@@ -18,12 +18,12 @@ The first build a player can install and play: **Spring of Year 1, end to end** 
 - **Safe to uninstall** (S3) and **multiplayer-safe** from the first build: both are cheaper to prove now than to retrofit.
 - **Testing is built in** (Charles, 2026-10-18): at most four test configurations, unit tests and logging from the first commit, and a testing guide for Charles (§6).
 - **SVE from the start** (Charles, 2026-10-18): the slice is tested with SVE installed from the very first build; nothing in it may assume vanilla maps or items only (§6).
-- **Slice art** (Charles, 2026-10-18): Element icons follow the placeholder decision in the project's art-sources notes (one stoppered vial recoloured per Element, with its Idylwild's Alchemical Codex rune, CC0); everything else uses open-license assets or the base game's own sprites. Commissioned art comes before the 1.0 publish.
+- **Slice art** (Charles, 2026-10-18): Element icons follow the placeholder decision in the project's art-sources notes (one stoppered vial recoloured per Element, with its Idylwild's Alchemical Codex rune, CC0); everything else uses open-license assets or the base game's own sprites. Commissioned art comes before the 1.0 publish, and all of it is commissioned, every item icon and the Element icons included; open-license art is placeholder only (Charles, 2026-10-21).
 
 ## Player-facing spec
 
 ### What the slice is, in one paragraph
-A new (or existing) save reaches the soft start, meets Oriel, and leaves the ruined workshop that evening with a Reagent Satchel, an Assayer's Lens, an Experiment Table, an Alembic, a Retort and Oriel's old Athanor. Over Spring the player decomposes their forage, crops, fish and mine finds into the eight Primes, works through the Tier 1 grid at the Table, learns that an Alembic distills beside a kindled Athanor, restores the **Furnace Room** with three vanilla bundles, welcomes **Tobin** and his **Calcinator**, builds **Laboratory T1** with Saxum they made themselves, and runs a first small line of apparatus inside it, by hand, by chaining or with Automate. By the end of Spring they have most non-Aether Tier 1 cells, a first Tier 2 compound or two, about Alchemy level 4, and a board showing the Cistern and Library waiting.
+A new (or existing) save reaches the soft start, meets Oriel, and leaves the ruined workshop that evening with a Reagent Satchel, an Assayer's Lens, an Experiment Table, an Alembic, a Retort and Oriel's old Athanor. Over Spring the player decomposes their forage, crops, fish and mine finds into the eight Primes, works through the Tier 1 grid at the Table, learns that an Alembic distills beside a kindled Athanor, restores the **Furnace Room** with three vanilla bundles, welcomes **Tobin** and his **Calcinator**, builds **Laboratory T1** with Saxum they made themselves, and runs a first small line of apparatus inside it, by hand, by chaining or with Automate. By the end of Spring they have most non-Aether Tier 1 cells, a first Tier 2 compound or two, about Alchemy level 4, and the Tier II rooms waiting for a later build.
 
 ### The finish line
 The slice is "played through" when all of these are true. They are the slice's acceptance path, and the build's test plan walks them on both routes:
@@ -36,8 +36,8 @@ The slice is "played through" when all of these are true. They are the slice's a
 7. One Tier 2 compound has been discovered.
 
 ### The first evening (the most important ten minutes)
-- **The Encounter:** 2 days after the CC opens, the first Town entry between 6:00am and 3:00pm (doc 14). Oriel's short cutscene, the walk behind the CC, the Entrance Hall. The clock is frozen throughout; the scene is skippable after the first view.
-- **The gifts:** Satchel, Lens, Experiment Table, one Alembic, one Retort (each with its recipe) and one Athanor (gift only; its recipe comes with the Furnace Room).
+- **The Encounter:** 2 days after the CC opens, the first Town entry between 6:00am and 3:00pm, never straight after the CC-opening cutscene (doc 14). Oriel's short cutscene, the walk behind the CC, the Entrance Hall. The clock is frozen throughout; the scene is skippable after the first view.
+- **The gifts:** Satchel, Lens, Experiment Table, one Alembic, one Retort (each with its recipe) and one Athanor (gift only; its recipe comes with the Furnace Room). No welcome letter follows: letters only arrive overnight, so the cutscene says what it would have (doc 14).
 - **The starter chain** (Charles, 2026-10-18): a walkthrough, not a to-do list. Each quest appears in the vanilla quest log only when the one before it is done, and its reward is **material for the next step**. Oriel gives the first four, Tobin the last:
   1. *"Take it apart"* (given in the cutscene): decompose any item in the Athanor. Teaches the Satchel filling itself. **Reward:** 4 Ignis from Oriel's own jar, enough to try Ignis + Ignis at the Table and still kindle the Athanor afterwards.
   2. *"Two become one"*: make any discovery at the Experiment Table. Teaches the anticipation beat and the first toast. **Reward:** 4 Aqua, for the next quest's distillation.
@@ -61,7 +61,7 @@ The slice is "played through" when all of these are true. They are the slice's a
 | Use | drink Sal Volatile or Vigor for energy, Ros Maialis for Undine's Gift; spread Caput Mortuum or Terra Viva as fertilizer; ship Calx and Smaltum; dye with Smaltum | the effect registry (vanilla and one custom handler), fertilizer queries, derived prices |
 
 ### What the player sees at the edges of the slice
-- **The bundle board** shows all seven rooms. Rooms past the Furnace Room show their name and a sealed door with the line *"Sealed. (Not in this build.)"*, so the board's final layout is tested now.
+- **The bundle board** shows only the Furnace Room's bundles: a room's bundles appear only once the room is open, and the slice has none for later rooms (Charles, 2026-10-20; doc 14 §2, doc 16 §10).
 - **The codex Unlocks page** lists Tier II unlocks as silhouettes with their sources, marked the same way.
 - **Aether** is rare, as doc 14 §7 intends, and its yield follows how common each source is (Charles, 2026-10-18). **Solar and Void Essence** are common monster drops, so they decompose mostly into their own Primes with only a trace of Aether (placeholder: about 1 Aether per essence). **Prismatic Shards and legendary fish** are rare, so they decompose mostly into Aether, and their price (1,000g and up, against 40–50g for an essence) already gives them several times the units under the √price yield. Placeholder ratio: one Prismatic Shard gives about as much Aether as 15–20 essences. That is enough to discover an Aether pair or make the odd Vigor or Terra Viva in Spring, not to run them. The weights are `Decomposition/TagWeights` rows (doc 12 §2), so the sweep tunes them without a shape change.
 - **Alchemy level 5:** the slice ships no professions. XP keeps banking past level 4; a player who reaches the level 5 threshold sees "Your next level arrives in a later build", and the level and its choice apply when the build with professions is installed.
@@ -84,7 +84,7 @@ As in 1.0: an undefined Table pair gives residue, a little XP and a "tried" mark
 | **Neighbour states** | *Cold* / *Heated* on the Alembic (heat from a kindled Athanor or a Lab hearth) | *Vapor*, *Fulgur*, *Crossed* (no sources yet) |
 | **Conditions** | Required power (Flamma Viva, for kindling and heat), one Bonus adjacency (flowers by tag within range 2, on the Athanor, Retort and Hermetic Vessel), the Lab-tier Bonus, the darkness GSQ (built and tested, see §3) | weekday, weather, moon, ley node, catalysts, Shades |
 | **Directional chaining** | **in** (Charles, 2026-10-18): West in, East out, South chest second, behind the item-route interface; a minimal chain overlay | the full overlay and teaching visuals (doc 16), Tobin's chaining lesson (Cistern) |
-| **Automate** | **in** (Charles, 2026-10-18): our `IAutomationFactory` for every apparatus, recipe memory, refusal of locked outputs | — |
+| **Automate** | **in** (Charles, 2026-10-18): Automate's own generic handler runs our apparatus (D25, doc 13 §6.3), recipe memory, locked outputs held out of its reach | — |
 | **Codex** | pages: Primes, Tier 1 grid, Tier 2, Apparatus, Unlocks; silhouettes, "tried" marks, warm hints, lore lines at 1/10/50 | Dark twins, Metals, Great Work and Places pages (they exist but stay empty) |
 | **Hints** | layer 1 (flavour, acceptance), layer 2 (grid warmth), layer 4 (Oriel, Tobin and the Curator, a few lines each), layer 5 (a handful of Cyprian journal pages in the Entrance Hall) | residue divination (Library), Lunar Dream, Hesper, Finch, Lark |
 | **Celebrations** | all three tiers, the anticipation beat, clock freeze, feedback styles (arcane and mechanical) | Cauda Pavonis (first stage advance needs an altar) |
@@ -177,23 +177,21 @@ The slice adds **no new tables**. It fills the assets other docs define with Spr
 | `Conditions` (12) | Flamma Viva power, *Heated*/*Cold*, flowers within range 2, Lab tier ≥ 1, darkness |
 | `Decomposition/*` (12) | tag weights for Spring's vanilla items and every category default; overrides only as playtests need |
 | `Apparatus`, `Data/Machines`, `Data/BigCraftables` (13) | 6 apparatus |
-| `Unlocks`, `WorkshopRooms`, `WorkshopBundles` (14) | Intro and Furnace Room unlocks; all 7 rooms plus the Great Work Chamber as rows (later rooms with no bundles, which the board shows as sealed); 3 bundles |
+| `Unlocks`, `WorkshopRooms`, `WorkshopBundles` (14) | Intro and Furnace Room unlocks; all 7 rooms plus the Great Work Chamber as rows (later rooms have no bundles, so the board doesn't show them); 3 bundles |
 | `Effects` and fertilizer rows (15) | energy edibility on Sal Volatile and Vigor, Undine's Gift (weak), Caput Mortuum and Terra Viva fertilizer profiles, Smaltum dye |
 | `Codex/Pages`, `Codex/Lore`, `Hints`, `Milestones` (07) | 5 pages; lore lines for slice items; about 40 hints; about 6 milestones (first discovery, first Tier 1 row (a milestone only), first Tier 2, first kindling, Furnace Room restored, first Lab) |
 | `Data/Buildings` (18) | Laboratory T1 |
 | Skill (05) | the SpaceCore skill, levels 1–4 unlocks |
 | Save data (C#, host) | farm codex, unlocks, bundle progress, and a **schema version** (§5) |
 
-**Inventory sort order** (Charles, 2026-10-18): the slice's 46 objects must sort, under vanilla Organize and the common sort mods, as the eight Primes first, then substances by tier (Tier 1, then Tier 2, with Caput Mortuum among the substances), then endgame Elements last (none in the slice yet), alphabetical within each group. Before the slice assigns categories, item IDs or tags, the build verifies what those sorters key on (category number, display name, item ID or context tags) and picks the field that yields this order in every language. This may conflict with doc 15's Artisan Goods category for sellable compounds; the item-data pass resolves it (todo list).
+**Inventory sort order and IDs** (Charles, 2026-10-18): the slice's 46 objects sort as the eight Primes first, then substances by tier, then endgame Elements, alphabetical within each group. Spike S11 settled how: the sorters key on the internal `Name`, which carries a spaced sort key, and item IDs are stable names fixed from `alpha.2` (doc 03b rule 5, doc 09 §11).
 
-**Room in the ID sequence** (Charles, 2026-10-18): whatever ordering key the sort uses (an ID segment, a sort number or a category value), it leaves gaps between groups and subgroups, so later builds can add an item anywhere without reassigning existing IDs. Stardew 1.6 item IDs are strings (`CharlesDR.ValleyOpus_Calx`), and renaming one breaks saves, so if the order comes from the ID itself the scheme needs a gapped prefix (for example `10_`, `20_`), otherwise from a separate gapped sort field. The slice is the first build to fix IDs, and carry-forward saves (§5) make them permanent from then on.
-
-**Out-of-build rows** are simply absent, never present-and-disabled, except the seven `WorkshopRooms` rows, which the board needs for its layout.
+**Out-of-build rows** are simply absent, never present-and-disabled, except the seven `WorkshopRooms` rows, kept so the room data is complete (the board shows only open rooms, doc 16 §10).
 
 ## Content inventory
 - **Items:** 8 Primes, 33 Tier 1 items, 4 Tier 2 items and Caput Mortuum (46 objects), 2 tools (Satchel, Lens), 6 BigCraftables.
 - **Recipes:** 41 resolver recipes; 6 apparatus and 2 tool crafting recipes (Table, Alembic, Retort, Athanor, Hermetic Vessel, Calcinator; Satchel and Lens recipes for replacements).
-- **Locations:** the workshop (Entrance Hall, Furnace Room in two states, the board's sealed doors), the Town warp patch, the Lab T1 interior.
+- **Locations:** the workshop (one screen-sized map: the Entrance Hall and the Furnace Room's area in two states, doc 14 §2), the Town warp patch, the Lab T1 interior.
 - **Building:** Laboratory T1.
 - **NPCs:** Oriel, Tobin, the Curator (workshop-bound, with portraits and sprites reused or tinted from vanilla).
 - **Events and mail:** the soft-start cutscene, the Furnace Room restoration scene, Tobin's arrival, the Lab blueprint mail; the five-quest starter chain. Scripts are drafts written for the slice; doc 20 replaces them later.
@@ -204,11 +202,11 @@ The slice adds **no new tables**. It fills the assets other docs define with Spr
 ## Tech hooks
 The slice is where doc 09's architecture plan is first proven. The risks it must surface, each a test in the build's plan:
 1. **The staging layer calling the vanilla output path** with `probe`, and `OutputMethod` returning the resolver's match (doc 13 §6.1–2).
-2. **Automate never routing our machines to its generic handler** once our factory claims them; locked outputs refused (doc 13 §6.3).
+2. **Automate's generic handler on our machines** (D25): its loads reach the staging layer one item per pass, and locked outputs never reach its chests (doc 13 §6.3).
 3. **Resolver caching under polling:** a target of 50 apparatus under Automate in one location with no visible frame-time cost (placeholder; the slice report logs resolver time per day).
 4. **Codex sync** host → farmhands, including late joiners: built and code-reviewed in the slice, tested in game later (doc 17 §8b).
 5. **Clock freeze** in single player, and its non-blocking form with farmhands (doc 07); the farmhand form is tested in game later (doc 17 §8b).
-6. **A building with missing data** removed cleanly on load (S3).
+6. **Uninstall with a Lab** (S3): failed in B1, so Labs are now stripped into save data on every save (doc 17 §6); re-checked in B3.
 7. **The Town warp** with and without SVE.
 8. **SpaceCore skill** registration, level-up screen, and banking XP past level 4.
 9. **Custom buff handler** (Undine's Gift) on the vanilla `Data/Buffs` path, and the **fertilizer queries** for our item IDs (doc 15).
@@ -232,9 +230,10 @@ The slice is the first data the sweep sees. Placeholders it tunes or checks:
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are in Decisions locked and the change log.
-- `[blocks-content]` **Draft scripts** for the cutscene, restoration scene and starter quests. *Owner: doc 20 (slice drafts written during execution).*
+- `[blocks-content]` **Draft scripts** for the cutscene, restoration scene and starter quests. Charles will rewrite the cutscene scripts himself (2026-10-20). *Owner: Charles for the cutscenes; doc 20 for the rest.*
 
 ## Change log
+- **v0.2b (2026-10-21):** docs cleanup sweep: the board shows only open rooms' bundles (no sealed doors) and the workshop is one screen (Charles, 2026-10-20; doc 14); the soft start never follows the CC-opening cutscene straight away and sends no welcome letter; Automate per D25 and uninstall per S3's fix; the settled sort-key paragraphs point to docs 03b and 09; all art is commissioned (Charles, 2026-10-21); Charles rewrites the cutscene scripts.
 - **v0.2a (2026-10-19):** pre-gate cleanup sweep: marked ready (merged as PR #14); co-op, split-screen and controller are built and code-reviewed, in-game runs deferred (doc 17 §8b); settled open questions and the "for other docs" notes removed (each now lives in its doc: 03, 09, 13, 14, 16, 17).
 - **v0.2 (2026-10-18):** Charles's review: the starter quests become a five-step chain whose rewards feed the next step; Aether yield follows source rarity (Solar and Void Essence give a trace, Prismatic Shards and legendary fish the bulk); a critical-path check of every finish-line step (§1a), which replaced "a Tier 1 row" with ten Tier 1 discoveries, fixed the end-of-Spring level, required a Spring-only Calcinator cost and flagged Lab T1's 25,000g as tight; a testing section (§6) with four configurations (chaining-only first, SVE from the start), unit tests, logging and a testing guide.
 - **v0.1 (2026-10-18):** first draft: the finish line, the first evening and Oriel's starter quests, the Spring loop, the in/out table (six apparatus, all 36 Tier 1 rows, four Tier 2 rows, chaining and Automate in, professions out), recipe rows, darkness via a test pack, build tooling (the slice report, developer commands, a test content pack), edge cases including save carry-forward, the data rows per asset, and the ten technical risks the slice must surface.

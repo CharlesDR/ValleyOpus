@@ -1,6 +1,6 @@
 # 00 · Design Critical Path to Architecture
 
-Status: **DRAFT v0.5e** (2026-10-19). v0.5e: the architecture gate is passed (doc 09 v1.0 merged as PR #19); execution planning is doc 22. v0.5d: the architecture gate is under way (doc 09 v1.0 drafted). v0.5c: pre-gate cleanup sweep: Phase 4 is done and the doc inventory shows current versions. v0.5b: doc 17 drafted; the Satchel storage note points to it. v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
+Status: **DRAFT v0.5f** (2026-10-21). v0.5f: docs cleanup sweep: the doc inventory and progress line show B1 and B2 merged. v0.5e: the architecture gate is passed (doc 09 v1.0 merged as PR #19); execution planning is doc 22. v0.5d: the architecture gate is under way (doc 09 v1.0 drafted). v0.5c: pre-gate cleanup sweep: Phase 4 is done and the doc inventory shows current versions. v0.5b: doc 17 drafted; the Satchel storage note points to it. v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
 
 ## The governing rule
 Architecture needs the **shape** of every system, not its **content**. Shape means what kinds of things exist, the rules connecting them, and which of them need C# rather than Content Patcher data. Content means names, numbers, dialogue, art and exact recipes. Content can be filled in during execution as long as it is data-driven, so it never blocks architecture. Rework comes from changing shape late, so the path front-loads shape decisions and pushes content behind the gate.
@@ -47,7 +47,6 @@ Which doc 06 metrics apply, and which numbers are placeholders to tune in the sw
 Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 
 ## Change log
-- **v0.5e (2026-10-19):** gate passed; doc 22 (Execution Plan) added to the inventory and the progress line.
 - **vX.Y (date):** what changed and why.
 ```
 
@@ -55,42 +54,41 @@ Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 
 ## Part 2 · Doc inventory and gaps
 
-State as of the 2026-10-19 pre-gate cleanup sweep. Each doc's own status line is authoritative; open items for every doc are collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
+State as of the 2026-10-21 docs cleanup sweep. Each doc's own status line is authoritative; open items for every doc are collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
 
-| # | Doc | State (2026-10-19) | What's still missing before the gate |
+| # | Doc | State (2026-10-21) | What's still missing before the gate |
 |---|---|---|---|
 | 01 | Vision & Pillars | v0.8 | nothing; the reference all other docs check against |
-| 02 | Progression & Unlocks | v0.7, the narrative of the Year 1 curve | nothing; the unlock map is doc 14 and the Lab is doc 18 |
-| 03 | Essences & Decomposition | v0.4, data shape done | nothing |
-| 03a | Substances Catalog | v0.11, apparatus column done | nothing; recipe rows are content |
-| 03b | Items & Inventory | v0.9c | the census refreshed once doc 11's rows land |
-| 04 | Machines & Automation | v0.8, philosophy only | nothing; the machine list is doc 13 |
-| 05 | Skill & Professions | v0.7, ready | nothing |
+| 02 | Progression & Unlocks | v0.7a, the narrative of the Year 1 curve | nothing; the unlock map is doc 14 and the Lab is doc 18 |
+| 03 | Essences & Decomposition | v0.4b, data shape done | nothing |
+| 03a | Substances Catalog | v0.11a, apparatus column done | nothing; recipe rows are content |
+| 03b | Items & Inventory | v0.10 (sort key settled by spike S11) | the census refreshed once doc 11's rows land |
+| 04 | Machines & Automation | v0.8a, philosophy only | nothing; the machine list is doc 13 |
+| 05 | Skill & Professions | v0.7a, ready | nothing |
 | 06 | Economy & Balance | v0.6 | policy is done; numbers come from the sweep (execution) |
-| 07 | Discovery & Codex | v0.9, ready | nothing |
-| 08 / 08a | Narrative & Cast | v0.6 / approved | only the hooks architecture needs (triggers, flags, locations); scripts come later |
-| 09 | Technical Architecture | v1.0, the architecture plan (PR #19 merged) | nothing; the gate is passed |
-| 10 | Roadmap & Open Questions | v0.10c | nothing; it collects every open item |
-| **11** | **First Playable Slice** | v0.2a, ready (PR #14 merged) | nothing |
-| **12** | **Recipe & Process Model** | v0.4, ready | nothing |
-| **13** | **Apparatus Catalog** | v0.6b, ready | nothing |
-| **14** | **Unlock Map & Workshop Bundles** | v0.4, ready | nothing |
-| **15** | **Products & Outside Uses** | v0.7, ready | nothing |
-| **16** | **UX & Interface** | v0.1a, ready (PR #17 merged; defaults D15–D19 confirmed) | nothing |
-| **17** | **Multiplayer, Saves & Compatibility** | v0.1e, ready (PR #16 merged) | nothing |
-| **18** | **Laboratory & Familiars** | v0.2, ready | nothing |
+| 07 | Discovery & Codex | v0.9a, ready | nothing |
+| 08 / 08a | Narrative & Cast | v0.6a / approved | only the hooks architecture needs (triggers, flags, locations); scripts come later |
+| 09 | Technical Architecture | v1.1a, the architecture plan (PRs #19 and #22 merged) | nothing; the gate is passed |
+| 10 | Roadmap & Open Questions | v0.10h | nothing; it collects every open item |
+| **11** | **First Playable Slice** | v0.2b, ready (PR #14 merged) | nothing |
+| **12** | **Recipe & Process Model** | v0.5a, ready | nothing |
+| **13** | **Apparatus Catalog** | v0.7a, ready | nothing |
+| **14** | **Unlock Map & Workshop Bundles** | v0.6, ready | nothing |
+| **15** | **Products & Outside Uses** | v0.8, ready | nothing |
+| **16** | **UX & Interface** | v0.2, ready (PR #17 merged; defaults D15–D19 confirmed) | nothing |
+| **17** | **Multiplayer, Saves & Compatibility** | v0.2a, ready (PR #16 merged) | nothing |
+| **18** | **Laboratory & Familiars** | v0.3a, ready | nothing |
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |
-| 20 | Content Script *(after gate)* | — | events, mail, dialogue, schedules |
-| 21 | Art & Audio List *(after gate)* | — | sprites, animations, sounds; placeholders until commissioned |
-| 22 | Execution Plan *(after gate)* | v0.1, in review | the batches to build 1, spike order, how to-do and backlog items join a batch; D23 and D24 decided |
-
+| 20 | Content Script *(after gate)* | — | events, mail, dialogue, schedules; Charles rewrites the cutscene scripts himself (doc 10 action items) |
+| 21 | Art & Audio List *(after gate)* | — | sprites, animations, sounds; placeholders until commissioned. All mod art is commissioned, every item icon and the Element icons included (Charles, 2026-10-21); the quote-ready needs list is in the project files (`review/art-commission-needs.xlsx`) until this doc is written |
+| 22 | Execution Plan *(after gate)* | v0.4, approved (PR #20 merged) | the batches to build 1 (B1 and B2 merged, B3 next), the sink-or-swim trials, spike order, how to-do and backlog items join a batch |
 ---
 
 ## Part 3 · The critical path
 
 Each phase only starts once the decisions it depends on are made. Inside a phase, docs can be written in parallel.
 
-**Progress (2026-10-19):** Phases 0–4 are done and the architecture gate is passed (doc 09 v1.0 merged as PR #19). Execution planning is [doc 22](22-execution-plan.md): three build batches to build 1, the first playable slice, each released by Charles's yes under the build gate.
+**Progress (2026-10-21):** Phases 0–4 are done and the architecture gate is passed (doc 09 v1.0 merged as PR #19). Execution follows [doc 22](22-execution-plan.md): three build batches to build 1, the first playable slice, each released by Charles's yes under the build gate. B1 (PR #21) and B2 (PR #22) are merged; B3 is next. Sink-or-swim trial builds of the full 1.0 run beside them (doc 22 §3a).
 
 ```
 Phase 0  Scope lock ─────────────► decisions S1–S5
@@ -206,6 +204,8 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 
 
 ## Change log
+- **v0.5f (2026-10-21):** docs cleanup sweep: inventory versions, B1 and B2 merged, the doc 21 art scope (Charles, 2026-10-21); the v0.5e entry moved here from inside the Part 1 template, where it had landed by mistake.
+- **v0.5e (2026-10-19):** gate passed; doc 22 (Execution Plan) added to the inventory and the progress line.
 - **v0.5c (2026-10-19):** pre-gate cleanup sweep: Phase 4 marked done; the doc inventory's versions and states brought up to date.
 - **v0.5 (2026-10-18):** docs cleanup sweep: doc inventory shows each doc's current state; progress line on the path; S3's Lab conversion and Satchel storage notes marked as superseded or open; P2's suspended cap and the wider Lab tiers noted; doc 00's own v0.3 and v0.4 change-log entries moved out of the template example.
 - **v0.4 (2026-10-13):** doc 18 (Laboratory) moved before the gate, with Charles's size and floorplan direction.

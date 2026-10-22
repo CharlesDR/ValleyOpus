@@ -1,6 +1,6 @@
 # 12 · Recipe & Process Model
 
-Status: **DRAFT v0.5** (2026-10-19) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
+Status: **DRAFT v0.5a** (2026-10-21) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
 Depends on: 01, 03, 03a, 03b, 04, 07 · Feeds: 03/03a (data shape, apparatus column), 05, 06, 07, 09, 13, 14, 15, 17
 
 ## Purpose
@@ -117,7 +117,7 @@ Discovery is keyed by **namespaced IDs**, stored once per farm in host save data
 | `recipe:<RecipeId>` | the recipe is completed at the Table, or its locked output is unloaded by hand | automation of that recipe |
 | `item:<ItemId>` | the item is first obtained or revealed by any manual route | its codex entry and silhouette; releases any locked output of that item |
 | `tried:<signature>` | an undefined Table attempt | the "tried" mark; signature = the sorted list of input item IDs |
-| `assay:<ItemId>` | first Assayer's Lens use on it | its profile shown in tooltips |
+| `assay:<ItemId>` | first Assayer's Lens use on it | its tooltip row gains the units and loses the "?", becoming the full profile (doc 16 §11) |
 | `effect:<ConditionId>` | a Bonus condition or adjacency effect first fires on a hand-unloaded batch | its "?" replaced in the codex |
 | `count:<ItemId>` (+ hand-made count) | each craft | codex depth lines at 1, 10 and 50 |
 
@@ -167,7 +167,7 @@ Placeholder counts for 1.0 (rows, not final names):
 No new items are created by this doc; every row's output already exists in doc 03a or 03b.
 
 ## Tech hooks
-- **Resolver in C#.** One recipe resolver serves the Table, every apparatus, chaining, Automate input acceptance, the codex and Lookup Anything. Approved (Charles, 2026-10-16; details in doc 13): apparatus are `Data/Machines` entries with a C# `OutputMethod` that calls the resolver, and one Automate factory claims every apparatus (doc 13 §6.3, superseding the earlier plan to rely on Automate's native support), so the discovery lock, hand-made-only refusal and ritual staging live in one class (doc 09 §9).
+- **Resolver in C#.** One recipe resolver serves the Table, every apparatus, chaining, Automate input acceptance, the codex and Lookup Anything. Approved (Charles, 2026-10-16; details in doc 13): apparatus are `Data/Machines` entries with a C# `OutputMethod` that calls the resolver, and Automate's own generic handler runs them (Charles, 2026-10-19, D25; doc 13 §6.3), so the discovery lock, hand-made-only refusal and ritual staging live in our staging layer, which every loader goes through (doc 09 §5a, §9).
 - **Custom GSQs** registered in C# (`VALLEYOPUS_DISCOVERED`, moon phase, planetary hour, darkness, ley node, Lab tier) so conditions also work inside plain `Data/Machines` rules and other packs' data.
 - **Crafting** recipes compile into `Data/CraftingRecipes`; vanilla-machine rules are appended to `Data/Machines`, never replacing.
 - **Validation at load:** unresolved references, ambiguous matches, missing Tier 1 cells, equivalent-exchange clamps and hand-made-only recipes on automatable-only apparatus are reported in the SMAPI log; a console command dumps the report.
@@ -184,6 +184,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Four-plus Table inputs need no model change. A Potion Craft–style brew map would add a new operation with its own resolver, plugged in beside this one.
 
 ## Change log
+- **v0.5a (2026-10-21):** docs cleanup sweep: the resolver tech hook follows D25 (Automate's generic handler, no factory); the `assay:` row follows Charles's tooltip decision (2026-10-22: farm-discovered Elements as icons, assaying adds units).
 - **v0.5 (2026-10-19):** B2 docs update: base-pack rows write the `CharlesDR.ValleyOpus_` prefix literally, since `{{ModId}}` there resolves to the content pack's ID.
 - **v0.4a (2026-10-19):** pre-gate cleanup sweep: R1 and §6 note that the stage names are internal; player-facing quality uses vanilla words and stars (doc 16 §2).
 - **v0.4 (2026-10-18), Charles's answers:** ValleyOpus items decompose at a loss; a re-roll replaces the discovered secret; Electrum and Rebis are a counterpart pair, and twin routes always share their output.
