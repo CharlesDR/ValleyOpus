@@ -11,7 +11,8 @@ import workshop_dressing as D
 import world_data as W
 
 P = W.P
-TOWN_ENTRANCE = (53, 9)   # behind the Community Center (S13; Charles: never the front door)
+TOWN_ENTRANCE = (53, 9)   # behind the Community Center (S13; Charles: never the front door): where the player stands
+TOWN_DOOR = (53, 8)       # the cave mouth in the cliff just above it, which holds the Enter action
 TOWN_RETURN = (53, 10)
 
 # Tile indices, read from the vanilla Shed map: u = townInterior, w = walls_and_floors.
@@ -170,41 +171,41 @@ def stamp(m, layer_bottom, x, y, tiles, cols=2):
             m.set(layer, x + c, y + r, U, tiles[r * cols + c])
 
 
-ENTRANCE_ART = "tiny-dungeon/kenney_tinydungeon/Tilemap/tilemap_packed.png"  # Kenney Tiny Dungeon (CC0)
-ENTRANCE_TILE = 45  # a wooden door in a stone frame
+# The workshop door behind the CC is a timbered mouth cut into the cliff, three tiles wide, laid out like the mine
+# entrance on the Mountain map with tile indices into the Town's own landscape sheet. The sheet keeps the Town's
+# tilesheet id and image, so SMAPI reuses the Town's sheet: it follows the seasons and any recolour mod, and nothing
+# vanilla is shipped. The cliff face behind the CC (rows 6-8) is the same in vanilla and SVE.
+ENTRANCE_ORIGIN = (TOWN_DOOR[0] - 1, TOWN_DOOR[1] - 2)
+ENTRANCE_TILES = {
+    # Under the frame posts the Back keeps what the Town has there (the same in vanilla and SVE): shaded grass at the foot.
+    "Back": [[352, 217, 175], [1094, 509, 326], [1094, 534, 1094]],
+    # The mouth's floor tile is repeated on Buildings at the bottom so it can hold the Enter action.
+    "Buildings": [[483, None, 485], [508, None, 510], [533, 534, 535]],
+    "Front": [[483, 484, 485], [None, None, None], [None, None, None]],
+}
 
 
-def entrance_map(pack, art_root):
-    """A 1x1 map holding the workshop door on Buildings, with its own tilesheet (z_ sorts after the Town's sheets)."""
-    from PIL import Image
-    sheet = Image.open(os.path.join(art_root, ENTRANCE_ART)).convert("RGBA")
-    x, y = (ENTRANCE_TILE % 12) * 16, (ENTRANCE_TILE // 12) * 16
-    out_dir = os.path.join(pack, "assets", "maps")
-    sheet.crop((x, y, x + 16, y + 16)).save(os.path.join(out_dir, "z_valleyopus_entrance.png"))
+def entrance_map(pack):
+    """A 3x3 map of the workshop door for an EditMap patch onto the Town's cliff."""
+    def csv(rows):
+        return ",\n".join(",".join(str(t + 1 if t is not None else 0) for t in row) for row in rows)
+    layers = "\n".join(f''' <layer id="{i + 1}" name="{name}" width="3" height="3">
+  <data encoding="csv">
+{csv(rows)}
+  </data>
+ </layer>''' for i, (name, rows) in enumerate(ENTRANCE_TILES.items()))
     tmx = f'''<?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="16" tileheight="16" infinite="0">
- <tileset firstgid="1" name="z_valleyopus_entrance" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="z_valleyopus_entrance.png" width="16" height="16"/>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="3" height="3" tilewidth="16" tileheight="16" infinite="0">
+ <tileset firstgid="1" name="Landscape" tilewidth="16" tileheight="16" tilecount="1975" columns="25">
+  <image source="spring_outdoorsTileSheet.png" width="400" height="1264"/>
  </tileset>
- <layer id="1" name="Back" width="1" height="1">
-  <data encoding="csv">
-0
-  </data>
- </layer>
- <layer id="2" name="Buildings" width="1" height="1">
-  <data encoding="csv">
-1
-  </data>
- </layer>
- <objectgroup id="3" name="Buildings">
-  <object id="1" name="TileData" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="Action" value="{P}Enter"/>
-   </properties>
-  </object>
- </objectgroup>
+{layers}
 </map>
 '''
+    out_dir = os.path.join(pack, "assets", "maps")
+    stale = os.path.join(out_dir, "z_valleyopus_entrance.png")
+    if os.path.exists(stale):
+        os.remove(stale)
     with open(os.path.join(out_dir, "TownEntrance.tmx"), "w", encoding="utf-8") as f:
         f.write(tmx)
 
@@ -346,13 +347,14 @@ def write(pack, i18n, write_json, header, art_root):
         ("CreateOnLoad", {"MapPath": "Maps/" + WORKSHOP, "AlwaysActive": True}),
         ("CanPlantHere", False)])
     changes.append({"Action": "EditData", "Target": "Data/Locations", "Entries": locations})
-    # The workshop door behind the CC: our own door tile on Buildings (CP adds the tilesheet), used with the action button.
-    entrance_map(pack, art_root)
-    files_entrance = {"X": TOWN_ENTRANCE[0], "Y": TOWN_ENTRANCE[1], "Width": 1, "Height": 1}
+    # The workshop door behind the CC: a cave mouth in the cliff, used with the action button from the grass below it.
+    entrance_map(pack)
     changes.append({"Action": "EditMap", "Target": "Maps/Town", "FromFile": "assets/maps/TownEntrance.tmx",
-                    "FromArea": {"X": 0, "Y": 0, "Width": 1, "Height": 1}, "ToArea": files_entrance, "PatchMode": "Overlay"})
+                    "FromArea": {"X": 0, "Y": 0, "Width": 3, "Height": 3},
+                    "ToArea": {"X": ENTRANCE_ORIGIN[0], "Y": ENTRANCE_ORIGIN[1], "Width": 3, "Height": 3},
+                    "PatchMode": "ReplaceByLayer"})
     changes.append({"Action": "EditMap", "Target": "Maps/Town", "MapTiles": [
-        {"Position": {"X": TOWN_ENTRANCE[0], "Y": TOWN_ENTRANCE[1]}, "Layer": "Buildings", "SetProperties": {"Action": P + "Enter"}}]})
+        {"Position": {"X": TOWN_DOOR[0], "Y": TOWN_DOOR[1]}, "Layer": "Buildings", "SetProperties": {"Action": P + "Enter"}}]})
 
     # ── Laboratories (doc 18 §1) ──
     costs = {1: (25000, [("(O)388", 400), ("(O)338", 20), ("(O)334", 10), ("(O)" + P + "Saxum", 10)], 2, None, "Buildings/Shed", "FurnaceRoom"),

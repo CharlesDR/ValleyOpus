@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="16" tileheight="16" infinite="0">
- <tileset firstgid="1" name="z_valleyopus_entrance" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="z_valleyopus_entrance.png" width="16" height="16"/>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="3" height="3" tilewidth="16" tileheight="16" infinite="0">
+ <tileset firstgid="1" name="Landscape" tilewidth="16" tileheight="16" tilecount="1975" columns="25">
+  <image source="spring_outdoorsTileSheet.png" width="400" height="1264"/>
  </tileset>
- <layer id="1" name="Back" width="1" height="1">
+ <layer id="1" name="Back" width="3" height="3">
   <data encoding="csv">
-0
+353,218,176,
+1095,510,327,
+1095,535,1095
   </data>
  </layer>
- <layer id="2" name="Buildings" width="1" height="1">
+ <layer id="2" name="Buildings" width="3" height="3">
   <data encoding="csv">
-1
+484,0,486,
+509,0,511,
+534,535,536
   </data>
  </layer>
- <objectgroup id="3" name="Buildings">
-  <object id="1" name="TileData" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="Action" value="CharlesDR.ValleyOpus_Enter"/>
-   </properties>
-  </object>
- </objectgroup>
+ <layer id="3" name="Front" width="3" height="3">
+  <data encoding="csv">
+484,485,486,
+0,0,0,
+0,0,0
+  </data>
+ </layer>
 </map>
