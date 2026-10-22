@@ -210,7 +210,7 @@ Finch's shop is the vanilla shop menu, so buying feels like any travelling merch
 
 ### 11 · The Assayer's Lens
 - **On an item:** a small panel with the item's Prime profile as coloured bars with Element icons, and the codex entry it opened. The first time only, it sets `assay:` (doc 12 §10).
-- **Elements in tooltips** (Charles, 2026-10-20): once the intro has played, an item's tooltip shows the Elements discovered so far for it as a row of Element icons, plus one **"?"** icon in the same style when at least one of its Elements is still undiscovered. Key items get no row: tools, quest items and irreplaceable items. GMCM chooses always (default), only while holding the Lens, or never. *Open (doc 10):* what "discovered so far" counts (every Element the farm has discovered, as build sos.2 does, or only those this item has given), and so what assaying adds to the row; until then, assaying shows the full profile with units (doc 12 §10).
+- **Elements in tooltips** (Charles, 2026-10-20 and 2026-10-22): once the intro has played, an item's tooltip shows a row of Element icons for every Element in it that the farm has discovered, as **icons only, with no amounts**, plus one **"?"** icon in the same style when at least one of its Elements is still undiscovered. **Assaying** the item adds the units and clears the "?", so the row becomes its full profile (doc 12 §10). Key items get no row: tools, quest items and irreplaceable items. GMCM chooses always (default), only while holding the Lens, or never.
 - **On a place or fixture:** a lore box in the vanilla dialogue style, and a toast if it revealed a hint.
 - **Level 4, a whole chest** (doc 05): one panel listing every newly assayed item in the chest with its profile, scrollable.
 
@@ -330,12 +330,11 @@ The UI adds no save data and no CP asset of its own; it reads the assets of docs
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
-- `[blocks-content]` **Elements in item tooltips** (§11): whether "discovered so far" means every Element the farm has discovered or only those the item has given, and what assaying adds. *Owner: Charles.*
 - `[blocks-content]` **Art and sound** for icons, overlay shapes and the anticipation beat. *Owner: doc 21.*
 - `[2.0]` Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
-- **v0.2 (2026-10-21):** docs cleanup sweep: Charles's sink-or-swim feedback (2026-10-20) moved here from the to-do list: the board looks like vanilla's bundle menu, shows a room's bundles only once the room is open (no sealed rooms), hides rewards until a bundle is done and shines so players notice it; item tooltips show an item's discovered Elements plus a "?" from the end of the intro, never on key items (what "discovered" counts is open in doc 10). Risks follow the B1 spike results.
+- **v0.2 (2026-10-21):** docs cleanup sweep: Charles's sink-or-swim feedback (2026-10-20) moved here from the to-do list: the board looks like vanilla's bundle menu, shows a room's bundles only once the room is open (no sealed rooms), hides rewards until a bundle is done and shines so players notice it; item tooltips show an item's farm-discovered Elements as icons plus a "?" from the end of the intro, never on key items, and assaying adds the units and clears the "?" (Charles's card, 2026-10-22). Risks follow the B1 spike results.
 - **v0.1a (2026-10-19):** pre-gate cleanup sweep: marked ready (merged as PR #17); the in-game test deferral now also covers online co-op (doc 17 §8b).
 - **v0.1 (2026-10-18), Charles's review:** the quarter-day budget's "heavily invested" player is the 90th percentile of alchemy investment; bulk surprise divination (up to 10 at once, proportional residue) after 5 divinations; Finch never sells a curiosity whose hint points at something already discovered; quality shows on screen as "base quality" and the vanilla stars, never the Latin stage names; a codex entry's Used in list shows a "???" row for each undiscovered recipe that uses the item, and undiscovered routes use the same "???" mark; controller and split-screen groundwork from the first build, with in-game tests deferred while Charles can't test.
 - **v0.1 (2026-10-18), Charles's answers:** no late-install fast start (the GMCM row and open question are removed); defaults D15–D19 confirmed.

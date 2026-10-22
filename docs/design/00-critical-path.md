@@ -60,7 +60,7 @@ State as of the 2026-10-21 docs cleanup sweep. Each doc's own status line is aut
 |---|---|---|---|
 | 01 | Vision & Pillars | v0.8 | nothing; the reference all other docs check against |
 | 02 | Progression & Unlocks | v0.7a, the narrative of the Year 1 curve | nothing; the unlock map is doc 14 and the Lab is doc 18 |
-| 03 | Essences & Decomposition | v0.4a, data shape done | nothing |
+| 03 | Essences & Decomposition | v0.4b, data shape done | nothing |
 | 03a | Substances Catalog | v0.11a, apparatus column done | nothing; recipe rows are content |
 | 03b | Items & Inventory | v0.10 (sort key settled by spike S11) | the census refreshed once doc 11's rows land |
 | 04 | Machines & Automation | v0.8a, philosophy only | nothing; the machine list is doc 13 |
