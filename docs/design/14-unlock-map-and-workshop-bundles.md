@@ -1,13 +1,15 @@
 # 14 · Unlock Map & Workshop Bundles
 
-Status: **DRAFT v0.5** (2026-10-19) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
+Status: **DRAFT v0.6** (2026-10-21) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03a, 05, 07, 08, 08a, 12, 13, 15 · Feeds: 05, 06, 09, 11, 16, 17, 18, 19, 20
 
 ## Purpose
 When and how each part of ValleyOpus opens up: every apparatus, tool, Table upgrade, Lab tier, NPC, hint channel, ley node and story beat, mapped to its source (a workshop room, an NPC, a skill level, a base-game milestone or a discovery), on both the Community Center and Joja routes. It also defines the **derelict workshop's rooms and bundles**. The map serves pillar 4 (wonder first, then scale: Spring is hand work and discovery, Summer brings Tobin's lines), the discovery pillar (unlocks open *means*, never recipes, so knowledge still comes from experimenting), and doc 02's pacing targets: a diligent player sees most of the mod in Year 1 and all of it by the end of Year 2, with no calendar gate anywhere.
 
 ## Decisions locked
-- **Soft start** (Charles, doc 02): 2 days after the Community Center opens, the first entry into Town between 6:00am and 3:00pm; Oriel walks the player to the workshop behind the CC.
+- **Soft start** (Charles, doc 02): 2 days after the Community Center opens, the first entry into Town between 6:00am and 3:00pm; Oriel walks the player to the workshop behind the CC. It never fires straight after the CC-opening cutscene; it waits for the next Town entry with the other conditions met (Charles, 2026-10-20).
+- **Letters arrive overnight** (Charles, 2026-10-20): as vanilla mail does, a letter comes the next morning. What a scene's follow-up letter would say belongs in the scene itself, so the intro sends no welcome letter.
+- **One-screen workshop** (Charles, 2026-10-20): the workshop is one map that fits on one screen; its rooms are areas of it, not separate maps (§2).
 - **No hard calendar gates** (Charles, doc 01): every unlock is gated by progress (a bundle, a skill level, friendship, a base-game milestone, a discovery). Recurring conditions (weekday, weather, season, moon) are allowed because they come round again. Seasons in this doc are the **expected pace for a diligent player**, never a requirement.
 - **Discovery over shopping** (Charles, doc 01): automation only runs discovered recipes, and **no unlock grants a recipe**. Unlocks give apparatus, tools, places, people and hints; the recipes themselves are learned by experimenting (doc 07). *One exception (Charles, 2026-10-18): Alchemy professions and skill levels may grant new recipes that change no existing setup, and nothing on the critical path may depend on one (doc 05 §3, §5).*
 - **Workshop bundles** (P3, Charles): they take vanilla items and mod substances; early bundles are all vanilla; they never ask for a ✋ item (doc 15 §10).
@@ -22,13 +24,13 @@ When and how each part of ValleyOpus opens up: every apparatus, tool, Table upgr
 
 ### The shape of a playthrough
 1. **The Encounter** (Spring, a few days in). Oriel's cutscene, the walk behind the CC, the ruined workshop. The player leaves with a Reagent Satchel, an Assayer's Lens, an Experiment Table, an Alembic, a Retort and Oriel's own old **Athanor**, so they can decompose and experiment on the first evening.
-2. **Restoring the workshop.** The Curator's bundle board in the entrance hall works like the CC's: each room has three bundles; restoring a room plays a short scene and grants its unlocks. Rooms open in four tiers, and each tier after the first opens when **any one** room of the tier before it is restored, so a player can lean toward Tobin's or Oriel's side and come back for the other.
+2. **Restoring the workshop.** The Curator's bundle board works like the CC's: each room has three bundles, which appear only once the room is open; restoring a room plays a short scene and grants its unlocks. Rooms open in four tiers, and each tier after the first opens when **any one** room of the tier before it is restored, so a player can lean toward Tobin's or Oriel's side and come back for the other.
 3. **People arrive** as the workshop comes back: Tobin with the first restored room, Hesper and Dr. Sorenson with the second tier, the Wizard and the Witch with the third. Agnes, Bennet, Delta, Ivo, Finch and Lark each have their own trigger (below).
 4. **The Great Work.** Once all seven rooms are restored, the sealed chamber opens: the Curator's identity, the Great Work quest, Laboratory T3 and the Familiars.
 
 ### What the player sees
 - **The bundle board** shows each room's bundles with vanilla items as icons and Elements as **silhouettes with a one-line hint** until discovered. Asking for an Element counts as an `Existence` hint (doc 07): a bundle never asks for something the player can't find out how to make.
-- **Restoration scenes** are short (clock frozen, skippable after the first view) and end on a mail or a hold-up of what was unlocked.
+- **Restoration scenes** are short (clock frozen, skippable after the first view) and end on a hold-up of what was unlocked, or a letter the next morning.
 - **New crafting recipes** appear in the vanilla crafting menu with a "learned" notice, as vanilla skill recipes do. Robin's menu gains each Lab tier when it unlocks.
 - **The codex has an Unlocks page** listing every unlock as a silhouette with its source ("Restore the Cistern", "Hesper, 2 hearts", "Repair the Quarry bridge"), so the path forward is always readable in-game.
 - **Failure state:** none. An unlock never expires or closes again; missing a weekday or a storm only waits for the next one.
@@ -60,6 +62,8 @@ An **unlock** is one farm-wide flag plus the things it grants. Kinds:
 ### 2 · The workshop's rooms
 Seven rooms, one for each operation of the Magnum Opus in doc 02's seasonal order, plus the sealed Great Work chamber. Each room's motif is the operation the matching season introduces; it doesn't mean the operation was unavailable before (the Alembic dissolves from day one).
 
+**One screen** (Charles, 2026-10-20): the workshop is one map that fits on one screen, and each room is an area of it. Like the CC's rooms, a room's bundles appear in the workshop only once the room is open, so neither the map nor the board spells out the order (doc 16 §10). For now the map is one big rectangle; a more interesting floor plan comes later.
+
 | Tier | Room | Motif | Host | Opens when | Pace (diligent) | Unlocks on restoration |
 |---|---|---|---|---|---|---|
 | — | **Entrance Hall** | — | Oriel, the Curator | the soft-start cutscene | Spring | Reagent Satchel, Assayer's Lens, Experiment Table (2 slots), Alembic and Retort (recipes + one each), one Athanor (gift only), the bundle board, the codex |
@@ -70,7 +74,7 @@ Seven rooms, one for each operation of the Magnum Opus in doc 02's seasonal orde
 | III | **Undercroft** | Fermentation | the Witch | any Tier II room | Fall | the Witch's letter and hut visit; **Gloam Lantern** recipe; Shades catalysts in recipes become usable; her dark-twin hints |
 | IV | **Observatory** | Distillation | Hesper | any Tier III room | Winter | Hesper's star rituals and celestial-event hints; the **farm-secret** almanac thread (doc 07); the remaining valley ley nodes revealed |
 | IV | **Crystal Vault** | Coagulation | the Curator | any Tier III room | Winter | **Circle Sigil** recipe; Robin mentions a larger Lab (T3 groundwork, flavour only) |
-| ★ | **Great Work Chamber** | the Opus | the Curator → Cyprian | all seven rooms | late Winter Y1 → Year 2 | the Curator revealed as **Cyprian**; the **Great Work** quest (Tier 3 recipes reachable); **Laboratory T3** at Robin's; **Familiar** bonding (doc 18) |
+| ★ | **Great Work Chamber** | the Opus | the Curator → Cyprian | all seven rooms | late Winter Y1 → Year 2 | the Curator revealed as **Cyprian** in a cutscene, never a letter (Charles, 2026-10-20); the **Great Work** quest (Tier 3 recipes reachable); **Laboratory T3** at Robin's; **Familiar** bonding (doc 18) |
 
 **Why "any one" between tiers:** it keeps pillar 1's choice real. A player drawn to rituals can restore the Library, then the Sanctum, and leave the Cistern for later; a factory builder can go Cistern then Undercroft. The finale still needs all seven, so nobody skips a side for good.
 
@@ -104,7 +108,7 @@ Three bundles per room, four in the Great Work Chamber, CC-style: each slot is a
 | IV | same | Crystal Vault | *Fixed Salts*: Sal Fixum ×10, Mercurius Fixus at silver, Gelum ×5 | *Gems*: Diamond, Emerald, Vitreus ×10 | *Metals of the Week*: 2 of 3: Argentum or Stannum or Plumbum, Gold Bar ×5, Iron Bar ×10 |
 | ★ | mostly mod products at a stage | Great Work Chamber | *Nigredo*: each dark twin ×3 · *Albedo*: any 5 different Tier 2 at silver · *Citrinitas*: any 3 different Tier 2 at gold · *Rubedo*: one Tier 2 at iridium (altar) | | |
 
-- **Rewards** per bundle are small and useful, like the CC's: a stack of a Prime-rich vanilla item, an extra apparatus, a fertilizer stack. The room's unlocks are the main reward.
+- **Rewards** per bundle are small and useful, like the CC's: a stack of a Prime-rich vanilla item, an extra apparatus, a fertilizer stack. The room's unlocks are the main reward. A bundle's reward stays hidden until the bundle is complete, as in vanilla (Charles, 2026-10-20; doc 16 §10).
 - **Never ✋.** Bundles ask only for automatable items, and accept automated output (doc 10 #2).
 - **Critical-path rule** (Charles, 2026-10-17): every slot must be makeable with what is unlocked **when its room opens**, never with something the room itself (or a later room) unlocks. Checked against §2 and §4, the v0.3 list broke this twice, now fixed: the Sanctum asked for Electrum, which needs Argentum from the Quarry Crucible (a bridge-gated specialist), and the Undercroft asked for Mors and Venenum, the dark twins the Witch teaches only once the Undercroft is restored. A bundle may ask for something whose source is a base-game gate only through an "N of M" choice with a vanilla fallback (Metals of the Week). The sweep re-runs this check whenever bundles or unlocks change (balance hooks).
 - **Never a single source.** A slot names a tag or "any of" wherever possible, so one bad harvest or one undiscovered route can't stall a room.
@@ -116,9 +120,9 @@ Three bundles per room, four in the Great Work Chamber, CC-style: each slot is a
 | NPC | Arrives | Then unlocks |
 |---|---|---|
 | **Oriel** | soft-start cutscene | ritual and concept advice (hint channel); spends part of her week at the workshop from the Furnace Room on |
-| **The Curator** | in the workshop from the start | the bundle board; workshop-lore hints; revealed as Cyprian at the Great Work Chamber |
+| **The Curator** | in the workshop from the start | the bundle board; workshop-lore hints; revealed as Cyprian at the Great Work Chamber, in a cutscene |
 | **Tobin** | the day after the Furnace Room | Calcinator; the Cistern's machines; machine and layout tips (hint channel); the Lightning Coil letter |
-| **Finch** | the week after the Furnace Room | his weekly route: sells rare reagents, buys surplus, stocks a curiosity hint (doc 07) |
+| **Finch** | the week after the Furnace Room | his weekly route: sells rare reagents, buys surplus, stocks a curiosity hint (doc 07). His wagon stands out in the world, never in the workshop, at a spot that is open with and without SVE (Charles, 2026-10-20; doc 17 §7a) |
 | **Ivo** | the Guild, once the Furnace Room is restored and the Guild is open | bounties (vanilla loot); his Pulvis Pyrius hints wait for the Table's third slot |
 | **Hesper** | the Library | visiting days, the weekly almanac; **Ley Tap** recipe at 2 hearts; Observatory content |
 | **Dr. Sorenson** | the Cistern | bulk contracts that pay above shipping or reward an optional unlock (doc 15 §6, §1 above); her Joja arc runs through the Great Work |
@@ -198,7 +202,7 @@ All assets are public Content Patcher data under `CharlesDR.ValleyOpus/…`, wit
 - **Bundles:** our own bundle menu, not Unlockable Bundles (Charles, 2026-10-19; doc 09 §10). Its progress lives in host save data with the rest of farm state.
 - **Crafting recipes** are per player in vanilla: a C# day-start and on-connect pass grants every unlocked recipe to every player.
 - **Base-game gates:** vanilla mail flags and world state for the CC and Joja milestones (to verify, doc 10), wrapped in one GSQ per gate so routes never leak into data.
-- **The workshop map:** the rooms are areas of one map that change on restoration (CP map patches keyed on our flags), like the CC's rooms.
+- **The workshop map:** the rooms are areas of one screen-sized map that change on restoration (CP map patches keyed on our flags), like the CC's rooms (§2).
 - **1.7:** nothing here depends on 1.7 changes.
 
 ## Balance hooks
@@ -212,6 +216,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
 
 ## Change log
+- **v0.6 (2026-10-21):** docs cleanup sweep: Charles's sink-or-swim feedback (2026-10-20) moved here from the to-do list: the soft start never fires straight after the CC-opening cutscene; letters arrive overnight, so the intro sends no welcome letter; the workshop is one screen whose rooms are areas, with a room's bundles appearing only once it opens; bundle rewards stay hidden until done; the Curator's name is revealed in a cutscene, never a letter; Finch's wagon stands out in the world, never in the workshop.
 - **v0.5 (2026-10-19):** B2 docs update: workshop entrance warp at Town 53,9 behind the CC (spike S13 passed, vanilla and SVE); never the CC's front door (Charles).
 - **v0.4a (2026-10-19):** pre-gate cleanup sweep: the Great Work Chamber keeps stage names as bundle titles only (Charles, 2026-10-19); Spring Aether yield follows source rarity (doc 03).
 - **v0.4a (2026-10-18), Charles's answer:** no late-install fast start, not even as a GMCM option; the open question is closed.

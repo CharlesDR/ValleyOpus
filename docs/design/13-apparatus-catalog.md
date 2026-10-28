@@ -1,6 +1,6 @@
 # 13 · Apparatus Catalog
 
-Status: **DRAFT v0.7** (2026-10-19) · Readiness: ready for architecture (Charles confirmed the power, Electrum/Rebis and Ectoplasm defaults on 2026-10-18; no `[blocks-arch]` item is left open)
+Status: **DRAFT v0.7a** (2026-10-21) · Readiness: ready for architecture (Charles confirmed the power, Electrum/Rebis and Ectoplasm defaults on 2026-10-18; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03, 03a, 04, 12 · Feeds: 05, 06, 07, 09, 14, 15, 16, 17, 18
 
 ## Purpose
@@ -200,7 +200,9 @@ Recipes keep `ApparatusKinds` and `ApparatusIds` as doc 12 defines; an apparatus
 - **1.7:** nothing here depends on the crafting or context-tag changes beyond doc 12's notes.
 
 ## Balance hooks
-Doc 06 metrics per apparatus: GPTD per tile including its share of power and chest tiles; Boiler `MaxConsumers` and duration (the Factorio ratio); Coil storm charge rate and overclock size; Athanor heat range; decomposition `YieldMultiplier`, `ResidueRate` and `Concentration` per decomposer; Ley Tap units per day; Circle batch size. All placeholders. The sweep also reports machines per endgame setup against §9.
+Doc 06 metrics per apparatus: GPTD per tile including its share of power and chest tiles; Boiler `MaxConsumers` and duration (the Factorio ratio); Coil storm charge rate and overclock size; Athanor heat range; decomposition `YieldMultiplier`, `ResidueRate` and `Concentration` per decomposer; Ley Tap units per day; Circle batch size. All placeholders.
+
+**Decomposition is quick** (Charles, 2026-10-20): breaking items into Elements is a basic step done constantly, so neither decomposer may feel slow. Placeholder times: Athanor 30 minutes, Calcinator 10 (build sos.2's numbers, down from 120 and 30); the sweep tunes them. Whether the Calcinator should also arrive earlier is a balance-pass question (doc 10). The sweep also reports machines per endgame setup against §9.
 
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
@@ -210,6 +212,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` A flower-fed **trickle** (a Prime from a planted bed, no input) would be a world tap placed in a garden; arcane logistics replaces chaining through the item-route interface; blended late-game machines are designed with the capstones.
 
 ## Change log
+- **v0.7a (2026-10-21):** docs cleanup sweep: decomposition must be quick (Charles, 2026-10-20), with placeholder times in Balance hooks (moved from the to-do list).
 - **v0.7 (2026-10-19):** B2 docs update: trays are per-machine global inventories and the locked-output store is named (`CharlesDR.ValleyOpus_LockedOutputs`); D25 wording: no Automate integration code, a patched `AttemptAutoLoad` marks automated loads.
 - **v0.6c (2026-10-19):** Charles chose option B for spike S2 (D25): Automate runs our apparatus through its generic handler; locked outputs move to a locked-output store when they finish (§6.3, §6.5).
 - **v0.6b (2026-10-19):** Charles confirmed the fresh-machine default (§6a).

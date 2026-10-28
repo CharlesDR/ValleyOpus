@@ -1,6 +1,6 @@
 # 05 · Skill & Professions
 
-Status: **DRAFT v0.7** (2026-10-18) · Readiness: ready for architecture (no `[blocks-arch]` item open; Charles answered every question on 2026-10-18)
+Status: **DRAFT v0.7a** (2026-10-21) · Readiness: ready for architecture (no `[blocks-arch]` item open; Charles answered every question on 2026-10-18)
 Depends on: 01, 02, 04, 06, 12, 13, 14, 15 · Feeds: 06, 09, 11, 16, 17, 18
 
 ## Purpose
@@ -116,7 +116,7 @@ A player may own **all six** professions through Walk of Life resets. To keep th
 | `PerkVariables` | CP data | `Id`, `Combine` (Add / Multiply / Max), `Min`, `Max` |
 | Skill-level unlocks | CP data | rows in doc 14's `Unlocks` table with `Source.Type = SkillLevel` |
 | XP, level, professions | C# state | SpaceCore's per-farmer skill data; saved per player, synced by SpaceCore |
-| One-time XP keys | C# state | per player, next to the discovery state (doc 12); stops repeat XP |
+| One-time XP keys | C# state | per player, in the farmer's own `modData` (`CharlesDR.ValleyOpus/XpKeys`), so they travel with a farmhand (doc 17 §1); stops repeat XP |
 
 In 1.0 the six profession rows are fixed, but every perk value and XP amount is data the sweep can rewrite. Content-pack professions are 2.0.
 
@@ -144,6 +144,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 
 ## Change log
 - **Cleanup sweep (2026-10-18):** the odd-level conveniences are listed as an open content item; doc 14 §6 now points here for the skill-level table.
+- **v0.7a (2026-10-21):** docs cleanup sweep: one-time XP keys live in the farmer's `modData` (doc 17 §1, B2).
 - **v0.7 (2026-10-18):** Charles's review. Perks may lower costs and grant recipes, but never change an existing setup. Automated output gives a quarter of the XP instead of none. Profession-granted recipes give no discovery XP. Engineer's residue perk is replaced by a fuel saving for machine-fed ⚙︎ apparatus (Charles's pick). The odd-level default is approved. Skill levels may also grant recipes, under a critical-path guard and an order-of-operations check (§3).
 - **v0.6 (2026-10-17):** retrofitted to the doc 00 template. XP source table with once-only keys and no XP from automation; pace targets (L5 early Summer, L10 late Winter); doc 14 §6 skill-level unlocks adopted; perks made independent of Automate and of item provenance; bridges made physical; the rule that perks never choose recipes; the perk-variable combine table; whose perks apply in multiplayer and under automation; data shape and tech hooks.
 - **v0.5 (2026-10-13):** pacing check and the combat cap on perks (Charles's guiding answers, doc 01).
