@@ -1,6 +1,6 @@
 # ValleyOpus Design Docs
 
-An alchemy and automation expansion for Stardew Valley. These are **drafts** (started 2026-10-13, last swept 2026-10-21); each doc's status line gives its version and readiness. This repo is their source of truth. **Every open question is collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).**
+An alchemy and automation expansion for Stardew Valley. These are **drafts** (started 2026-10-13, last swept 2026-10-28); each doc's status line gives its version and readiness. This repo is their source of truth. **Every open question is collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).**
 
 Each subject has one owning doc; other docs summarize and link to it. Where an older summary and the owning doc differ, the owning doc wins. Doc numbers 19, 20 and 21 are reserved on the path in doc 00; doc 22 is the execution plan.
 

@@ -1,6 +1,6 @@
 # 00 · Design Critical Path to Architecture
 
-Status: **DRAFT v0.5f** (2026-10-21). v0.5f: docs cleanup sweep: the doc inventory and progress line show B1 and B2 merged. v0.5e: the architecture gate is passed (doc 09 v1.0 merged as PR #19); execution planning is doc 22. v0.5d: the architecture gate is under way (doc 09 v1.0 drafted). v0.5c: pre-gate cleanup sweep: Phase 4 is done and the doc inventory shows current versions. v0.5b: doc 17 drafted; the Satchel storage note points to it. v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
+Status: **DRAFT v0.5g** (2026-10-28). v0.5g: docs cleanup sweep: the S3 note on custom buildings follows spike S3 and doc 17 §6. v0.5f: docs cleanup sweep: the doc inventory and progress line show B1 and B2 merged. v0.5e: the architecture gate is passed (doc 09 v1.0 merged as PR #19); execution planning is doc 22. v0.5d: the architecture gate is under way (doc 09 v1.0 drafted). v0.5c: pre-gate cleanup sweep: Phase 4 is done and the doc inventory shows current versions. v0.5b: doc 17 drafted; the Satchel storage note points to it. v0.5: docs cleanup sweep: the doc inventory shows each doc's current state, the path shows progress, superseded S3 details are marked, and every open item now lives in doc 10. v0.4: Laboratory design (doc 18) moves before the architecture gate (Charles). v0.3: the guiding answers in doc 01 add requirements for docs 12, 13, 16 and 17 (below), and U2 widens to four tie-in mods. v0.2: Charles answered every Part 4 decision. This doc says which design docs must be "ready" before architecture planning starts, in what order, and which decisions Charles still owns along the way.
 
 ## The governing rule
 Architecture needs the **shape** of every system, not its **content**. Shape means what kinds of things exist, the rules connecting them, and which of them need C# rather than Content Patcher data. Content means names, numbers, dialogue, art and exact recipes. Content can be filled in during execution as long as it is data-driven, so it never blocks architecture. Rework comes from changing shape late, so the path front-loads shape decisions and pushes content behind the gate.
@@ -54,7 +54,7 @@ Each tagged `[blocks-arch]`, `[blocks-content]` or `[2.0]`, with an owner.
 
 ## Part 2 · Doc inventory and gaps
 
-State as of the 2026-10-21 docs cleanup sweep. Each doc's own status line is authoritative; open items for every doc are collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
+State as of the 2026-10-28 docs cleanup sweep. Each doc's own status line is authoritative; open items for every doc are collected in [doc 10](10-roadmap-and-open-questions.md#open-questions).
 
 | # | Doc | State (2026-10-21) | What's still missing before the gate |
 |---|---|---|---|
@@ -69,8 +69,8 @@ State as of the 2026-10-21 docs cleanup sweep. Each doc's own status line is aut
 | 07 | Discovery & Codex | v0.9a, ready | nothing |
 | 08 / 08a | Narrative & Cast | v0.6a / approved | only the hooks architecture needs (triggers, flags, locations); scripts come later |
 | 09 | Technical Architecture | v1.1a, the architecture plan (PRs #19 and #22 merged) | nothing; the gate is passed |
-| 10 | Roadmap & Open Questions | v0.10h | nothing; it collects every open item |
-| **11** | **First Playable Slice** | v0.2b, ready (PR #14 merged) | nothing |
+| 10 | Roadmap & Open Questions | v0.10i | nothing; it collects every open item |
+| **11** | **First Playable Slice** | v0.2c, ready (PR #14 merged) | nothing |
 | **12** | **Recipe & Process Model** | v0.5a, ready | nothing |
 | **13** | **Apparatus Catalog** | v0.7a, ready | nothing |
 | **14** | **Unlock Map & Workshop Bundles** | v0.6, ready | nothing |
@@ -81,7 +81,7 @@ State as of the 2026-10-21 docs cleanup sweep. Each doc's own status line is aut
 | 19 | Capstones *(deferred)* | — | after progression is coherent; hook only |
 | 20 | Content Script *(after gate)* | — | events, mail, dialogue, schedules; Charles rewrites the cutscene scripts himself (doc 10 action items) |
 | 21 | Art & Audio List *(after gate)* | — | sprites, animations, sounds; placeholders until commissioned. All mod art is commissioned, every item icon and the Element icons included (Charles, 2026-10-21); the quote-ready needs list is in the project files (`review/art-commission-needs.xlsx`) until this doc is written |
-| 22 | Execution Plan *(after gate)* | v0.4, approved (PR #20 merged) | the batches to build 1 (B1 and B2 merged, B3 next), the sink-or-swim trials, spike order, how to-do and backlog items join a batch |
+| 22 | Execution Plan *(after gate)* | v0.4a, approved (PR #20 merged) | the batches to build 1 (B1 and B2 merged, B3 next), the sink-or-swim trials (`sos.3` is the latest), spike order, how to-do and backlog items join a batch |
 ---
 
 ## Part 3 · The critical path
@@ -164,7 +164,7 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 **Cons**
 - No custom C# item or object subclasses. Behaviour that would naturally live in a subclass (the Satchel, staged altars, the Ritual Circle) has to sit in C# handlers keyed off `modData`. That is somewhat more code and more care.
 - The **Satchel's contents** must live outside the item, for example in a 1.6 global inventory keyed by the satchel's ID. Without the mod, those contents are orphaned, so an uninstall needs a helper that empties satchels into a chest first. *(Settled by doc 17 §4: a global inventory keyed by the owning player, so contents are never orphaned and survive an uninstall intact; Charles chose it on 2026-10-19.)*
-- **Custom buildings and locations** (the Laboratory, the workshop under the CC) need testing to confirm how 1.6 handles them once their data is gone. Mitigation is part of the same uninstall helper. *(Superseded for Labs by the S3 answer above: they simply disappear, with no conversion to Sheds.)*
+- **Custom buildings and locations** (the Laboratory, the workshop under the CC) need testing to confirm how 1.6 handles them once their data is gone. Mitigation is part of the same uninstall helper. *(Settled for Labs by doc 17 §6: without the mod they disappear, with no conversion to Sheds (the S3 answer above). Because a missing building broke the load in spike S3 (B1), Labs are stripped into the mod's save data on every save and restored after it; on reinstall the Lab stays gone and its contents return in chests beside the farmhouse (Charles, 2026-10-19, option C). The workshop entrance simply does nothing.)*
 - Some rich features get harder: anything that stores complex state on a placed object has to serialize into `modData` strings.
 - Ongoing test cost: every release adds a "remove the mod and load the save" check.
 
@@ -204,6 +204,7 @@ All Part 4 items are answered. Each is recorded below and applied to the doc it 
 
 
 ## Change log
+- **v0.5g (2026-10-28):** docs cleanup sweep: the S3 cons note on custom buildings now gives spike S3's outcome (Labs stripped into save data on every save; contents return in chests on reinstall, doc 17 §6) instead of "they simply disappear"; inventory versions.
 - **v0.5f (2026-10-21):** docs cleanup sweep: inventory versions, B1 and B2 merged, the doc 21 art scope (Charles, 2026-10-21); the v0.5e entry moved here from inside the Part 1 template, where it had landed by mistake.
 - **v0.5e (2026-10-19):** gate passed; doc 22 (Execution Plan) added to the inventory and the progress line.
 - **v0.5c (2026-10-19):** pre-gate cleanup sweep: Phase 4 marked done; the doc inventory's versions and states brought up to date.

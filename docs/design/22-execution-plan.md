@@ -1,6 +1,6 @@
 # 22 · Execution Plan
 
-Status: **DRAFT v0.4** (2026-10-21) · Readiness: the plan for build 1, approved (PR #20 merged); B1 and B2 are done, B3 waits for Charles's yes
+Status: **DRAFT v0.4a** (2026-10-28) · Readiness: the plan for build 1, approved (PR #20 merged); B1 and B2 are done, B3 waits for Charles's yes
 Depends on: 00, 09, 10, 11, 17 · Feeds: every build batch, `TESTING.md`, the to-do list and ideas backlog
 
 ## Purpose
@@ -34,12 +34,12 @@ None. Players meet the result as builds; testers meet it through each build's `T
 |---|---|---|
 | Propose a batch (scope, test configs, spikes, to-do and backlog items pulled) | posts it to the coordinator, who puts it on a card | says yes, trims or defers |
 | Engine, tests, tools, content packs, CI | writes them; CI green before review | reviews the PR |
-| The SMAPI mod project | writes it; it can't compile in the cloud (no game assemblies) | a Remote Control session on his computer compiles and packages it (**D23**, below) |
+| The SMAPI mod project | writes it; compile-checks it in the cloud against game DLLs copied from Charles's PC (since 2026-10-22; never committed) | a Remote Control session on his computer compiles and packages it (**D23**, below) |
 | Spikes | desk-checks every spike it can from public sources first (SMAPI, Automate, SpaceCore and the wiki; §4) | runs the in-game half from `TESTING.md` and shares the SMAPI log |
 | Playtest findings | diagnoses and answers; adds items to `todo.md` | plays, reports |
 | Design changes found in play | a docs PR first, then the build | approves the docs PR |
 
-**D23 · How the SMAPI mod gets compiled** (Charles, 2026-10-19): a Remote Control session on Charles's computer, in his checkout, runs `dotnet build` against his game install and writes the test-build zip, so he never builds by hand. Alternatives: Charles builds from a short checklist in `TESTING.md`; or reference stubs of the game API in the repo (rejected: fragile, and a licensing risk).
+**D23 · How the SMAPI mod gets compiled** (Charles, 2026-10-19): a Remote Control session on Charles's computer, in his checkout, runs `dotnet build` against his game install and writes the test-build zip, so he never builds by hand. Alternatives: Charles builds from a short checklist in `TESTING.md`; or reference stubs of the game API in the repo (rejected: fragile, and a licensing risk). **Since 2026-10-22** the cloud thread can also compile the mod against the game DLLs copied from his PC (first done for `sos.3`), which catches compile errors before the hand-off; the DLLs stay out of the repo and the zip, and the test build itself is still compiled and zipped on his PC.
 
 The cloud environment also needs the .NET SDK so engine tests run before each push; batch B1 adds that to the environment's setup script (a setting Charles changes, with the steps in the PR).
 
@@ -91,6 +91,7 @@ Three batches (Charles, 2026-10-19, **D24**). Every batch also carries: the doc 
 
 ### 3a · Sink-or-swim trial builds (Charles, 2026-10-20)
 Beside the three batches, Charles asked for a **full 1.0 trial build** played sink-or-swim: every system at once, built from the B2 code on its own branch (draft PR #23, `1.0.0-sos.N`), and rewound to `alpha.2` if it goes poorly. Each trial build still needs Charles's yes. Its findings go to the to-do list like any playtest's, and design changes reach the owning docs through a docs PR (§5 rule 4). B3 is unchanged and still waits for its own yes.
+- **Log:** `sos.1` (draft PR #23, 2026-10-20) was played; `sos.2` (same branch, 2026-10-20) builds in Charles's feedback from that round and was installed from its zip on his PC. The design findings were filed in the 2026-10-21 docs sweep. `sos.3` (draft PR #25, stacked on #23, 2026-10-22) is an art and look-and-feel pass over `sos.2`'s gameplay, waiting for Charles's play-through.
 
 ### 4 · Spike order and fallbacks
 Every spike gets a **desk check** first (public docs and the open-source code of SMAPI, Content Patcher, Automate and SpaceCore), which often settles it or narrows what Charles has to look at. The **in-game check** then runs in the earliest test build that can hold it. Fallbacks are doc 09 §14's; none forces a redesign.
@@ -169,6 +170,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 None open. D23 and D24 are decided (Decisions locked).
 
 ## Change log
+- **v0.4a (2026-10-28):** docs cleanup sweep: the cloud now compile-checks the mod against game DLLs copied from Charles's PC (since 2026-10-22); D23 is unchanged, the test build is still compiled and zipped on his PC (§2); the sink-or-swim log adds `sos.2` and `sos.3` (§3a).
 - **v0.4 (2026-10-21):** docs cleanup sweep: marked approved (PR #20 merged); the batch log adds B1 (PR #21, `alpha.1`, merged 2026-10-19) and B2 (PR #22, `alpha.2`, merged 2026-10-21); one zip per build (Charles, 2026-10-20); the sink-or-swim trial builds (§3a); B3's workshop and board follow Charles's one-screen workshop and vanilla-style board (docs 14, 16).
 - **v0.3 (2026-10-19):** B2 docs update: B2 started on Charles's yes; B1's spike results logged (all wave A/B passed except S3 and S16's Blacksmith bonus).
 - **v0.2a (2026-10-19):** S2 settled as D25 (Automate's generic handler runs our machines).

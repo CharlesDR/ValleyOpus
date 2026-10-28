@@ -1,6 +1,6 @@
 # 11 · First Playable Slice
 
-Status: **DRAFT v0.2b** (2026-10-21) · Readiness: ready for architecture (Charles reviewed and merged it as PR #14; no `[blocks-arch]` item open)
+Status: **DRAFT v0.2c** (2026-10-28) · Readiness: ready for architecture (Charles reviewed and merged it as PR #14; no `[blocks-arch]` item open)
 Depends on: 00, 02, 03, 03a, 03b, 05, 07, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 16, 17, execution planning
 
 ## Purpose
@@ -197,7 +197,7 @@ The slice adds **no new tables**. It fills the assets other docs define with Spr
 - **Events and mail:** the soft-start cutscene, the Furnace Room restoration scene, Tobin's arrival, the Lab blueprint mail; the five-quest starter chain. Scripts are drafts written for the slice; doc 20 replaces them later.
 - **Readables:** about 5 Cyprian journal pages.
 - **Strings:** everything above through i18n, English only.
-- **Art** (Charles, 2026-10-18): Element icons are one stoppered vial sprite recoloured per Element (`Primes.Color` for Primes) with its Idylwild's Alchemical Codex rune (CC0); every other sprite (apparatus, NPCs, the workshop and Lab maps, tools) comes from open-license packs or references the base game's own textures at load time (never copied into the mod). Every shipped source gets a credit line in the art-sources attribution table, CC0 included. The apparatus show West intake and East spout even as placeholders (doc 13 §7).
+- **Art** (Charles, 2026-10-18): Element icons are one stoppered vial sprite recoloured per Element (`Primes.Color` for Primes) with its Idylwild's Alchemical Codex rune (CC0); every other sprite (apparatus, NPCs, the workshop and Lab maps, tools) comes from open-license packs or references the base game's own textures at load time (never copied into the mod). Every shipped source gets a credit line in the art-sources attribution table, CC0 included. **Placeholder licences** (the project's art-sources notes, 2026-10-18): fair use is never a basis; packs that forbid redistribution are out, since the mod ships its image files; share-alike art (such as LPC) is reference only, so the commissioned art stays free of share-alike terms. A pack offered under two licences may be used under its non-share-alike one (Charles, 2026-10-22: Nila122's 64x64 portrait kit, under OGA-BY 3.0). The apparatus show West intake and East spout even as placeholders (doc 13 §7).
 
 ## Tech hooks
 The slice is where doc 09's architecture plan is first proven. The risks it must surface, each a test in the build's plan:
@@ -233,6 +233,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[blocks-content]` **Draft scripts** for the cutscene, restoration scene and starter quests. Charles will rewrite the cutscene scripts himself (2026-10-20). *Owner: Charles for the cutscenes; doc 20 for the rest.*
 
 ## Change log
+- **v0.2c (2026-10-28):** docs cleanup sweep: the placeholder-art licence rules and Charles's 2026-10-22 decision on dual-licensed packs (OGA-BY for the Nila122 portrait kit) are written into Content inventory, moved from the project notes.
 - **v0.2b (2026-10-21):** docs cleanup sweep: the board shows only open rooms' bundles (no sealed doors) and the workshop is one screen (Charles, 2026-10-20; doc 14); the soft start never follows the CC-opening cutscene straight away and sends no welcome letter; Automate per D25 and uninstall per S3's fix; the settled sort-key paragraphs point to docs 03b and 09; all art is commissioned (Charles, 2026-10-21); Charles rewrites the cutscene scripts.
 - **v0.2a (2026-10-19):** pre-gate cleanup sweep: marked ready (merged as PR #14); co-op, split-screen and controller are built and code-reviewed, in-game runs deferred (doc 17 §8b); settled open questions and the "for other docs" notes removed (each now lives in its doc: 03, 09, 13, 14, 16, 17).
 - **v0.2 (2026-10-18):** Charles's review: the starter quests become a five-step chain whose rewards feed the next step; Aether yield follows source rarity (Solar and Void Essence give a trace, Prismatic Shards and legendary fish the bulk); a critical-path check of every finish-line step (§1a), which replaced "a Tier 1 row" with ten Tier 1 discoveries, fixed the end-of-Spring level, required a Spring-only Calcinator cost and flagged Lab T1's 25,000g as tight; a testing section (§6) with four configurations (chaining-only first, SVE from the start), unit tests, logging and a testing guide.
