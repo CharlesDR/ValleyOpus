@@ -1,6 +1,6 @@
 # 03 · Essences & Decomposition
 
-Status: **DRAFT v0.4a** (2026-10-19). v0.4a: pre-gate cleanup sweep: Aether yield follows source rarity (Charles, from doc 11). v0.4: the **data shape** of decomposition (tag → Prime weights, category defaults, overrides, the yield formula and its settings), matching doc 12 §2. v0.3: content packs can add Primes, late-game sources (Ginger Island, Volcano, Skull Cavern), and the 1.0 tie-in mods (Charles's guiding answers, doc 01). Full substance list: [03a-substances-catalog.md](03a-substances-catalog.md) · Item rules: [03b-item-budget-and-inventory.md](03b-item-budget-and-inventory.md).
+Status: **DRAFT v0.4b** (2026-10-22). v0.4b: docs cleanup sweep: the item tooltip's Element row follows Charles's decision (icons for farm-discovered Elements, units once assayed; doc 16 §11). v0.4a: pre-gate cleanup sweep: Aether yield follows source rarity (Charles, from doc 11). v0.4: the **data shape** of decomposition (tag → Prime weights, category defaults, overrides, the yield formula and its settings), matching doc 12 §2. v0.3: content packs can add Primes, late-game sources (Ginger Island, Volcano, Skull Cavern), and the 1.0 tie-in mods (Charles's guiding answers, doc 01). Full substance list: [03a-substances-catalog.md](03a-substances-catalog.md) · Item rules: [03b-item-budget-and-inventory.md](03b-item-budget-and-inventory.md).
 
 ## The eight Primes (approved)
 Ignis, Aqua, Terra, Aer (elements) · Sal, Sulphur, Mercurius (tria prima) · **Aether** (rare).
@@ -71,7 +71,7 @@ Given an item, its quality and the decomposing apparatus:
 
 Primes produced carry **no quality** (doc 12, approved 2026-10-16): the input's quality only raises `units`.
 
-**Derived, never stored:** each item's resolved profile (cached per item ID and invalidated on asset reload), the Assayer's Lens tooltip (shown once `assay:<ItemId>` is set in the farm codex, doc 12 §10), and the **source-diversity sweep**, which reads the same tables over the vanilla and tie-in item lists and reports any Prime with fewer than 3 viable Y1 sources.
+**Derived, never stored:** each item's resolved profile (cached per item ID and invalidated on asset reload), the item tooltip's Element row (icons for the Elements the farm has discovered, with units once `assay:<ItemId>` is set in the farm codex; doc 16 §11, doc 12 §10), and the **source-diversity sweep**, which reads the same tables over the vanilla and tie-in item lists and reports any Prime with fewer than 3 viable Y1 sources.
 
 **Content packs** extend by adding rows: tag weights for their own tags, overrides for their items, and a `Primes` row plus pairing recipes for a new Prime (doc 12 holds the pack format). A row naming an unknown Prime is disabled with a SMAPI warning, never a crash.
 

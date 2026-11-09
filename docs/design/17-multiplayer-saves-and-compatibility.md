@@ -1,6 +1,6 @@
 # 17 · Multiplayer, Saves & Compatibility
 
-Status: **DRAFT v0.2** (2026-10-19) · Readiness: ready for architecture
+Status: **DRAFT v0.2a** (2026-10-21) · Readiness: ready for architecture
 Depends on: 03b, 05, 07, 09, 11, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 11 (the slice's test plan), 16 (what the menus must respect), 20
 
 ## Purpose
@@ -156,6 +156,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 | Touchpoint | Map | Owning doc | Check |
 |---|---|---|---|
 | Workshop entrance behind the Community Center: warp at Town tile **53,9** (spike S13 passed, vanilla and SVE). Rule (Charles): behind the CC or a side stairwell, never the CC's front door | Town | 08, 14 | SVE's Town edits (slice test 2, passed in B1); RSV and East Scarp Town edits, if any |
+| Finch's wagon: out in the world, never in the workshop, at a spot open with and without SVE (Charles, 2026-10-20). Build sos.2 puts it in Cindersap Forest beside the travelling cart's spot | to choose | 08a, 14 | SVE's edits at the chosen spot, before it's fixed |
 | Undine's meeting spot at the forest pond | Forest | 18 | SVE's Forest edits |
 | Other Familiars' meeting places | to come | 18, 20 | when chosen |
 | Ley-node sites (6–10) | various | 04, 14 | each site when placed; tie-in nodes go in their own mod's areas |
@@ -177,7 +178,7 @@ Each player's Satchel contents live in a **1.6 global inventory keyed by the own
 |---|---|---|---|
 | 1 | ValleyOpus only | solo, new save, CC | the core loop with **chaining only**; remove and reload |
 | 2 | + SVE | solo, new save, CC | Town warp, SVE items decomposing, event collisions, SVE-aware schedules |
-| 3 | + Automate | solo, late install, Joja | our factory, locked outputs, polling cost, late-install soft start |
+| 3 | + Automate | solo, late install, Joja | Automate's generic handler on our machines (D25), locked outputs, polling cost, late-install soft start |
 | 4 | + SVE + Automate | online co-op and split-screen with a controller (**in-game runs deferred**, §8b) | codex sync, late joiners, use locks, clock freeze with farmhands, per-screen menus, controller play |
 | 5 | + SVE + Ridgeside Village + East Scarp + Alecto the Witch | solo | the four tie-ins together: map touchpoints, the Witch switching to Alecto, tie-in nodes and lines |
 | 6 | + the utility stack: Chests Anywhere, Convenient Inventory, Better Crafting, Lookup Anything, UI Info Suite 2, Experience Bars, Wear More Rings, Walk of Life | solo | Satchel and global-inventory handling, quick-stack, crafting from the Satchel, HUD display, ring stacking, profession resets |
@@ -241,6 +242,7 @@ None `[blocks-arch]`; every default is confirmed (doc 10). Test items above are 
 - `[2.0]` Integration packs beyond the four tie-ins join the pool as configurations of their own.
 
 ## Change log
+- **v0.2a (2026-10-21):** docs cleanup sweep: configuration 3 tests Automate's generic handler (D25), not a factory; Finch's wagon joins the touchpoint register (Charles, 2026-10-20).
 - **v0.2 (2026-10-19):** B2 docs update: Labs stripped into save data on every save and restored after (Charles, option C), replacing S3's fallback, with Lab contents returned in chests on a reinstall after play without the mod; workshop warp at Town 53,9 (S13); trays and locked outputs as global inventories; XP keys in the farmer's `modData`; Automate per D25.
 - **v0.1e (2026-10-19):** Charles widened the deferral to online co-op: co-op, split-screen and controller get groundwork checked by code review every build; configuration 4's in-game runs are deferred; carry-forward uses a solo save.
 - **v0.1d (2026-10-19):** Charles confirmed D11–D14; they move to Decisions locked.

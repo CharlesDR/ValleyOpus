@@ -1,6 +1,6 @@
 # 18 · Laboratory & Familiars
 
-Status: **DRAFT v0.3** (2026-10-19) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
+Status: **DRAFT v0.3a** (2026-10-21) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
 Depends on: 01, 02, 03a, 05, 06, 08a, 12, 13, 14, 15 · Feeds: 06, 09, 11, 16, 17, 20, 21
 
 ## Purpose
@@ -220,7 +220,7 @@ Because the bonding rite is hand-made only, an environmental Variant may decorat
 - **Resolver:** at load, reads the location's building tier (`CustomFields`) and Familiar, and adds their perk rows to the perk service (doc 05) along with the player's perks. Neighbour-state tests (doc 13) also read map tile properties, so a hearth tile counts as a heat source and an alcove tile as dark. **This is the one architecture change** this doc asks of doc 13: neighbour sources can be map tiles as well as objects.
 - **Familiars:** our own light C# renderer, a non-colliding sprite that wanders between favoured machines (Charles, 2026-10-19; doc 09 §10), not Custom Companions. Greeting and gifting are interaction handlers, not a villager friendship record.
 - **Sylph signature:** a day-start roll per Lightning Coil in a Sylph Lab, adding one charge on a hit, in any weather.
-- **Risks:** hover cost of the Lab mark in large Labs (shared with doc 13's power-link tooltip); building removal on uninstall (doc 09's early test); Robin's menu ordering with SVE's extra buildings.
+- **Risks:** hover cost of the Lab mark in large Labs (shared with doc 13's power-link tooltip); stripping Labs on every save (doc 17 §6; S3 is re-checked on the real Lab in B3); Robin's menu ordering with SVE's extra buildings (S17 passed in B1: the Lab comes last).
 - **1.7:** `Data/Buildings` is stable in the 1.7 notes we track; no other migration expected.
 
 ## Balance hooks
@@ -235,6 +235,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 Where darkness holds outside a Lab is now a doc 12 open question.
 
 ## Change log
+- **v0.3a (2026-10-21):** docs cleanup sweep: tech-hook risks follow the B1 spike results (S3 replaced by stripping Labs on save, S17 passed).
 - **v0.3 (2026-10-19):** B2 docs update: Labs are stripped into save data on every save and restored after; a reinstall after play without the mod returns the Lab's contents in chests (Charles, option C; doc 17 §6).
 - **Cleanup sweep (2026-10-18):** settled open questions removed; the darkness-outside-a-Lab item moved to doc 12's open questions.
 - **v0.2 (2026-10-18):** T1 costs more and needs Saxum (Charles); every tier 3 tiles wider for a central aisle, and the Undine also appears in snow (Charles). Floorplans redrawn so each tier fits full-width Tobin lines with aisles and walkways round them and the hearths reachable (§2d); Sylph signature is now a small daily charge chance in any weather; the Undine meets the player at the forest pond (Charles). A met but unbonded Familiar waits in the workshop under the CC (Charles). Charles also answered all four cards: built-in hearths and alcoves count as neighbours, condensation rule 2 is final, Lab tier and Familiar are Bonus only, and Familiars specialize by operation. Readiness: ready for architecture.

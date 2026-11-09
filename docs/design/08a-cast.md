@@ -1,6 +1,6 @@
 # 08a · Cast
 
-Status: **APPROVED** (2026-10-13). The apprentice was renamed from Wren to Lark to avoid a Sunberry Village clash. v0.6 pass: fixed Dr. Sorenson's first name in the table (Ulla, as decided), which an earlier rename had overwritten. Cleanup sweep (2026-10-18): the trope check is closed (Ivo approved as written) and the Familiars follow doc 18.
+Status: **APPROVED** (2026-10-13). The apprentice was renamed from Wren to Lark to avoid a Sunberry Village clash. v0.6 pass: fixed Dr. Sorenson's first name in the table (Ulla, as decided), which an earlier rename had overwritten. Cleanup sweep (2026-10-18): the trope check is closed (Ivo approved as written) and the Familiars follow doc 18. Cleanup sweep (2026-10-21): Finch's wagon stands out in the world and the Curator's reveal is a cutscene (Charles, 2026-10-20).
 Parent doc: [08-narrative-and-npcs.md](08-narrative-and-npcs.md). This replaces the v0.1 candidate list.
 
 ## How names and genders were chosen
@@ -46,7 +46,7 @@ Names also avoid vanilla and SVE NPC names (e.g. Robin, Maru, Marnie, Morgan, Vi
 - **Function:** the voice of **automation and clever solutions**. He uses science to focus and direct magic predictably. The upside is scale and automation; the downside is that constrained magic can't reach the heights of wonder. He's the counterpoint to Oriel's grand rituals.
 
 ### C. Finch: the Travelling Merchant
-- **Who:** a colourful trader with a wagon of exotic reagents and curios, on a fixed weekly route.
+- **Who:** a colourful trader with a wagon of exotic reagents and curios, on a fixed weekly route. The wagon stands somewhere out in the world, never in the workshop, at a spot that is open with and without SVE (Charles, 2026-10-20; doc 17 §7a).
 - **Does:** sells rare reagents, buys surplus essences, and stocks a rotating "curiosity" that hints at an undiscovered recipe.
 - **Function:** the economic valve. Relieves input bottlenecks (balance rule), gives money-making a channel within the caps, and offers discovery hooks through flavour text.
 
@@ -86,7 +86,7 @@ Names also avoid vanilla and SVE NPC names (e.g. Robin, Maru, Marnie, Morgan, Vi
 
 ### 8. "The Curator" / Cyprian: the Workshop's Ghost (story, restoration bundles)
 - **Who:** the gentle spirit of the workshop's original founder, bound to it by an unfinished Great Work. **His identity is a mystery at first.**
-- **Does:** presents the **workshop restoration bundles** and **works alongside Tobin**. At first they butt heads over **progress vs. tradition**. Tobin's respect grows when he realizes the Curator is deeply qualified to discuss alchemical apparatus. The reveal: the Curator is **Cyprian, someone Tobin always looked up to but misunderstood**. Each learns from the other.
+- **Does:** presents the **workshop restoration bundles** and **works alongside Tobin**. At first they butt heads over **progress vs. tradition**. Tobin's respect grows when he realizes the Curator is deeply qualified to discuss alchemical apparatus. The reveal: the Curator is **Cyprian, someone Tobin always looked up to but misunderstood**, told in a cutscene, never a letter (Charles, 2026-10-20). Each learns from the other.
 - **Function:** the narrative engine for workshop restoration, an emotional arc for Tobin, and a Spiritus source. Gives the Great Work its payoff.
 
 ### 9. Lark: the Eager Apprentice (flavour, approachability)

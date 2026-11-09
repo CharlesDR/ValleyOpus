@@ -1,6 +1,6 @@
 # 16 · UX & Interface
 
-Status: **DRAFT v0.1a** (2026-10-19) · Readiness: ready for architecture (Charles reviewed and merged it as PR #17; no `[blocks-arch]` item open)
+Status: **DRAFT v0.2** (2026-10-21) · Readiness: ready for architecture (Charles reviewed and merged it as PR #17; no `[blocks-arch]` item open)
 Depends on: 01, 02, 03b, 04, 05, 07, 11, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 11 (the slice's menus), 17, 20, 21
 
 ## Purpose
@@ -44,7 +44,7 @@ Everything below was already decided elsewhere; this doc gathers it and adds no 
 | **Action**, empty-handed or holding a tool | collect a ready or locked output; on a loading machine, open the **tray view** (§5); on a staged altar, the **trigger prompt** (§12); on the Experiment Table, the **Table menu** (§3) | vanilla behaviour |
 | **Use tool** (left-click / X), holding the Satchel | open the Satchel grid | open the Satchel grid |
 | **Use tool**, holding the **Assayer's Lens** | assay the apparatus (its codex entry and known neighbour effects) | assay the item, place or fixture (§11) |
-| **Hover** (mouse) / **selected tile** (controller) | the machine tooltip (§5) | item tooltips gain the Prime profile once assayed (§11) |
+| **Hover** (mouse) / **selected tile** (controller) | the machine tooltip (§5) | item tooltips show the item's Elements (§11) |
 | **Codex key** (GMCM keybind) / the codex button in the Satchel grid | open the codex (§7) | same |
 | **Overlay key** (GMCM keybind) / the overlay toggle in the Satchel grid; holding the Satchel | full / light chain overlay (§6) | — |
 
@@ -64,7 +64,7 @@ The slice's first ten minutes (doc 11) touch, in order: the cutscene (clock froz
 | Chain overlay | world overlay | ✓ (minimal: arrows and broken links) | doc 13 §7 |
 | Codex | custom menu | ✓ (Primes, Tier 1, Tier 2, Apparatus, Unlocks, Notes) | doc 07 |
 | Toasts, hold-ups, flourishes, HUD notices | HUD and vanilla hold-up | ✓ (no Cauda Pavonis) | doc 07 |
-| Bundle board | bundle menu | ✓ (one room live, six sealed) | doc 14 |
+| Bundle board | bundle menu | ✓ (the Furnace Room only) | doc 14 |
 | Assayer's Lens results | small panel | ✓ | doc 07 |
 | Skill page and level-up | SpaceCore | ✓ (levels 1–4) | doc 05 |
 | GMCM page | GMCM | ✓ (slice options, §15) | this doc |
@@ -201,14 +201,16 @@ Finch's shop is the vanilla shop menu, so buying feels like any travelling merch
 - Buying one sets its `hint:` key, so it joins the Notes page at once and is never sold as new again by divination.
 
 ### 10 · The bundle board (doc 14)
-- **Layout:** the seven rooms in their four tiers plus the Great Work Chamber, read like the CC's bundle menu. A room in an unopened tier shows a sealed door and its opening rule ("Opens when any Tier I room is restored"). In the slice, rooms past the Furnace Room show *"Sealed. (Not in this build.)"* (doc 11).
+- **Layout** (Charles, 2026-10-20): the board looks like vanilla's bundle menu: an overview of the open rooms' bundles, then a page per bundle with its slots. Like the CC's, a room's bundles appear only once the room is open (doc 14 §2), so the board never shows rooms that aren't open yet and never spells out the order. In the slice only the Furnace Room's bundles appear (doc 11).
+- **Rewards stay hidden** until a bundle is complete, as in vanilla (Charles, 2026-10-20).
+- **A shining particle effect** on the board, so it's obvious the player should look at it (Charles, 2026-10-20).
 - **Bundles:** vanilla items as icons; Elements as silhouettes with a one-line hint until discovered (doc 14). A slot's hover names the item, how many are needed and, for a discovered Element, its codex link.
 - **Residue divination** (from the Library): a panel on the board lists the hints divination can buy, each as its target's silhouette with its residue cost, plus "Surprise me" at the lowest cost. **Bulk surprise** (Charles, 2026-10-18): once the farm has divined 5 times, "Surprise me" gets a count selector from 1 to 10, priced at that many times the single cost, and each hint is drawn without repeats from the hints not yet shown (`hint:` unset). If fewer hints are left than the count asked for, the selector stops at what is left. Buying plays a small smoke flourish and adds the hint to the Notes page.
-- **Framework:** the board is our own menu, not Unlockable Bundles (Charles, 2026-10-19; doc 09 §10), so the sealed doors, Element silhouettes and the divination panel are all part of it.
+- **Framework:** the board is our own menu, not Unlockable Bundles (Charles, 2026-10-19; doc 09 §10), so the Element silhouettes and the divination panel are all part of it.
 
 ### 11 · The Assayer's Lens
 - **On an item:** a small panel with the item's Prime profile as coloured bars with Element icons, and the codex entry it opened. The first time only, it sets `assay:` (doc 12 §10).
-- **Profiles in tooltips:** once assayed, every item's tooltip (vanilla and modded) gains a one-row profile line of Element icons with units. GMCM chooses always (default), only while holding the Lens, or never.
+- **Elements in tooltips** (Charles, 2026-10-20 and 2026-10-22): once the intro has played, an item's tooltip shows a row of Element icons for every Element in it that the farm has discovered, as **icons only, with no amounts**, plus one **"?"** icon in the same style when at least one of its Elements is still undiscovered. **Assaying** the item adds the units and clears the "?", so the row becomes its full profile (doc 12 §10). Key items get no row: tools, quest items and irreplaceable items. GMCM chooses always (default), only while holding the Lens, or never.
 - **On a place or fixture:** a lore box in the vanilla dialogue style, and a toast if it revealed a hint.
 - **Level 4, a whole chest** (doc 05): one panel listing every newly assayed item in the chest with its profile, scrollable.
 
@@ -318,7 +320,7 @@ The UI adds no save data and no CP asset of its own; it reads the assets of docs
 - **HUD:** toasts and notices extend vanilla HUD messages; the hold-up uses vanilla's hold-up path.
 - **SpaceCore** for the skill page; **GMCM** API for §15.
 - **Per-screen state** with SMAPI's per-screen wrapper for everything in the per-screen record.
-- **Risks to verify (doc 09):** that the vanilla hold-up pauses the clock in single player; controller snapping in a triangular grid; the smallest split-screen viewport at default zoom; Unlockable Bundles' menu (§10); tooltip postfixes alongside UI Info Suite 2 and Lookup Anything; overlay frame time in a full T3 Lab.
+- **Risks to verify (doc 09 §14):** controller snapping in a triangular grid and the smallest split-screen viewport (S6, S7, deferred with the in-game controller and split-screen runs); tooltip postfixes alongside UI Info Suite 2 and Lookup Anything; overlay frame time in a full T3 Lab (S9). The hold-up pausing the clock passed in B1 (S5); the bundle menu is settled (D20).
 - **1.7:** nothing here depends on 1.7; menu base classes are stable across 1.6.
 
 ## Balance hooks
@@ -332,6 +334,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[2.0]` Lookup Anything recipe rules (doc 13 §6.6).
 
 ## Change log
+- **v0.2 (2026-10-21):** docs cleanup sweep: Charles's sink-or-swim feedback (2026-10-20) moved here from the to-do list: the board looks like vanilla's bundle menu, shows a room's bundles only once the room is open (no sealed rooms), hides rewards until a bundle is done and shines so players notice it; item tooltips show an item's farm-discovered Elements as icons plus a "?" from the end of the intro, never on key items, and assaying adds the units and clears the "?" (Charles's card, 2026-10-22). Risks follow the B1 spike results.
 - **v0.1a (2026-10-19):** pre-gate cleanup sweep: marked ready (merged as PR #17); the in-game test deferral now also covers online co-op (doc 17 §8b).
 - **v0.1 (2026-10-18), Charles's review:** the quarter-day budget's "heavily invested" player is the 90th percentile of alchemy investment; bulk surprise divination (up to 10 at once, proportional residue) after 5 divinations; Finch never sells a curiosity whose hint points at something already discovered; quality shows on screen as "base quality" and the vanilla stars, never the Latin stage names; a codex entry's Used in list shows a "???" row for each undiscovered recipe that uses the item, and undiscovered routes use the same "???" mark; controller and split-screen groundwork from the first build, with in-game tests deferred while Charles can't test.
 - **v0.1 (2026-10-18), Charles's answers:** no late-install fast start (the GMCM row and open question are removed); defaults D15–D19 confirmed.
