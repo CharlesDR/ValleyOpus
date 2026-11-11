@@ -1,6 +1,6 @@
 # 12 · Recipe & Process Model
 
-Status: **DRAFT v0.5a** (2026-10-21) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
+Status: **DRAFT v0.5b** (2026-11-11) · Readiness: ready for architecture (the resolver details are settled in doc 13 §6)
 Depends on: 01, 03, 03a, 03b, 04, 07 · Feeds: 03/03a (data shape, apparatus column), 05, 06, 07, 09, 13, 14, 15, 17
 
 ## Purpose
@@ -180,10 +180,11 @@ Doc 06 metrics read straight from this data: GPTD and value per tile and per ing
 ## Open questions
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` **Table unlock scope, balance revisit:** Charles approved "only that recipe" on condition it's revisited in the balance pass if codex completion feels too obnoxious (options in doc 07). *Owner: doc 06 balance pass.*
-- `[blocks-content]` **Where darkness holds outside a Lab** (raised by doc 18, 2026-10-18): darkness is the Required condition of every putrefaction recipe (§4, doc 13 §3), and doc 18 only guarantees a Lab's dark alcove tiles. Night outdoors, caves and unlit rooms need a definition. *Owner: doc 12.*
+- `[blocks-content]` **Where darkness holds outside a Lab** (raised by doc 18, 2026-10-18): darkness is the Required condition of every putrefaction recipe (§4, doc 13 §3), and doc 18 only guarantees a Lab's dark alcove tiles. Night outdoors, caves and unlit rooms need a definition. On a card to Charles (2026-11-11); the adversarial review's default is that only the mod's painted dark tiles count (Lab alcoves; sos.3 also paints the restored Undercroft), and the tooltip names where they are. *Owner: doc 12.*
 - `[2.0]` Four-plus Table inputs need no model change. A Potion Craft–style brew map would add a new operation with its own resolver, plugged in beside this one.
 
 ## Change log
+- **v0.5b (2026-11-11):** docs cleanup sweep: the darkness question notes Charles's card (2026-11-11) and the adversarial review's default.
 - **v0.5a (2026-10-21):** docs cleanup sweep: the resolver tech hook follows D25 (Automate's generic handler, no factory); the `assay:` row follows Charles's tooltip decision (2026-10-22: farm-discovered Elements as icons, assaying adds units).
 - **v0.5 (2026-10-19):** B2 docs update: base-pack rows write the `CharlesDR.ValleyOpus_` prefix literally, since `{{ModId}}` there resolves to the content pack's ID.
 - **v0.4a (2026-10-19):** pre-gate cleanup sweep: R1 and §6 note that the stage names are internal; player-facing quality uses vanilla words and stars (doc 16 §2).

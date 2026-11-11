@@ -1,6 +1,6 @@
 # 18 · Laboratory & Familiars
 
-Status: **DRAFT v0.3a** (2026-10-21) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
+Status: **DRAFT v0.3b** (2026-11-11) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
 Depends on: 01, 02, 03a, 05, 06, 08a, 12, 13, 14, 15 · Feeds: 06, 09, 11, 16, 17, 20, 21
 
 ## Purpose
@@ -132,11 +132,13 @@ Doc 13 left "neighbours are other apparatus, never decorations" provisional unti
 ```
 B  B  B  B      Boilers (Vapor), one north of each Vat
 V→ V→ V→ V→     Process Vats, chained West to East
-c  c  c  c      South chests (inputs and the Boilers' Ignis + Aqua)
+c  c  c  c      South chests (the Vats' inputs)
 ```
+Each Boiler's South tile is its Vat, so no chest of its own feeds it (doc 13 §7). Here the Boilers are refuelled by hand or by Automate; a fuel route for lines that chain without Automate is an open question (doc 10).
+
 Every side of every Vat is already spoken for: West and East by the chain, South by its chest, North by its power. A modifier block would have to displace a chest or a Boiler. Sharing one Boiler between two rows (Vat rows north and south of a Boiler row) frees tiles but costs the north row its South chests, so it runs from the chain and Automate only: a real trade-off, which is the kind of puzzle the floorplans are for.
 
-**(b) Hearth corner** (T1, Spring): two Alembics on the hearth tiles distill with no fuel, each chaining East into a Retort, with chests South. The only free heat in the building, so it is the obvious first layout.
+**(b) Hearth corner** (T1, Spring): two Alembics on the hearth tiles distill with no fuel, each chaining East into a Retort, with chests South. The only free heat in the building, so it is the obvious first layout. *Not buildable as drawn on T1:* the two heated tiles sit side by side in walkway row 0 beside the central aisle, so one Alembic's East neighbour is the other Alembic, the other's is the aisle, and their South chests land in line 1's power row. Open question (doc 10).
 
 **(c) Ritual corner** (T2 dais): the Circle Sigil on the dais, the altar at its centre, catalysts on its four points, and a Boiler beside the altar for Perpetuum Mobile (doc 13 §5). Walkway row 4 and the gaps between the stub pillars give access for hand-triggering.
 
@@ -230,11 +232,13 @@ Doc 06 reads: per-tier speed and quality chance against the phase targets (T2 + 
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` Familiar meeting places, gift lists and heart events. *Owner: doc 20.*
 - `[blocks-content]` Every bonus, cost and Familiar number. *Owner: the sweep.*
+- `[blocks-content]` **Hearth corner** (§2b(b)): redraw the layout or move T1's hearth tiles so both hearth Alembics can chain East with their chests outside line 1's power row (adversarial review, 2026-11-11). *Owner: doc 18.*
 - `[2.0]` Familiars from tie-in packs; Familiar heart perks; more Lab specializations (doc 10).
 
 Where darkness holds outside a Lab is now a doc 12 open question.
 
 ## Change log
+- **v0.3b (2026-11-11):** docs cleanup sweep: §2b(a)'s South chests feed the Vats only, since each Boiler's South tile is its Vat (doc 13 §7); the hearth corner (§2b(b)) is marked not buildable as drawn and listed as an open question (both found by the 2026-11-11 adversarial review).
 - **v0.3a (2026-10-21):** docs cleanup sweep: tech-hook risks follow the B1 spike results (S3 replaced by stripping Labs on save, S17 passed).
 - **v0.3 (2026-10-19):** B2 docs update: Labs are stripped into save data on every save and restored after; a reinstall after play without the mod returns the Lab's contents in chests (Charles, option C; doc 17 §6).
 - **Cleanup sweep (2026-10-18):** settled open questions removed; the darkness-outside-a-Lab item moved to doc 12's open questions.

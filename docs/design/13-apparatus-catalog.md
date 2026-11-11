@@ -1,6 +1,6 @@
 # 13 · Apparatus Catalog
 
-Status: **DRAFT v0.7a** (2026-10-21) · Readiness: ready for architecture (Charles confirmed the power, Electrum/Rebis and Ectoplasm defaults on 2026-10-18; no `[blocks-arch]` item is left open)
+Status: **DRAFT v0.7b** (2026-11-11) · Readiness: ready for architecture (Charles confirmed the power, Electrum/Rebis and Ectoplasm defaults on 2026-10-18; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03, 03a, 04, 12 · Feeds: 05, 06, 07, 09, 14, 15, 16, 17, 18
 
 ## Purpose
@@ -208,10 +208,13 @@ Doc 06 metrics per apparatus: GPTD per tile including its share of power and che
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` **Fresh machine and automation** (§6a): a machine takes nothing from automation until set once by hand *(default, kept for now)*. Charles wants to playtest how it feels before locking it (2026-10-18). *Owner: Charles, after playtesting.*
 - `[blocks-content]` **Chaining visual aids** (§7) and the recipe-memory icon (§6a): controls and behaviour are specced in doc 16 §5–§6; the art is doc 21's. *Owner: doc 21.*
+- `[blocks-content]` **Fuel for lines that chain without Automate:** a Boiler refuels itself only from its own South chest (§7), but in doc 18's Vapor spine its South tile is its Vat, so those Boilers are refuelled by hand (doc 18 §2b(a)). A fuel route that fits the 3-row line is proposed in the ideas backlog (adversarial review, 2026-11-11). *Owner: doc 13.*
+- `[blocks-content]` **Same-input mode switches** (§1): §1 describes them, but the sos.3 base content has none (only a test fixture). Ship one in the base pack, or reword §1 so it doesn't promise one (adversarial review, 2026-11-11). *Owner: doc 13 and the content pass.*
 - `[2.0]` Display-only `Data/Machines` rules that mirror our recipes, so Lookup Anything can list them (Charles, 2026-10-16).
 - `[2.0]` A flower-fed **trickle** (a Prime from a planted bed, no input) would be a world tap placed in a garden; arcane logistics replaces chaining through the item-route interface; blended late-game machines are designed with the capstones.
 
 ## Change log
+- **v0.7b (2026-11-11):** docs cleanup sweep: two open questions from the 2026-11-11 adversarial review (fuel for lines that chain without Automate; same-input mode switches).
 - **v0.7a (2026-10-21):** docs cleanup sweep: decomposition must be quick (Charles, 2026-10-20), with placeholder times in Balance hooks (moved from the to-do list).
 - **v0.7 (2026-10-19):** B2 docs update: trays are per-machine global inventories and the locked-output store is named (`CharlesDR.ValleyOpus_LockedOutputs`); D25 wording: no Automate integration code, a patched `AttemptAutoLoad` marks automated loads.
 - **v0.6c (2026-10-19):** Charles chose option B for spike S2 (D25): Automate runs our apparatus through its generic handler; locked outputs move to a locked-output store when they finish (§6.3, §6.5).
