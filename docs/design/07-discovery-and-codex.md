@@ -1,6 +1,6 @@
 # 07 · Discovery & the Codex
 
-Status: **DRAFT v0.9a** (2026-10-19) · Readiness: ready for architecture (no `[blocks-arch]` item open)
+Status: **DRAFT v0.9b** (2026-11-11) · Readiness: ready for architecture (no `[blocks-arch]` item open)
 Depends on: 01, 03a, 04, 12, 13 · Feeds: 05, 06, 14, 16, 17, 20
 
 v0.7: retrofitted to the doc 00 template; adopts doc 12's discovery keys and Charles's "a Table discovery unlocks only that recipe" rule; adds the discovery path for recipes the Table can't make, power and heat at the Table, and the codex data shape. v0.6: the target player and complexity ceiling, "feeling clever" as a design goal, the pace of discovery and hand-made-only entries (Charles's guiding answers, doc 01). v0.5: Experiment Table input counts (doc 00, R2). v0.4 applies Charles's verdicts on the discovery research ([research/inspiration-discovery-moments.md](../research/inspiration-discovery-moments.md)).
@@ -118,8 +118,10 @@ Doc 06 reads discovery pace from this data: hints per recipe, divination costs, 
 Every open item across the docs is also collected in [doc 10](10-roadmap-and-open-questions.md#open-questions). Settled items are removed from this list; their outcomes are in the sections above and the change log.
 - `[blocks-content]` **Table unlock scope, balance revisit** (from doc 12): only that recipe for now; if codex completion is too obnoxious, options are letting a Table discovery also unlock the same output's twin route, or a cheaper divination for already-known items. *Owner: doc 06 balance pass / Charles.*
 - `[blocks-content]` **Hint wording and counts** per recipe. *Owner: doc 20.*
+- `[blocks-content]` **Choosing a divination target** (Hints, item 3): doc 16 §10's panel lets the player pick the target, and its cost may scale with distance; sos.3 draws one at random at a flat price. On a card to Charles (2026-11-11); the review's default is to choose, priced by distance. *Owner: Charles.*
 
 ## Change log
+- **v0.9b (2026-11-11):** docs cleanup sweep: the divination-target question from the 2026-11-11 adversarial review.
 - **v0.9a (2026-10-19):** pre-gate cleanup sweep: Cauda Pavonis and Table outputs say how quality reads on screen (base quality, vanilla stars; doc 16 §2).
 - **v0.9 (2026-10-18), Charles's answers:** exact Table matching with the "something here is feeling crowded" line for a valid subset; Table outputs at Nigredo.
 - **v0.9 (2026-10-18):** cleanup sweep: each hint channel names its unlock source from doc 14 §4; Finch's curiosity hint stays hidden in his shop tooltip (Charles, 2026-10-17, moved here from the to-do list); open questions moved to doc 10.

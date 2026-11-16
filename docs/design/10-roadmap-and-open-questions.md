@@ -1,6 +1,6 @@
 # 10 · Roadmap & Open Questions
 
-Status: **DRAFT v0.10i** (2026-10-28). v0.10i: docs cleanup sweep (D23's reason brought up to date: the cloud can now compile-check the mod). v0.10h: docs cleanup sweep (B1 and B2 results, Charles's sink-or-swim feedback, his tooltip decision). v0.10g: D25, Automate runs our machines through its generic handler. v0.10f: execution planning (doc 22); Charles decided D23 and D24. v0.10d: the architecture gate (doc 09 v1.0) adds two framework defaults for Charles and turns the gate checks into first-build spikes. v0.10c: pre-gate cleanup sweep (stale review states, quality terms, test deferral, the mine-drop item from the to-do list). v0.10b: Charles confirmed every remaining default (D4, D11–D14). v0.10: doc 17 settles Satchel storage (Charles chose one bag per player) and adds defaults D11–D14. v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
+Status: **DRAFT v0.10j** (2026-11-11). v0.10j: docs cleanup sweep (the open questions raised by the 2026-11-11 adversarial review). v0.10i: docs cleanup sweep (D23's reason brought up to date: the cloud can now compile-check the mod). v0.10h: docs cleanup sweep (B1 and B2 results, Charles's sink-or-swim feedback, his tooltip decision). v0.10g: D25, Automate runs our machines through its generic handler. v0.10f: execution planning (doc 22); Charles decided D23 and D24. v0.10d: the architecture gate (doc 09 v1.0) adds two framework defaults for Charles and turns the gate checks into first-build spikes. v0.10c: pre-gate cleanup sweep (stale review states, quality terms, test deferral, the mine-drop item from the to-do list). v0.10b: Charles confirmed every remaining default (D4, D11–D14). v0.10: doc 17 settles Satchel storage (Charles chose one bag per player) and adds defaults D11–D14. v0.9: this doc now collects **every open item** from all the docs (below), grouped by who or what settles it (cleanup sweep). v0.8: Charles's full-review feedback (item budget loosened, internal consistency principle, integration targets from the top-80 list). v0.7: Charles's answers to the v0.6 questions, and Laboratory design moved before the architecture gate. v0.6: the docs pass against Charles's guiding answers in doc 01, with the questions it raised (below). The path to architecture and every decision on it are in [doc 00](00-critical-path.md).
 
 ## Version scope
 | | 1.0 | 2.0 |
@@ -77,8 +77,22 @@ Every default once listed here is confirmed and written into its owning doc. **C
 - **D25 · Automate: decided** (Charles, 2026-10-19, option B after spike S2's desk check): Automate's own generic handler runs our machines, with no factory and no patch on Automate; our staging layer enforces discovery and recipe memory, and locked outputs are held outside the machine slot until collected by hand (doc 09 §9, doc 13 §6.3). Automate can't show a staged altar as busy.
 
 ### Design questions still open
-- `[blocks-content]` **Where darkness holds outside a Lab** (night outdoors, caves, unlit rooms), since darkness is Required for every putrefaction recipe. *Owner: doc 12.*
+- `[blocks-content]` **Where darkness holds outside a Lab** (night outdoors, caves, unlit rooms), since darkness is Required for every putrefaction recipe. On a card to Charles (2026-11-11). The adversarial review's verdicts disagreed (03: only the mod's painted dark tiles; 06: also the Mines and unlit buildings at night); its overview takes 03's, which is the card's default. *Owner: doc 12.*
 - `[blocks-content]` **Effect count:** the 2–3 cap stays suspended; doc 15 §3a's catalogue is the 1.0 list for now. *Owner: Charles (doc 15).*
+
+### From the adversarial review (2026-11-11)
+A one-time review tested six of the design's claims against the docs and the sos.3 build. Its verdicts are in the project files (`adversarial-review/`, overview in `00-cross-cutting.md`), and every change it proposes (build fixes, design changes, tests) is in the ideas backlog's "Ideas from the adversarial review" section; none is approved. Listed here are the places where a doc's text doesn't hold, or where the build and a doc disagree, each with the review's default.
+- **On cards to Charles (2026-11-11):**
+  - Where darkness holds outside a Lab (above).
+  - `[blocks-content]` **Choosing a divination target:** pick it, with the cost scaling by distance (doc 07, doc 16 §10), or a random draw at a flat price (sos.3). Default: choose. *Owner: Charles (doc 07).*
+  - `[blocks-content]` **Drinks and Coffee:** share vanilla's one drink buff (doc 15 §2), or stack as separate buffs (sos.3). Default: stack, since Fixative and Volatile only work stacked. *Owner: Charles (doc 15).*
+  - `[blocks-content]` **Early alchemy below the raw crop:** base Tier 1 earns about 0.96× shipping the raw crop, and about 1.2× with the flower Bonus. Default: allowed, since money isn't the early hook (doc 06 Targets). *Owner: Charles (doc 06).*
+- **Also open (no card; the ideas backlog holds each proposed fix):**
+  - `[blocks-content]` **Trinket slot:** vanilla's opens only with Combat Mastery, but doc 14 §8 hands out the first trinkets in Fall Y1. Default: the weak tier ships as rings. *Owner: Charles (doc 15 §5).*
+  - `[blocks-content]` **Terra Viva on sprinkled tiles:** its water retention does nothing there, so it is plain Quality Fertilizer (doc 15 §4). *Owner: Charles (doc 15).*
+  - `[blocks-content]` **Fuel for lines that chain without Automate:** their Boilers can't refuel, since each Boiler's South tile is its Vat (doc 13 §7, doc 18 §2b(a)). *Owner: doc 13.*
+  - `[blocks-content]` **Same-input mode switches:** doc 13 §1 describes them, but the sos.3 base content has none. *Owner: doc 13 and the content pass.*
+  - `[blocks-content]` **Doc 18's hearth corner** can't be built as drawn on T1 (§2b(b)). *Owner: doc 18.*
 
 ### Gate checks from the Phase 4 docs (16 UX, 17 Multiplayer, Saves & Compat)
 - **Doc 16:** merged (PR #17). Charles confirmed its defaults D15–D19 and decided no late-install fast start (2026-10-18); only art and sound remain (doc 21). Its gate checks became spikes S5–S9 (doc 09 §14): the hold-up pausing the clock passed in B1 (S5); codex snapping and the smallest split-screen viewport (S6, S7) wait with the deferred controller and split-screen runs; the bundle menu is D20 (S8); overlay frame time (S9) is measured with 50 apparatus in `alpha.2` and in a full T3 Lab later.
@@ -100,6 +114,8 @@ Every default once listed here is confirmed and written into its owning doc. **C
 - Every Lab, Familiar, perk and price number (docs 05, 15, 18).
 - Lab T1's 25,000g in late Spring Y1 is tight; the slice report measures it (doc 11 §1a).
 - Decomposition speed: placeholder times Athanor 30 minutes, Calcinator 10 (Charles wants decomposing quick, 2026-10-20); whether the Calcinator should also arrive earlier (doc 13).
+- Boiler and Coil `MaxConsumers`: the placeholder 4 never binds, since a source has only four sides, so Mechanist's extra neighbour (doc 05) can never apply. Set it below 4 or change the perk (doc 13; adversarial review, 2026-11-11).
+- Tier IV's stretch assumed a Fall Quarry bridge; on the CC route the bridge usually comes in Winter, so the Tier IV bundles need recalibrating (doc 14 §3).
 - Aether yield by source rarity: a trace from Solar and Void Essence, the bulk from Prismatic Shards and legendary fish (placeholder 1 : 15–20 per item; doc 11, for docs 03 and 14 §7).
 
 ### Deferred design passes (agreed to come later)
@@ -121,6 +137,7 @@ Collected in the version-scope table above and tagged `[2.0]` in each doc: arcan
 - Verify the CC-opening event ID and the Quarry bridge and bus repair flags (both CC and Joja routes). The Town warp behind the CC is settled (spike S13: Town 53,9, vanilla and SVE).
 
 ## Change log
+- **v0.10j (2026-11-11):** docs cleanup sweep: a new "From the adversarial review" list collects the open questions from the 2026-11-11 review (four on cards to Charles, five more whose proposed fixes are in the ideas backlog), each also in its owning doc (07, 12, 13, 14, 15, 18); the darkness item notes its card; two balance-pass items (the power cap that never binds, Tier IV after the Winter Quarry bridge).
 - **v0.10i (2026-10-28):** docs cleanup sweep: D23 no longer says the cloud can't compile (it compile-checks against game DLLs copied from Charles's PC since 2026-10-22; the zip is still made on his PC, doc 22 §2).
 - **v0.10h (2026-10-21):** docs cleanup sweep: the sort-key question is closed (spike S11: the internal `Name`, doc 03b rule 5); Charles settled the tooltip question (2026-10-22: farm-discovered Elements as icons, assaying adds the units; doc 16 §11); doc 16's gate checks show their B1 results; B1 and B2 shown as merged and the sink-or-swim trials noted; Charles's 2026-10-20 feedback filed (decomposition speed in the balance pass, the workshop floor plan and Finch's spot deferred, his script rewrite as an action item); all art is commissioned (2026-10-21).
 - **v0.10g (2026-10-19):** D25 (spike S2): Charles chose option B, Automate's generic handler runs our machines.

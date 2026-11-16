@@ -1,6 +1,6 @@
 # 14 · Unlock Map & Workshop Bundles
 
-Status: **DRAFT v0.6** (2026-10-21) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
+Status: **DRAFT v0.6a** (2026-11-11) · Readiness: ready for architecture (Charles approved every default on 2026-10-17; no `[blocks-arch]` item is left open)
 Depends on: 01, 02, 03a, 05, 07, 08, 08a, 12, 13, 15 · Feeds: 05, 06, 09, 11, 16, 17, 18, 19, 20
 
 ## Purpose
@@ -76,6 +76,8 @@ Seven rooms, one for each operation of the Magnum Opus in doc 02's seasonal orde
 | IV | **Crystal Vault** | Coagulation | the Curator | any Tier III room | Winter | **Circle Sigil** recipe; Robin mentions a larger Lab (T3 groundwork, flavour only) |
 | ★ | **Great Work Chamber** | the Opus | the Curator → Cyprian | all seven rooms | late Winter Y1 → Year 2 | the Curator revealed as **Cyprian** in a cutscene, never a letter (Charles, 2026-10-20); the **Great Work** quest (Tier 3 recipes reachable); **Laboratory T3** at Robin's; **Familiar** bonding (doc 18) |
 
+*Pace* is the season a diligent player works on and restores the room. From Tier II on, a room opens late in the season before, once a room of the tier below is restored (§3 lists what the player has at that point): Tier II opens in late Spring and is restored in Summer.
+
 **Why "any one" between tiers:** it keeps pillar 1's choice real. A player drawn to rituals can restore the Library, then the Sanctum, and leave the Cistern for later; a factory builder can go Cistern then Undercroft. The finale still needs all seven, so nobody skips a side for good.
 
 **Why the Athanor is a gift at the intro** *(Charles, 2026-10-17; doc 13 updated)*: decomposition is the first verb of the mod, and without a decomposer the Table has nothing to combine. Oriel's own old Athanor makes the first evening playable; its crafting recipe still comes with the Furnace Room, so a second one is the room's reward.
@@ -94,7 +96,7 @@ Three bundles per room, four in the Great Work Chamber, CC-style: each slot is a
 | Furnace Room (Spring, about day 7) | copper tools coming, Mines to about 20, Spring crops, no animals | Athanor, Alembic, Retort, Table (2), a handful of Tier 1 discoveries |
 | Tier II (late Spring) | copper tools, Mines to about 40, a coop or the first sprinklers | the full Spring kit (Hermetic Vessel, Calcinator, Lab T1), most non-Aether Tier 1 cells, residue piling up |
 | Tier III (Summer) | steel tools, Mines to about 80, bee houses, first kegs | Tobin's line (Vat, Press, Boiler, Coil) **or** Table (3), Hesper and the Ley Tap; first Tier 2 by hand; Aether still rare |
-| Tier IV (Fall) | Mines bottom or close, Quarry bridge likely, Skull Cavern not yet | the Ritual Altar **or** the Gloam Lantern; Lab T2; Aether as a daily trickle if the Sanctum is done |
+| Tier IV (Fall) | Mines bottom or close, Skull Cavern not yet; the Quarry bridge by now only on the Joja route (on the CC route it waits for the Crafts Room, whose Winter Foraging bundle usually holds it until Winter) | the Ritual Altar **or** the Gloam Lantern; Lab T2; Aether as a daily trickle if the Sanctum is done |
 | Great Work Chamber (Winter) | Mines done, the desert open, Skull Cavern started | all seven rooms: altars, the Circle, the Pelican if the bus is repaired, quality stages up to iridium |
 
 | Tier | Currency | Room | Tools bundle (stretch) | Progress bundle | Gathering bundle |
@@ -110,7 +112,7 @@ Three bundles per room, four in the Great Work Chamber, CC-style: each slot is a
 
 - **Rewards** per bundle are small and useful, like the CC's: a stack of a Prime-rich vanilla item, an extra apparatus, a fertilizer stack. The room's unlocks are the main reward. A bundle's reward stays hidden until the bundle is complete, as in vanilla (Charles, 2026-10-20; doc 16 §10).
 - **Never ✋.** Bundles ask only for automatable items, and accept automated output (doc 10 #2).
-- **Critical-path rule** (Charles, 2026-10-17): every slot must be makeable with what is unlocked **when its room opens**, never with something the room itself (or a later room) unlocks. Checked against §2 and §4, the v0.3 list broke this twice, now fixed: the Sanctum asked for Electrum, which needs Argentum from the Quarry Crucible (a bridge-gated specialist), and the Undercroft asked for Mors and Venenum, the dark twins the Witch teaches only once the Undercroft is restored. A bundle may ask for something whose source is a base-game gate only through an "N of M" choice with a vanilla fallback (Metals of the Week). The sweep re-runs this check whenever bundles or unlocks change (balance hooks).
+- **Critical-path rule** (Charles, 2026-10-17): every slot must be makeable with what is unlocked **when its room opens**, never with something the room itself (or a later room) unlocks. Checked against §2 and §4, the v0.3 list broke this twice, now fixed: the Sanctum asked for Electrum, which needs Argentum from the Quarry Crucible (a bridge-gated specialist), and the Undercroft asked for Mors and Venenum, the dark twins the Witch teaches only once the Undercroft is restored. A bundle may ask for something whose source is a base-game gate only through an "N of M" choice with a vanilla fallback (Metals of the Week). The sweep re-runs this check whenever bundles or unlocks change (balance hooks); until the sweep tooling exists (doc 10, upcoming tasks), the check is a review by hand, as the v0.3 check was.
 - **Never a single source.** A slot names a tag or "any of" wherever possible, so one bad harvest or one undiscovered route can't stall a room.
 - **Metals of the Week** depends on the Quarry bridge (Quarry Crucible). It gives a "2 of 3" choice with a vanilla fallback slot *(approved)*, so a player who hasn't repaired the bridge can still finish the Crystal Vault.
 - **The final room** asks for the four colour stages themselves, a rehearsal of the Great Work: the Rubedo bundle is the first time most players push a product to iridium. The four bundle titles keep the stage names as lore names (Charles, 2026-10-19: they name stages of the Work, not a quality); their slot text shows quality the vanilla way, "base quality" and the silver, gold and iridium stars (doc 16 §2).
@@ -213,9 +215,12 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[blocks-content]` **Lightning Coil in Winter:** the Coil comes by letter after the next storm (approved). If a Cistern restored in Winter feels too slow in play, the fallback is to grant it with the room. *Owner: balance pass.*
 - `[blocks-content]` **Contract-reward list:** optional extras only (approved); which extras and curios is content. *Owner: doc 20.*
 - `[blocks-content]` **Bundle contents, rewards and NPC arrival scenes.** *Owner: doc 20 and the sweep.*
+- `[blocks-content]` **Tier IV's stretch** was set against a Fall Quarry bridge; on the CC route the bridge usually comes in Winter, so the Tier IV bundles need recalibrating (Metals of the Week already has its vanilla fallback). *Owner: balance pass.*
+- `[blocks-content]` **Trinkets in Fall Y1** (§8): vanilla's trinket slot opens only with Combat Mastery, so the first trinkets can't be worn when §8 hands them out. *Owner: Charles (doc 15 §5).*
 - `[2.0]` Arcane logistics (Hesper's teaching) and forging unlocks; prestige perks.
 
 ## Change log
+- **v0.6a (2026-11-11):** docs cleanup sweep, from the 2026-11-11 adversarial review: §3's Tier IV row no longer expects the Quarry bridge by Fall on the CC route (the Crafts Room needs Winter forage), and recalibrating Tier IV is an open question; §2 says what *Pace* means (the season a room is restored; from Tier II on it opens late in the season before), so it no longer reads as a clash with §3; the critical-path check is a review by hand until the sweep tooling exists; trinkets in Fall Y1 are an open question (Combat Mastery slot).
 - **v0.6 (2026-10-21):** docs cleanup sweep: Charles's sink-or-swim feedback (2026-10-20) moved here from the to-do list: the soft start never fires straight after the CC-opening cutscene; letters arrive overnight, so the intro sends no welcome letter; the workshop is one screen whose rooms are areas, with a room's bundles appearing only once it opens; bundle rewards stay hidden until done; the Curator's name is revealed in a cutscene, never a letter; Finch's wagon stands out in the world, never in the workshop.
 - **v0.5 (2026-10-19):** B2 docs update: workshop entrance warp at Town 53,9 behind the CC (spike S13 passed, vanilla and SVE); never the CC's front door (Charles).
 - **v0.4a (2026-10-19):** pre-gate cleanup sweep: the Great Work Chamber keeps stage names as bundle titles only (Charles, 2026-10-19); Spring Aether yield follows source rarity (doc 03).

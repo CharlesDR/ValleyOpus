@@ -1,6 +1,6 @@
 # 15 · Products & Outside Uses
 
-Status: **DRAFT v0.8** (2026-10-19) · Readiness: ready for architecture (Charles approved every default he owns on 2026-10-17; no `[blocks-arch]` item is open)
+Status: **DRAFT v0.8a** (2026-11-11) · Readiness: ready for architecture (Charles approved every default he owns on 2026-10-17; no `[blocks-arch]` item is open)
 Depends on: 01, 03, 03a, 03b, 05, 06, 07, 12, 13 · Feeds: 03a, 03b, 05, 06, 14, 16, 17, 19, 20
 
 ## Purpose
@@ -301,9 +301,13 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[blocks-content]` **Effect count:** the 2–3 cap stays suspended until the scale is settled; the approved catalogue (§3a) is the 1.0 list for now. The registry handles any number, so this is content, not shape. *Owner: Charles.*
 - `[blocks-content]` **Gift tastes** for Rosa Vitrea, Mel Vitae and Phiala Stellarum (approved products). *Owner: doc 20.*
 - `[blocks-content]` **Capstone effects** (Perpetuum Mobile, Lapis Philosophorum and the other Tier 3 items). *Owner: doc 19.*
+- `[blocks-content]` **Drinks and Coffee** (§2): §2 says drinks follow vanilla's one-drink-buff rule, but sos.3 gives each drink its own buff, so they stack with Coffee, and Fixative and Volatile only make sense stacked. On a card to Charles (2026-11-11); the review's default is to stack. *Owner: Charles.*
+- `[blocks-content]` **Terra Viva on sprinkled tiles** (§4): water retention does nothing on sprinkled tiles, so there it is plain Quality Fertilizer. A second axis that still works there is proposed in the ideas backlog (adversarial review, 2026-11-11). *Owner: Charles.*
+- `[blocks-content]` **Trinket slot** (§5): vanilla's trinket slot opens only with Combat Mastery, but doc 14 §8 hands out the first trinkets in Fall Y1. The review's default: the weak tier ships as rings, and vanilla's Mastery gate stays (adversarial review, 2026-11-11). *Owner: Charles.*
 - `[2.0]` Forging uses of Orichalcum, Electrum and Magma; custom-effect bombs; brew-map potions; Phlogiston in arcane logistics.
 
 ## Change log
+- **v0.8a (2026-11-11):** docs cleanup sweep: three open questions from the 2026-11-11 adversarial review (drinks and Coffee, Terra Viva on sprinkled tiles, the trinket slot).
 - **v0.8 (2026-10-19):** B2 docs update: spike S16 showed the Blacksmith bonus doesn't reach our bars by category; Charles chose option A, a Harmony postfix on the `valleyopus_metal_bar` tag.
 - **v0.7 (2026-10-18), Charles's answers:** Satchel auto-collect of reagents only is confirmed.
 - **v0.7 (2026-10-18):** cleanup sweep: the "Prime and famous-substance bonuses wait for picks" question is closed, since Charles approved them with the catalogue (v0.5) and they are in §3a; Satchel auto-collect is listed with the defaults awaiting Charles.
