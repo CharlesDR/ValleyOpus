@@ -1,6 +1,6 @@
 # 11 · First Playable Slice
 
-Status: **DRAFT v0.2c** (2026-10-28) · Readiness: ready for architecture (Charles reviewed and merged it as PR #14; no `[blocks-arch]` item open)
+Status: **DRAFT v0.2d** (2026-11-18) · Readiness: ready for architecture (Charles reviewed and merged it as PR #14; no `[blocks-arch]` item open)
 Depends on: 00, 02, 03, 03a, 03b, 05, 07, 12, 13, 14, 15, 18 · Feeds: 09 (the architecture plan), 16, 17, execution planning
 
 ## Purpose
@@ -129,7 +129,7 @@ Content for the build, listed here so the scope is countable:
 Every row follows doc 12's shape exactly; the validator runs on the slice data with zero errors as a build requirement.
 
 ### 3 · Darkness in the slice
-No slice recipe needs darkness: putrefaction makes only the dark twins, which are out. The darkness GSQ and the Lab alcove tiles still ship, because doc 18's alcove is part of the T1 map, and the condition is tested by a **test content pack** (§4) that adds one fixture recipe needing it. Where darkness holds outside a Lab is an open doc 12 follow-up (todo list); the slice only needs the alcove.
+No slice recipe needs darkness: putrefaction makes only the dark twins, which are out. The darkness GSQ and the Lab alcove tiles still ship, because doc 18's alcove is part of the T1 map, and the condition is tested by a **test content pack** (§4) that adds one fixture recipe needing it. Where darkness holds outside a Lab is an open question owned by doc 12 (on a card to Charles, 2026-11-11); the slice only needs the alcove.
 
 ### 4 · Build tooling the slice needs
 - **The slice report** (console command): discoveries per day, XP per day by source, Primes made per source, residue made and spent, gold earned from mod items, hand actions per day (loads, collections, Table attempts). It reads the save and writes a small CSV, so playtests feed doc 06's sweep and doc 05's pace targets (about 75 XP a day in Spring).
@@ -233,6 +233,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 - `[blocks-content]` **Draft scripts** for the cutscene, restoration scene and starter quests. Charles will rewrite the cutscene scripts himself (2026-10-20). *Owner: Charles for the cutscenes; doc 20 for the rest.*
 
 ## Change log
+- **v0.2d (2026-11-18):** docs cleanup sweep: §3's darkness note points to doc 12's open question (it left the to-do list in the 2026-10-18 sweep).
 - **v0.2c (2026-10-28):** docs cleanup sweep: the placeholder-art licence rules and Charles's 2026-10-22 decision on dual-licensed packs (OGA-BY for the Nila122 portrait kit) are written into Content inventory, moved from the project notes.
 - **v0.2b (2026-10-21):** docs cleanup sweep: the board shows only open rooms' bundles (no sealed doors) and the workshop is one screen (Charles, 2026-10-20; doc 14); the soft start never follows the CC-opening cutscene straight away and sends no welcome letter; Automate per D25 and uninstall per S3's fix; the settled sort-key paragraphs point to docs 03b and 09; all art is commissioned (Charles, 2026-10-21); Charles rewrites the cutscene scripts.
 - **v0.2a (2026-10-19):** pre-gate cleanup sweep: marked ready (merged as PR #14); co-op, split-screen and controller are built and code-reviewed, in-game runs deferred (doc 17 §8b); settled open questions and the "for other docs" notes removed (each now lives in its doc: 03, 09, 13, 14, 16, 17).
