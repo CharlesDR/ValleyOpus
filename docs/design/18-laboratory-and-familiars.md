@@ -1,6 +1,6 @@
 # 18 · Laboratory & Familiars
 
-Status: **DRAFT v0.3b** (2026-11-11) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
+Status: **DRAFT v0.3c** (2026-11-18) · Readiness: ready for architecture (no `[blocks-arch]` item open; the remaining questions are content)
 Depends on: 01, 02, 03a, 05, 06, 08a, 12, 13, 14, 15 · Feeds: 06, 09, 11, 16, 17, 20, 21
 
 ## Purpose
@@ -122,7 +122,7 @@ The new hall adds a **fourth line** of 6 + 11 (rows 13–15, walkways 12 and 16)
 ### 2a · Built-in features
 These are part of the map, not items, so they don't break doc 03b's purpose rule.
 - **Hearth** (2 per hearth wall): a heat source for the floor tiles directly beside it, so a machine there is in its *Heated* state (doc 13 §1a), exactly as beside a kindled Athanor. It is plain heat only: never Vapor, Fulgur or Flamma Viva, so it can't power a Vat or calcine Cinis Phoenicis. Theurgist's "near a kindled Athanor" perk doesn't count it.
-- **Dark alcove**: its tiles always meet the darkness condition, even with lamps elsewhere in the room. Putrefaction recipes (doc 12 §7) can therefore run there, by hand or automated, without the Lab being *required* for them: the darkness condition is still met elsewhere, as doc 12 defines it.
+- **Dark alcove**: its tiles always meet the darkness condition, even with lamps elsewhere in the room. Putrefaction recipes (doc 12 §7) can therefore run there, by hand or automated, without the Lab being *required* for them, because darkness must also hold somewhere outside a Lab. Where it holds is an open question owned by doc 12 (on a card to Charles, 2026-11-11).
 - **Pillars and the shrine** only block tiles, and never sit in a line row or a walkway's only path. **The dais** is ordinary floor; it just shows where a Circle fits.
 
 ### 2b · Draft process layouts (revisiting doc 13's condensation rule 2)
@@ -238,6 +238,7 @@ Every open item across the docs is also collected in [doc 10](10-roadmap-and-ope
 Where darkness holds outside a Lab is now a doc 12 open question.
 
 ## Change log
+- **v0.3c (2026-11-18):** docs cleanup sweep: the dark alcove no longer says doc 12 defines darkness outside a Lab; that definition is still an open question there.
 - **v0.3b (2026-11-11):** docs cleanup sweep: §2b(a)'s South chests feed the Vats only, since each Boiler's South tile is its Vat (doc 13 §7); the hearth corner (§2b(b)) is marked not buildable as drawn and listed as an open question (both found by the 2026-11-11 adversarial review).
 - **v0.3a (2026-10-21):** docs cleanup sweep: tech-hook risks follow the B1 spike results (S3 replaced by stripping Labs on save, S17 passed).
 - **v0.3 (2026-10-19):** B2 docs update: Labs are stripped into save data on every save and restored after; a reinstall after play without the mod returns the Lab's contents in chests (Charles, option C; doc 17 §6).
